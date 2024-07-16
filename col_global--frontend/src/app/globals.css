@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CZ:wght@100..400&family=Playwrite+VN:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+     --font-family: "Playwrite VN", cursive;
+
+     ;
+}
+
+* {
+     font-family: var(--font-family);
+}
