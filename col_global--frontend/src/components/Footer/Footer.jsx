@@ -1,22 +1,26 @@
 import { FaDiscord, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa';
-export default function Footer() {
+import { Link } from "react-router-dom";
+import { H_Main_Logo_White } from '../../images';
+const Footer = () => {
      return (
-
-
-          <footer className="bg-white dark:bg-gray-900">
+          <footer className="text-white dark:bg-black/80">
                <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                    <div className="md:grid md:grid-cols-12 md:gap-4">
+                    <div className="md:grid md:grid-cols-12 md:gap-12">
                          <div className="col-span-12 md:col-span-4 mb-6 md:mb-0">
-                              <a href="https://flowbite.com/" className="flex items-center">
-                                   {/* <img src={Footerimg} className="h-8 me-3" alt="Logo" /> */}
-                                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">COL</span>
-                              </a>
-                              <h1 className='text-white'>nb</h1>
+                              <Link to={`/`} className="flex items-center mb-5">
+                                   <img src={H_Main_Logo_White} className="h-8 me-3" alt="Logo" />
+                              </Link>
+                              <h1 className='text-2xl mb-5 '>Sign up for our NewsLetter</h1>
+                              <p className='text-xs mb-5'>Be the first to know about our special offers, new product launches, and events</p>
+                              <div className="bg-gray-100 w-80 p-2 flex items-center mb-2 rounded-sm">
+                                   <input type="email" name="email" placeholder="Enter your email address.." className="bg-gray-100 outline-none text-sm flex-1 text-black mr-5" />
+                                   <button className="border-1 border-blue-500 bg-blue-500 rounded-xl px-2 py-2 inline-block">Sign In</button>
+                              </div>
                          </div>
-                         <div className="col-span-6 md:col-span-8 grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                         <div className="col-span-6 md:col-span-8 grid grid-cols-2 gap-2 sm:gap-6 sm:grid-cols-4">
                               <div>
-                                   <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Quick</h2>
-                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                   <h2 className="mb-4 text-sm font-semibold uppercase">Quick</h2>
+                                   <ul className="font-medium">
                                         <li className="mb-4">
                                              <a href="/" className="hover:underline">Home</a>
                                         </li>
@@ -26,8 +30,8 @@ export default function Footer() {
                                    </ul>
                               </div>
                               <div>
-                                   <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">University</h2>
-                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                   <h2 className="mb-4 text-sm font-semibold uppercase">University</h2>
+                                   <ul className="font-medium">
                                         <li className="mb-4">
                                              <a href="/" className="hover:underline">University of Stanford</a>
                                         </li>
@@ -37,8 +41,8 @@ export default function Footer() {
                                    </ul>
                               </div>
                               <div>
-                                   <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Course</h2>
-                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                   <h2 className="mb-4 text-sm font-semibold uppercase">Course</h2>
+                                   <ul className="font-medium">
                                         <li className="mb-4">
                                              <a href="/" className="hover:underline">React</a>
                                         </li>
@@ -51,8 +55,8 @@ export default function Footer() {
                                    </ul>
                               </div>
                               <div>
-                                   <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase dark:text-white">Shop</h2>
-                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                   <h2 className="mb-4 text-sm font-semibold uppercase">Shop</h2>
+                                   <ul className="font-medium">
                                         <li className="mb-4">
                                              <a href="/" className="hover:underline">Women&apos;s Fashion</a>
                                         </li>
@@ -64,35 +68,37 @@ export default function Footer() {
                                         </li>
                                    </ul>
                               </div>
-                         </div>
+                         </div >
 
-                    </div>
+                    </div >
 
                     <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                     <div className="sm:flex sm:items-center sm:justify-between">
                          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="" className="hover:underline">COL-global™</a>. All Rights Reserved.
                          </span>
                          <div className="flex mt-4 sm:justify-center sm:mt-0">
-                              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                              <a href="#" className="text-gray-500 hover dark:hover:text-white">
                                    <FaFacebookF className="w-4 h-4" />
                                    <span className="sr-only">Facebook page</span>
                               </a>
-                              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                              <a href="#" className="text-gray-500 hover dark:hover:text-white ms-5">
                                    <FaDiscord className="w-4 h-4" />
                                    <span className="sr-only">Discord community</span>
                               </a>
-                              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                              <a href="#" className="text-gray-500 hover dark:hover:text-white ms-5">
                                    <FaTwitter className="w-4 h-4" />
                                    <span className="sr-only">Twitter page</span>
                               </a>
-                              <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                              <a href="#" className="text-gray-500 hover dark:hover:text-white ms-5">
                                    <FaGithub className="w-4 h-4" />
                                    <span className="sr-only">GitHub account</span>
                               </a>
                          </div>
                     </div>
-               </div>
-          </footer>
+               </div >
+          </footer >
 
-     );
+     )
 }
+
+export default Footer
