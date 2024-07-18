@@ -1,26 +1,22 @@
-import Button from "react-bootstrap/Button";
-import PropTypes from "prop-types";
-import useDarkMode from "../../hooks/useDarkMode";
+import { useState } from 'react';
+import { BsSun, BsMoon } from 'react-icons/bs';
 
-const Dark = () => {
-     const { isDarkMode, toggleDarkMode } = useDarkMode();
+function App() {
+     const [darkMode, setDarkMode] = useState(false);
+
+     const toggleDarkMode = () => {
+          setDarkMode(!darkMode);
+     };
 
      return (
-          <Button
+          <button
+               className={`flex items-center justify-center px-4 py-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white-200'
+                    } text-sm `}
                onClick={toggleDarkMode}
-               className={`me-3 border-0 ${isDarkMode ? "bg-dark btn btn-dark" : "bg-primary btn btn-primary"}`}
           >
-               {isDarkMode ? (
-                    <i className="bi bi-moon-stars-fill fs-3"></i>
-               ) : (
-                    <i className="bi bi-brightness-high-fill fs-3"></i>
-               )}
-          </Button>
+               {darkMode ? <BsMoon className='text-2xl text-white' /> : <BsSun className='text-2xl text-blue-500' />}
+          </button>
      );
-};
+}
 
-Dark.propTypes = {
-     onToggleDarkMode: PropTypes.func.isRequired,
-};
-
-export default Dark;
+export default App;
