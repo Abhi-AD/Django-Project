@@ -7,5 +7,7 @@ export { default as Job } from './Job/Job'
 export { default as Learn } from './Learn/Learn'
 export { default as Profile } from './Profile/Profile'
 export { default as Shop } from './Shop/Shop'
+
 export { default as University } from './University/University'
 export { default as UniversityCountry } from './UniversityCountry/UniversityCountry'
+export { default as UniversityCountryDetails } from './UniversityCountry/UniversityCountryDetails'

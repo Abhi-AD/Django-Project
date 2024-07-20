@@ -1,12 +1,11 @@
-
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 export function SampleNextArrow(props) {
      const { className, onClick } = props;
      return (
           <FaArrowRight
-               className={`${className} block bg-black text-white hover:bg-gray-800 hover:text-white right-5 h-8 w-8 p-2 rounded-full z-10`}
+               className={`${className} block bg-black text-white hover:bg-gray-800 hover:text-white right-2 h-8 w-8 p-2 rounded-full z-10`}
                onClick={onClick}
           />
      );
@@ -22,7 +21,7 @@ export function SamplePrevArrow(props) {
      const { className, onClick } = props;
      return (
           <FaArrowLeft
-               className={`${className} block bg-black text-white hover:bg-gray-800 hover:text-white left-5 h-8 w-8 p-2 rounded-full z-10`}
+               className={`${className} block bg-black text-white hover:bg-gray-800 hover:text-white left-2 h-8 w-8 p-2 rounded-full z-10`}
                onClick={onClick}
           />
      );

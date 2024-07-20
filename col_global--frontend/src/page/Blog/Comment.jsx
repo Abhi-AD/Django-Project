@@ -5,42 +5,59 @@ const Comment = () => {
           {
                id: 1,
                user: "User 1",
-               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.     ",
+               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
                timestamp: "a min ago"
           },
           {
                id: 2,
                user: "User 2",
-               comment: "Voluptatibus odit nemo ut nihil neque voluptatem.",
+               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
                timestamp: "2 mins ago"
           },
           {
                id: 3,
                user: "User 3",
-               comment: "Blanditiis, perferendis laboriosam eum exercitationem esse dolor.",
+               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
                timestamp: "3 mins ago"
           }
      ];
 
      return (
-          <div>
-               <p className="text-3xl">Comments</p>
-               <div className="flex justify-between mt-5">
-                    <input type="text" id="name" autoComplete="given-name" placeholder="username" className="rounded-md border border-gray-400 py-2 px-4 dark:bg-gray-700 dark:text-gray-300 focus:border-blue-500 focus:outline-none" name="name" />
-                    <input type="text" id="name" autoComplete="given-name" placeholder="Your comments" className="rounded-md border border-gray-400 py-2 px-4 dark:bg-gray-700 dark:text-gray-300 focus:border-blue-500 focus:outline-none" name="name" />
-                    <button type="submit" className="bg-blue-800 text-white px-6 py-3 font-medium rounded-md hover:bg-blue-700 transition duration-200">Send Message</button>
+          <div className="p-4">
+               <p className="text-3xl font-semibold mb-4">Comments</p>
+               <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+                    <input
+                         type="text"
+                         id="username"
+                         autoComplete="given-name"
+                         placeholder="Username"
+                         className="rounded-md border border-gray-400 py-2 px-4 dark:bg-gray-700 dark:text-gray-300 focus:border-blue-500 focus:outline-none flex-1"
+                    />
+                    <input
+                         type="text"
+                         id="comment"
+                         autoComplete="off"
+                         placeholder="Your comments"
+                         className="rounded-md border border-gray-400 py-2 px-4 dark:bg-gray-700 dark:text-gray-300 focus:border-blue-500 focus:outline-none flex-1"
+                    />
+                    <button
+                         type="submit"
+                         className="bg-blue-800 text-white px-4 py-2 font-medium rounded-md hover:bg-blue-700 transition duration-200"
+                    >
+                         Send
+                    </button>
                </div>
                {comments.map((comment) => (
-                    <div key={comment.id} className="bg-slate-400 mt-3 p-3 rounded-xl flex gap-10 text-white items-center">
-                         <div className="text-2xl p-4 text-black">
+                    <div key={comment.id} className="bg-slate-400 mb-4 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-start md:items-center text-white">
+                         <div className="flex-shrink-0 text-2xl">
                               <FaUserCircle className="text-5xl" />
-                              <p>{comment.user}</p>
+                              <p className="mt-2 text-lg font-semibold">{comment.user}</p>
                          </div>
-                         <div>
-                              <p>{comment.comment}</p>
-                              <div className="flex gap-28 mt-5">
-                                   <p>Replay</p>
-                                   <p className="text-blue-600">{comment.timestamp}</p>
+                         <div className="flex-1">
+                              <p className="mb-2">{comment.comment}</p>
+                              <div className="flex justify-between text-sm">
+                                   <p className="text-blue-600 cursor-pointer">Reply</p>
+                                   <p>{comment.timestamp}</p>
                               </div>
                          </div>
                     </div>

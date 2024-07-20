@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { Footer, Navbar } from './components/import';
-import { Blog, BlogDetails, Card, Contact, Home, Job, Learn, Profile, Shop, University, UniversityCountry } from './page/import';
+import { Blog, BlogDetails, Card, Contact, Home, Job, Learn, Profile, Shop, University, UniversityCountry, UniversityCountryDetails } from './page/import';
 
 function App() {
 
@@ -11,8 +11,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/university" element={<University />} />
-          <Route path="/university/country" element={<UniversityCountry />} />
+          <Route path="/country" element={<University />} />
+          <Route path="/country/university" element={<UniversityCountry />} />
+          <Route path="/country/university/id" element={<UniversityCountryDetails />} />
+
+
           <Route path="/learn" element={<Learn />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/card" element={<Card />} />

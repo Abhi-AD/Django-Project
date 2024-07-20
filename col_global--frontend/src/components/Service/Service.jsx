@@ -4,21 +4,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Card = ({ imgSrc, title, description, link, date }) => (
-     <div className="border rounded-2xl mx-2">
-          <img className="rounded-2xl h-40 p-3" src={imgSrc} alt={title} />
-          <div className="p-5">
+     <div className="max-w-sm border rounded-2xl">
+          <img className="rounded-2xl h-28 md:h-40 p-3" src={imgSrc} alt={title} />
+          <div className="md:p-5 p-1">
                <Link to={link}>
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
+                    <h5 className="mb-2 text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
                </Link>
-               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
+               <p className="md:mb-3 font-normal text-gray-700 dark:text-gray-400 text-xs md:text-base">{description}</p>
                <div className="flex justify-between items-center">
                     <Link
                          to={link}
-                         className="inline-flex rounded items-center px-3 py-2 text-sm font-medium text-center text-black border border-blue-500 hover:bg-blue-500 hover:text-white"
+                         className="inline-flex rounded items-center p-2 md:px-3 md:py-2 text-xs md:text-lg  text-center text-black border border-blue-500 hover:bg-blue-500 hover:text-white"
                     >
                          View Details
                     </Link>
-                    <p className="text-blue-500">{date}</p>
+                    <p className="text-blue-500 text-xs md:text-lg md:mx-0 mx-2">{date}</p>
                </div>
           </div>
      </div>
@@ -95,16 +95,14 @@ function Service() {
      return (
           <div className="max-w-screen-2xl mx-auto">
                <div>
-                    <h1 className="font-bold text-2xl mb-5">COL Other Service</h1>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <h1 className="font-bold mb:2  md:mb-2 mx-2 text-lg md:text-2xl">COL Other Service</h1>
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-4 gap-1">
                          {cardDataService.map((item, index) => (
                               <Card key={index} {...item} />
                          ))}
                     </div>
-                    <div className="flex justify-end mt-6">
-                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm font-medium text-center text-blue-500 border border-blue-500">
-                              View All
-                         </Link>
+                    <div className="flex justify-end">
+                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500  border-blue-500">View All</Link>
                     </div>
                </div>
           </div>

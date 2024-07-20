@@ -70,7 +70,7 @@ const Navbar = () => {
                text: 'University',
                url: '/country',
                submenu: [
-                    { text: 'USA', url: '/country' },
+                    { text: 'USA', url: '/country2' },
                     { text: 'London', url: '/country' },
                ]
           },
@@ -124,14 +124,8 @@ const Navbar = () => {
                                         {item.submenu && (
                                              <ul className={`absolute bg-white border border-gray-200 mt-2 rounded-xl py-2 w-max ${activeMenu === item.id ? 'block' : 'hidden'}`}>
                                                   {item.submenu.map((subitem, subIndex) => (
-                                                       <li key={subIndex} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                                            <Link
-                                                                 to={subitem.url}
-                                                                 onClick={closeSubMenu}
-                                                                 onMouseDown={(e) => e.stopPropagation()} // Prevent click bubbling
-                                                            >
-                                                                 {subitem.text}
-                                                            </Link>
+                                                       <li key={subIndex} className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={closeSubMenu}>
+                                                            <Link to={subitem.url}>{subitem.text}</Link>
                                                        </li>
                                                   ))}
                                              </ul>
@@ -229,14 +223,8 @@ const Navbar = () => {
                                         {item.submenu && activeMenu === item.id && (
                                              <ul className="absolute mx-60 bg-black border border-gray-900 mt-4 rounded-md py-2 text-white w-max">
                                                   {item.submenu.map((subitem, subIndex) => (
-                                                       <li key={subIndex} className="px-8 py-2 hover:bg-gray-800 cursor-pointer">
-                                                            <Link
-                                                                 to={subitem.url}
-                                                                 onClick={closeNav}
-                                                                 onMouseDown={(e) => e.stopPropagation()} // Prevent click bubbling
-                                                            >
-                                                                 {subitem.text}
-                                                            </Link>
+                                                       <li key={subIndex} className="px-8 py-2 hover:bg-gray-800 cursor-pointer" onClick={closeSubMenu}>
+                                                            <Link to={subitem.url.id} onClick={closeNav}>{subitem.text}</Link>
                                                        </li>
                                                   ))}
                                              </ul>

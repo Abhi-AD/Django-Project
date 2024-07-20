@@ -1,11 +1,10 @@
 import { Service } from "../../components/import"
-import Destination_Filter from "../../context/Destinations/Destination_Filter"
-import { Scholarship, StudyDestination, TopUniversity } from "../../context/import"
+import { Scholarship, StudyDestination, TopUniversity, DestinationFilter } from "../../container/import"
 
 const University_Country = () => {
      return (
           <div>
-               <Destination_Filter />
+               <DestinationFilter />
                <TopUniversity />
                <Scholarship />
                <StudyDestination />
