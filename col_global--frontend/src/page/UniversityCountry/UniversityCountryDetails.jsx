@@ -45,7 +45,7 @@ const UniversityCountryDetails = () => {
   return (
     <div className="container mx-auto py-6 px-4">
       <div className="grid grid-cols-1 md:grid-cols-[60%_25%_15%] gap-6">
-        <div className="bg-white rounded-lg p-4 md:p-6">
+        <div className="bg-white flex flex-col rounded-lg g-2 md:p-6">
           <div className="flex flex-col md:flex-row items-start md:items-center">
             <div className="flex flex-col mb-4 gap-2 md:mb-0 md:mr-4">
               <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">ABC University</h1>
@@ -81,7 +81,6 @@ const UniversityCountryDetails = () => {
             <p className="text-gray-700 mb-2 md:mb-4">{blogPosts[0].description}</p>
             <p className="text-gray-700">{blogPosts[0].year}</p>
           </div>
-          <ReviewArticle />
         </div>
 
 
@@ -132,7 +131,7 @@ const UniversityCountryDetails = () => {
           </div>
         </div>
       </div>
-
+      <ReviewArticle />
     </div >
   );
 };
