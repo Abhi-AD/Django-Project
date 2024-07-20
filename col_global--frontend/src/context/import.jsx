@@ -1,0 +1,5 @@
+export { default as Dark } from './Dark/Dark'
+export { default as Destinations } from './Destinations/Destinations'
+export { default as Scholarship } from './Scholarship/Scholarship'
+export { default as StudyDestination } from './StudyDestination/StudyDestination'
+export { default as TopUniversity } from './TopUniversity/TopUniversity'

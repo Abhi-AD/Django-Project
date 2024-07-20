@@ -1,8 +1,11 @@
+import { Destinations } from "../../context/import"
 
 const University = () => {
      return (
-          <div>University</div>
+          <div>
+               <Destinations />
+          </div>
      )
 }
 
-export default University
+export default University;
