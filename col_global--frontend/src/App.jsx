@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { Footer, Navbar } from './components/import';
 import { Blog, BlogDetails, Card, Contact, Euphoria, FounderClub, Home, Job, Learn, Profile, Sanbox, Shop, University, UniversityCountry, UniversityCountryDetails, UniversityCountryDetailsApplyForm } from './page/import';
+import { Login, Register } from './container/import';
 
 function App() {
 
@@ -30,6 +31,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/profile" element={<Profile />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
 
 
           <Route path="/jobs" element={<Job />} />

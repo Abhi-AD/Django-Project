@@ -167,7 +167,7 @@ const Navbar = () => {
                          </li>
                          <Dark />
 
-                         <li className='relative' ref={profileDropdownRef}>
+                         <li className='relative z-50' ref={profileDropdownRef}>
                               <button onClick={toggleProfileDropdown} className='p-4 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 flex items-center'>
                                    <FaUserCircle className="ml-1 text-5xl inline-block" />
                                    Profile
@@ -176,10 +176,10 @@ const Navbar = () => {
                               {profileDropdown && (
                                    <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-xl py-2 w-48">
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/profile">Profile</Link>
+                                             <Link to="/profile" onClick={closeNav}>Profile</Link>
                                         </li>
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/">Logout</Link>
+                                             <Link to="/" onClick={closeNav}>Logout</Link>
                                         </li>
                                    </ul>
                               )}
