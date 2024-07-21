@@ -52,13 +52,9 @@ const BlogDetails = () => {
                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="md:col-span-3">
                          <div className="bg-white rounded-lg">
-                              <img
-                                   src={blogPosts[0].imageUrl}
-                                   alt={blogPosts[0].title}
-                                   className="rounded-lg h-96 mx-auto"
-                              />
                               <div className="p-6">
                                    <h1 className="text-3xl font-bold mb-4">{blogPosts[0].title}</h1>
+                                   <img src={blogPosts[0].imageUrl} alt="Featured image" className="w-full h-auto mb-8" />
                                    <p className="text-gray-700 mb-4">{blogPosts[0].description}</p>
                                    <p className="text-gray-700">{blogPosts[0].year}</p>
                               </div>

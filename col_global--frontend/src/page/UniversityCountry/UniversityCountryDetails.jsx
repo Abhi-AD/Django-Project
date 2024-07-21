@@ -3,6 +3,8 @@ import { GiRank3 } from "react-icons/gi";
 import { FaMinus, FaPlus, FaUserGraduate } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import ReviewArticle from './ReviewArticle';
+import CoursePricing from './CoursePricing';
+import UniversityCountryDetailsGallery from './UniversityCountryDetailsGallery';
 
 const UniversityCountryDetails = () => {
   // Example data for blog posts
@@ -64,12 +66,14 @@ const UniversityCountryDetails = () => {
                 </div>
 
               </div>
-              <button
-                type="submit"
-                className="bg-blue-800 text-white px-4 py-2 font-medium rounded-md hover:bg-blue-700 transition duration-200"
-              >
-                Apply Now
-              </button>
+              <Link to={`/country/university/id/applyform`}>
+                <button
+                  type="submit"
+                  className="bg-blue-800 text-white px-4 py-2 font-medium rounded-md hover:bg-blue-700 transition duration-200"
+                >
+                  Apply Now
+                </button>
+              </Link>
             </div>
             <img
               src="https://img.freepik.com/free-vector/blogger-review-concept_23-2148515144.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized"
@@ -131,6 +135,8 @@ const UniversityCountryDetails = () => {
           </div>
         </div>
       </div>
+      <CoursePricing />
+      <UniversityCountryDetailsGallery />
       <ReviewArticle />
     </div >
   );
