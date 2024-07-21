@@ -38,7 +38,7 @@ const sections = [
 const Footer = () => {
      return (
           <footer className="text-white bg-black/80 dark:bg-black/80">
-               <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+               <div className="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8">
                     <div className="md:grid md:grid-cols-12 md:gap-12">
                          <div className="col-span-12 md:col-span-4 mb-6 md:mb-0">
                               <Link to="/" className="flex items-center mb-5">

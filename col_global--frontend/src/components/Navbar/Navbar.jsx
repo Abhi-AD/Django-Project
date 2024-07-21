@@ -94,14 +94,23 @@ const Navbar = () => {
                     { text: "Men's Fashion", url: '/shop' }
                ]
           },
-          { id: 5, text: 'Build with Us', url: '/card' },
-          { id: 6, text: 'Contact', url: '/contact' },
-          { id: 7, text: 'Blog/Article', url: '/blog-articles' }
+          {
+               id: 5,
+               text: 'Sanbox',
+               url: '/sanbox',
+               submenu: [
+                    { text: 'Euphoria', url: '/euphoria' },
+                    { text: 'Founder Club', url: '/founder-club' },
+               ]
+          },
+          { id: 6, text: 'Build with Us', url: '/card' },
+          { id: 7, text: 'Contact', url: '/contact' },
+          { id: 8, text: 'Blog/Article', url: '/blog-articles' }
      ];
 
      return (
           <nav className="bg-white border-gray-200 dark:bg-white-900 sticky top-0 z-50">
-               <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+               <div className='max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4'>
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                          <img
                               src={window.innerWidth >= 768 ? H_Main_Logo_Dark : Main_Logo_Icon}
@@ -116,7 +125,7 @@ const Navbar = () => {
                               !item.hidden && (
                                    <li
                                         key={item.id}
-                                        className='p-4 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 relative group'
+                                        className='p-2 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 relative group'
                                         ref={submenuRef}
                                         onClick={() => handleSubMenuClick(item.id)}
                                    >

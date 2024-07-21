@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { Footer, Navbar } from './components/import';
-import { Blog, BlogDetails, Card, Contact, Home, Job, Learn, Profile, Shop, University, UniversityCountry, UniversityCountryDetails, UniversityCountryDetailsApplyForm } from './page/import';
+import { Blog, BlogDetails, Card, Contact, Euphoria, FounderClub, Home, Job, Learn, Profile, Sanbox, Shop, University, UniversityCountry, UniversityCountryDetails, UniversityCountryDetailsApplyForm } from './page/import';
 
 function App() {
 
@@ -19,6 +19,11 @@ function App() {
 
           <Route path="/learn" element={<Learn />} />
           <Route path="/shop" element={<Shop />} />
+
+          <Route path="/sanbox" element={<Sanbox />} />
+          <Route path="/euphoria" element={<Euphoria />} />
+          <Route path="/founder-club" element={<FounderClub />} />
+
           <Route path="/card" element={<Card />} />
           <Route path="/blog-articles" element={<Blog />} />
           <Route path="/blog-articles/details" element={<BlogDetails />} />
