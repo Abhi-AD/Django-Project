@@ -11,6 +11,9 @@ export { default as Profile } from './Profile/Profile'
 
 export { default as Sanbox } from './Sanbox/Sanbox'
 export { default as SanboxSubmenu } from './Sanbox/SanboxSubmenu'
+export { default as SanboxHeader } from './Sanbox/SanboxHeader'
+export { default as SanboxCourse } from './Sanbox/SanboxCourse'
+export { default as SanboxSucessInterView } from './Sanbox/SanboxSucessInterView'
 
 export { default as Shop } from './Shop/Shop'
 
