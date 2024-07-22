@@ -69,40 +69,14 @@ const Navbar = () => {
                id: 2,
                text: 'University',
                url: '/country',
-               submenu: [
-                    { text: 'USA', url: '/country' },
-                    { text: 'London', url: '/country' },
-               ]
           },
           {
                id: 3,
-               text: 'Learn',
-               url: '/learn',
-               submenu: [
-                    { text: 'Learn 1', url: '/learn' },
-                    { text: 'Learn 2', url: '/learn' },
-                    { text: 'Learn 3', url: '/learn' }
-               ]
-          },
-          {
-               id: 4,
-               text: 'Shop',
-               url: '/shop',
-               submenu: [
-                    { text: "Women's Fashion", url: '/shop' },
-                    { text: 'Health & Beauty', url: '/shop' },
-                    { text: "Men's Fashion", url: '/shop' }
-               ]
-          },
-          {
-               id: 5,
                text: 'Sanbox',
                url: '/sanbox',
-               submenu: [
-                    { text: 'Euphoria', url: '/euphoria' },
-                    { text: 'Founder Club', url: '/founder-club' },
-               ]
           },
+          { id: 4, text: 'Euphoria', url: '/euphoria' },
+          { id: 5, text: 'Founder Club', url: '/founder-club' },
           { id: 6, text: 'Build with Us', url: '/card' },
           { id: 7, text: 'Contact', url: '/contact' },
           { id: 8, text: 'Blog/Article', url: '/blog-articles' }
@@ -167,23 +141,6 @@ const Navbar = () => {
                          </li>
                          <Dark />
 
-                         <li className='relative z-50' ref={profileDropdownRef}>
-                              <button onClick={toggleProfileDropdown} className='p-4 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 flex items-center'>
-                                   <FaUserCircle className="ml-1 text-5xl inline-block" />
-                                   Profile
-                                   <AiOutlineDown className="ml-1 inline-block" />
-                              </button>
-                              {profileDropdown && (
-                                   <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-xl py-2 w-48">
-                                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/profile" onClick={closeNav}>Profile</Link>
-                                        </li>
-                                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/" onClick={closeNav}>Logout</Link>
-                                        </li>
-                                   </ul>
-                              )}
-                         </li>
                     </ul>
 
                     <div onClick={handleNav} className='block md:hidden'>
