@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import sliderSettings from "../../components/silderSettings/OnesliderSettings";
+import cardCollagePrice from "../../data/cardCollagePrice";
 
 const Card = ({ collagename, coursename, price }) => (
      <div className="p-1 md:p-10">
@@ -54,25 +56,11 @@ Card.propTypes = {
 };
 
 const CoursePricing = () => {
-     const settings = {
-          dots: false,
-          infinite: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          responsive: [{ breakpoint: 1440, settings: { slidesToShow: 1, slidesToScroll: 1 } }],
-     };
-
-     const cardData = [
-          { collagename: "collagename 1", coursename: "coursename 1", price: "100" },
-          { collagename: "collagename 2", coursename: "coursename 2", price: "200" },
-          { collagename: "collagename 3", coursename: "coursename 3", price: "300" },
-     ];
-
      return (
           <div className="slider-container max-w-screen-2xl mx-auto">
                <h1 className="font-bold mb:2 md:mb-5 mx-2 text-xl md:text-2xl">Pricing</h1>
-               <Slider {...settings} className="md:mb-5 mb-3">
-                    {cardData.map((item, index) => (
+               <Slider {...sliderSettings} className="md:mb-5 mb-3">
+                    {cardCollagePrice.map((item, index) => (
                          <div key={index}>
                               <Card {...item} />
                          </div>

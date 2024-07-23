@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import cardDataUniversity from "../../data/cardDataUniversity";
 
 const Card = ({ imgSrc, country, description, link, date }) => (
      <Link to={link} className="relative w-full max-w-lg mx-auto h-auto rounded-lg overflow-hidden group">
@@ -25,64 +26,6 @@ Card.propTypes = {
      date: PropTypes.string.isRequired,
 };
 function University() {
-     const cardDataUniversity = [
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-          {
-               imgSrc: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               country: "USA",
-               description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
-               link: "/country/university",
-               date: '2024/04/04'
-          },
-     ];
      return (
           <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5">
                <div className="flex justify-between items-center">
