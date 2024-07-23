@@ -65,21 +65,14 @@ const Navbar = () => {
 
      const navItems = [
           { id: 1, text: 'Home', url: '/' },
-          {
-               id: 2,
-               text: 'University',
-               url: '/country',
-          },
-          {
-               id: 3,
-               text: 'Sanbox',
-               url: '/sanbox',
-          },
+          { id: 2, text: 'University', url: '/country', },
+          { id: 3, text: 'Sanbox', url: '/sanbox', },
           { id: 4, text: 'Euphoria', url: '/euphoria' },
           { id: 5, text: 'Founder Club', url: '/founder-club' },
           { id: 6, text: 'Build with Us', url: '/card' },
-          { id: 7, text: 'Contact', url: '/contact' },
-          { id: 8, text: 'Blog/Article', url: '/blog-articles' }
+          { id: 7, text: 'Learn', url: '/learn' },
+          { id: 8, text: 'Contact', url: '/contact' },
+          { id: 9, text: 'Blog/Article', url: '/blog-articles' },
      ];
 
      return (
