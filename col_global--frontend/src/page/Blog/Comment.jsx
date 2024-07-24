@@ -1,27 +1,6 @@
-import { FaUserCircle } from "react-icons/fa";
+import commentsPosts from "../../data/comments";
 
 const Comment = () => {
-     const comments = [
-          {
-               id: 1,
-               user: "User 1",
-               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-               timestamp: "a min ago"
-          },
-          {
-               id: 2,
-               user: "User 2",
-               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-               timestamp: "2 mins ago"
-          },
-          {
-               id: 3,
-               user: "User 3",
-               comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-               timestamp: "3 mins ago"
-          }
-     ];
-
      return (
           <div className="p-4">
                <p className="text-3xl font-semibold mb-4">Comments</p>
@@ -47,10 +26,14 @@ const Comment = () => {
                          Send
                     </button>
                </div>
-               {comments.map((comment) => (
+               {commentsPosts.map((comment) => (
                     <div key={comment.id} className="bg-slate-400 mb-4 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-start md:items-center text-white">
                          <div className="flex-shrink-0 text-2xl">
-                              <FaUserCircle className="text-5xl" />
+                              <img
+                                   src={comment.imgUrl}
+                                   alt={comment.user}
+                                   className="w-10 h-10 rounded-full"
+                              />
                               <p className="mt-2 text-lg font-semibold">{comment.user}</p>
                          </div>
                          <div className="flex-1">

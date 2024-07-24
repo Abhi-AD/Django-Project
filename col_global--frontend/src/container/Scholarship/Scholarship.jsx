@@ -12,28 +12,28 @@ const Card = ({ imgSrc, collagename, studylevel, link, location, scholarship_per
           <img className="rounded-2xl h-40 p-3" src={imgSrc} alt={collagename} />
           <div className="p-5 ">
                <Link to={link}>
-                    <h5 className="mb-0 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{collagename}</h5>
-                    <p className="mb-2 text-xl font-normal tracking-tight text-gray-900 dark:text-white">{location}</p>
+                    <h5 className="mb-2 text-base md:text-lg font-bold tracking-tight text-gray-900 dark:text-white">{collagename}</h5>
+                    <p className="md:mb-3 font-normal text-gray-700 dark:text-gray-400 text-xs md:text-base">{location}</p>
                </Link>
                <hr className=" border-blue-500 mt-2 mb-2" />
                <div className="flex flex-col gap-2 mb-3">
-                    <div className="flex items-center gap-1">
-                         <FaUserGraduate className="text-sm" />
-                         <p>Study Level: <span className="text-blue-500">{studylevel}</span></p>
+                    <div className="flex items-start md:items-center gap-1">
+                         <FaUserGraduate className="text-lg" />
+                         <p className="text-sm">Study Level: <span className="text-blue-500">{studylevel}</span></p>
                     </div>
-                    <div className="flex items-center gap-1">
-                         <FaDollarSign className="text-sm" />
+                    <div className="flex items-start md:items-center gap-1">
+                         <FaDollarSign className="text-lg" />
                          <p className=" text-xs md:text-lg md:mx-0 mx-2">Upto <span className="text-blue-500">{scholarship_percentage}</span> Scholarship</p>
                     </div>
                </div>
-          </div>
-          <div className="flex justify-between items-cente p-2">
-               <Link
-                    to={link}
-                    className="inline-flex rounded items-center p-2 md:px-3 md:py-2 text-xs md:text-lg  text-center text-black border border-blue-500 hover:bg-blue-500 hover:text-white"
-               >
-                    View Details
-               </Link>
+               <div className="flex mt-3">
+                    <Link
+                         to={link}
+                         className="inline-flex rounded items-center p-2 md:px-3 md:py-2 text-xs md:text-lg  text-center text-black border border-blue-500 hover:bg-blue-500 hover:text-white"
+                    >
+                         View Details
+                    </Link>
+               </div>
           </div>
      </div>
 );

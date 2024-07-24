@@ -19,12 +19,9 @@ export { default as Shop } from './Shop/Shop'
 
 export { default as University } from './University/University'
 
-export { default as CoursePricing } from './UniversityCountry/CoursePricing'
-export { default as FormApplySucess } from './UniversityCountry/FormApplySucess'
 export { default as ReviewArticle } from './UniversityCountry/ReviewArticle'
 export { default as UniversityCountry } from './UniversityCountry/UniversityCountry'
 export { default as UniversityCountryDetails } from './UniversityCountry/UniversityDetails'
-export { default as UniversityCountryDetailsApplyForm } from './UniversityCountry/UniversityCountryDetailsApplyForm'
 export { default as UniversityCountryDetailsGallery } from './UniversityCountry/UniversityCountryDetailsGallery'
 
 

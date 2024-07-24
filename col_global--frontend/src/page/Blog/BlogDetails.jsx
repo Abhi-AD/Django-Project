@@ -2,36 +2,9 @@ import { useState } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'; // Import icons
 import Comment from './Comment';
+import blogPosts from '../../data/blogPosts';
 
 const BlogDetails = () => {
-     // Example data for blog posts
-     const blogPosts = [
-          {
-               id: 1,
-               title: "Blog Title 1",
-               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec velit fermentum, id pretium felis fringilla. Ut euismod euismod diam, eget malesuada tortor dapibus vel. Cras sit amet tellus ante. Sed id lacinia arcu. Sed commodo velit vel nisl maximus congue. Sed nec mi eget eros fringilla vestibulum. Nunc efficitur hendrerit ipsum, at fermentum mauris fermentum sed. Vivamus vestibulum sit amet mauris a lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero nec velit fermentum, id pretium felis fringilla. Ut euismod euismod diam, eget malesuada tortor dapibus vel. Cras sit amet tellus ante. Sed id lacinia arcu. Sed commodo velit vel nisl maximus congue. Sed nec mi eget eros fringilla vestibulum. Nunc efficitur hendrerit ipsum, at fermentum mauris fermentum sed. Vivamus vestibulum sit amet mauris a lacinia.",
-               year: 2024,
-               imageUrl: "https://img.freepik.com/free-vector/blogger-review-concept_23-2148515144.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized"
-          },
-          {
-               id: 2,
-               title: "Card 1 Title",
-               description: "Card 1 Description",
-               imageUrl: "https://img.freepik.com/free-vector/blogger-review-concept_23-2148515144.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized"
-          },
-          {
-               id: 3,
-               title: "Card 2 Title",
-               description: "Card 2 Description",
-               imageUrl: "https://img.freepik.com/free-vector/blogger-review-concept_23-2148515144.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized"
-          },
-          {
-               id: 4,
-               title: "Card 3 Title",
-               description: "Card 3 Description",
-               imageUrl: "https://img.freepik.com/premium-photo/how-start-blog-blogging-beginners-ways-monetize-your-blog-blog-word-table-with-laptop_72482-5630.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized"
-          }
-     ];
 
      // Example data for Table of Contents
      const tableOfContents = [

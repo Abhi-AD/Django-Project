@@ -1,9 +1,10 @@
-import { Service } from "../../components/import"
+import { FilterForm, Service } from "../../components/import"
 import { Scholarship, StudyDestination, TopUniversity, DestinationFilter } from "../../container/import"
 
 const University_Country = () => {
      return (
-          <div>
+          <div className="">
+               <FilterForm />
                <DestinationFilter />
                <TopUniversity />
                <Scholarship />

@@ -1,5 +1,4 @@
-import RightArrow from "../ArrowComponents/RightArrow";
-import LeftArrow from "../ArrowComponents/LeftArrow";
+import { LeftArrow, RightArrow } from "../import";
 
 const foursliderSettings = {
     dots: false,

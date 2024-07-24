@@ -57,20 +57,29 @@ const DestinationFilter = () => {
           { label: "Cyber", value: "cyber" },
           { label: "Marketing", value: "marketing" },
      ];
+     const city = [
+          { label: "Landon", value: "landon" },
+          { label: "Hotel Management", value: "hotelmanagement" },
+          { label: "Cyber", value: "cyber" },
+          { label: "Marketing", value: "marketing" },
+     ];
 
      return (
-          <div className="flex justify-center p-4 md:p-6">
-               <div className="flex max-w-screen-xl flex-wrap justify-between gap-4">
+          <div className="flex justify-center p-4 md:p-6 text-black">
+               <div className="flex max-w-screen-xl flex-wrap justify-between items-center gap-4">
+                    <h1 className="text-xl">China</h1>
                     <Select label="Study Level" options={studyLevels} />
                     <Select label="Fee" options={fees} />
                     <Select label="Location" options={locations} />
                     <Select label="Course" options={courses} />
+                    <Select label="City" options={city} />
                     <div className="w-full md:w-auto flex-shrink-0">
                          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">
                               Let&apos;s Go
                          </button>
                     </div>
                </div>
+
           </div>
      );
 };

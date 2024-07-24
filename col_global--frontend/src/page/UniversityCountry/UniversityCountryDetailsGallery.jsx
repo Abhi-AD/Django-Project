@@ -4,7 +4,7 @@ const UniversityCountryDetailsGallery = () => {
      return (
           <div className="">
                <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold text-left mb-8">Bento Grid Layout with Images</h1>
+                    <h1 className="text-3xl font-bold text-left mb-8">Popular Place</h1>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                          {cardCollageImage.map((image, index) => (
                               <div key={index} className={`relative overflow-hidden rounded-2xl shadow-lg group ${image.span || ''}`}>

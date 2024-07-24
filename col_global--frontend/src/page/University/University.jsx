@@ -10,7 +10,7 @@ const Card = ({ imgSrc, country, description, link, date }) => (
           <img src={imgSrc} alt="image" className="w-full h-auto object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-indigo-900 opacity-0 z-10 transition-opacity duration-300 hover:opacity-40 rounded-lg"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 rounded-lg space-y-0.5">
-               <h3 className="md:text-lg text-xs animate-bottom-to-center">{country}</h3>
+               <h3 className="md:text-lg text-xs animate-bottom-to-center capitalize">{country}</h3>
                <h3 className="md:text-lg text-xs  animate-bottom-to-center">{description}</h3>
           </div>
 

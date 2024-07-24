@@ -1,3 +1,5 @@
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -6,8 +8,13 @@ export default {
   ],
   darkMode: 'false',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sevillana: ['Montserrat', 'sans-serif'],
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 }
-
