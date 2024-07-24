@@ -8,6 +8,8 @@ export { default as Home } from './Home/Home'
 export { default as Job } from './Job/Job'
 
 export { default as Learn } from './Learn/Learn'
+export { default as LearnAll } from './Learn/LearnAll'
+export { default as FilterAllCourse } from './Learn/FilterAllCourse'
 export { default as PopularLearn } from './Learn/PopularLearn'
 export { default as TrendingLearn } from './Learn/TrendingLearn'
 export { default as LearninsideDetails } from './Learn/Learninside/LearninsideDetails'

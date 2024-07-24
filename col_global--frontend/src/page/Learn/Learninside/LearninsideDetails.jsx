@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 const LearninsideDetails = () => {
      return (
@@ -75,6 +76,8 @@ const LearninsideDetails = () => {
                                         <span className="text-4xl font-bold">4.6</span>
                                         <span className="text-gray-600">(7,203 reviews)</span>
                                    </div>
+                                   <hr className="border-blue-500 mt-2 mb-2" />
+                                   <Link to={`/learn/all-course`}>View project details</Link>
                               </div>
                          </aside>
                     </main>
