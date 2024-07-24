@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { Footer, Navbar } from './components/import';
-import { Blog, BlogDetails, Card, Contact, Euphoria, FounderClub, Home, Job, Learn, Profile, Sanbox, Shop, University, UniversityCountry, UniversityCountryDetails } from './page/import';
+import { Blog, BlogDetails, Card, Contact, Euphoria, FounderClub, Home, Job, Learn, LearninsideDetails, Profile, Sanbox, Shop, University, UniversityCountry, UniversityCountryDetails } from './page/import';
 import { Login, Register } from './container/import';
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
 
 
           <Route path="/learn" element={<Learn />} />
+          <Route path="/learn/id" element={<LearninsideDetails />} />
           <Route path="/shop" element={<Shop />} />
 
           <Route path="/sanbox" element={<Sanbox />} />

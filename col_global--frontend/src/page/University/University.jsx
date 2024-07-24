@@ -13,8 +13,6 @@ const Card = ({ imgSrc, country, description, link, date }) => (
                <h3 className="md:text-lg text-xs animate-bottom-to-center capitalize">{country}</h3>
                <h3 className="md:text-lg text-xs  animate-bottom-to-center">{description}</h3>
           </div>
-
-
      </Link>
 );
 

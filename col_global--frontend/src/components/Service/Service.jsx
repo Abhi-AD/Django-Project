@@ -5,23 +5,16 @@ import "slick-carousel/slick/slick-theme.css";
 import cardDataService from "../../data/cardDataService";
 
 const Card = ({ imgSrc, title, description, link }) => (
-     <div className="max-w-sm border rounded-2xl">
-          <img className="rounded-2xl h-28 md:h-40 p-3" src={imgSrc} alt={title} />
-          <div className="md:p-5 p-1">
-               <Link to={link}>
-                    <h5 className="mb-2 text-base md:text-lg font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-               </Link>
-               <p className="md:mb-3 font-normal text-gray-700 dark:text-gray-400 text-xs md:text-base">{description}</p>
-               <div className="flex mt-3">
-                    <Link
-                         to={link}
-                         className="inline-flex rounded items-center p-2 md:px-3 md:py-2 text-xs md:text-lg  text-center text-black border border-blue-500 hover:bg-blue-500 hover:text-white"
-                    >
-                         View Details
-                    </Link>
-               </div>
+     <Link to={link} className="relative w-full max-w-lg mx-auto h-auto rounded-lg overflow-hidden group">
+          <img src={imgSrc} alt="image" className="w-full h-80 object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-indigo-900 opacity-0 z-10 transition-opacity duration-300 hover:opacity-40 rounded-lg"></div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 rounded-lg space-y-0.5">
+               <h3 className="md:text-lg text-xs animate-bottom-to-center capitalize">{title}</h3>
+               <h3 className="md:text-lg text-xs  animate-bottom-to-center">{description}</h3>
           </div>
-     </div>
+     </Link>
+
+
 );
 
 Card.propTypes = {
@@ -35,7 +28,7 @@ function Service() {
      return (
           <div className="max-w-screen-2xl mx-auto">
                <div>
-                    <h1 className="font-bold mb:2  md:mb-2 mx-2 text-lg md:text-2xl">COL Other Service</h1>
+                    <h1 className="font-bold mb:2  md:mb-2 mx-2 text-lg md:text-2xl"> Service</h1>
                     <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-4 gap-1">
                          {cardDataService.map((item, index) => (
                               <Card key={index} {...item} />

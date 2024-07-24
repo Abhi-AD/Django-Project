@@ -6,7 +6,12 @@ export { default as Euphoria } from './Euphoria/Euphoria'
 export { default as FounderClub } from './FounderClub/FounderClub'
 export { default as Home } from './Home/Home'
 export { default as Job } from './Job/Job'
+
 export { default as Learn } from './Learn/Learn'
+export { default as PopularLearn } from './Learn/PopularLearn'
+export { default as TrendingLearn } from './Learn/TrendingLearn'
+export { default as LearninsideDetails } from './Learn/Learninside/LearninsideDetails'
+
 export { default as Profile } from './Profile/Profile'
 
 export { default as Sanbox } from './Sanbox/Sanbox'
