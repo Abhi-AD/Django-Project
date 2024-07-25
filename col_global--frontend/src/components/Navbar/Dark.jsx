@@ -1,19 +1,15 @@
-import { useState } from 'react';
-import { BsSun, BsMoon } from 'react-icons/bs';
+import { BsMoon, BsSun } from 'react-icons/bs';
+import useDarkMode from '../../hooks/useDarkMode';
 
 function Dark() {
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
-
+    const { DarkMode, toggleDarkMode } = useDarkMode();
+    
     return (
         <button
-            className={`flex items-center justify-center w-32 h-12 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-gray-200'} text-sm`}
+            className={`flex items-center justify-center w-32 h-12 rounded-full ${DarkMode ? 'bg-gray-800' : 'bg-gray-200'} text-sm`}
             onClick={toggleDarkMode}
         >
-            {darkMode ? (
+            {DarkMode ? (
                 <>
                     <BsMoon className='text-2xl text-white' />
                     <span className='ml-2 text-white'>Dark</span>

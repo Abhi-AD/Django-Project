@@ -15,7 +15,7 @@ const LearninsideDetails = () => {
      const reviewsToShow = showAll ? reviews : reviews.slice(0, 2);
 
      return (
-          <div className="min-h-screen bg-white p-10">
+          <div className={`min-h-screen bg-white text-black p-10`}>
                <div className=" mx-auto max-w-5xl rounded-lg flex flex-col gap-10">
                     <div className=' bg-white'>
                          <header className="border-b pb-4 mb-8">

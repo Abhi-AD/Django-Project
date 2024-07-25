@@ -1,18 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu, AiOutlineDown, AiOutlineSearch } from 'react-icons/ai';
-import { FaUserCircle } from 'react-icons/fa';
-import { H_Main_Logo_Dark, Main_Logo_Icon } from '../../images';
+import { H_Main_Logo_Dark, H_Main_Logo_White, Main_Logo_Icon, Main_Logo_Icon_White } from '../../images';
 import Dark from './Dark';
+import useDarkMode from '../../hooks/useDarkMode';
 
 const Navbar = () => {
      const [nav, setNav] = useState(false);
      const [activeMenu, setActiveMenu] = useState(null);
-     const [profileDropdown, setProfileDropdown] = useState(false);
      const [showSearch, setShowSearch] = useState(false);
-
+     const { DarkMode } = useDarkMode();
      const submenuRef = useRef(null);
-     const profileDropdownRef = useRef(null);
 
      const handleNav = () => {
           setNav(!nav);
@@ -21,10 +19,6 @@ const Navbar = () => {
 
      const handleSubMenuClick = (index) => {
           setActiveMenu(activeMenu === index ? null : index);
-     };
-
-     const toggleProfileDropdown = () => {
-          setProfileDropdown(!profileDropdown);
      };
 
      const toggleSearch = () => {
@@ -52,9 +46,6 @@ const Navbar = () => {
                if (submenuRef.current && !submenuRef.current.contains(event.target)) {
                     setActiveMenu(null);
                }
-               if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
-                    setProfileDropdown(false);
-               }
           };
 
           document.addEventListener('mousedown', handleClickOutside);
@@ -76,103 +67,101 @@ const Navbar = () => {
      ];
 
      return (
-          <nav className="bg-white border-gray-200 dark:bg-white-900 sticky top-0 z-50">
+          <nav className={`border-gray-200 dark:bg-white-900 sticky top-0 z-50 ${DarkMode ? 'darkMode' : 'bg-white'}`}>
                <div className='max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4'>
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                          <img
-                              src={window.innerWidth >= 768 ? H_Main_Logo_Dark : Main_Logo_Icon}
+                              src={DarkMode ? H_Main_Logo_White : H_Main_Logo_Dark}
                               width={100}
                               height={55}
-                              alt="Flowbite Logo"
-                              className="h-15"
+                              alt="Logo"
+                              className="hidden xl:block"
+                         />
+                         <img
+                              src={DarkMode ? Main_Logo_Icon_White : Main_Logo_Icon}
+                              width={100}
+                              height={55}
+                              alt="Logo"
+                              className="xl:hidden"
                          />
                     </Link>
-                    <ul className='hidden md:flex items-center space-x-4'>
-                         {navItems.map((item) => (
-                              !item.hidden && (
-                                   <li
-                                        key={item.id}
-                                        className='p-2 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 relative group'
-                                        ref={submenuRef}
-                                        onClick={() => handleSubMenuClick(item.id)}
-                                   >
-                                        {item.icon ? item.icon : <Link to={item.url}>{item.text}</Link>}
-                                        {item.submenu && (
-                                             <ul className={`absolute bg-white border border-gray-200 mt-2 rounded-xl py-2 w-max ${activeMenu === item.id ? 'block' : 'hidden'}`}>
-                                                  {item.submenu.map((subitem, subIndex) => (
-                                                       <li key={subIndex} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                                            <Link
-                                                                 to={subitem.url}
-                                                                 onClick={closeSubMenu}
-                                                                 onMouseDown={(e) => e.stopPropagation()} // Prevent click bubbling
-                                                            >
-                                                                 {subitem.text}
-                                                            </Link>
-                                                       </li>
-                                                  ))}
-                                             </ul>
-                                        )}
-                                        {item.submenu && <AiOutlineDown className="ml-1 inline-block" />}
-                                   </li>
-                              )
-                         ))}
-                    </ul>
-                    <ul className='hidden md:flex items-center space-x-4'>
-                         <li className='relative'>
-                              {showSearch ? (
+                    <ul className='hidden xl:flex items-center '>
+                         {showSearch ? (
+                              <li className='relative'>
                                    <div className="flex items-left">
                                         <input
                                              type="text"
                                              placeholder="Search"
-                                             className="px-40 py-2 border rounded-xl"
+                                             className="px-2 py-3 border rounded-xl"
+                                             style={{ width: "1200px" }}
                                         />
                                         <AiOutlineClose className="ml-2 cursor-pointer" onClick={closeSearch} />
                                    </div>
-                              ) : (
-                                   <AiOutlineSearch className='text-2xl cursor-pointer' onClick={toggleSearch} />
-                              )}
-                         </li>
+                              </li>
+                         ) : (
+                              <>
+                                   {navItems.map((item) => (
+                                        !item.hidden && (
+                                             <li
+                                                  key={item.id}
+                                                  className='p-2 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 relative group'
+                                                  ref={submenuRef}
+                                                  onClick={() => handleSubMenuClick(item.id)}
+                                             >
+                                                  {item.icon ? item.icon : <Link to={item.url}>{item.text}</Link>}
+                                                  {item.submenu && (
+                                                       <ul className={`absolute bg-white border border-gray-200 mt-2 rounded-xl py-2 w-max ${activeMenu === item.id ? 'block' : 'hidden'}`}>
+                                                            {item.submenu.map((subitem, subIndex) => (
+                                                                 <li key={subIndex} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                                                      <Link
+                                                                           to={subitem.url}
+                                                                           onClick={closeSubMenu}
+                                                                           onMouseDown={(e) => e.stopPropagation()} // Prevent click bubbling
+                                                                      >
+                                                                           {subitem.text}
+                                                                      </Link>
+                                                                 </li>
+                                                            ))}
+                                                       </ul>
+                                                  )}
+                                                  {item.submenu && <AiOutlineDown className="ml-1 inline-block" />}
+                                             </li>
+                                        )
+                                   ))}
+                                   <li className='relative mx-3'>
+                                        <AiOutlineSearch className='text-2xl cursor-pointer' onClick={toggleSearch} />
+                                   </li>
+                              </>
+                         )}
                          <Dark />
-
                     </ul>
 
-                    <div onClick={handleNav} className='block md:hidden'>
+                    <div onClick={handleNav} className='block xl:hidden'>
                          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
                     </div>
 
                     <ul
                          className={
                               nav
-                                   ? 'fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-white ease-in-out duration-500 text-black'
-                                   : 'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]'
+                                   ? `fixed xl:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 ${DarkMode ? 'darkMode' : 'bg-white'} ease-in-out duration-500 flex flex-col gap-3`
+                                   : 'ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%] '
                          }
                     >
-
-                         <li className='relative z-50' ref={profileDropdownRef}>
-                              <button onClick={toggleProfileDropdown} className='p-4 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 flex items-center'>
-                                   <FaUserCircle className="ml-1 text-5xl inline-block" />
-                                   Profile
-                                   <AiOutlineDown className="ml-1 inline-block" />
-                              </button>
-                              {profileDropdown && (
-                                   <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-xl py-2 w-48">
-                                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/profile" onClick={closeNav}>Profile</Link>
-                                        </li>
-                                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                             <Link to="/" onClick={closeNav}>Logout</Link>
-                                        </li>
-                                   </ul>
-                              )}
-                         </li>
+                         <img
+                              src={DarkMode ? Main_Logo_Icon_White : Main_Logo_Icon}
+                              width={100}
+                              height={55}
+                              alt="COL Logo"
+                              className="h-15"
+                         />
                          <Dark />
 
-                         <li className='relative'>
-                              <div className="flex items-center">
+                         <li className=''>
+                              <div className="flex items-center px-3">
                                    <input
                                         type="text"
                                         placeholder="Search"
-                                        className="px-4 py-2 border rounded-xl"
+                                        className={`w-full h-16 px-3 border rounded-xl text-black`}
                                    />
                                    <AiOutlineSearch className='text-2xl cursor-pointer' />
                               </div>
@@ -205,9 +194,8 @@ const Navbar = () => {
                               )
                          ))}
                     </ul>
-
                </div>
-          </nav>
+          </nav >
      );
 };
 
