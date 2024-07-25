@@ -9,9 +9,9 @@ const UniversityCountryDetails = () => {
         <div className="flex flex-col md:flex-row items-start md:items-top">
           <div className="flex flex-col mb-4 gap-2 md:mb-0 md:mr-4">
             <h1 className="text-3xl md:text-3xl font-bold mb-2 md:mb-4">{cardDataTopUniversity[0].title}</h1>
-            <div className="flex flex-col md:flex-row gap-2 flex-wrap">
-              <div className="flex text-lg items-center gap-1">
-                <GiRank3 className="text-sm md:text-base" />
+            <div className="flex text-lg md:text-base flex-col md:flex-row gap-2 flex-wrap">
+              <div className="flex items-center gap-1">
+                <GiRank3 />
                 <p>World Ranking: <span className="text-blue-500">123</span></p>
               </div>
               <div className="flex items-center gap-1">
@@ -26,7 +26,7 @@ const UniversityCountryDetails = () => {
             className="rounded-lg w-[-500px] h-[500px] md:w-80 mx-auto"
           /> */}
         </div>
-        <div className="p-2 md:mt-10">
+        <div className="p-2 md:mt-2">
           <p className=" text-lg text-gray-700 mb-2 md:mb-4">{cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}</p>
         </div>
       </div>
