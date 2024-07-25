@@ -13,6 +13,11 @@ export { default as FilterAllCourse } from './Learn/FilterAllCourse'
 export { default as PopularLearn } from './Learn/PopularLearn'
 export { default as TrendingLearn } from './Learn/TrendingLearn'
 export { default as LearninsideDetails } from './Learn/Learninside/LearninsideDetails'
+export { default as CourseLesson } from './Learn//Learninside/CourseLesson/CourseLesson'
+export { default as CourseLessonHeader } from './Learn//Learninside/CourseLesson/CourseLessonHeader'
+export { default as CourseLessons } from './Learn//Learninside/CourseLesson/CourseLessons'
+export { default as CourseShorExplain } from './Learn//Learninside/CourseLesson/CourseShorExplain'
+export { default as ProgressReport } from './Learn//Learninside/CourseLesson/ProgressReport'
 
 export { default as Profile } from './Profile/Profile'
 

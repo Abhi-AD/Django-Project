@@ -23,7 +23,7 @@ const LearninsideDetails = () => {
                                    <h1 className="text-2xl font-bold">Introduction to Microsoft Excel</h1>
                                    <p className="text-gray-600">Taught in English | Video subtitles available</p>
                                    <p className="mt-2">Instructor: <span className="font-semibold">Summer Scaggs</span></p>
-                                   <Link to={'/learn/all-course'} className="w-40 inline-flex rounded items-center justify-center px-6 py-2 text-sm md:text-xl font-medium text-center text-white bg-blue-500 border border-blue-500 mb-5 shadow-md">
+                                   <Link to={'/learn/id/course'} className="w-40 inline-flex rounded items-center justify-center px-6 py-2 text-sm md:text-xl font-medium text-center text-white bg-blue-500 border border-blue-500 mb-5 shadow-md">
                                         All Course
                                    </Link>
                               </div>
@@ -120,7 +120,7 @@ const LearninsideDetails = () => {
                          </div>
                     </div>
 
-                    <div className="border border-gray-300 p-6 rounded-lg shadow-lg mt-6 flex flex-col lg:flex-row lg:justify-between items-start">
+                    <div className="border border-gray-300 p-6 rounded-lg  mt-6 flex flex-col lg:flex-row lg:justify-between items-start">
                          <div className="lg:w-3/4">
                               <h2 className="text-2xl font-bold mb-4">How you&apos;ll learn</h2>
                               <ul className="list-none">
