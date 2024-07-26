@@ -92,7 +92,7 @@ const Navbar = () => {
                                         <input
                                              type="text"
                                              placeholder="Search"
-                                             className="px-2 py-3 border rounded-xl"
+                                             className={`${DarkMode ? 'bg-transparent' : 'bg-white'} px-2 py-3 border rounded-xl`}
                                              style={{ width: "1200px" }}
                                         />
                                         <AiOutlineClose className="ml-2 cursor-pointer" onClick={closeSearch} />
@@ -104,7 +104,7 @@ const Navbar = () => {
                                         !item.hidden && (
                                              <li
                                                   key={item.id}
-                                                  className='p-2 hover:text-blue-900 rounded-xl m-2 cursor-pointer duration-300 relative group'
+                                                  className={`p-2 ${DarkMode ? 'hover:text-blue-200' : 'hover:text-blue-700'} hover:font-bold rounded-xl m-2 cursor-pointer duration-300 relative group`}
                                                   ref={submenuRef}
                                                   onClick={() => handleSubMenuClick(item.id)}
                                              >

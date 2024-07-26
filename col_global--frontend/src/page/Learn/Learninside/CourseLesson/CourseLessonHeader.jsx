@@ -4,7 +4,7 @@ import useDarkMode from "../../../../hooks/useDarkMode";
 const CourseLessonHeader = () => {
      const { DarkMode } = useDarkMode();
      return (
-          <div className={`${DarkMode ? '' : 'bg-blue-500'} text-white py-20`}>
+          <div className={`${DarkMode ? 'bg-gray-800' : 'bg-blue-500'} text-white py-20`}>
                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col gap-8 lg:flex-row items-center">
                          <div className="lg:w-1/2">

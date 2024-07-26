@@ -18,6 +18,7 @@ export { default as CourseLessonHeader } from './Learn//Learninside/CourseLesson
 export { default as CourseLessons } from './Learn//Learninside/CourseLesson/CourseLessons'
 export { default as CourseShorExplain } from './Learn//Learninside/CourseLesson/CourseShorExplain'
 export { default as ProgressReport } from './Learn//Learninside/CourseLesson/ProgressReport'
+export { default as CourseLessonQuiz } from './Learn//Learninside/CourseLesson/CourseLessonQuiz'
 
 export { default as Profile } from './Profile/Profile'
 

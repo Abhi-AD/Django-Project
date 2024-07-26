@@ -4,7 +4,6 @@ const getColorByPercentage = (percentage) => {
      if (percentage >= 0 && percentage < 25) return 'text-red-600';
      if (percentage >= 25 && percentage < 100) return 'text-blue-600';
      if (percentage === 100) return 'text-green-600';
-     return 'text-gray-200';
 };
 
 const CircularProgress = ({ percentage, size = 40, strokeWidth = 2 }) => {
@@ -21,7 +20,7 @@ const CircularProgress = ({ percentage, size = 40, strokeWidth = 2 }) => {
                          cy="18"
                          r={radius}
                          fill="none"
-                         className={`stroke-current text-gray-200`}
+                         className={`stroke-current text-gray-100`}
                          strokeWidth={strokeWidth}
                     />
                     <circle
@@ -54,7 +53,7 @@ CircularProgress.propTypes = {
 const ProgressReport = () => {
      return (
           <div className="flex flex-col items-end justify-center space-y-8">
-               <CircularProgress percentage={100} />
+               <CircularProgress percentage={8} />
           </div>
      );
 }
