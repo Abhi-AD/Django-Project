@@ -1,4 +1,5 @@
 import { FaEye } from "react-icons/fa";
+import useDarkMode from "../../hooks/useDarkMode";
 
 const courses = [
      {
@@ -35,12 +36,13 @@ const courses = [
 ];
 
 const SanboxCourse = () => {
+     const { DarkMode } = useDarkMode();
      return (
           <div className="text-blue">
                <h1 className="font-bold mt-4 mb-6 text-lg md:text-2xl lg:text-3xl text-left">Course</h1>
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {courses.map(course => (
-                         <div key={course.id} className="max-w-sm flex bg-white rounded-lg items-center dark:bg-gray-800 dark:border-gray-700">
+                         <div key={course.id} className="max-w-sm flex rounded-lg items-cente">
                               <div className="w-2/5 p-2">
                                    <a href="#">
                                         <img
@@ -50,9 +52,9 @@ const SanboxCourse = () => {
                                         />
                                    </a>
                               </div>
-                              <div className="w-3/5 p-2 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                                   <h5 className="mb-2 md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{course.title}</h5>
-                                   <div className="flex items-center text-gray-700 dark:text-gray-400">
+                              <div className="w-3/5 p-2 rounded-lg ">
+                                   <h5 className={`mb-2 md:text-2xl font-bold tracking-tight  ${DarkMode ? '' : 'text-gray-900'}`}>{course.title}</h5>
+                                   <div className={`flex items-center  ${DarkMode ? '' : 'text-gray-700'}`}>
                                         <FaEye className="text-sm" />
                                         <p className="mb-0 ml-2 font-normal ">{course.views}</p>
                                    </div>

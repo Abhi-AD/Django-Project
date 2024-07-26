@@ -5,8 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataFeaturesCourse from "../../data/cardDataPopularCourse";
 import foursliderSettings from "../../components/silderSettings/foursliderSettings";
+import useDarkMode from "../../hooks/useDarkMode";
 
-const Card = ({ imgSrc, title, description, link }) => (
+const Card = ({ imgSrc, title, description, link, DarkMode }) => (
      <Link to={link}>
           <div className="max-w-xl border rounded-2xl mx-1 md:mx-2 flex flex-col">
                <img
@@ -16,7 +17,7 @@ const Card = ({ imgSrc, title, description, link }) => (
                />
                <div className="p-4 flex-1 flex flex-col">
                     <h2 className="text-lg font-semibold mb-2">{title}</h2>
-                    <p className="text-gray-700 text-base truncate">
+                    <p className={`${DarkMode ? '' : 'text-gray-700'} text-base truncate`}>
                          {description}
                     </p>
                </div>
@@ -29,9 +30,11 @@ Card.propTypes = {
      title: PropTypes.string.isRequired,
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
+     DarkMode: PropTypes.string.isRequired,
 };
 
 function PopularLearn() {
+     const { DarkMode } = useDarkMode();
      return (
           <div className="slider-container max-w-screen-2xl mx-auto">
                <div className="">
@@ -39,7 +42,7 @@ function PopularLearn() {
                     <Slider {...foursliderSettings} className="md:mb-5 mb-3">
                          {cardDataFeaturesCourse.map((item, index) => (
                               <div key={index}>
-                                   <Card {...item} />
+                                   <Card {...item} DarkMode={DarkMode} />
                               </div>
                          ))}
                     </Slider>

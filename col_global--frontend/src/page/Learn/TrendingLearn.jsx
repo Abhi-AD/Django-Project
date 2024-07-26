@@ -5,23 +5,24 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import foursliderSettings from "../../components/silderSettings/foursliderSettings";
 import cardDataTrendingCourse from "../../data/cardDataTrendingCourse";
+import useDarkMode from "../../hooks/useDarkMode";
 
-const Card = ({ imgSrc, title, description, link }) => (
+const Card = ({ imgSrc, title, description, link, DarkMode }) => (
      <Link to={link}>
-     <div className="max-w-xl border rounded-2xl mx-1 md:mx-2 flex flex-col">
-          <img
-               className="w-full h-60 object-cover rounded-t-2xl"
-               src={imgSrc}
-               alt={title}
-          />
-          <div className="p-4 flex-1 flex flex-col">
-               <h2 className="text-lg font-semibold mb-2">{title}</h2>
-               <p className="text-gray-700 text-base truncate">
-                    {description}
-               </p>
+          <div className="max-w-xl border rounded-2xl mx-1 md:mx-2 flex flex-col">
+               <img
+                    className="w-full h-60 object-cover rounded-t-2xl"
+                    src={imgSrc}
+                    alt={title}
+               />
+               <div className="p-4 flex-1 flex flex-col">
+                    <h2 className="text-lg font-semibold mb-2">{title}</h2>
+                    <p className={`${DarkMode ? '' : 'text-gray-700'} text-base truncate`}>
+                         {description}
+                    </p>
+               </div>
           </div>
-     </div>
-</Link>
+     </Link>
 );
 
 Card.propTypes = {
@@ -29,9 +30,11 @@ Card.propTypes = {
      title: PropTypes.string.isRequired,
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
+     DarkMode: PropTypes.string.isRequired,
 };
 
 function TrendingLearn() {
+     const { DarkMode } = useDarkMode();
      return (
           <div className="slider-container max-w-screen-2xl mx-auto">
                <div className="">
@@ -39,7 +42,7 @@ function TrendingLearn() {
                     <Slider {...foursliderSettings} className="md:mb-5 mb-3">
                          {cardDataTrendingCourse.map((item, index) => (
                               <div key={index}>
-                                   <Card {...item} />
+                                   <Card {...item} DarkMode={DarkMode} />
                               </div>
                          ))}
                     </Slider>

@@ -1,9 +1,17 @@
 import PropTypes from 'prop-types';
 
-const CircularProgress = ({ percentage, size = 40, strokeWidth = 2, color = 'text-blue-600', bgColor = 'text-gray-200' }) => {
+const getColorByPercentage = (percentage) => {
+     if (percentage >= 0 && percentage < 25) return 'text-red-600';
+     if (percentage >= 25 && percentage < 100) return 'text-blue-600';
+     if (percentage === 100) return 'text-green-600';
+     return 'text-gray-200';
+};
+
+const CircularProgress = ({ percentage, size = 40, strokeWidth = 2 }) => {
      const radius = 16;
      const circumference = 2 * Math.PI * radius;
      const offset = circumference - (percentage / 100) * circumference;
+     const color = getColorByPercentage(percentage);
 
      return (
           <div className={`relative w-${size} h-${size}`}>
@@ -13,7 +21,7 @@ const CircularProgress = ({ percentage, size = 40, strokeWidth = 2, color = 'tex
                          cy="18"
                          r={radius}
                          fill="none"
-                         className={`stroke-current ${bgColor}`}
+                         className={`stroke-current text-gray-200`}
                          strokeWidth={strokeWidth}
                     />
                     <circle
@@ -30,7 +38,7 @@ const CircularProgress = ({ percentage, size = 40, strokeWidth = 2, color = 'tex
                </svg>
                {percentage !== undefined && (
                     <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                         <span className={`text-center text-2xl font-bold ${color}`}>{percentage}%</span>
+                         <span className={`text-center text-xl font-bold ${color}`}>    {percentage === 100 ? 'Complete' : `${percentage}%`}</span>
                     </div>
                )}
           </div>
@@ -41,14 +49,12 @@ CircularProgress.propTypes = {
      percentage: PropTypes.number.isRequired,
      size: PropTypes.number,
      strokeWidth: PropTypes.number,
-     color: PropTypes.string,
-     bgColor: PropTypes.string,
 };
 
 const ProgressReport = () => {
      return (
           <div className="flex flex-col items-end justify-center space-y-8">
-               <CircularProgress percentage={80} />
+               <CircularProgress percentage={100} />
           </div>
      );
 }

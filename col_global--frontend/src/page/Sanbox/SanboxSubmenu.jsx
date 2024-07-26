@@ -12,7 +12,7 @@ const SanboxSubmenu = () => {
 
      const handleMenuClick = (index) => {
           setActiveMenu(activeMenu === index ? null : index);
-          setActiveSubMenu({}); // Reset submenus when main menu changes
+          setActiveSubMenu({});
      };
 
      const handleSubMenuClick = (menuIndex, subIndex) => {
@@ -82,7 +82,7 @@ const SanboxSubmenu = () => {
      ];
 
      return (
-          <nav className="bg-white border-gray-200 dark:bg-gray-900 mb-10">
+          <nav className=" border-gray-200  mb-10">
                <div className="sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
                     <ul className="flex flex-wrap items-center space-x-4 gap-3">
                          {navItems.map((item) => (

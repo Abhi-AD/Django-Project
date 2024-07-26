@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom"
+import useDarkMode from "../../../../hooks/useDarkMode";
 
 const CourseLessonHeader = () => {
+     const { DarkMode } = useDarkMode();
      return (
-          <div className="bg-blue-400 text-white py-20">
+          <div className={`${DarkMode ? '' : 'bg-blue-500'} text-white py-20`}>
                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col gap-8 lg:flex-row items-center">
                          <div className="lg:w-1/2">
-                              <h1 className="text-4xl font-bold leading-tight mb-4">Welcome to Tailwind CSS!</h1>
+                              <h1 className="text-4xl font-bold leading-tight mb-4">Tailwind CSS!</h1>
                               <div className="flex flex-col gap-3 mb-10">
                                    <p className="text-xl">Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.</p>
-                                   <p className="text-sm">Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.</p>
 
                               </div>
-                              <Link to={``} className="bg-white text-gray-900 py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-200">Get started</Link>
+                              <Link to={``} className="bg-white text-gray-900 py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-200">Let&apos;s Start</Link>
                          </div>
                          <div className="lg:w-1/2 lg:ml-12">
                               <img

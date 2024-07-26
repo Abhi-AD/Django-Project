@@ -4,27 +4,29 @@ import { IoAddCircleSharp } from "react-icons/io5";
 import { useState } from "react";
 import { IoIosRemoveCircle } from "react-icons/io";
 import courseDataLesson from "../../../../data/courseDetails/courseDataLesson";
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const CourseLessons = () => {
+     const { DarkMode } = useDarkMode();
      return (
           <div className="relative w-full max-w-screen-2xl mx-auto">
                <div className="mx-auto flex flex-col gap-10">
                     <div className="flex flex-col items-left gap-3">
                          <h2 className="mt-5 text-xl font-bold tracking-tight md:text-xl">Course content</h2>
                          <div className="flex justify-between">
-                              <div className="flex gap-8">
-                                   <p className="text-sm text-gray-500 md:text-lg"><span className='text-blue-500'>23</span> sections</p>
-                                   <p className="text-sm text-gray-500 md:text-lg"><span className='text-blue-500'>156</span> lectures</p>
-                                   <p className="text-sm text-gray-500 md:text-lg"><span className='text-blue-500'>22h 13m</span> total length</p>
+                              <div className="flex gap-8 font-bold">
+                                   <p className={`text-sm ${DarkMode ? '' : 'text-gray-500'} md:text-lg`}><span className='text-blue-500'>23</span> sections</p>
+                                   <p className={`text-sm ${DarkMode ? '' : 'text-gray-500'} md:text-lg`}><span className='text-blue-500'>156</span> lectures</p>
+                                   <p className={`text-sm ${DarkMode ? '' : 'text-gray-500'} md:text-lg`}><span className='text-blue-500'>22h 13m</span> total length</p>
                               </div>
-                              <p className="text-sm font-bold text-blue-500 md:text-lg">Expand all sections</p>
+                              <p className={`text-sm font-bold ${DarkMode ? '' : 'text-blue-500'} md:text-lg`}>Expand all sections</p>
                          </div>
                     </div>
                     <div className='flex flex-col gap-5'>
                          {courseDataLesson.map((section, sectionIndex) => (
                               <div key={sectionIndex} className='rounded-lg' >
-                                   <details className="group border rounded-lg">
-                                        <summary className="flex cursor-pointer rounded-lg list-none items-center justify-between font-medium bg-blue-400 p-4 text-white">
+                                   <details className={`group  rounded-lg border ${DarkMode ? 'border-blue-100' : 'border-blue-400'}`}>
+                                        <summary className={`flex cursor-pointer rounded-lg list-none items-center justify-between font-medium p-4 ${DarkMode ? 'bg-gray-500 text-gray-100' : ' bg-blue-400  text-white'}`}>
                                              <span>{section.sectionTitle}</span>
                                              <span className="transition group-open:rotate-180">
                                                   <TfiAngleDown />

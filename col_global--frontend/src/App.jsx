@@ -3,12 +3,14 @@ import './App.css'
 import { Footer, Navbar } from './components/import';
 import { Blog, BlogDetails, Card, Contact, CourseLesson, Euphoria, FounderClub, Home, Job, Learn, LearnAll, LearninsideDetails, Profile, Sanbox, Shop, University, UniversityCountry, UniversityCountryDetails } from './page/import';
 import { Login, Register } from './container/import';
+import useDarkMode from './hooks/useDarkMode';
 
 function App() {
-
+  const { DarkMode } = useDarkMode();
   return (
     <Router>
-      <div>
+
+      <div className={`${DarkMode ? 'darkMode' : 'bg-white'}`}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

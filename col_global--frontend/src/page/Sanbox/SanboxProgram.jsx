@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import threesliderSettingsAuto from "../../components/silderSettings/threesliderSettingsAuto";
 
 const Card = ({ imgSrc, title, link }) => (
      <Link to={link} className="relative w-full h-full rounded-lg overflow-hidden group">
@@ -21,39 +22,6 @@ Card.propTypes = {
 };
 
 function SanboxProgram() {
-     const settings = {
-          dots: false,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 1000,
-          pauseOnHover: true,
-          responsive: [
-               {
-                    breakpoint: 1440,
-                    settings: {
-                         slidesToShow: 3,
-                         slidesToScroll: 1,
-                    }
-               },
-               {
-                    breakpoint: 1000,
-                    settings: {
-                         slidesToShow: 2,
-                         slidesToScroll: 1,
-                    }
-               },
-               {
-                    breakpoint: 768,
-                    settings: {
-                         slidesToShow: 1,
-                         slidesToScroll: 1,
-                    }
-               }
-          ]
-     };
-
      const cardDataSanboxProgram = [
           {
                imgSrc: "https://img.freepik.com/free-photo/portrait-smiling-teenage-female-student-holding-books-takeaway-coffee-cup-standing-front-university-building_23-2148093482.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized",
@@ -97,7 +65,7 @@ function SanboxProgram() {
      return (
           <div className="slider-container max-w-screen-2xl mx-auto px-4">
                <h1 className="font-bold mt-4 mb-6 text-lg md:text-2xl lg:text-3xl text-left">Program</h1>
-               <Slider {...settings} className="mb-6">
+               <Slider {...threesliderSettingsAuto} className="mb-6">
                     {cardDataSanboxProgram.map((item, index) => (
                          <div key={index} className="px-2">
                               <Card {...item} />

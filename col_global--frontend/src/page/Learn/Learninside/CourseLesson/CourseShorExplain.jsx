@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { description, items } from '../../../../data/courseDetails/courseShorExplain';
+import useDarkMode from '../../../../hooks/useDarkMode';
 
 const CourseShorExplain = () => {
      const [showMore, setShowMore] = useState(false);
+     const { DarkMode } = useDarkMode();
 
      return (
           <div className="relative w-full max-w-screen-2xl mx-auto mt-3">
@@ -43,7 +45,7 @@ const CourseShorExplain = () => {
                          </p>
                     </div>
                )}
-               <button className="text-blue-500" onClick={() => setShowMore(!showMore)}>
+               <button className={`${DarkMode ? '' : 'text-blue-500'} font-semibold`} onClick={() => setShowMore(!showMore)}>
                     {showMore ? 'Show less' : 'Show more'}
                </button>
           </div>

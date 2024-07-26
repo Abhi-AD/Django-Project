@@ -1,5 +1,6 @@
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+import oneliderSettingsAuto from '../../components/silderSettings/oneliderSettingsAuto';
 
 const Card = ({ imgSrc, index }) => (
      <div className=" md:w-full md:h-[500px] rounded-lg"> {/* Set a fixed height here */}
@@ -14,17 +15,6 @@ Card.propTypes = {
 };
 
 function SanboxHeader() {
-     const settings = {
-          dots: true,
-          infinite: true,
-          speed: 500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 4000,
-          pauseOnHover: false
-     };
-
      const carouselImages = [
           {
                imgSrc: "https://img.freepik.com/free-photo/portrait-smiling-teenage-female-student-holding-books-takeaway-coffee-cup-standing-front-university-building_23-2148093482.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized",
@@ -48,7 +38,7 @@ function SanboxHeader() {
 
      return (
           <div className="mb-5">
-               <Slider {...settings}>
+               <Slider {...oneliderSettingsAuto}>
                     {carouselImages.map((image, index) => (
                          <Card key={index} imgSrc={image.imgSrc} index={index + 1} />
                     ))}

@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import reviews from '../../../data/courseDetails/reviews';
 import features from '../../../data/courseDetails/features';
 import ratings from '../../../data/courseDetails/ratings';
+import useDarkMode from '../../../hooks/useDarkMode';
 
 const LearninsideDetails = () => {
      const [showAll, setShowAll] = useState(false);
@@ -11,21 +12,20 @@ const LearninsideDetails = () => {
      const handleToggle = () => {
           setShowAll(!showAll);
      };
+     const { DarkMode } = useDarkMode();
 
      const reviewsToShow = showAll ? reviews : reviews.slice(0, 2);
 
      return (
-          <div className={`min-h-screen bg-white text-black p-10`}>
+          <div className={`min-h-screen  p-10`}>
                <div className=" mx-auto max-w-5xl rounded-lg flex flex-col gap-10">
-                    <div className=' bg-white'>
+                    <div className=' '>
                          <header className="border-b pb-4 mb-8">
                               <div className="flex flex-col gap-2">
                                    <h1 className="text-2xl font-bold">Introduction to Microsoft Excel</h1>
-                                   <p className="text-gray-600">Taught in English | Video subtitles available</p>
+                                   <p className={`${DarkMode ? '' : 'text-gray-600'}`}>Taught in English | Video subtitles available</p>
                                    <p className="mt-2">Instructor: <span className="font-semibold">Summer Scaggs</span></p>
-                                   <Link to={'/learn/id/course'} className="w-40 inline-flex rounded items-center justify-center px-6 py-2 text-sm md:text-xl font-medium text-center text-white bg-blue-500 border border-blue-500 mb-5 shadow-md">
-                                        All Course
-                                   </Link>
+                                   <Link to={'/learn/id/course'} className={` w-40 inline-flex rounded justify-center items-center px-3 py-2 text-sm md:text-xl font-medium text-center ${DarkMode ? ' bg-gray-700 ' : 'text-white bg-blue-500 '}  mb-5 shadow-md`}>All Course</Link>
                               </div>
                          </header>
                          <nav className=" mb-4">
@@ -36,7 +36,7 @@ const LearninsideDetails = () => {
                               </ul>
                          </nav>
                     </div>
-                    <main className="flex flex-col lg:flex-row">
+                    <main className="flex flex-col  lg:flex-row">
                          <div className="flex-1">
                               <section>
                                    <h2 className="text-xl font-semibold mb-4">What you&apos;ll learn</h2>
@@ -48,7 +48,7 @@ const LearninsideDetails = () => {
                                    <h2 className="text-xl font-semibold mb-4">Skills you&apos;ll practice</h2>
                                    <ul className="flex flex-wrap space-x-2 mb-4">
                                         {['Formatting Excel Spreadsheets', 'Creating Basic Formulas in Excel Spreadsheets', 'Creating Excel Spreadsheets', 'Maneuvering around Excel Spreadsheets'].map((skill, index) => (
-                                             <li key={index} className="mt-4 bg-gray-200 px-3 py-1 rounded">{skill}</li>
+                                             <li key={index} className={`mt-4 ${DarkMode ? ' border-gray-300 border' : 'bg-gray-200 border  '} px-2 py-1 rounded`}>{skill}</li>
                                         ))}
                                    </ul>
                               </section>
@@ -63,48 +63,50 @@ const LearninsideDetails = () => {
                          </div>
 
                          <aside className="w-full lg:w-1/3 lg:pl-8 mt-8 lg:mt-0">
-                              <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+                              <div className={`${DarkMode ? 'border border-gray-200' : 'bg-gray-100'} p-4 rounded-lg shadow-md`}>
                                    <h2 className="text-lg font-semibold mb-2">Guided Project</h2>
-                                   <p className="text-gray-600">Learn, practice, and apply job-ready skills with expert guidance</p>
+                                   <p className={` ${DarkMode ? '' : 'text-gray-600'}`}>Learn, practice, and apply job-ready skills with expert guidance</p>
                                    <div className="mt-4">
                                         <p className="font-semibold">Intermediate level</p>
-                                        <p className="text-gray-600">Recommended experience</p>
+                                        <p className={` ${DarkMode ? '' : 'text-gray-600'}`}>Recommended experience</p>
                                    </div>
                                    <div className="mt-4">
                                         <p className="font-semibold">1.5 hours</p>
-                                        <p className="text-gray-600">Learn at your own pace</p>
+                                        <p className={` ${DarkMode ? '' : 'text-gray-600'}`}>Learn at your own pace</p>
                                    </div>
                                    <div className="mt-4">
                                         <p className="font-semibold">No downloads or installation required</p>
-                                        <p className="text-gray-600">Only available on desktop</p>
+                                        <p className={` ${DarkMode ? '' : 'text-gray-600'}`}>Only available on desktop</p>
                                    </div>
                                    <div className="mt-4">
                                         <p className="font-semibold">Hands-on learning</p>
-                                        <p className="text-blue-600 cursor-pointer">Learn more</p>
                                    </div>
+                                   <button onClick={handleToggle} className={` ${DarkMode ? '' : 'text-blue-600'} font-bold underline`}>
+                                        {showAll ? 'Show less ' : 'View more'}
+                                   </button>
                                    <div className="mt-4 flex items-center space-x-2">
                                         <span className="text-4xl font-bold">4.6</span>
-                                        <span className="text-gray-600">(7,203 reviews)</span>
-                                   </div>
+                                        <span className={` ${DarkMode ? '' : 'text-gray-600'}`}>(7,203 reviews)</span>
+                                   </div >
                                    <hr className="border-blue-500 mt-2 mb-2" />
                                    <a href={`/learn/all-course`} className="text-blue-600 hover:underline">View project details</a>
-                              </div>
-                         </aside>
-                    </main>
+                              </div >
+                         </aside >
+                    </main >
 
                     <div className="p-10 rounded-lg border border-gray-300 flex items-center justify-between">
                          <div className='flex flex-col items-start'>
                               <h2 className="text-2xl font-bold mb-2">
                                    See how employees at top companies are mastering in-demand skills
                               </h2>
-                              <Link to={``} className="text-blue-600 mb-4 font-bold">Learn more about Coursera for Business</Link>
+                              <Link to={``} className={`${DarkMode ? '' : 'text-blue-600'} mb-4 font-bold`}>Learn more about Coursera for Business</Link>
                          </div>
                          <div className="flex flex-wrap justify-center gap-4">
                               <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/images/74c8747e8210831049cf88dd4eefe26c.png?auto=format%2Ccompress&dpr=1&w=320&h=70&q=40" alt="Petrobras" className="h-20" />
                          </div>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row items-center p-6 rounded-lg mt-6">
+                    <div className="flex flex-col  lg:flex-row items-center p-6 rounded-lg mt-6">
                          <div className="lg:w-1/2">
                               <h2 className="text-2xl font-bold mb-2">
                                    Learn, practice, and apply job-ready skills in less than 2 hours
@@ -146,7 +148,7 @@ const LearninsideDetails = () => {
                               <div className="flex items-center mb-4">
                                    <FaStar className="text-yellow-500 w-6 h-6 mr-2" />
                                    <span className="text-3xl font-bold">4.6</span>
-                                   <span className="text-gray-600 ml-2">7,275 reviews</span>
+                                   <span className={`${DarkMode ? '' : 'text-gray-600'}ml-2`}>7,275 reviews</span>
                               </div>
                               <div>
                                    {ratings.map(({ stars, percentage }) => (
@@ -169,18 +171,18 @@ const LearninsideDetails = () => {
                                              </div>
                                              <div>
                                                   <div className="font-bold">{review.name}</div>
-                                                  <div className="text-gray-600">Reviewed on {review.date}</div>
+                                                  <div className={`${DarkMode ? '' : 'text-gray-600'}`}>Reviewed on {review.date}</div>
                                              </div>
                                         </div>
-                                        <div className="text-gray-800">{review.text}</div>
+                                        <div className={`${DarkMode ? '' : 'text-gray-800'}`}>{review.text}</div>
                                    </div>
                               ))}
-                              <button onClick={handleToggle} className="text-blue-600 underline">
+                              <button onClick={handleToggle} className={` ${DarkMode ? '' : 'text-blue-600'} font-bold underline`}>
                                    {showAll ? 'Show less reviews' : 'View more reviews'}
                               </button>
                          </div>
                     </div>
-               </div>
+               </div >
           </div >
      );
 }
