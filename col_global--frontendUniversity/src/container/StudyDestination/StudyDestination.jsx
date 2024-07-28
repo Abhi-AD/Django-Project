@@ -32,7 +32,7 @@ function StudyDestination() {
                <Slider {...foursliderSettings} className="mb-5 ">
                     {cardDataEntertainment.map((item, index) => (
                          <div key={index} className="px-2">
-                              <Card {...item} />
+                              <Card {...item} className="px-4" />
                          </div>
                     ))}
                </Slider>

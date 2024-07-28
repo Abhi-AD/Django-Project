@@ -7,13 +7,13 @@ const sections = [
           title: 'Quick',
           links: [
                { text: 'Home', href: '/' },
-               { text: 'Course', href: '/' }
+               { text: 'TopUniversity', href: '/' }
           ]
      },
      {
           title: 'University',
           links: [
-               { text: 'University of Stanford', href: '/' },
+               { text: 'Top University', href: '/' },
                { text: 'University', href: '/' }
           ]
      },

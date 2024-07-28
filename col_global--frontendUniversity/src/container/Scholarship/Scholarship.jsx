@@ -56,12 +56,12 @@ function Scholarship() {
 
 
      return (
-          <div className="slider-container max-w-screen-2xl mx-auto">
+          <div className="slider-container max-w-screen-2xl mx-auto p-4 md:p-8">
                <div className="">
                     <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships</h1>
                     <Slider {...foursliderSettings} className="md:mb-5 mb-3">
                          {cardDataScholarship.map((item, index) => (
-                              <div key={index}>
+                              <div key={index} className="px-2">
                                    <Card {...item} DarkMode={DarkMode} />
                               </div>
                          ))}

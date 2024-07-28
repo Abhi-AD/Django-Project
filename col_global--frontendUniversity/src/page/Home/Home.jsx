@@ -1,10 +1,14 @@
+import { Service } from "../../components/import"
+import { HeroVideo, Scholarship, StudyDestination, TopUniversity } from "../../container/import"
 
 const Home = () => {
      return (
-          <div className=" border-gray-200 dark:bg-white-900 top-0">
-               <div className='max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4'>
-                    Home
-               </div>
+          <div className="md:flex md:flex-col md:gap-10">
+               <HeroVideo />
+               <TopUniversity />
+               <Scholarship />
+               <StudyDestination />
+               <Service />
           </div>
      )
 }

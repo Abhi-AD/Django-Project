@@ -14,22 +14,22 @@ const ReviewArticle = () => {
           <div className='flex flex-col gap-2'>
                <h1 className='text-2xl font-semibold'>Review</h1>
                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
-                    <Link to={`/authentication`}>
-                         <textarea
-                              id="comment"
-                              autoComplete="off"
-                              placeholder="Your comments"
-                              className={`${DarkMode ? 'bg-transparent' : 'bg-white'
-                                   } rounded-md border border-gray-400 py-2 px-4 focus:border-blue-500 focus:outline-none flex-1`}
-                         />
-                    </Link>
+                    <textarea
+                         id="comment"
+                         autoComplete="off"
+                         placeholder="Your comments"
+                         className={`${DarkMode ? 'bg-transparent' : 'bg-white'
+                              } rounded-md border border-gray-400 py-2 px-4 focus:border-blue-500 focus:outline-none flex-1`}
+                    />
 
-                    <button
-                         type="submit"
-                         className={`${DarkMode ? 'hover:bg-gray-600' : 'bg-blue-800 text-white hover:bg-blue-700 '} border border-white px-4 py-2 font-medium rounded-md  transition duration-200`}
-                    >
-                         Send
-                    </button>
+                    <Link to={`/authentication`}>
+                         <button
+                              type="submit"
+                              className={`${DarkMode ? 'hover:bg-gray-600' : 'bg-blue-800 text-white hover:bg-blue-700 '} border border-white px-4 py-2 font-medium rounded-md  transition duration-200`}
+                         >
+                              Send
+                         </button>
+                    </Link>
                </div>
                <div className="flex flex-col gap-2">
                     {cardUniversityDetailsReview.map((review, index) => (
