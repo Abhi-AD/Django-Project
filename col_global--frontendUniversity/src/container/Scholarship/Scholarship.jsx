@@ -56,9 +56,12 @@ function Scholarship() {
 
 
      return (
-          <div className="slider-container max-w-screen-2xl mx-auto p-4 md:p-8">
-               <div className="">
-                    <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships</h1>
+          <div className=" max-w-screen-2xl mx-auto ">
+               <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships</h1>
+                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                    </div>
                     <Slider {...foursliderSettings} className="md:mb-5 mb-3">
                          {cardDataScholarship.map((item, index) => (
                               <div key={index} className="px-2">
@@ -66,9 +69,6 @@ function Scholarship() {
                               </div>
                          ))}
                     </Slider>
-                    <div className="flex justify-end">
-                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
-                    </div>
                </div>
           </div>
      );

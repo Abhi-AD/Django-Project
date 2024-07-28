@@ -7,7 +7,7 @@ import foursliderSettings from "../../components/silderSettings/foursliderSettin
 import cardDataEntertainment from "../../data/cardDataEntertainment";
 
 const Card = ({ imgSrc, title, description, link }) => (
-     <Link to={link} className="relative overflow-hidden  shadow-lg group ">
+     <Link to={link} className="relative overflow-hidden    group ">
           <img className="w-full h-80 object-cover rounded-lg" src={imgSrc} alt={title} />
           <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                <div className="absolute bottom-2 left-2 right-0 p-3">
@@ -27,17 +27,20 @@ Card.propTypes = {
 
 function StudyDestination() {
      return (
-          <div className="slider-container max-w-screen-2xl mx-auto px-4">
-               <h1 className="font-bold mb-2 md:mb-5 text-lg md:text-2xl">Entertainment</h1>
-               <Slider {...foursliderSettings} className="mb-5 ">
-                    {cardDataEntertainment.map((item, index) => (
-                         <div key={index} className="px-2">
-                              <Card {...item} className="px-4" />
-                         </div>
-                    ))}
-               </Slider>
-               <div className="flex justify-end">
-                    <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
+          <div className="max-w-screen-2xl mx-auto">
+               <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                         <h1 className="font-bold mb:2  md:mb-2 mx-2 text-lg md:text-2xl"> Entertainment</h1>
+                         <Link to={'/entertainment'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
+
+                    </div>
+                    <Slider {...foursliderSettings} className="mb-5 ">
+                         {cardDataEntertainment.map((item, index) => (
+                              <div key={index} className="px-2">
+                                   <Card {...item} className="px-4" />
+                              </div>
+                         ))}
+                    </Slider>
                </div>
           </div>
      );

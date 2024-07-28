@@ -8,7 +8,7 @@ import foursliderSettings from "../../components/silderSettings/foursliderSettin
 import useDarkMode from "../../hooks/useDarkMode";
 
 const Card = ({ imgSrc, title, description, link, DarkMode }) => (
-     <div className="max-w-xs h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
+     <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
           <img className="rounded-2xl w-full h-40 sm:h-48 object-cover p-2" src={imgSrc} alt={title} />
           <div className="p-3 md:p-5 flex flex-col justify-between flex-grow">
                <div>
@@ -44,12 +44,13 @@ Card.propTypes = {
 function TopUniversity() {
      const { DarkMode } = useDarkMode();
      return (
-          <div className="slider-container max-w-screen-2xl mx-auto p-4 md:p-8">
-               <div>
-                    <h1 className={`font-bold mb-4 md:mb-8 text-lg md:text-2xl ${DarkMode ? 'text-white' : 'text-black'}`}>
-                         Top University
-                    </h1>
-                    <Slider {...foursliderSettings} className="md:mb-8 mb-4">
+          <div className=" max-w-screen-2xl mx-auto">
+               <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Top University</h1>
+                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                    </div>
+                    <Slider {...foursliderSettings} className="">
                          {cardDataTopUniversity.map((item, index) => (
                               <div key={index} className="px-2">
                                    <Card {...item} DarkMode={DarkMode} />

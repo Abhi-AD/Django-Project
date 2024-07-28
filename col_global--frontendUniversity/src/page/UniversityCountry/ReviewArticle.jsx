@@ -9,28 +9,49 @@ const ReviewArticle = () => {
      const toggleReadMore = (index) => {
           setIsExpanded(prevState => prevState.map((item, idx) => (idx === index ? !item : item)));
      };
+     const [rating, setRating] = useState(null);
+     const [hover, setHover] = useState(null);
 
      return (
           <div className='flex flex-col gap-2'>
                <h1 className='text-2xl font-semibold'>Review</h1>
-               <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
-                    <textarea
-                         id="comment"
-                         autoComplete="off"
-                         placeholder="Your comments"
-                         className={`${DarkMode ? 'bg-transparent' : 'bg-white'
-                              } rounded-md border border-gray-400 py-2 px-4 focus:border-blue-500 focus:outline-none flex-1`}
-                    />
-
-                    <Link to={`/authentication`}>
-                         <button
-                              type="submit"
-                              className={`${DarkMode ? 'hover:bg-gray-600' : 'bg-blue-800 text-white hover:bg-blue-700 '} border border-white px-4 py-2 font-medium rounded-md  transition duration-200`}
-                         >
-                              Send
+               <form className="max-w-screen-lg flex flex-col gap-8">
+                    <div className='flex justify-between'>
+                         <div className='flex flex-col gap-3'>
+                              <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">First name</label>
+                              <input required type="text" name="first-name" id="first-name" autoComplete="given-name" placeholder="Your First Name" className="block w-96 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+                         </div>
+                         <div className='flex flex-col gap-3'>
+                              <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
+                              <input required type="text" name="last-name" id="first-name" autoComplete="given-name" placeholder="Your Last Name" className="block w-96 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+                         </div>
+                         <div className='flex flex-col gap-3'>
+                              <label htmlFor="rating" className="block text-sm font-semibold leading-6 text-gray-900">Rating</label>
+                              <div className=" flex space-x-1">
+                                   {[...Array(5)].map((star, index) => {
+                                        const ratingValue = index + 1;
+                                        return (
+                                             <label key={index}>
+                                                  <input type="radio" name="rating" value={ratingValue} onClick={() => setRating(ratingValue)} className="hidden" />
+                                                  <FaStar size={24} color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} className="cursor-pointer" onMouseEnter={() => setHover(ratingValue)} onMouseLeave={() => setHover(null)} />
+                                             </label>
+                                        );
+                                   })}
+                              </div>
+                         </div>
+                    </div>
+                    <div className="sm:col-span-2 flex flex-col gap-3">
+                         <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900"> Message </label>
+                         <textarea name="message" id="message" rows="4" placeholder="Share your thoughts..." className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"></textarea>
+                    </div>
+                    <div className="flex justify-end">
+                         <button type="submit" className="bg-blue-600 text-white  py-2 w-28 rounded-lg block">
+                              Submit
                          </button>
-                    </Link>
-               </div>
+                    </div>
+               </form>
+
+
                <div className="flex flex-col gap-2">
                     {cardUniversityDetailsReview.map((review, index) => (
                          <article key={index} className="p-4  dark:bg-gray-800 rounded-lg">

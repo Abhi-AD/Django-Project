@@ -10,7 +10,6 @@ function App() {
   const { DarkMode } = useDarkMode();
   return (
     <Router>
-
       <div className={`${DarkMode ? 'darkMode' : 'bg-white'}`}>
         <Navbar />
         <Routes>
