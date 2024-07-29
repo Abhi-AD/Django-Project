@@ -79,6 +79,9 @@ const DestinationFilter = () => {
           '& .MuiAutocomplete-popupIndicator': {
                color: 'white',
           },
+          '& .MuiAutocomplete-clearIndicator': {
+               color: 'white'
+          }
      };
 
      return (
@@ -91,6 +94,7 @@ const DestinationFilter = () => {
                          getOptionLabel={option => option.label}
                          sx={autocompleteStyles}
                          renderInput={params => <TextField {...params} label="Destination" />}
+
                     />
                     <Autocomplete
                          disablePortal
@@ -117,7 +121,7 @@ const DestinationFilter = () => {
                          renderInput={params => <TextField {...params} label="University" />}
                     />
 
-                    <div className="w-full md:w-auto flex-shrink-0">
+                    <div className="w-full md:w-auto flex-shrink-0 flex justify-end">
                          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">
                               Let&apos;s Go
                          </button>

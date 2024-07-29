@@ -6,7 +6,7 @@ function Dark() {
 
     return (
         <button
-            className={`flex items-center justify-center w-12 h-24 rounded-xl ${DarkMode ? 'bg-gray-800' : 'bg-gray-200'} text-sm mt-10 sticky top-60 mx-3 z-50`}
+            className={`flex items-center justify-center w-12 h-24 rounded-xl ${DarkMode ? 'bg-gray-800' : 'bg-gray-200'} text-sm top-60 fixed mx-3 z-50`}
             onClick={toggleDarkMode}
         >
             {DarkMode ? (

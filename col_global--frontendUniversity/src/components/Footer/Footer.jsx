@@ -1,5 +1,6 @@
-import { FaDiscord, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaFacebookF, FaGithub } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { FaXTwitter } from "react-icons/fa6";
 import { H_Main_Logo_White } from '../../images';
 
 const sections = [
@@ -18,38 +19,24 @@ const sections = [
           ]
      },
      {
-          title: 'Course',
+          title: 'Country',
           links: [
-               { text: 'React', href: '/' },
-               { text: 'Python', href: '/' },
-               { text: 'Flutter', href: '/' }
+               { text: 'UK', href: '/' },
+               { text: 'US', href: '/' },
+               { text: 'UAE', href: '/' }
           ]
      },
-     {
-          title: 'Shop',
-          links: [
-               { text: 'Women\'s Fashion', href: '/' },
-               { text: 'Health & Beauty', href: '/' },
-               { text: 'Men\'s Fashion', href: '/' }
-          ]
-     }
 ];
 
 const Footer = () => {
      return (
           <footer className="text-white bg-black/80 dark:bg-black/80">
                <div className="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8">
-                    <div className="md:grid md:grid-cols-12 md:gap-12">
+                    <div className="md:grid md:grid-cols-12 md:gap-12 ">
                          <div className="col-span-12 md:col-span-4 mb-6 md:mb-0">
                               <Link to="/" className="flex items-center mb-5">
-                                   <img src={H_Main_Logo_White} className="h-8 me-3" alt="Logo" />
+                                   <img src={H_Main_Logo_White} className="h-20 " alt="Logo" />
                               </Link>
-                              <h1 className='text-2xl mb-5'>Sign up for our NewsLetter</h1>
-                              <p className='text-xs mb-5'>Be the first to know about our special offers, new product launches, and events</p>
-                              <div className="bg-gray-100 w-80 p-2 flex items-center mb-2 rounded-sm">
-                                   <input type="email" name="email" placeholder="Enter your email address.." className="bg-gray-100 outline-none text-sm flex-1 text-black mr-5" />
-                                   <button className="border-1 border-blue-500 bg-blue-500 rounded-xl px-2 py-2 inline-block">Sign In</button>
-                              </div>
                          </div>
                          <div className="col-span-6 md:col-span-8 grid grid-cols-1 mx-2 gap-2 sm:gap-6 sm:grid-cols-4">
                               {sections.map((section, index) => (
@@ -79,7 +66,7 @@ const Footer = () => {
                                    <span className="sr-only">Discord community</span>
                               </a>
                               <a href="#" className="text-gray-500 hover dark:hover:text-white ms-5">
-                                   <FaTwitter className="w-4 h-4" />
+                                   <FaXTwitter className="w-4 h-4" />
                                    <span className="sr-only">Twitter page</span>
                               </a>
                               <a href="#" className="text-gray-500 hover dark:hover:text-white ms-5">

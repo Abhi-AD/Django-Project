@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import cardDataService from "../../data/cardDataService";
+import cardDataLifeStyle from "../../data/cardDataLifeStyle";
 
 const Card = ({ imgSrc, title, description, link }) => (
      <Link to={link} className="relative max-w-sm   mx-auto h-auto rounded-lg overflow-hidden group">
@@ -24,7 +24,7 @@ Card.propTypes = {
      link: PropTypes.string.isRequired,
 };
 
-function Service() {
+function LifeStyle() {
      return (
           <div className="">
                <div className="max-w-screen-2xl mx-auto flex flex-col gap-3">
@@ -34,7 +34,7 @@ function Service() {
 
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 md:gap-2 gap-1">
-                         {cardDataService.slice(1, 5).map((item, index) => (
+                         {cardDataLifeStyle.slice(1, 5).map((item, index) => (
                               <Card key={index} {...item} className="px-2" />
                          ))}
                     </div>
@@ -43,4 +43,4 @@ function Service() {
      );
 }
 
-export default Service;
+export default LifeStyle;

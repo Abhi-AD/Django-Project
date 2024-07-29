@@ -34,8 +34,8 @@ const Navbar = () => {
      }, []);
 
      return (
-          <div className='h-[100px] z-50 items-center'>
-               <div className={` ${scrolled ? 'bg-white text-black shadow-lg' : 'bg-transparent text-white'} transition-colors duration-75 fixed top-0 w-full z-50`}>
+          <div className='z-50 items-center'>
+               <div className={` ${scrolled ? 'bg-white text-black shadow-lg' : 'bg-black/30 text-white'} transition-colors duration-75 top-0 w-full z-50 p-4 md:p-0`}>
                     <nav className={`max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between py-3`}>
                          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse" onClick={closeMenu}>
                               <img
@@ -46,8 +46,8 @@ const Navbar = () => {
                                    className="hidden xl:block"
                               />
                               <img
-                                   src={scrolled ? Main_Logo_Icon_White : Main_Logo_Icon}
-                                   width={100}
+                                   src={scrolled ? Main_Logo_Icon : Main_Logo_Icon_White}
+                                   width={50}
                                    height={55}
                                    alt="Logo"
                                    className="xl:hidden"
@@ -65,10 +65,10 @@ const Navbar = () => {
                               <Link to="/top-university" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                    Top University
                               </Link>
-                              <Link to="#services" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
-                                   Services
+                              <Link to="/country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   Country
                               </Link>
-                              <Link to="#gallery" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                              <Link to="/gallery" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                    Gallery
                               </Link>
                               <Link to="/contact" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>

@@ -7,6 +7,8 @@ const foursliderSettings = {
     slidesToScroll: 1,
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
+    autoplay: true,
+    autoplaySpeed: 1500,
     responsive: [
         {
             breakpoint: 1440,
@@ -16,7 +18,7 @@ const foursliderSettings = {
             }
         },
         {
-            breakpoint: 1000,
+            breakpoint: 870,
             settings: {
                 slidesToShow: 3,
                 slidesToScroll: 1,
@@ -26,6 +28,13 @@ const foursliderSettings = {
             breakpoint: 768,
             settings: {
                 slidesToShow: 2,
+                slidesToScroll: 1,
+            }
+        },
+        {
+            breakpoint: 500,
+            settings: {
+                slidesToShow: 1,
                 slidesToScroll: 1,
             }
         }
