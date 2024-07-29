@@ -1,7 +1,0 @@
-export { default as Destinations } from './Destinations/Destinations'
-export { default as DestinationFilter } from './Destinations/DestinationFilter'
-export { default as Login } from './Login/Login'
-export { default as Register } from './Register/Register'
-export { default as Scholarship } from './Scholarship/Scholarship'
-export { default as StudyDestination } from './StudyDestination/StudyDestination'
-export { default as TopUniversity } from './TopUniversity/TopUniversity'

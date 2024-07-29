@@ -1,8 +1,0 @@
-export { default as LeftArrow } from './ArrowComponents/LeftArrow'
-export { default as RightArrow } from './ArrowComponents/RightArrow'
-export { default as LeftArrowHide } from './ArrowComponents/LeftArrowHide'
-export { default as RightArrowHide } from './ArrowComponents/RightArrowHide'
-export { default as FilterForm } from './FilterForm/FilterForm'
-export { default as Navbar } from './Navbar/Navbar'
-export { default as Footer } from './Footer/Footer'
-export { default as Service } from './Service/Service'

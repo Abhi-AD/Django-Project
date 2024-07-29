@@ -4,7 +4,7 @@ import { HeroVideo, Scholarship, StudyDestination, TopUniversity } from "../../c
 
 const Home = () => {
      return (
-          <div className="md:flex md:flex-col md:gap-10 mb-10">
+          <div className="md:flex md:flex-col md:gap-10 mb-10 mt-[-30px]">
                <HeroVideo />
                <HeroCarousel />
                <TopUniversity />
