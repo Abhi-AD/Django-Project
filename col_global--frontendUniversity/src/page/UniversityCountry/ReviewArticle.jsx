@@ -9,13 +9,11 @@ const ReviewArticle = () => {
      const toggleReadMore = (index) => {
           setIsExpanded(prevState => prevState.map((item, idx) => (idx === index ? !item : item)));
      };
-     const [rating, setRating] = useState(null);
-     const [hover, setHover] = useState(null);
 
      return (
           <div className='flex flex-col gap-2'>
                <h1 className='text-2xl font-semibold'>Review</h1>
-               <form className="max-w-screen-lg flex flex-col gap-8">
+               <form className="max-w-screen-2xl flex flex-col gap-8">
                     <div className='flex justify-between'>
                          <div className='flex flex-col gap-3'>
                               <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">First name</label>
@@ -26,19 +24,11 @@ const ReviewArticle = () => {
                               <input required type="text" name="last-name" id="first-name" autoComplete="given-name" placeholder="Your Last Name" className="block w-96 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
                          </div>
                          <div className='flex flex-col gap-3'>
-                              <label htmlFor="rating" className="block text-sm font-semibold leading-6 text-gray-900">Rating</label>
-                              <div className=" flex space-x-1">
-                                   {[...Array(5)].map((star, index) => {
-                                        const ratingValue = index + 1;
-                                        return (
-                                             <label key={index}>
-                                                  <input type="radio" name="rating" value={ratingValue} onClick={() => setRating(ratingValue)} className="hidden" />
-                                                  <FaStar size={24} color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"} className="cursor-pointer" onMouseEnter={() => setHover(ratingValue)} onMouseLeave={() => setHover(null)} />
-                                             </label>
-                                        );
-                                   })}
-                              </div>
+                              <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email address</label>
+                              <input required type="email" name="email" id="email" autoComplete="email" placeholder="Your Email Address" className="block w-96 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
                          </div>
+
+
                     </div>
                     <div className="sm:col-span-2 flex flex-col gap-3">
                          <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900"> Message </label>
