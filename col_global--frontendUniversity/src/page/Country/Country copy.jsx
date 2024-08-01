@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import cardDataUniversity from "../../data/cardDataUniversity";
+import cardDataCountry from "../../data/cardDataCountry";
 
 const Card = ({ imgSrc, country, description, link }) => (
      <Link to={link} className="p-4 max-w-md">
@@ -22,11 +22,11 @@ Card.propTypes = {
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
 };
-function University() {
+function Country() {
      return (
           <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5">
                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mt-10">
-                    {cardDataUniversity.map((item, index) => (
+                    {cardDataCountry.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}
                </div>
@@ -35,4 +35,4 @@ function University() {
      );
 }
 
-export default University;
+export default Country;

@@ -1,38 +1,32 @@
-import { GiRank3 } from "react-icons/gi";
-import { FaUserGraduate } from 'react-icons/fa';
-import cardDataTopUniversity from '../../data/cardDataTopUniversity';
 import useDarkMode from "../../hooks/useDarkMode";
 
 const UniversityCountryDetails = () => {
   const { DarkMode } = useDarkMode();
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <div className=" flex flex-col rounded-lg g-1 md:p-6">
-        <div className="flex flex-col md:flex-row items-start md:items-top">
-          <div className="flex flex-col mb-4 gap-2 md:mb-0 md:mr-4">
-            <h1 className="text-3xl md:text-3xl font-bold mb-2 md:mb-4">{cardDataTopUniversity[0].title}</h1>
-            {/* <div className="flex text-lg md:text-base flex-col md:flex-row gap-2 flex-wrap">
-              <div className="flex items-center gap-1">
-                <GiRank3 />
-                <p>World Ranking: <span className={`${DarkMode ? '' : 'text-blue-500'}`}>123</span></p>
-              </div>
-              <div className="flex items-center gap-1">
-                <FaUserGraduate className="text-sm md:text-base" />
-                <p>Scholarship <span className={`${DarkMode ? '' : 'text-blue-500'}`}>Available</span></p>
-              </div>
-            </div> */}
-          </div>
-          {/* <img
-            src={cardDataTopUniversity[0].imgSrc}
-            alt={cardDataTopUniversity[0].title}
-            className="rounded-lg w-[-500px] h-[500px] md:w-80 mx-auto"
-          /> */}
+    <div className="flex flex-col gap-3">
+      <div className={`relative rounded-md ${DarkMode ? 'bg-gray-800' : 'bg-gray-50'} w-full h-64`}>
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src="https://img.freepik.com/free-photo/blurred-chairs-tables-restaurant_1203-760.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid"
+            alt="Background"
+            className="object-cover w-full h-full rounded-md"
+          />
+          <div className="absolute inset-0 bg-black opacity-50 rounded-md"></div>
         </div>
-        {/* <div className="p-2 md:mt-2">
-          <p className={` text-lg ${DarkMode ? '' : 'text-gray-700'} mb-2 md:mb-4`}>{cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description} {cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}{cardDataTopUniversity[0].description}</p>
-        </div> */}
+        <div className="absolute bottom-4 left-4 flex items-center justify-center h-20 w-20  border-4 border-blue-500 bg-white dark:bg-gray-700 rounded-md shadow-lg">
+          <img
+            src="https://w7.pngwing.com/pngs/266/362/png-transparent-diponegoro-university-logo-universities-indonesia-thumbnail.png"
+            alt="Icon"
+            className="h-16 w-16 rounded-md"
+          />
+        </div>
+      </div>
+      <div className="flex flex-col gap-3">
+        <h1 className="text-xl font-bold">California State University: Dominguez Hills</h1>
+        <p className="text-gray-600">Carson, CA</p>
       </div>
     </div>
+
   );
 };
 

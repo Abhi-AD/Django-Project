@@ -1,4 +1,4 @@
-const cardDataUniversity = [
+const cardDataCountry = [
      {
           imgSrc: "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
           country: "USA",
@@ -57,4 +57,4 @@ const cardDataUniversity = [
      },
 ];
 
-export default cardDataUniversity;
+export default cardDataCountry;

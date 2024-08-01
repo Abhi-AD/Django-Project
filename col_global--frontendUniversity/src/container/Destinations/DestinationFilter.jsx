@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { FaCaretDown } from "react-icons/fa";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import { Link } from "react-router-dom";
 
 const Select = ({ label, options }) => (
      <div className="relative flex-1 min-w-[150px]">
@@ -122,8 +123,9 @@ const DestinationFilter = () => {
                     />
 
                     <div className="w-full md:w-auto flex-shrink-0 flex justify-end">
-                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">
-                              Let&apos;s Go
+                         <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">
+                              <Link to={`/search-data`}>
+                                   Let&apos;s Go</Link>
                          </button>
                     </div>
                </div>

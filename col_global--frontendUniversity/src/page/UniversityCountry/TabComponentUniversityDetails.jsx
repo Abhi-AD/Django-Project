@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaInfoCircle, FaUniversity, FaMoneyBillWave, FaGraduationCap, FaChartBar } from 'react-icons/fa';
 
 const TabComponentUniversityDetails = () => {
      const [activeTab, setActiveTab] = useState('overview');
@@ -31,55 +32,45 @@ const TabComponentUniversityDetails = () => {
                <div id="default-tab-content">
                     <div className={`${activeTab === 'overview' ? 'block' : 'hidden'} p-4 rounded-lg  dark:bg-gray-800`} id="overview" role="tabpanel" aria-labelledby="overview-tab" >
                          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
-                              <div className="bg-white p-4 rounded-lg flex flex-col md:flex-row hover:bg-gray-100">
-                                   <div className="p-4 rounded-lg flex-1 md:flex-grow-0 md:flex-shrink-0 md:basis-1/4">
-                                        <h2 className="font-semibold">Degree</h2>
-                                   </div>
-                                   <div className="p-4 rounded-lg flex flex-wrap gap-4">
-                                        <p className="whitespace-nowrap">MSc</p>
-                                        <p className="whitespace-nowrap">MBA</p>
-                                        <p className="whitespace-nowrap">PhD</p>
-                                   </div>
+                              <div className="p-6 bg-white rounded-lg">
+                                   <h2 className="text-2xl font-bold mb-4">Overview</h2>
+                                   <div className="grid grid-cols-2 gap-4">
+                                        <div className="flex items-center">
+                                             <FaInfoCircle className="text-blue-500 mr-2" size={24} />
+                                             <div className='flex flex-col gap-1'>
+                                                  <div>Type</div>
+                                                  <div className="font-semibold">4-year • Public</div>
+                                             </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                             <FaUniversity className="text-blue-500 mr-2" size={24} />
+                                             <div className='flex flex-col gap-1'>
+                                                  <div>Campus Life</div>
+                                                  <div className="font-semibold">Large • Suburban</div>
+                                             </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                             <FaMoneyBillWave className="text-blue-500 mr-2" size={24} />
+                                             <div className='flex flex-col gap-1'>
+                                                  <div>Average Per Year After Aid</div>
+                                                  <div className="font-semibold">$5K</div>
+                                             </div>
+                                        </div>
 
-                              </div>
-
-
-                              <div className="bg-white p-4 rounded-lg flex flex-col md:flex-row hover:bg-gray-100">
-                                   <div className="p-4 rounded-lg flex-1 md:flex-grow-0 md:flex-shrink-0 md:basis-1/4">
-                                        <h2 className="font-semibold">Teaching language</h2>
-                                   </div>
-                                   <div className="p-4 rounded-lg flex flex-wrap gap-4">
-                                        <p className="whitespace-nowrap">English</p>
-                                        <p className="whitespace-nowrap">Germany</p>
-                                        <p className="whitespace-nowrap">PhD</p>
-                                   </div>
-                              </div>
-
-                              <div className="bg-white p-4 rounded-lg flex flex-col md:flex-row hover:bg-gray-100">
-                                   <div className="p-4 rounded-lg flex-1 md:flex-grow-0 md:flex-shrink-0 md:basis-1/4">
-                                        <h2 className="font-semibold">Languages</h2>
-                                   </div>
-                                   <div className="p-4 rounded-lg flex-3 md:flex-grow-0 md:flex-shrink-0 md:basis-3/4">
-                                        <p>
-                                             The programme is completely in English. Additional courses taught in German are available. Interested students can practice their German language skills.</p>
-                                   </div>
-                              </div>
-                              <div className="bg-white p-4 rounded-lg flex flex-col md:flex-row hover:bg-gray-100">
-                                   <div className="p-4 rounded-lg flex-1 md:flex-grow-0 md:flex-shrink-0 md:basis-1/4">
-                                        <h2 className="font-semibold">Programme duration</h2>
-                                   </div>
-                                   <div className="p-4 rounded-lg flex flex-wrap gap-4">
-                                        <p className="whitespace-nowrap">4 semester</p>
-                                        <p className="whitespace-nowrap">8 semester</p>
-                                        <p className="whitespace-nowrap">3years</p>
-                                   </div>
-                              </div>
-                              <div className="bg-white p-4 rounded-lg flex flex-col md:flex-row hover:bg-gray-100">
-                                   <div className="p-4 rounded-lg flex-1 md:flex-grow-0 md:flex-shrink-0 md:basis-1/4">
-                                        <h2 className="font-semibold">Beginning</h2>
-                                   </div>
-                                   <div className="p-4 rounded-lg flex-3 md:flex-grow-0 md:flex-shrink-0 md:basis-3/4">
-                                        <p> Winter and summer semester</p>
+                                        <div className="flex items-center">
+                                             <FaChartBar className="text-blue-500 mr-2" size={24} />
+                                             <div className='flex flex-col gap-1'>
+                                                  <div>SAT Range</div>
+                                                  <div className="font-semibold">790–930</div>
+                                             </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                             <FaGraduationCap className="text-blue-500 mr-2" size={24} />
+                                             <div className='flex flex-col gap-1'>
+                                                  <div>Graduation Rate</div>
+                                                  <div className="font-semibold">53%</div>
+                                             </div>
+                                        </div>
                                    </div>
                               </div>
 
