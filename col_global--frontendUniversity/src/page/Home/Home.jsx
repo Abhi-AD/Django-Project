@@ -1,6 +1,6 @@
 import { LifeStyle } from "../../components/import"
 import HeroCarousel from "../../container/Hero/HeroCarousel"
-import { HeroVideo, Scholarship, StudyDestination, TopUniversity } from "../../container/import"
+import { HeroVideo, Scholarship, EventsSilder, TopUniversity } from "../../container/import"
 import Country from "../Country/Country"
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
                <Country />
                <TopUniversity />
                <Scholarship />
-               <StudyDestination />
+               <EventsSilder />
                <LifeStyle />
           </div>
      )

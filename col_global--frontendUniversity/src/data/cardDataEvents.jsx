@@ -1,24 +1,34 @@
-const cardDataEntertainment = [
+const cardDataEvents = [
      {
           imgSrc: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/64/dc/f9/photo0jpg.jpg?w=500&h=-1&s=1",
-          title: "State Theatre"
+          title: "State Theatre",
+          startdate: 'Jun 1, 2024',
+          enddate: 'Jun 1, 2025',
      },
      {
           imgSrc: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/ea/4a/02/miramar-speed-circuit.jpg?w=500&h=-1&s=1",
-          title: "K1 Speed"
+          title: "K1 Speed",
+          startdate: 'Jun 1, 2024',
+          enddate: 'July 1, 2024',
      },
      {
           imgSrc: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/9f/ec/b0/cat-lounge.jpg?w=500&h=400&s=1",
-          title: "Naughty Cat Cafe"
+          title: "Naughty Cat Cafe",
+          startdate: 'Jun 1, 2024',
+          enddate: 'July 1, 2024',
      },
      {
           imgSrc: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/65/96/19/this-game-gets-a-little.jpg?w=500&h=400&s=1",
-          title: "Electric Playhouse"
+          title: "Electric Playhouse",
+          startdate: 'Jun 1, 2024',
+          enddate: 'July 1, 2024',
      },
      {
           imgSrc: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/99/a3/8a/magiquest-pigeon-forge.jpg?w=500&h=-1&s=1",
-          title: "MagiQuest"
+          title: "MagiQuest",
+          startdate: 'Jun 1, 2024',
+          enddate: 'July 1, 2024',
      },
 ];
 
-export default cardDataEntertainment;
+export default cardDataEvents;

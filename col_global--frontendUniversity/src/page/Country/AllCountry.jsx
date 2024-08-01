@@ -22,7 +22,7 @@ Card.propTypes = {
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
 };
-function Country() {
+function AllCountry() {
      return (
           <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5">
                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mt-10">
@@ -35,4 +35,4 @@ function Country() {
      );
 }
 
-export default Country;
+export default AllCountry;

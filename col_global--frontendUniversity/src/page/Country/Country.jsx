@@ -22,10 +22,8 @@ const Card = ({ imgSrc, title, description, link, DarkMode }) => (
                     </p>
                </div>
                <div className="flex mt-3">
-                    <Link
-                         to={link}
-                         className={`inline-flex items-center px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-center ${DarkMode ? 'hover:bg-white hover:text-black text-white' : 'hover:bg-blue-500 hover:text-white text-black border-blue-500'} border rounded`}
-                    >
+                    <Link to={link}
+                         className={`inline-flex items-center px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-center ${DarkMode ? 'hover:bg-white hover:text-black text-white' : 'hover:bg-blue-500 hover:text-white text-black border-blue-500'} border rounded`} >
                          View Details
                     </Link>
                </div>
@@ -48,7 +46,7 @@ function Country() {
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                          <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Study Destinations</h1>
-                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                         <Link to={'/all-country'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <Slider {...foursliderSettingsreverse} className="">
                          {cardDataCountry.map((item, index) => (

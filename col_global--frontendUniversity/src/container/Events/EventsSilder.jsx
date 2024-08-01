@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import foursliderSettings from "../../components/silderSettings/foursliderSettings";
-import cardDataEntertainment from "../../data/cardDataEntertainment";
+import cardDataEntertainment from "../../data/cardDataEvents";
 
 const Card = ({ imgSrc, title, description, link, onClick }) => (
      <Link
@@ -34,7 +34,7 @@ Card.propTypes = {
      onClick: PropTypes.func.isRequired,
 };
 
-function StudyDestination() {
+function EventsSilder() {
      const [selectedImage, setSelectedImage] = useState(null);
 
      const openModal = (imageData) => {
@@ -49,8 +49,8 @@ function StudyDestination() {
           <div className="max-w-screen-2xl mx-auto">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb:2 md:mb-2 mx-2 text-lg md:text-2xl">Entertainment</h1>
-                         <Link to={'/entertainment'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
+                         <h1 className="font-bold mb:2 md:mb-2 mx-2 text-lg md:text-2xl">Events</h1>
+                         <Link to={'/all-events'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <div className="relative">
                          <Slider {...foursliderSettings}>
@@ -86,4 +86,4 @@ function StudyDestination() {
      );
 }
 
-export default StudyDestination;
+export default EventsSilder;
