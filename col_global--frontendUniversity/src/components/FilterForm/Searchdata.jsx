@@ -132,8 +132,8 @@ const App = () => {
 
      return (
           <div className="p-4 min-h-screen">
-               <h1 className="text-xl font-bold mb-4">2270 results for your criteria</h1>
-               <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
+               <h1 className="text-xl font-bold mb-4">100000 results for your criteria</h1>
+               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
                     <div className="border border-gray-300 rounded-lg shadow-sm flex-shrink-0">
                          <select
                               id="sortOptions"
@@ -159,7 +159,6 @@ const App = () => {
                          >
                               List
                          </button>
-                         <button className="bg-gray-200 p-2 rounded">Show map</button>
                     </div>
                </div>
 
