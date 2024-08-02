@@ -2,6 +2,7 @@ import { LifeStyle } from "../../components/import"
 import HeroCarousel from "../../container/Hero/HeroCarousel"
 import { HeroVideo, Scholarship, EventsSilder, TopUniversity } from "../../container/import"
 import Country from "../Country/Country"
+import InstituteFinder from "./InstituteFinder"
 
 const Home = () => {
      return (
@@ -9,6 +10,7 @@ const Home = () => {
                <HeroVideo />
                <HeroCarousel />
                <Country />
+               <InstituteFinder />
                <TopUniversity />
                <Scholarship />
                <EventsSilder />

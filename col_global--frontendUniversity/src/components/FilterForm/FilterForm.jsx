@@ -3,7 +3,6 @@ import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { SiCoursera } from "react-icons/si";
 import { IoLocationSharp } from "react-icons/io5";
 import {
-     courses,
      study,
      language,
      study_mode,
@@ -11,7 +10,8 @@ import {
      Beginning,
      location, // Added location import
      institution,
-     intake
+     intake,
+     course
 } from './../../data/searchform';
 
 const FilterForm = () => {
@@ -91,7 +91,7 @@ const FilterForm = () => {
                               ref={el => dropdownRefs.current[0] = el}
                               className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
                          >
-                              {courses.map(option => (
+                              {course.map(option => (
                                    <label
                                         key={option}
                                         className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"

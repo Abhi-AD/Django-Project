@@ -41,10 +41,10 @@ const DestinationFilter = () => {
 
     const handleSearch = () => {
         const params = new URLSearchParams();
-        if (selectedLocation) params.append('location', selectedLocation.value);
-        if (selectedStudyLevel) params.append('studyLevel', selectedStudyLevel.value);
-        if (selectedCourse) params.append('course', selectedCourse.value);
-        if (selectedUniversity) params.append('university', selectedUniversity.value);
+        if (selectedLocation) params.append('location', selectedLocation.label);
+        if (selectedStudyLevel) params.append('studyLevel', selectedStudyLevel.label);
+        if (selectedCourse) params.append('course', selectedCourse.label);
+        if (selectedUniversity) params.append('university', selectedUniversity.label);
 
         navigate(`/search-data?${params.toString()}`);
 

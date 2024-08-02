@@ -1,20 +1,26 @@
-// App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Dark, Footer, Navbar, NotFound, SearchView } from './components/import';
 import { AllCountry, Contact, Home, UniversityCountry, UniversityCountryDetails } from './page/import';
 import useDarkMode from './hooks/useDarkMode';
 import { EventsAll, OverAllTopUniversityAll } from './container/import';
-import ScrollToTop from './ScrollToTop'; // Import the ScrollToTop component
+import { useEffect } from 'react';
 
 function App() {
   const { DarkMode } = useDarkMode();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
   return (
     <Router>
       <div className={`${DarkMode ? 'darkMode' : 'bg-white'} `}>
         <Navbar />
         <Dark />
-        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/all-country" element={<AllCountry />} />
