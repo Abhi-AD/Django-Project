@@ -10,7 +10,9 @@ import useDarkMode from "../../hooks/useDarkMode";
 
 const Card = ({ imgSrc, collagename, studylevel, link, location, scholarship_percentage, DarkMode }) => (
      <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
-          <img className="rounded-2xl w-full h-48 object-cover p-3" src={imgSrc} alt={collagename} />
+          <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
+               <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={collagename} />
+          </div>
           <div className="p-5 flex flex-col justify-between flex-grow">
                <div>
                     <Link to={link}>
@@ -51,7 +53,7 @@ Card.propTypes = {
      scholarship_percentage: PropTypes.string.isRequired,
 };
 
-function Scholarship() {
+function UniversityScholarship() {
      const { DarkMode } = useDarkMode();
 
 
@@ -59,7 +61,7 @@ function Scholarship() {
           <div className=" max-w-screen-2xl mx-auto ">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships</h1>
+                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships USA</h1>
                          <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <Slider {...foursliderSettings} className="md:mb-5 mb-3">
@@ -74,4 +76,4 @@ function Scholarship() {
      );
 }
 
-export default Scholarship;
+export default UniversityScholarship;

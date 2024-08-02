@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import cardDataEvents from "../../data/cardDataEvents";
-import useDarkMode from "../../hooks/useDarkMode";
+import cardDataEvents from "../../../data/cardDataEvents";
+import useDarkMode from "../../../hooks/useDarkMode";
 import { CiCalendarDate } from "react-icons/ci";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 const Card = ({ imgSrc, title, country, startdate, enddate }) => {
@@ -10,7 +10,9 @@ const Card = ({ imgSrc, title, country, startdate, enddate }) => {
 
      return (
           <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
-               <img className="rounded-2xl w-full h-48 object-cover p-3" src={imgSrc} alt={title} />
+               <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
+                    <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
+               </div>
                <div className="p-5 flex flex-col justify-between flex-grow">
                     <div>
                          <h5 className={`mb-2 text-base md:text-lg font-bold tracking-tight ${DarkMode ? 'text-white' : 'text-gray-900'} truncate`}>{title}</h5>
@@ -40,7 +42,7 @@ Card.propTypes = {
      enddate: PropTypes.string.isRequired,
 };
 
-function EventsAll() {
+function OverEventsAll() {
      return (
           <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 md:mt-10">
                <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Events</h1>
@@ -53,4 +55,4 @@ function EventsAll() {
      );
 }
 
-export default EventsAll;
+export default OverEventsAll;

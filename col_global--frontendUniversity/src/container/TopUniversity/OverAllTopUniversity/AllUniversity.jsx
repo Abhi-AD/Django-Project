@@ -1,15 +1,14 @@
 import PropTypes from "prop-types";
-import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import cardDataTopUniversity from "../../data/cardDataTopUniversity";
-import useDarkMode from "../../hooks/useDarkMode";
-import foursliderSettingsreverse from "../../components/silderSettings/foursliderSettingsreverse";
+import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
 
 const Card = ({ imgSrc, title, description, link, DarkMode }) => (
      <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
-          <img className="rounded-2xl w-full h-40 sm:h-48 object-cover p-2" src={imgSrc} alt={title} />
+          <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
+               <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
+          </div>
           <div className="p-3 md:p-5 flex flex-col justify-between flex-grow">
                <div>
                     <Link to={link}>
@@ -40,26 +39,19 @@ Card.propTypes = {
      link: PropTypes.string.isRequired,
      DarkMode: PropTypes.bool.isRequired,
 };
-
-function TopUniversity() {
-     const { DarkMode } = useDarkMode();
+function AllUniversity() {
      return (
-          <div className=" max-w-screen-2xl mx-auto">
-               <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Top University</h1>
-                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
-                    </div>
-                    <Slider {...foursliderSettingsreverse} className="">
-                         {cardDataTopUniversity.map((item, index) => (
-                              <div key={index} className="px-2">
-                                   <Card {...item} DarkMode={DarkMode} />
-                              </div>
-                         ))}
-                    </Slider>
+          <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4">
+               <h1 className="font-bold  text-lg md:text-2xl">All University</h1>
+               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+                    {cardDataTopUniversity.map((item, index) => (
+                         <Card key={index} {...item} />
+                    ))}
                </div>
+
           </div>
      );
 }
 
-export default TopUniversity;
+export default AllUniversity
+     ;

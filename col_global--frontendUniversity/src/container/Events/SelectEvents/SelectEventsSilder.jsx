@@ -4,8 +4,8 @@ import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import foursliderSettings from "../../components/silderSettings/foursliderSettings";
-import cardDataEntertainment from "../../data/cardDataEvents";
+import foursliderSettings from "../../../components/silderSettings/foursliderSettings";
+import cardDataEntertainment from "../../../data/cardDataEvents";
 
 const Card = ({ imgSrc, title, description, link, onClick }) => (
      <Link
@@ -16,7 +16,9 @@ const Card = ({ imgSrc, title, description, link, onClick }) => (
                onClick({ imgSrc, title, description });
           }}
      >
-          <img className="w-full h-80 object-cover rounded-lg" src={imgSrc} alt={title} />
+          <div className="w-full h-80 sm:h-48 relative overflow-hidden rounded-lg">
+               <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
+          </div>
           <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                <div className="absolute bottom-2 left-2 right-0 p-3">
                     <h3 className="text-2xl font-bold text-white">{title}</h3>
@@ -34,7 +36,7 @@ Card.propTypes = {
      onClick: PropTypes.func.isRequired,
 };
 
-function EventsSilder() {
+function SelectEventsSilder() {
      const [selectedImage, setSelectedImage] = useState(null);
 
      const openModal = (imageData) => {
@@ -86,4 +88,4 @@ function EventsSilder() {
      );
 }
 
-export default EventsSilder;
+export default SelectEventsSilder;

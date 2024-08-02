@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useDarkMode from "../../hooks/useDarkMode";
-import foursliderSettingsreverse from "../../components/silderSettings/foursliderSettingsreverse";
-import cardDataCountry from "../../data/cardDataCountry";
+import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
+import useDarkMode from "../../../hooks/useDarkMode";
+import foursliderSettingsreverse from "../../../components/silderSettings/foursliderSettingsreverse";
 
 const Card = ({ imgSrc, title, description, link, DarkMode }) => (
      <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
@@ -24,8 +24,10 @@ const Card = ({ imgSrc, title, description, link, DarkMode }) => (
                     </p>
                </div>
                <div className="flex mt-3">
-                    <Link to={link}
-                         className={`inline-flex items-center px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-center ${DarkMode ? 'hover:bg-white hover:text-black text-white' : 'hover:bg-blue-500 hover:text-white text-black border-blue-500'} border rounded`} >
+                    <Link
+                         to={link}
+                         className={`inline-flex items-center px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-center ${DarkMode ? 'hover:bg-white hover:text-black text-white' : 'hover:bg-blue-500 hover:text-white text-black border-blue-500'} border rounded`}
+                    >
                          View Details
                     </Link>
                </div>
@@ -41,17 +43,17 @@ Card.propTypes = {
      DarkMode: PropTypes.bool.isRequired,
 };
 
-function Country() {
+function SilderAllUniversity() {
      const { DarkMode } = useDarkMode();
      return (
           <div className=" max-w-screen-2xl mx-auto">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Study Destinations</h1>
-                         <Link to={'/all-country'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Top University</h1>
+                         <Link to={'/top-university'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <Slider {...foursliderSettingsreverse} className="">
-                         {cardDataCountry.map((item, index) => (
+                         {cardDataTopUniversity.map((item, index) => (
                               <div key={index} className="px-2">
                                    <Card {...item} DarkMode={DarkMode} />
                               </div>
@@ -62,4 +64,4 @@ function Country() {
      );
 }
 
-export default Country;
+export default SilderAllUniversity;

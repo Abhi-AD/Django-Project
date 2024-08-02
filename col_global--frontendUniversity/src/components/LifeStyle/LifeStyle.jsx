@@ -42,11 +42,9 @@ function LifeStyle() {
      return (
           <div className="p-4 xl:p-0">
                <div className="max-w-screen-2xl mx-auto flex flex-col gap-6">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between">
                          <h1 className="text-sm sm:text-xl md:text-2xl font-bold">Life Style</h1>
-                         <Link to='/entertainment' className="inline-flex rounded items-center px-3 py-2 text-sm md:text-lg font-medium text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300">
-                              View All
-                         </Link>
+                         <Link to={'/top-university'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6">
                          {cardDataLifeStyle.slice(0, 4).map((item, index) => (

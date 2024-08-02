@@ -33,12 +33,12 @@ const Footer = () => {
           <footer className="text-white bg-black/80 dark:bg-black/80">
                <div className="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8">
                     <div className="md:grid md:grid-cols-12 md:gap-12">
-                         <div className="col-span-12 md:col-span-3 mb-6 md:mb-0">
+                         <div className="col-span-12 md:col-span-4 mb-6 md:mb-0">
                               <Link to="/" className="flex items-center mb-5">
                                    <img src={H_Main_Logo_White} className="h-20" alt="Logo" />
                               </Link>
                          </div>
-                         <div className="col-span-12 md:col-span-9 grid grid-cols-1 mx-2 gap-2 sm:gap-6 sm:grid-cols-3">
+                         <div className="col-span-12 md:col-span-8 grid grid-cols-1 mx-2 gap-2 sm:gap-6 sm:grid-cols-3">
                               {sections.map((section, index) => (
                                    <div key={index}>
                                         <h3 className="mb-4 text-xl font-semibold uppercase">{section.title}</h3>

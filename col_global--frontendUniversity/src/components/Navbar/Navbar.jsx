@@ -69,7 +69,7 @@ const Navbar = () => {
                                    <Link to="/top-university" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                         Top University
                                    </Link>
-                                   <Link to="/country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/all-country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                         Country
                                    </Link>
                                    <Link to="/scholarships" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
@@ -118,7 +118,7 @@ const Navbar = () => {
                               <Link to="/top-university" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                    Top University
                               </Link>
-                              <Link to="/country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                              <Link to="/all-country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
                                    Country
                               </Link>
                               <Link to="/scholarships" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
