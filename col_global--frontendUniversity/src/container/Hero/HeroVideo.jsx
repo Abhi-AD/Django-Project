@@ -14,10 +14,12 @@ const HeroVideo = () => {
                          loop
                     ></video>
                </div>
-               <div className="video-content space-y-2 z-10 flex flex-col gap-10">
+               <div className="video-content space-y-2 z-10 flex flex-col gap-10 px-4 md:px-8 lg:px-16">
                     <div className="flex flex-col">
-                         <h1 className="font-light text-6xl">Welcome to University</h1>
-                         <h3 className="font-light text-3xl">with <span className='text-blue-500 font-bold'>COL Global</span></h3>
+                         <h1 className="font-light text-4xl md:text-5xl lg:text-6xl">Welcome to University</h1>
+                         <h3 className="font-light text-xl md:text-2xl lg:text-3xl">
+                              with <span className="text-blue-500 font-bold">COL Global</span>
+                         </h3>
                     </div>
                     <DestinationFilter />
                </div>

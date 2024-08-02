@@ -5,9 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import cardDataLifeStyle from "../../data/cardDataLifeStyle";
 import { useState } from "react";
 
-const Card = ({ imgSrc, title, description, link }) => (
-     <Link to={link} className="relative block max-w-sm mx-auto h-auto rounded-lg overflow-hidden group">
-          <img src={imgSrc} alt={title} className="w-full h-60 sm:h-72 lg:h-80 object-cover transition-transform duration-300 group-hover:scale-105" />
+const Card = ({ imgSrc, title, description, onClick }) => (
+     <Link onClick={(e) => {
+          e.preventDefault();
+          onClick({ imgSrc, title, description });
+     }} className="relative block w-full h-72 sm:h-80 md:h-96 rounded-lg overflow-hidden group">
+          <img src={imgSrc} alt={title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-indigo-900 opacity-0 z-10 transition-opacity duration-300 group-hover:opacity-40"></div>
           <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                <div className="text-center">
@@ -22,7 +25,7 @@ Card.propTypes = {
      imgSrc: PropTypes.string.isRequired,
      title: PropTypes.string.isRequired,
      description: PropTypes.string.isRequired,
-     link: PropTypes.string.isRequired,
+     onClick: PropTypes.func.isRequired,
 };
 
 function LifeStyle() {
@@ -35,22 +38,23 @@ function LifeStyle() {
      const closeModal = () => {
           setSelectedImage(null);
      };
+
      return (
-          <div className="p-3 xl:p-0">
-               <div className="max-w-screen-2xl mx-auto flex flex-col gap-4">
+          <div className="p-4 xl:p-0">
+               <div className="max-w-screen-2xl mx-auto flex flex-col gap-6">
                     <div className="flex items-center justify-between mb-4">
-                         <h1 className="text-lg md:text-2xl font-bold">Life Style</h1>
+                         <h1 className="text-sm sm:text-xl md:text-2xl font-bold">Life Style</h1>
                          <Link to='/entertainment' className="inline-flex rounded items-center px-3 py-2 text-sm md:text-lg font-medium text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300">
                               View All
                          </Link>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                         {cardDataLifeStyle.slice(1, 5).map((item, index) => (
-                              <Card key={index} {...item} />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6">
+                         {cardDataLifeStyle.slice(0, 4).map((item, index) => (
+                              <Card key={index} {...item} onClick={openModal} />
                          ))}
                     </div>
                     {selectedImage && (
-                         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
                               <div className="bg-white rounded-lg overflow-hidden shadow-xl max-w-3xl w-full">
                                    <div className="relative">
                                         <img src={selectedImage.imgSrc} alt={selectedImage.title} className="w-full h-auto" />

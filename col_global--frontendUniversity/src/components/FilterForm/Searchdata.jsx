@@ -166,11 +166,10 @@ const App = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
                          {courses.map((course, index) => (
                               <div key={index} className="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
-                                   <img className=" w-full h-40 sm:h-48 object-cover" src={course.image} alt={course.title} />
+                                   <img className=" w-full h-40  object-cover" src={course.image} alt={course.title} />
                                    <div className="p-6 flex-1">
                                         <h2 className="text-xl font-semibold mb-2 text-black">{course.title}</h2>
                                         <p className="text-gray-700 mb-1"><strong>University:</strong> {course.university}</p>
-                                        <p className="text-gray-600 mb-1"><strong>Subject:</strong> {course.subject}</p>
                                         <p className="text-gray-600 mb-1"><strong>Language:</strong> {course.language}</p>
                                         <p className="text-gray-600 mb-1"><strong>Language Level:</strong> {course.languageLevel}</p>
                                         <p className="text-gray-600 mb-1"><strong>Costs:</strong> {course.costs}</p>

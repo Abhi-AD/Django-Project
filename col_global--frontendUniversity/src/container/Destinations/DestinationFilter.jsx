@@ -1,8 +1,10 @@
-import PropTypes from "prop-types";
-import { FaCaretDown } from "react-icons/fa";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { FaCaretDown } from 'react-icons/fa';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { studyLevels, locations, courses, university } from '../../data/filterdata/autocomplete';
 
 const Select = ({ label, options }) => (
     <div className="relative flex-1 min-w-[150px]">
@@ -31,31 +33,22 @@ Select.propTypes = {
 };
 
 const DestinationFilter = () => {
-    const studyLevels = [
-        { label: "High School", value: "highschool" },
-        { label: "Undergraduate", value: "undergraduate" },
-        { label: "Graduate", value: "graduate" },
-        { label: "PhD", value: "phd" },
-    ];
-    const locations = [
-        { label: "London", value: "london" },
-        { label: "USA", value: "usa" },
-        { label: "America", value: "america" },
-        { label: "US", value: "us" },
-        { label: "Nepal", value: "nepal" },
-    ];
-    const courses = [
-        { label: "Information", value: "information" },
-        { label: "Hotel Management", value: "hotelmanagement" },
-        { label: "Cyber", value: "cyber" },
-        { label: "Marketing", value: "marketing" },
-    ];
-    const university = [
-        { label: "Landon", value: "landon" },
-        { label: "Hotel Management", value: "hotelmanagement" },
-        { label: "Cyber", value: "cyber" },
-        { label: "Marketing", value: "marketing" },
-    ];
+    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [selectedStudyLevel, setSelectedStudyLevel] = useState(null);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+    const [selectedUniversity, setSelectedUniversity] = useState(null);
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+        const params = new URLSearchParams();
+        if (selectedLocation) params.append('location', selectedLocation.value);
+        if (selectedStudyLevel) params.append('studyLevel', selectedStudyLevel.value);
+        if (selectedCourse) params.append('course', selectedCourse.value);
+        if (selectedUniversity) params.append('university', selectedUniversity.value);
+
+        navigate(`/search-data?${params.toString()}`);
+
+    };
 
     const autocompleteStyles = {
         width: 300,
@@ -94,6 +87,7 @@ const DestinationFilter = () => {
                     options={locations}
                     getOptionLabel={option => option.label}
                     sx={autocompleteStyles}
+                    onChange={(event, newValue) => setSelectedLocation(newValue)}
                     renderInput={params => <TextField {...params} label="Destination" />}
                     className="w-full md:w-[250px]"
                 />
@@ -103,6 +97,7 @@ const DestinationFilter = () => {
                     options={studyLevels}
                     getOptionLabel={option => option.label}
                     sx={autocompleteStyles}
+                    onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
                     renderInput={params => <TextField {...params} label="Study Level" />}
                     className="w-full md:w-[250px]"
                 />
@@ -112,6 +107,7 @@ const DestinationFilter = () => {
                     options={courses}
                     getOptionLabel={option => option.label}
                     sx={autocompleteStyles}
+                    onChange={(event, newValue) => setSelectedCourse(newValue)}
                     renderInput={params => <TextField {...params} label="Courses" />}
                     className="w-full md:w-[250px]"
                 />
@@ -121,15 +117,17 @@ const DestinationFilter = () => {
                     options={university}
                     getOptionLabel={option => option.label}
                     sx={autocompleteStyles}
+                    onChange={(event, newValue) => setSelectedUniversity(newValue)}
                     renderInput={params => <TextField {...params} label="University" />}
                     className="w-full md:w-[250px]"
                 />
 
                 <div className="w-full md:w-auto flex-shrink-0 flex justify-end mt-4 md:mt-0">
-                    <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">
-                        <Link to={`/search-data`}>
-                            Let&apos;s Go
-                        </Link>
+                    <button
+                        onClick={handleSearch}
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto"
+                    >
+                        Let&apos;s Go
                     </button>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 * {
   /* user-select: none; */
+  overflow: visible;
 }
 
 .darkMode {
   background: #000;
   color: #fff;
 }
-
