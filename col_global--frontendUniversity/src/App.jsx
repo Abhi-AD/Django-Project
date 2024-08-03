@@ -28,7 +28,7 @@ function App() {
           <Route path="/all-events" element={<EventsAll />} />
           <Route path="/country/all-events" element={<UniversityCountry />} />
 
-          <Route path="/top-university" element={<OverAllTopUniversityAll />} />
+          <Route path="/all-university" element={<OverAllTopUniversityAll />} />
           <Route path="/country/university/id" element={<UniversityCountryDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

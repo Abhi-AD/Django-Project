@@ -1,4 +1,5 @@
 import { CiShare2 } from "react-icons/ci";
+import TableWithSeeMoreCourse from "../TabComponentUniversity/TableWithSeeMoreCourse";
 
 const CountryHero = () => {
   return (
@@ -44,6 +45,32 @@ const CountryHero = () => {
           </p>
         </div>
       </div>
+
+
+      <div className="max-w-screen-2xl mx-auto flex flex-col gap-6 md:gap-8 lg:gap-10">
+        <div className="flex flex-col gap-4 md:gap-6 lg:gap-8">
+          <p className="text-lg md:text-xl lg:text-2xl font-bold">
+            Visa Requirements and Study Cost:
+          </p>
+          <p className="text-base md:text-lg lg:text-xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scele
+          </p>
+          <p className="text-base md:text-lg lg:text-xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <TableWithSeeMoreCourse />
+        </div>
+      </div>
+
+
+
+
+
+
+
     </div>
   );
 };

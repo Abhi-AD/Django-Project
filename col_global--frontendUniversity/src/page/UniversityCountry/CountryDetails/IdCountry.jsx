@@ -7,6 +7,7 @@ const IdCountry = () => {
           <div className="flex flex-col gap-10 mb-2">
                <CountryHero />
                <SilderSelectUniversity />
+
                <SelectEventsSilder />
                <LifeStyle />
           </div>

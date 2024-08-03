@@ -9,7 +9,7 @@ const Card = ({ imgSrc, title, description, onClick }) => (
      <Link onClick={(e) => {
           e.preventDefault();
           onClick({ imgSrc, title, description });
-     }} className="relative block w-full h-72 sm:h-80 md:h-96 rounded-lg overflow-hidden group">
+     }} className="relative block w-full h-72 sm:h-60 md:h-80 rounded-lg overflow-hidden group">
           <img src={imgSrc} alt={title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-indigo-900 opacity-0 z-10 transition-opacity duration-300 group-hover:opacity-40"></div>
           <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
@@ -44,7 +44,7 @@ function LifeStyle() {
                <div className="max-w-screen-2xl mx-auto flex flex-col gap-6">
                     <div className="flex items-center justify-between">
                          <h1 className="text-sm sm:text-xl md:text-2xl font-bold">Life Style</h1>
-                         <Link to={'/top-university'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                         <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-6">
                          {cardDataLifeStyle.slice(0, 4).map((item, index) => (

@@ -8,7 +8,7 @@ const foursliderSettingsreverse = {
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 3000,
     responsive: [
         {
             breakpoint: 1440,

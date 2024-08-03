@@ -23,7 +23,7 @@ const UniversityCountryDetails = () => {
       </div>
       <div className="flex flex-col gap-3">
         <h1 className="text-xl font-bold">California State University: Dominguez Hills</h1>
-        <p className="text-gray-600">Carson, CA</p>
+        <p className="text-gray-600">USA</p>
       </div>
     </div>
   );

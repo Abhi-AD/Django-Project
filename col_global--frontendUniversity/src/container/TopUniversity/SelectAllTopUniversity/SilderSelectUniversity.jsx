@@ -73,7 +73,7 @@ function SilderSelectUniversity() {
                     {!showAll && (
                          <Slider {...foursliderSettingsreverse} className="">
                               {cardDataTopUniversity.map((item, index) => (
-                                   <div key={index} className="px-2">
+                                   <div key={index} className="">
                                         <Card {...item} DarkMode={DarkMode} />
                                    </div>
                               ))}

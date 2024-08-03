@@ -8,22 +8,26 @@ const sections = [
           title: 'Quick',
           links: [
                { text: 'Home', href: '/' },
-               { text: 'Top University', href: '/' }
+               { text: 'University', href: '/all-university' },
+               { text: 'Country', href: '/all-country' },
+               { text: 'Scholarships', href: '/scholarships' },
+               { text: 'Contact Us', href: '/contact' },
           ]
      },
      {
           title: 'University',
           links: [
-               { text: 'Top University', href: '/' },
-               { text: 'University', href: '/' }
+               { text: 'Harvard University', href: '/' },
+               { text: 'Stanford University', href: '/' },
+               { text: 'University of Oxford', href: '/' }
           ]
      },
      {
-          title: 'Country',
+          title: 'Study Country',
           links: [
-               { text: 'UK', href: '/' },
-               { text: 'US', href: '/' },
-               { text: 'UAE', href: '/' }
+               { text: 'Germany', href: '/' },
+               { text: 'United Kingdom', href: '/' },
+               { text: 'Canada', href: '/' }
           ]
      },
 ];
