@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { studyLevels, locations, courses, university } from '../../data/filterdata/autocomplete';
 
 const Select = ({ label, options }) => (
-    <div className="relative flex-1 min-w-[150px]">
-        <select className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded-md shadow-md leading-tight focus:outline-none focus:shadow-outline text-black">
+    <div className="relative flex-1 min-w-[50px]">
+        <select className="block appearance-none w-full bg-white   hover:border-gray-500 px-4 py-2 pr-8 rounded-md shadow-md leading-tight focus:outline-none focus:shadow-outline text-black">
             <option value="">{label}</option>
             {options.map(option => (
                 <option key={option.value} value={option.value} className="text-black">
@@ -51,85 +51,89 @@ const DestinationFilter = () => {
     };
 
     const autocompleteStyles = {
-        width: 300,
+        width: 220,
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: 'white',
+                border: 'none'
             },
             '&:hover fieldset': {
-                borderColor: 'white',
+                borderColor: 'black',
             },
             '&.Mui-focused fieldset': {
-                borderColor: 'white',
+                borderColor: 'black',
             },
-            color: 'white',
+            color: 'black',
         },
         '& .MuiInputLabel-root': {
-            color: 'white',
+            color: 'black',
         },
         '& .MuiInputLabel-root.Mui-focused': {
-            color: 'white',
+            color: 'black',
         },
         '& .MuiAutocomplete-popupIndicator': {
-            color: 'white',
+            color: 'black',
         },
         '& .MuiAutocomplete-clearIndicator': {
-            color: 'white'
+            color: 'black'
         }
     };
 
     return (
-        <div className="flex flex-col md:flex-row justify-center p-4 md:p-6 text-black">
-            <div className="flex flex-wrap max-w-screen-xl justify-between items-center gap-4 w-full">
-                <Autocomplete
-                    disablePortal
-                    id="locations-autocomplete"
-                    options={locations}
-                    getOptionLabel={option => option.label}
-                    sx={autocompleteStyles}
-                    onChange={(event, newValue) => setSelectedLocation(newValue)}
-                    renderInput={params => <TextField {...params} label="Destination" />}
-                    className="w-full md:w-[250px]"
-                />
-                <Autocomplete
-                    disablePortal
-                    id="study-level-autocomplete"
-                    options={studyLevels}
-                    getOptionLabel={option => option.label}
-                    sx={autocompleteStyles}
-                    onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
-                    renderInput={params => <TextField {...params} label="Study Level" />}
-                    className="w-full md:w-[250px]"
-                />
-                <Autocomplete
-                    disablePortal
-                    id="courses-autocomplete"
-                    options={courses}
-                    getOptionLabel={option => option.label}
-                    sx={autocompleteStyles}
-                    onChange={(event, newValue) => setSelectedCourse(newValue)}
-                    renderInput={params => <TextField {...params} label="Courses" />}
-                    className="w-full md:w-[250px]"
-                />
-                <Autocomplete
-                    disablePortal
-                    id="university-autocomplete"
-                    options={university}
-                    getOptionLabel={option => option.label}
-                    sx={autocompleteStyles}
-                    onChange={(event, newValue) => setSelectedUniversity(newValue)}
-                    renderInput={params => <TextField {...params} label="University" />}
-                    className="w-full md:w-[250px]"
-                />
+        <div className="hidden md:flex flex-col md:flex-row justify-center p-4 md:p-6 text-black">
+            <div className=' border rounded-full p-2 md:flex '>
+                <div className=" grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
+                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                        <Autocomplete
+                            disablePortal
+                            id="locations-autocomplete"
+                            options={locations}
+                            getOptionLabel={option => option.label}
+                            sx={autocompleteStyles}
+                            onChange={(event, newValue) => setSelectedLocation(newValue)}
+                            renderInput={params => <TextField {...params} label="Destination" />}
+                        />
+                    </div>
+                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
 
-                <div className="w-full md:w-auto flex-shrink-0 flex justify-end mt-4 md:mt-0">
-                    <button
-                        onClick={handleSearch}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto"
-                    >
-                        Let&apos;s Go
-                    </button>
+                        <Autocomplete
+                            disablePortal
+                            id="study-level-autocomplete"
+                            options={studyLevels}
+                            getOptionLabel={option => option.label}
+                            sx={autocompleteStyles}
+                            onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
+                            renderInput={params => <TextField {...params} label="Study Level" />}
+                        />
+                    </div>
+                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                        <Autocomplete
+                            disablePortal
+                            id="courses-autocomplete"
+                            options={courses}
+                            getOptionLabel={option => option.label}
+                            sx={autocompleteStyles}
+                            onChange={(event, newValue) => setSelectedCourse(newValue)}
+                            renderInput={params => <TextField {...params} label="Courses" />}
+                        />
+                    </div>
+                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+
+                        <Autocomplete
+                            disablePortal
+                            id="university-autocomplete"
+                            options={university}
+                            getOptionLabel={option => option.label}
+                            sx={autocompleteStyles}
+                            onChange={(event, newValue) => setSelectedUniversity(newValue)}
+                            renderInput={params => <TextField {...params} label="University" />}
+                        />
+                    </div>
                 </div>
+                <button
+                    onClick={handleSearch}
+                    type="submit" className="px-8 py-5 bg-blue-400 rounded-full text-white">
+                    Search
+                </button>
             </div>
         </div>
     );

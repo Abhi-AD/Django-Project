@@ -18,7 +18,12 @@ const HeroVideo = () => {
                     <div className="flex flex-col">
                          <h1 className="font-light text-4xl md:text-5xl lg:text-6xl">Welcome to University</h1>
                          <h3 className="font-light text-xl md:text-2xl lg:text-3xl">
-                              with <span className="text-blue-500 font-bold">COL Global</span>
+                              with <span className="text-blue-500 font-bold">
+                                   {/* <span className="bg-gradient-to-r from-blue-500 via-green-500 via-red-500 to-orange-500 bg-clip-text text-transparent font-bold">
+                                        C
+                                   </span> */}
+                                   COL Global</span>
+
                          </h3>
                     </div>
                     <DestinationFilter />

@@ -9,16 +9,21 @@ const Card = ({ imgSrc, title, description, onClick }) => (
      <Link onClick={(e) => {
           e.preventDefault();
           onClick({ imgSrc, title, description });
-     }} className="relative block w-full h-72 sm:h-60 md:h-80 rounded-lg overflow-hidden group">
-          <img src={imgSrc} alt={title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-indigo-900 opacity-0 z-10 transition-opacity duration-300 group-hover:opacity-40"></div>
-          <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-               <div className="text-center">
-                    <h3 className="text-lg md:text-xl font-bold capitalize mb-2">{title}</h3>
-                    <p className="text-xs md:text-sm">{description}</p>
+     }}className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+     <div className="w-full h-96 relative overflow-hidden rounded-2xl">
+          <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
+          <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+               <div className="flex flex-col justify-between flex-grow">
+                    <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
+                         {title}
+                    </h5>
+                    <p className={`text-xs sm:text-sm md:text-base  font-medium text-white line-clamp-2`}>
+                         {description}
+                    </p>
                </div>
           </div>
-     </Link>
+     </div>
+</Link>
 );
 
 Card.propTypes = {

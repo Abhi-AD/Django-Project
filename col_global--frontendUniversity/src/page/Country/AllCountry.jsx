@@ -5,14 +5,19 @@ import "slick-carousel/slick/slick-theme.css";
 import cardDataCountry from "../../data/cardDataCountry";
 
 const Card = ({ imgSrc, country, description, link }) => (
-     <Link to={link} className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
-
-          <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
-               <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
-          </div>
-          <div className="p-6">
-               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{country}</h2>
-               <p className="leading-relaxed mb-3 truncate">{description}</p>
+     <Link to={link} className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+          <div className="w-full h-96 relative overflow-hidden rounded-2xl">
+               <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
+               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+                    <div className="flex flex-col justify-between flex-grow">
+                         <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
+                              {country}
+                         </h5>
+                         <p className={`text-xs sm:text-sm md:text-base  font-medium text-white line-clamp-2`}>
+                              {description}
+                         </p>
+                    </div>
+               </div>
           </div>
      </Link>
 );

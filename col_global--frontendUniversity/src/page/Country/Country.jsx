@@ -7,35 +7,27 @@ import useDarkMode from "../../hooks/useDarkMode";
 import foursliderSettingsreverse from "../../components/silderSettings/foursliderSettingsreverse";
 import cardDataCountry from "../../data/cardDataCountry";
 
-const Card = ({ imgSrc, title, description, link, DarkMode }) => (
-     <div className="max-w-sm h-full border rounded-2xl mx-1 md:mx-2 flex flex-col">
-          <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
-               <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
-          </div>
-          <div className="p-3 md:p-5 flex flex-col justify-between flex-grow">
-               <div>
-                    <Link to={link}>
-                         <h5 className={`mb-2 text-sm sm:text-base md:text-lg font-bold tracking-tight dark:text-white truncate ${DarkMode ? '' : 'text-gray-900'}`}>
-                              {title}
+const Card = ({ imgSrc, description, link, country }) => (
+     <Link to={link} className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+          <div className="w-full h-96 relative overflow-hidden rounded-2xl">
+               <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
+               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+                    <div className="flex flex-col justify-between flex-grow">
+                         <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
+                              {country}
                          </h5>
-                    </Link>
-                    <p className={`mb-2 text-xs sm:text-sm md:text-base font-normal ${DarkMode ? 'text-gray-400' : 'text-gray-700'} truncate`}>
-                         {description}
-                    </p>
-               </div>
-               <div className="flex mt-3">
-                    <Link to={link}
-                         className={`inline-flex items-center px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-center ${DarkMode ? 'hover:bg-white hover:text-black text-white' : 'hover:bg-blue-500 hover:text-white text-black border-blue-500'} border rounded`} >
-                         View Details
-                    </Link>
+                         <p className={`text-xs sm:text-sm md:text-base  font-medium text-white line-clamp-2`}>
+                              {description}
+                         </p>
+                    </div>
                </div>
           </div>
-     </div>
+     </Link>
 );
 
 Card.propTypes = {
      imgSrc: PropTypes.string.isRequired,
-     title: PropTypes.string.isRequired,
+     country: PropTypes.string.isRequired,
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
      DarkMode: PropTypes.bool.isRequired,
@@ -52,7 +44,7 @@ function Country() {
                     </div>
                     <Slider {...foursliderSettingsreverse} className="">
                          {cardDataCountry.map((item, index) => (
-                              <div key={index} className="px-2">
+                              <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />
                               </div>
                          ))}

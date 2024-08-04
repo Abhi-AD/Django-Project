@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import foursliderSettings from "../../../components/silderSettings/foursliderSettings";
+import foursliderSettingsclick from "../../../components/silderSettings/foursliderSettingsclick";
 import cardDataEntertainment from "../../../data/cardDataEvents";
 
 const Card = ({ imgSrc, title, description, link, onClick }) => (
@@ -55,7 +55,7 @@ function EventsSilder() {
                          <Link to={'/all-events'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <div className="relative">
-                         <Slider {...foursliderSettings}>
+                         <Slider {...foursliderSettingsclick}>
                               {cardDataEntertainment.map((item, index) => (
                                    <div key={index} className="px-2">
                                         <Card {...item} onClick={openModal} />
