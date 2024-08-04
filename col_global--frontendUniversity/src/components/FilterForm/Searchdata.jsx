@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import filteringdata from '../../data/filterdata/filteringdata';
+import { Link } from 'react-router-dom';
 
 const Searchdata = ({ location, studyLevel, course, university }) => {
     const [viewType, setViewType] = useState('grid');
@@ -66,19 +67,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                     </div>
                 )}
             </div>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
-                <div className="border border-gray-300 rounded-lg shadow-sm flex-shrink-0">
-                    <select
-                        id="sortOptions"
-                        className="bg-white text-gray-700 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 transition-colors duration-300"
-                    >
-                        <option value="">Standard sorting</option>
-                        <option value="name">Sort by name</option>
-                        <option value="city">Sort by city</option>
-                        <option value="institution">Sort by institution</option>
-                    </select>
-                </div>
-
+            <div className="flex flex-col md:flex-row justify-end items-start md:items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
                 <div className="flex gap-3">
                     <button
                         onClick={() => handleViewChange('grid')}
@@ -98,7 +87,11 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
             {viewType === 'grid' ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
                     {filteringdata.map((course, index) => (
-                        <div key={index} className="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <Link
+                            to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
+                            key={index}
+                            className="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                        >
                             <div className="w-full h-60 sm:h-60 relative overflow-hidden rounded-t-2xl">
                                 <img className="absolute inset-0 w-full h-full object-cover" src={course.image} alt={course.title} />
                             </div>
@@ -111,13 +104,17 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                                 <p className="text-gray-600 mb-1"><strong>Costs:</strong> {course.costs}</p>
                                 <p className="text-blue-500 hover:underline cursor-pointer">View more</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             ) : (
                 <div className="space-y-4">
                     {filteringdata.map((course, index) => (
-                        <div key={index} className="p-4 flex bg-white border-b border-gray-300">
+                        <Link
+                            to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
+                            key={index}
+                            className="p-4 flex bg-white border-b border-gray-300"
+                        >
                             <div className="flex-1">
                                 <h2 className="text-lg font-bold text-black">{course.title}</h2>
                                 <p className="text-gray-600">{course.university}</p>
@@ -127,7 +124,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                                 <p><strong>Costs:</strong> {course.costs}</p>
                                 <p><strong>Date(s):</strong> {course.dates}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             )}
@@ -141,7 +138,5 @@ Searchdata.propTypes = {
     course: PropTypes.string,
     university: PropTypes.string,
 };
-
-
 
 export default Searchdata;

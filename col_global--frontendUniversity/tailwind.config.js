@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sevillana: ['Montserrat', 'sans-serif'],
+        sevillana: ['Red Hat Display', 'sans-serif'],
       },
     },
   },

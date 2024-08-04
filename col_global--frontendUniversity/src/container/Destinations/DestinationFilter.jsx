@@ -79,7 +79,7 @@ const DestinationFilter = () => {
     };
 
     return (
-        <div className="hidden md:flex flex-col md:flex-row justify-center p-4 md:p-6 text-black">
+        <div className="hidden md:flex flex-col md:flex-row justify-center px-2 mx-auto  text-black">
             <div className=' border rounded-full p-2 md:flex '>
                 <div className=" grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
                     <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">

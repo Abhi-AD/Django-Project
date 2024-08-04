@@ -6,11 +6,13 @@ import InstituteFinder from "./InstituteFinder"
 
 const Home = () => {
      return (
-          <div className="md:flex md:flex-col md:gap-10 mb-10 gap-1">
-               <DestinationFilter />
-               <HeroSection />
-               {/* <HeroVideo /> */}
-               {/* <HeroCarousel /> */}
+          <div className="flex flex-col md:gap-24 gap-4 mb-10">
+               <div className="flex flex-col gap-5">
+                    <DestinationFilter />
+                    <HeroSection />
+                    {/* <HeroVideo /> */}
+                    {/* <HeroCarousel /> */}
+               </div>
                <Country />
                <InstituteFinder />
                <TopUniversity />

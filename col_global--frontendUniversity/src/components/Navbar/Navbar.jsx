@@ -11,6 +11,13 @@ const Navbar = () => {
      const { DarkMode } = useDarkMode();
      const location = useLocation();
 
+     useEffect(() => {
+          window.scrollTo({
+               top: 0,
+               behavior: 'smooth'
+          });
+     }, [location]);
+
 
      const toggleMenu = () => {
           setMenuOpen(!menuOpen);
@@ -40,7 +47,7 @@ const Navbar = () => {
 
      if (isHomePage) {
           return (
-               <div className={`fixed top-0 left-0 right-0 z-50 w-full transition-colors duration-300 ${scrolled ? 'bg-white text-black' : 'bg-transparent text-white'} ${DarkMode ? '' : ''}`}>
+               <div className={`fixed top-0 left-0 right-0 z-50 w-full transition-colors duration-300  ${scrolled ? 'bg-white text-black' : 'bg-transparent text-white'} ${DarkMode ? '' : ''}`}>
                     <div className={`transition-colors duration-75 w-full p-4 md:p-0`}>
                          <nav className={`max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between py-3`}>
                               <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse" onClick={closeMenu}>
@@ -73,19 +80,19 @@ const Navbar = () => {
                                    </div>
                               </div>
                               <div className={`toggle ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto md:flex text-left font-bold mt-5 md:mt-0 md:border-none`}>
-                                   <Link to="/" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/" className="block md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                         Home
                                    </Link>
-                                   <Link to="/all-university" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/all-university" className="block md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                         Top University
                                    </Link>
-                                   <Link to="/all-country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/all-country" className="block md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                         Country
                                    </Link>
-                                   <Link to="/scholarships" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/scholarships" className="block md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                         Scholarships
                                    </Link>
-                                   <Link to="/contact" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                                   <Link to="/contact" className="block md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                         Contact Us
                                    </Link>
                               </div>
@@ -98,8 +105,8 @@ const Navbar = () => {
      }
 
      return (
-          <div className={`sticky top-0 left-0 z-50 w-full ${DarkMode ? 'bg-black' : 'bg-white'}`}>
-               <div className="w-full p-4 md:p-0 h-full">
+          <div className={`sticky top-0 left-0 z-50 w-full px-10 mx-auto ${DarkMode ? 'bg-black' : 'bg-white'}`}>
+               <div className="w-full h-full">
                     <nav className="max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between py-3 h-full">
                          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse" onClick={closeMenu}>
                               <img
@@ -131,20 +138,17 @@ const Navbar = () => {
                               </div>
                          </div>
 
-                         <div className={`toggle ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto md:flex text-left font-bold mt-5 md:mt-0 md:border-none h-full`}>
-                              <Link to="/" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                         <div className={`toggle ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto md:flex text-left font-bold mt-5 md:mt-0 md:border-none h-full text-[#2D2F30]`}>
+                              <Link to="/" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Home
                               </Link>
-                              <Link to="/all-university" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                              <Link to="/all-university" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Top University
                               </Link>
-                              <Link to="/all-country" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                              <Link to="/all-country" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Country
                               </Link>
-                              <Link to="/scholarships" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
-                                   Scholarships
-                              </Link>
-                              <Link to="/contact" className="block md:inline-block hover:text-blue-500 px-3 py-3 md:border-none" onClick={closeMenu}>
+                              <Link to="/contact" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Contact Us
                               </Link>
                          </div>

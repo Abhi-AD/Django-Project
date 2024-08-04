@@ -14,7 +14,7 @@ const Card = ({ imgSrc, collagename, studylevel, link, location, scholarship_per
           <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
                <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={collagename} />
           </div>
-          <div className="p-5 flex flex-col justify-between flex-grow">
+          <div className="p-5  flex flex-col justify-between flex-grow">
                <div className=" flex-col gap-4 flex">
                     <div className="flex flex-col gap-1">
                          <h5 className={`text-base md:text-lg font-bold tracking-tight  dark:text-white truncate ${DarkMode ? '' : 'text-gray-900'}`}>{collagename}</h5>
@@ -51,13 +51,13 @@ function AllScholarship() {
 
 
      return (
-          <div className=" max-w-screen-2xl mx-auto ">
+          <div className=" max-w-screen-2xl mx-auto">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                          <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Scholarships</h1>
                          <Link to={''} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
-                    <Slider {...foursliderSettings} className="md:mb-5 mb-3">
+                    <Slider {...foursliderSettings} >
                          {cardDataScholarship.map((item, index) => (
                               <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />

@@ -9,21 +9,21 @@ const Card = ({ imgSrc, title, description, onClick }) => (
      <Link onClick={(e) => {
           e.preventDefault();
           onClick({ imgSrc, title, description });
-     }}className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
-     <div className="w-full h-96 relative overflow-hidden rounded-2xl">
-          <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
-          <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
-               <div className="flex flex-col justify-between flex-grow">
-                    <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
-                         {title}
-                    </h5>
-                    <p className={`text-xs sm:text-sm md:text-base  font-medium text-white line-clamp-2`}>
-                         {description}
-                    </p>
+     }} className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+          <div className="w-full h-96 relative overflow-hidden rounded-2xl">
+               <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={title} />
+               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-center flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+                    <div className="flex flex-col justify-center ">
+                         <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
+                              {title}
+                         </h5>
+                         <p className={`text-xs sm:text-sm md:text-base  font-medium text-white line-clamp-2`}>
+                              {description}
+                         </p>
+                    </div>
                </div>
           </div>
-     </div>
-</Link>
+     </Link>
 );
 
 Card.propTypes = {

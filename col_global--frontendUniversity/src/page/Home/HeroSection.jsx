@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import oneliderSettingsAuto from '../../components/silderSettings/oneliderSettingsAuto';
 import carouselImages from '../../data/carouselImages';
+import { Link } from 'react-router-dom';
 
 
 const Card = ({ imgSrc, index }) => (
@@ -31,9 +32,11 @@ const HeroSection = () => {
                               <h1 className="text-4xl md:text-6xl font-bold">Your Global Education Hub</h1>
                               <p className="text-lg md:text-2xl">Start Your Journey With Us</p>
                          </div>
-                         <button className="px-6 py-3 text-lg font-semibold text-white border rounded-md">
-                              Get Started
-                         </button>
+                         <Link to={`/search-data`}>
+                              <button className="px-6 py-3 text-lg font-semibold text-white border rounded-md">
+                                   Get Started
+                              </button>
+                         </Link>
                     </div>
                </div>
           </section>

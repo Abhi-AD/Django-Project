@@ -5,11 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import cardDataCountry from "../../data/cardDataCountry";
 
 const Card = ({ imgSrc, country, description, link }) => (
-     <Link to={link} className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+     <Link to={link} className=" h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
           <div className="w-full h-96 relative overflow-hidden rounded-2xl">
                <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
-               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
-                    <div className="flex flex-col justify-between flex-grow">
+               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-center flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+                    <div className="flex flex-col justify-center">
                          <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
                               {country}
                          </h5>
@@ -30,9 +30,9 @@ Card.propTypes = {
 };
 function AllCountry() {
      return (
-          <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4">
+          <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4 p-1">
                <h1 className="font-bold  text-lg md:text-2xl">Country List</h1>
-               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                     {cardDataCountry.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}

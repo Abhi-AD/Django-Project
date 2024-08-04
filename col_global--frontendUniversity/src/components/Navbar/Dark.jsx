@@ -7,11 +7,12 @@ function Dark() {
     return (
         <button
             onClick={toggleDarkMode}
+            className='p-4'
         >
             {DarkMode ? (
-                <BsMoon className='text-lg text-white md:text-xl lg:text-2xl' />
+                <BsMoon className='text-xl text-white md:text-2xl lg:text-3xl' />
             ) : (
-                <BsSun className='text-lg text-black md:text-xl lg:text-2xl' />
+                <BsSun className='text-xl text-black md:text-2xl lg:text-3xl' />
             )}
         </button>
     );

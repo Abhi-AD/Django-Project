@@ -62,7 +62,7 @@ const FilterForm = () => {
 
      return (
           <div className="mx-auto bg-blue-50 rounded-lg shadow-md p-4 flex flex-col gap-4 max-w-lg text-black">
-               <div className="w-full flex items-center border rounded-md bg-gray-200">
+               <div className="w-full flex items-center border rounded-md bg-gray-200 px-3">
                     <input
                          type="text"
                          placeholder="Search item"
@@ -72,42 +72,78 @@ const FilterForm = () => {
                     />
                     <FaSearch className="ml-2 text-gray-500 bg-gray-200" />
                </div>
-
-               <fieldset className="relative w-full">
-                    <legend className="block mb-1">Course type</legend>
-                    <button
-                         type="button"
-                         onClick={() => toggleDropdown(0)}
-                         aria-expanded={isOpen === 0}
-                         aria-controls="dropdown-menu-1"
-                         className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
-                    >
-                         <span>Please select</span>
-                         <FaChevronDown className="w-3 h-3" />
-                    </button>
-                    {isOpen === 0 && (
-                         <div
-                              id="dropdown-menu-1"
-                              ref={el => dropdownRefs.current[0] = el}
-                              className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
-                         >
-                              {course.map(option => (
-                                   <label
-                                        key={option}
-                                        className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
-                                   >
+               <div className="w-full">
+                    <fieldset className="relative w-full">
+                         <legend className="block mb-1">Course type</legend>
+                         {course.map(option => (
+                              <div key={option}>
+                                   <label className="flex items-center p-2 cursor-pointer">
                                         <input
-                                             type="checkbox"
+                                             type="radio"
+                                             name="date" // Ensure all radio buttons have the same name attribute
                                              checked={selectedOptions.includes(option)}
                                              onChange={() => handleOptionChange(option)}
                                              className="mr-2"
                                         />
                                         {option}
                                    </label>
-                              ))}
-                         </div>
-                    )}
-               </fieldset>
+                              </div>
+                         ))}
+                    </fieldset>
+               </div>
+
+               <div className="w-full mt-3 mb-3">
+                    <fieldset className="relative w-full">
+                         <legend className="block mb-1">Field of Study</legend>
+                         <button
+                              type="button"
+                              onClick={() => toggleDropdown(4)}
+                              aria-expanded={isOpen === 4}
+                              aria-controls="dropdown-menu-1"
+                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
+                         >
+                              <span>Please select</span>
+                              <FaChevronDown className="w-3 h-3" />
+                         </button>
+                         {isOpen === 4 && (
+                              <div
+                                   id="dropdown-menu-1"
+                                   ref={el => dropdownRefs.current[4] = el}
+                                   className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
+                              >
+                                   <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="w-full p-2 border-b border-gray-300"
+                                   />
+                                   {study.length > 0 ? (
+                                        study.map(option => (
+                                             <label
+                                                  key={option}
+                                                  className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
+                                             >
+                                                  <input
+                                                       type="checkbox"
+                                                       checked={selectedOptions.includes(option)}
+                                                       onChange={() => handleOptionChange(option)}
+                                                       className="mr-2"
+                                                  />
+                                                  {option}
+                                             </label>
+                                        ))
+                                   ) : (
+                                        <p className="p-2 text-gray-500">No options found</p>
+                                   )}
+                              </div>
+                         )}
+                    </fieldset>
+               </div>
+
+
+
+
 
                <fieldset className="relative w-full">
                     <legend className="block mb-1">Field of Study</legend>
@@ -181,41 +217,27 @@ const FilterForm = () => {
                     )}
                </fieldset>
 
-               <fieldset className="relative w-full">
-                    <legend className="block mb-1">Mode of study</legend>
-                    <button
-                         type="button"
-                         onClick={() => toggleDropdown(3)}
-                         aria-expanded={isOpen === 3}
-                         aria-controls="dropdown-menu-1"
-                         className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
-                    >
-                         <span>Please select</span>
-                         <FaChevronDown className="w-3 h-3" />
-                    </button>
-                    {isOpen === 3 && (
-                         <div
-                              id="dropdown-menu-1"
-                              ref={el => dropdownRefs.current[3] = el}
-                              className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
-                         >
-                              {study_mode.map(option => (
-                                   <label
-                                        key={option}
-                                        className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
-                                   >
+
+               <div className="w-full">
+                    <fieldset className="relative w-full">
+                         <legend className="block mb-1">Mode of study</legend>
+                         {study_mode.map(option => (
+                              <div key={option}>
+                                   <label className="flex items-center p-2 cursor-pointer">
                                         <input
-                                             type="checkbox"
+                                             type="radio"
+                                             name="date" // Ensure all radio buttons have the same name attribute
                                              checked={selectedOptions.includes(option)}
                                              onChange={() => handleOptionChange(option)}
                                              className="mr-2"
                                         />
                                         {option}
                                    </label>
-                              ))}
-                         </div>
-                    )}
-               </fieldset>
+                              </div>
+                         ))}
+                    </fieldset>
+               </div>
+
 
                <div className="w-full">
                     <label className="block mb-1">Duration</label>
@@ -427,41 +449,24 @@ const FilterForm = () => {
                <div className="w-full">
                     <fieldset className="relative w-full">
                          <legend className="block mb-1">Date</legend>
-                         <button
-                              type="button"
-                              onClick={() => toggleDropdown(8)}
-                              aria-expanded={isOpen === 8}
-                              aria-controls="dropdown-menu-1"
-                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
-                         >
-                              <span>Please select</span>
-                              <FaChevronDown className="w-3 h-3" />
-                         </button>
-                         {isOpen === 8 && (
-                              <div
-                                   id="dropdown-menu-1"
-                                   ref={el => dropdownRefs.current[8] = el}
-                                   className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
-                              >
-                                   {intake.map(option => (
-                                        <label
-                                             key={option}
-                                             className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
-                                        >
-                                             <input
-                                                  type="checkbox"
-                                                  checked={selectedOptions.includes(option)}
-                                                  onChange={() => handleOptionChange(option)}
-                                                  className="mr-2"
-                                             />
-                                             {option}
-                                        </label>
-                                   ))}
+                         {intake.map(option => (
+                              <div key={option}>
+                                   <label className="flex items-center p-2 cursor-pointer">
+                                        <input
+                                             type="radio"
+                                             name="date" // Ensure all radio buttons have the same name attribute
+                                             checked={selectedOptions.includes(option)}
+                                             onChange={() => handleOptionChange(option)}
+                                             className="mr-2"
+                                        />
+                                        {option}
+                                   </label>
                               </div>
-                         )}
+                         ))}
                     </fieldset>
                </div>
-          </div>
+
+          </div >
      );
 };
 

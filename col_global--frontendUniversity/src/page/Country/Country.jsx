@@ -11,8 +11,8 @@ const Card = ({ imgSrc, description, link, country }) => (
      <Link to={link} className="max-w-sm h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
           <div className="w-full h-96 relative overflow-hidden rounded-2xl">
                <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
-               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-between flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
-                    <div className="flex flex-col justify-between flex-grow">
+               <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-center flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
+                    <div className="flex flex-col justify-center">
                          <h5 className={`text-sm sm:text-base md:text-lg font-bold tracking-tight text-white truncate `}>
                               {country}
                          </h5>
@@ -39,7 +39,7 @@ function Country() {
           <div className=" max-w-screen-2xl mx-auto">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Study Destinations</h1>
+                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-3xl">Study Destinations</h1>
                          <Link to={'/all-country'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <Slider {...foursliderSettingsreverse} className="">

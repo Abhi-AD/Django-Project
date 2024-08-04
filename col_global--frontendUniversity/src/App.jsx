@@ -4,18 +4,10 @@ import { Footer, Navbar, NotFound, SearchView } from './components/import';
 import { AllCountry, Contact, Home, UniversityCountry, UniversityCountryDetails } from './page/import';
 import useDarkMode from './hooks/useDarkMode';
 import { EventsAll, OverAllTopUniversityAll } from './container/import';
-import { useEffect } from 'react';
+import CourseDetails from './page/Course/CourseDetails';
 
 function App() {
   const { DarkMode } = useDarkMode();
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }, []);
-
   return (
     <Router>
       <div className={`${DarkMode ? 'darkMode' : 'bg-white'} `}>
@@ -25,8 +17,9 @@ function App() {
           <Route path="/all-country" element={<AllCountry />} />
           <Route path="/country/usa" element={<UniversityCountry />} />
           <Route path="/all-events" element={<EventsAll />} />
-          <Route path="/country/all-events" element={<UniversityCountry />} />
+          <Route path="/country/course" element={<CourseDetails />} />
 
+          <Route path="/all-university" element={<OverAllTopUniversityAll />} />
           <Route path="/all-university" element={<OverAllTopUniversityAll />} />
           <Route path="/country/university/id" element={<UniversityCountryDetails />} />
           <Route path="/contact" element={<Contact />} />

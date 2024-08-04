@@ -34,57 +34,59 @@ const InstituteFinder = () => {
           <div className='max-w-screen-2xl mx-auto p-4'>
                {institutes.map((institute, index) => (
                     <div key={index} className={` duration-700 ease-in-out ${activeIndex === index ? 'block' : 'hidden'}`} data-carousel-item>
-                         <div className='flex flex-col gap-3'>
-                              <div className='flex flex-col md:flex-row items-start gap-2'>
-                                   <div className='md:w-2/5'>
-                                        <h1 className='text-left text-2xl md:text-3xl font-bold'>{institute.title}</h1>
-                                   </div>
-                                   <div className='md:w-3/5'>
-                                        <p className='text-left text-xl md:text-2xl font-medium'>{institute.description}</p>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full w-full">
-                              <div className="col-span-2 sm:col-span-1 md:col-span-2 bg-gray-50 flex flex-col">
-                                   <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
-                                        <img
-                                             src={institute.imgSrc1}
-                                             alt="Institute 1"
-                                             className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                                        />
+                         <div className="flex flex-col gap-3">
+                              <div className='flex flex-col gap-3'>
+                                   <div className='flex flex-col md:flex-row items-start gap-2'>
+                                        <div className='md:w-2/5'>
+                                             <h1 className='text-left text-2xl md:text-3xl font-bold'>{institute.title}</h1>
+                                        </div>
+                                        <div className='md:w-3/5'>
+                                             <p className='text-left text-xl md:text-2xl font-medium'>{institute.description}</p>
+                                        </div>
                                    </div>
                               </div>
 
-                              <div className="col-span-2 sm:col-span-1 md:col-span-3 bg-stone-50 flex flex-col">
-                                   <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
-                                        <img
-                                             src={institute.imgSrc2}
-                                             alt="Institute 2"
-                                             className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                                        />
+                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full w-full">
+                                   <div className="col-span-2 sm:col-span-1 md:col-span-2 bg-gray-50 flex flex-col">
+                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
+                                             <img
+                                                  src={institute.imgSrc1}
+                                                  alt="Institute 1"
+                                                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                             />
+                                        </div>
                                    </div>
-                                   <div className="grid gap-4 grid-cols-3">
-                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+
+                                   <div className="col-span-2 sm:col-span-1 md:col-span-3 bg-stone-50 flex flex-col">
+                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
                                              <img
-                                                  src={institute.imgSrc3}
-                                                  alt="Institute 3"
+                                                  src={institute.imgSrc2}
+                                                  alt="Institute 2"
                                                   className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
                                              />
                                         </div>
-                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
-                                             <img
-                                                  src={institute.imgSrc4}
-                                                  alt="Institute 4"
-                                                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                                             />
-                                        </div>
-                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
-                                             <img
-                                                  src={institute.imgSrc5}
-                                                  alt="Institute 5"
-                                                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                                             />
+                                        <div className="grid gap-4 grid-cols-3">
+                                             <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+                                                  <img
+                                                       src={institute.imgSrc3}
+                                                       alt="Institute 3"
+                                                       className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                                  />
+                                             </div>
+                                             <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+                                                  <img
+                                                       src={institute.imgSrc4}
+                                                       alt="Institute 4"
+                                                       className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                                  />
+                                             </div>
+                                             <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40">
+                                                  <img
+                                                       src={institute.imgSrc5}
+                                                       alt="Institute 5"
+                                                       className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                                  />
+                                             </div>
                                         </div>
                                    </div>
                               </div>
