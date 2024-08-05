@@ -21,14 +21,14 @@ const TabComponentUniversityDetails = () => {
 
      return (
           <div>
-               <div className="sticky top-16 mb-4 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 z-10">
+               <div className="sticky top-16 mb-4 border-gray-200 dark:border-gray-700  dark:bg-gray-900 z-10">
                     <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
                          {tabs.map((tab) => (
                               <li key={tab.id} className="me-2" role="presentation">
                                    <button
                                         className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === tab.id
-                                             ? 'text-gray-800 dark:text-white border-blue-500'
-                                             : 'hover:text-gray-600 hover:border-blue-300 dark:hover:text-gray-300'
+                                             ? ' dark:text-white border-blue-500'
+                                             : 'hover:text-gray-600 hover:border-blue-300'
                                              }`}
                                         id={`${tab.id}-tab`}
                                         type="button"

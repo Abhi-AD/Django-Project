@@ -14,21 +14,21 @@ const Card = ({ imgSrc, collagename, studylevel, link, location, scholarship_per
           <div className="w-full h-40 sm:h-48 relative overflow-hidden rounded-t-2xl">
                <img className="absolute inset-0 w-full h-full object-cover" src={imgSrc} alt={collagename} />
           </div>
-          <div className="p-5  flex flex-col justify-between flex-grow">
-               <div className=" flex-col gap-4 flex">
+          <div className="p-5 flex flex-col justify-between flex-grow">
+               <div className="flex-col gap-4 flex">
                     <div className="flex flex-col gap-1">
-                         <h5 className={`text-base md:text-lg font-bold tracking-tight  dark:text-white truncate ${DarkMode ? '' : 'text-gray-900'}`}>{collagename}</h5>
+                         <h5 className={`text-base md:text-lg font-bold tracking-tight dark:text-white truncate ${DarkMode ? '' : 'text-gray-900'}`}>{collagename}</h5>
                          <p className={`font-normal ${DarkMode ? 'text-white' : 'text-gray-700'} text-xs md:text-base truncate`}>{location}</p>
                     </div>
                     <hr className={`${DarkMode ? '' : 'border-blue-500'} `} />
                     <div className="flex flex-col gap-2">
                          <div className="flex items-start md:items-center gap-2">
                               <FaGraduationCap className="text-2xl" />
-                              <p className="text-sm md:text-lg md:mx-0 mx-2">Study Level: <span className={`${DarkMode ? '' : '"text-blue-500"'}`}>{studylevel}</span></p>
+                              <p className="text-sm md:text-lg md:mx-0 mx-2">Study Level: <span className={`${DarkMode ? '' : 'text-blue-500'}`}>{studylevel}</span></p>
                          </div>
                          <div className="flex items-start md:items-center gap-2">
                               <TbCashBanknoteFilled className="text-2xl" />
-                              <p className="text-sm md:text-lg md:mx-0 mx-2">Upto <span className={`${DarkMode ? '' : '"text-blue-500"'}`}>{scholarship_percentage}</span> Scholarship</p>
+                              <p className="text-sm md:text-lg md:mx-0 mx-2">Upto <span className={`${DarkMode ? '' : 'text-blue-500'}`}>{scholarship_percentage}</span> Scholarship</p>
                          </div>
                     </div>
                </div>
@@ -36,16 +36,16 @@ const Card = ({ imgSrc, collagename, studylevel, link, location, scholarship_per
      </Link>
 );
 
+
 Card.propTypes = {
      imgSrc: PropTypes.string.isRequired,
      collagename: PropTypes.string.isRequired,
      studylevel: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
-     DarkMode: PropTypes.string.isRequired,
+     DarkMode: PropTypes.bool.isRequired,
      location: PropTypes.string.isRequired,
      scholarship_percentage: PropTypes.string.isRequired,
 };
-
 function AllScholarship() {
      const { DarkMode } = useDarkMode();
 

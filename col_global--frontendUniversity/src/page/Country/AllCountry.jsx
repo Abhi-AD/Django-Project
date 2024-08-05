@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataCountry from "../../data/cardDataCountry";
+import DestinationCountry from "../../container/Destinations/DestinationCountry";
 
 const Card = ({ imgSrc, country, description, link }) => (
      <Link to={link} className=" h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
@@ -31,6 +32,7 @@ Card.propTypes = {
 function AllCountry() {
      return (
           <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4 p-1">
+               <DestinationCountry />
                <h1 className="font-bold  text-lg md:text-2xl">Country List</h1>
                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                     {cardDataCountry.map((item, index) => (

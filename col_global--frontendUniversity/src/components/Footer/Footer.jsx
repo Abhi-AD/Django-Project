@@ -49,7 +49,7 @@ const Footer = () => {
                                         <ul className="font-medium">
                                              {section.links.map((link, index) => (
                                                   <li key={index} className="mb-4 mx-5 md:mx-2">
-                                                       <a href={link.href} className="hover:underline" aria-label={link.text}>{link.text}</a>
+                                                       <Link to={link.href} className="hover:underline" aria-label={link.text}>{link.text}</Link>
                                                   </li>
                                              ))}
                                         </ul>

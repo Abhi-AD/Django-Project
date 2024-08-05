@@ -125,12 +125,9 @@ const Navbar = () => {
                               />
                          </Link>
                          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-10">
-                              <button
-                                   type="button"
-                              >
-                                   <Dark />
 
-                              </button>
+                              <Dark />
+
                               <div className="flex md:hidden">
                                    <button id="hamburger" onClick={toggleMenu} className="text-3xl">
                                         {menuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
@@ -138,7 +135,7 @@ const Navbar = () => {
                               </div>
                          </div>
 
-                         <div className={`toggle ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto md:flex text-left font-bold mt-5 md:mt-0 md:border-none h-full text-[#2D2F30]`}>
+                         <div className={`toggle ${menuOpen ? 'block' : 'hidden'} w-full md:w-auto md:flex text-left font-bold mt-5 md:mt-0 md:border-none h-full ${DarkMode ? '' : 'text-[#2D2F30]'}`}>
                               <Link to="/" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Home
                               </Link>

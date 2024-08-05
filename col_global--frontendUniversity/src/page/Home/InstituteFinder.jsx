@@ -46,8 +46,8 @@ const InstituteFinder = () => {
                                    </div>
                               </div>
 
-                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full w-full">
-                                   <div className="col-span-2 sm:col-span-1 md:col-span-2 bg-gray-50 flex flex-col">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full w-full rounded-lg">
+                                   <div className="col-span-2 sm:col-span-1 md:col-span-2 rounded-lg flex flex-col">
                                         <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
                                              <img
                                                   src={institute.imgSrc1}
@@ -57,7 +57,7 @@ const InstituteFinder = () => {
                                         </div>
                                    </div>
 
-                                   <div className="col-span-2 sm:col-span-1 md:col-span-3 bg-stone-50 flex flex-col">
+                                   <div className="col-span-2 sm:col-span-1 md:col-span-3 flex flex-col">
                                         <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
                                              <img
                                                   src={institute.imgSrc2}

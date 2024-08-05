@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import useDarkMode from '../../../hooks/useDarkMode';
+import { Link } from 'react-router-dom';
 
 const TableWithSeeMoreCourse = () => {
      const [visibleRows, setVisibleRows] = useState(3);
+     const { DarkMode } = useDarkMode();
 
      const rows = [
           { program: "1. Certificate in Data Science", fee: "$300-$500" },
@@ -32,7 +35,7 @@ const TableWithSeeMoreCourse = () => {
 
      return (
           <div>
-               <table className="min-w-full bg-white border border-gray-300">
+               <table className={`min-w-full ${DarkMode ? '' : 'bg-white border border-gray-300'} `}>
                     <thead>
                          <tr>
                               <th className="px-4 py-2 border border-gray-300">Programs</th>
@@ -41,9 +44,9 @@ const TableWithSeeMoreCourse = () => {
                     </thead>
                     <tbody>
                          {rows.slice(0, visibleRows).map((row, index) => (
-                              <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
-                                   <td className="px-4 py-2 border border-gray-300">{row.program}</td>
-                                   <td className="px-4 py-2 border border-gray-300">{row.fee}</td>
+                              <tr key={index} className={index % 2 === 0 ? (DarkMode ? 'bg-gray-900' : 'bg-gray-100') : (DarkMode ? 'bg-gray-800' : '')}>
+                                   <td className={`px-4 py-2 border ${DarkMode ? 'text-white' : 'text-gray-800'} border-gray-300 hover:underline cursor-pointer`}><Link to={`/country/course`}>{row.program}</Link></td>
+                                   <td className={`px-4 py-2 border ${DarkMode ? 'text-white' : 'text-gray-800'} border-gray-300`}>{row.fee}</td>
                               </tr>
                          ))}
                     </tbody>

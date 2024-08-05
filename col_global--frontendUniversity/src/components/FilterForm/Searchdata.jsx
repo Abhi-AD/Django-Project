@@ -2,10 +2,14 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import filteringdata from '../../data/filterdata/filteringdata';
 import { Link } from 'react-router-dom';
+import { Pagination } from '../import';
+
+const ITEMS_PER_PAGE = 4; // Adjust as needed
 
 const Searchdata = ({ location, studyLevel, course, university }) => {
     const [viewType, setViewType] = useState('grid');
     const [filters, setFilters] = useState({ location, studyLevel, course, university });
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handleViewChange = (view) => {
         setViewType(view);
@@ -18,9 +22,25 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
         }));
     };
 
+    const filteredData = filteringdata.filter((item) => {
+        return (
+            (!filters.location || item.location.includes(filters.location)) &&
+            (!filters.studyLevel || item.studyLevel.includes(filters.studyLevel)) &&
+            (!filters.course || item.course.includes(filters.course)) &&
+            (!filters.university || item.university.includes(filters.university))
+        );
+    });
+
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+    const paginatedData = filteredData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
     return (
         <div className="p-4 min-h-screen flex flex-col gap-3">
-            <h1 className="text-xl font-bold mb-4">100000 results for your criteria</h1>
+            <h1 className="text-xl font-bold mb-4">{filteredData.length} results for your criteria</h1>
             <div className="flex space-x-2">
                 {filters.location && (
                     <div className="flex items-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full capitalize">
@@ -86,7 +106,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
 
             {viewType === 'grid' ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
-                    {filteringdata.map((course, index) => (
+                    {paginatedData.map((course, index) => (
                         <Link
                             to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
@@ -109,7 +129,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                 </div>
             ) : (
                 <div className="space-y-4">
-                    {filteringdata.map((course, index) => (
+                    {paginatedData.map((course, index) => (
                         <Link
                             to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
@@ -128,6 +148,12 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                     ))}
                 </div>
             )}
+
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };
