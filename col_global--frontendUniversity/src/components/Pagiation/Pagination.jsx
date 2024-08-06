@@ -19,7 +19,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                {[...Array(totalPages)].map((_, index) => (
                     <button
                          key={index}
-                         className={`px-4 py-2 border rounded ${currentPage === index + 1 ? 'bg-blue-500 text-white' : ''}`}
+                         className={`px-4 py-2 border rounded ${currentPage === index + 1 ? 'bg-blue-500 border-0 text-white' : ''}`}
                          onClick={() => handlePageChange(index + 1)}
                     >
                          {index + 1}

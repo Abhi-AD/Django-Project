@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import filteringdata from '../../data/filterdata/filteringdata';
 import { Link } from 'react-router-dom';
 import { Pagination } from '../import';
+import useDarkMode from '../../hooks/useDarkMode';
 
 const ITEMS_PER_PAGE = 4; // Adjust as needed
 
@@ -10,6 +11,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
     const [viewType, setViewType] = useState('grid');
     const [filters, setFilters] = useState({ location, studyLevel, course, university });
     const [currentPage, setCurrentPage] = useState(1);
+    const { DarkMode } = useDarkMode(); // Use the hook
 
     const handleViewChange = (view) => {
         setViewType(view);
@@ -39,48 +41,48 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
     };
 
     return (
-        <div className="p-4 min-h-screen flex flex-col gap-3">
+        <div className={`p-4 min-h-screen flex flex-col gap-3 ${DarkMode ? '' : 'bg-white text-black'}`}>
             <h1 className="text-xl font-bold mb-4">{filteredData.length} results for your criteria</h1>
             <div className="flex space-x-2">
                 {filters.location && (
-                    <div className="flex items-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full capitalize">
+                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filters.location}</span>
                         <button
                             onClick={() => clearFilter('location')}
-                            className="text-gray-500 hover:text-gray-700"
+                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
                         >
                             &times;
                         </button>
                     </div>
                 )}
                 {filters.studyLevel && (
-                    <div className="flex items-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full capitalize">
+                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filters.studyLevel}</span>
                         <button
                             onClick={() => clearFilter('studyLevel')}
-                            className="text-gray-500 hover:text-gray-700"
+                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
                         >
                             &times;
                         </button>
                     </div>
                 )}
                 {filters.course && (
-                    <div className="flex items-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full capitalize">
+                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filters.course}</span>
                         <button
                             onClick={() => clearFilter('course')}
-                            className="text-gray-500 hover:text-gray-700"
+                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
                         >
                             &times;
                         </button>
                     </div>
                 )}
                 {filters.university && (
-                    <div className="flex items-center bg-gray-200 text-gray-700 px-3 py-1 rounded-full capitalize">
+                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filters.university}</span>
                         <button
                             onClick={() => clearFilter('university')}
-                            className="text-gray-500 hover:text-gray-700"
+                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
                         >
                             &times;
                         </button>
@@ -91,13 +93,13 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                 <div className="flex gap-3">
                     <button
                         onClick={() => handleViewChange('grid')}
-                        className={`p-2 rounded ${viewType === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        className={`p-2 rounded ${viewType === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200'} ${DarkMode ? 'text-black' : ''}`}
                     >
                         Grid
                     </button>
                     <button
                         onClick={() => handleViewChange('list')}
-                        className={`p-2 rounded ${viewType === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                        className={`p-2 rounded ${viewType === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200'} ${DarkMode ? 'text-black' : ''}`}
                     >
                         List
                     </button>
@@ -105,18 +107,18 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
             </div>
 
             {viewType === 'grid' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
+                <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4 ${DarkMode ? '' : ''}`}>
                     {paginatedData.map((course, index) => (
                         <Link
                             to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
-                            className="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                            className={`flex flex-col  shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 ${DarkMode ? 'bg-gray-900' : ''}`}
                         >
                             <div className="w-full h-60 sm:h-60 relative overflow-hidden rounded-t-2xl">
                                 <img className="absolute inset-0 w-full h-full object-cover" src={course.image} alt={course.title} />
                             </div>
                             <div className="p-6 flex-1">
-                                <h2 className="text-xl font-semibold mb-2 text-black">{course.title}</h2>
+                                <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
                                 <p className="text-gray-600 mb-1">
                                     <strong>Universities:</strong> {course.university.join(' , ')}
                                 </p>
@@ -128,15 +130,15 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
                     ))}
                 </div>
             ) : (
-                <div className="space-y-4">
+                <div className={`space-y-4 ${DarkMode ? 'bg-gray-800' : ''}`}>
                     {paginatedData.map((course, index) => (
                         <Link
                             to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
-                            className="p-4 flex bg-white border-b border-gray-300"
+                            className={`p-4 flex  border-b border-gray-300 ${DarkMode ? 'bg-gray-900 border-gray-700' : ''}`}
                         >
                             <div className="flex-1">
-                                <h2 className="text-lg font-bold text-black">{course.title}</h2>
+                                <h2 className="text-lg font-bold">{course.title}</h2>
                                 <p className="text-gray-600">{course.university}</p>
                                 <p className="mt-2"><strong>Subject:</strong> {course.subject}</p>
                                 <p><strong>Language:</strong> {course.language}</p>

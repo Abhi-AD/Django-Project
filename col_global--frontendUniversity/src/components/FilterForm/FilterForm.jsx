@@ -3,6 +3,7 @@ import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { SiCoursera } from "react-icons/si";
 import { IoLocationSharp } from "react-icons/io5";
 import { Slider } from '@mui/material';
+import useDarkMode from '../../hooks/useDarkMode';
 import {
      study,
      language,
@@ -14,6 +15,7 @@ import {
 } from './../../data/searchform';
 
 const FilterForm = () => {
+     const { DarkMode } = useDarkMode();
      const [isOpen, setIsOpen] = useState(null);
      const [selectedOptions, setSelectedOptions] = useState([]);
      const [searchQuery, setSearchQuery] = useState('');
@@ -78,17 +80,18 @@ const FilterForm = () => {
 
 
      return (
-          <div className="mx-auto bg-blue-50 rounded-lg shadow-md p-4 flex flex-col gap-4 max-w-lg text-black">
+
+          <div className={`mx-auto ${DarkMode ? '' : 'bg-blue-50 text-black'} rounded-2xl p-4 flex flex-col gap-4 max-w-lg `}>
                {/* search */}
-               <div className="w-full flex items-center border rounded-md bg-gray-200 px-3">
+               <div className={`w-full flex items-center border rounded-md ${DarkMode ? '' : 'bg-gray-200 text-black'}  px-3`}>
                     <input
                          type="text"
                          placeholder="Search item"
-                         className="w-full p-2 border-none rounded-md bg-gray-200 focus:outline-none"
+                         className={`w-full p-2 border-none rounded-md ${DarkMode ? 'bg-transparent text-white   placeholder:text-white' : 'bg-gray-200 text-black placeholder:text-black'} focus:outline-none `}
                          value={searchQuery}
                          onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <FaSearch className="ml-2 text-gray-500 bg-gray-200" />
+                    <FaSearch className={`ml-2 text-gray-500 `} />
                </div>
                {/* course type  */}
                <div className="w-full">
@@ -120,7 +123,7 @@ const FilterForm = () => {
                               onClick={() => toggleDropdown(1)}
                               aria-expanded={isOpen === 1}
                               aria-controls="dropdown-menu-1"
-                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
+                              className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
                               <span>Please select</span>
                               <FaChevronDown className="w-3 h-3" />
@@ -171,7 +174,7 @@ const FilterForm = () => {
                               onClick={() => toggleDropdown(2)}
                               aria-expanded={isOpen === 2}
                               aria-controls="dropdown-menu-1"
-                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
+                              className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
                               <span>Please select</span>
                               <FaChevronDown className="w-3 h-3" />
@@ -267,7 +270,7 @@ const FilterForm = () => {
                               onClick={() => toggleDropdown(4)}
                               aria-expanded={isOpen === 4}
                               aria-controls="dropdown-menu-1"
-                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
+                              className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
                               <span>Please select</span>
                               <FaChevronDown className="w-3 h-3" />
@@ -318,7 +321,7 @@ const FilterForm = () => {
                               onClick={() => toggleDropdown(5)}
                               aria-expanded={isOpen === 5}
                               aria-controls="dropdown-menu-1"
-                              className="w-full p-2 border rounded-md flex bg-gray-200 justify-between items-center"
+                              className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
                               <span>Please select</span>
                               <FaChevronDown className="w-3 h-3" />

@@ -35,7 +35,7 @@ const UniversityCountryDetailsGallery = () => {
                     </div>
                     {selectedImage && (
                          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-                              <div className="bg-white rounded-lg overflow-hidden shadow-xl max-w-3xl w-full">
+                              <div className="bg-white rounded-lg overflow-hidden shadow-xl max-w-3xl w-full text-black">
                                    <div className="relative">
                                         <img src={selectedImage.src} alt={selectedImage.title} className="w-full h-auto" />
                                         <button

@@ -18,7 +18,7 @@ Card.propTypes = {
 };
 const HeroSection = () => {
      return (
-          <section className="relative h-[50vh] md:h-[75vh] flex flex-col items-center justify-center text-center text-white">
+          <section className="relative flex flex-col items-center justify-center text-center text-white">
                <div className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
                     <Slider {...oneliderSettingsAuto}>
                          {carouselImages.map((image, index) => (
@@ -26,11 +26,11 @@ const HeroSection = () => {
                          ))}
                     </Slider>
                </div>
-               <div className="video-content space-y-2 z-10 flex flex-col gap-10">
+               <div className="video-content space-y-2 md:p-20 p-10 z-10 flex flex-col gap-10">
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 gap-8">
                          <div className='flex flex-col gap-1'>
-                              <h1 className="text-4xl md:text-6xl font-bold">Your Global Education Hub</h1>
-                              <p className="text-lg md:text-2xl">Start Your Journey With Us</p>
+                              <h1 className="text-lg sm:text-2xl md:text-4xl font-bold">Your Global Education Hub</h1>
+                              <p className="text-sm sm:text-lg md:text-2xl">Start Your Journey With Us</p>
                          </div>
                          <Link to={`/search-data`}>
                               <button className="px-6 py-3 text-lg font-semibold text-white border rounded-md">
