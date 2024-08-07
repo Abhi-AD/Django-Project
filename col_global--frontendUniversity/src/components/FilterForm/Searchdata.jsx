@@ -4,6 +4,7 @@ import filteringdata from '../../data/filterdata/filteringdata';
 import { Link } from 'react-router-dom';
 import { Pagination } from '../import';
 import useDarkMode from '../../hooks/useDarkMode';
+import VideoAd from './VideoAd';
 
 const ITEMS_PER_PAGE = 4; // Adjust as needed
 
@@ -42,6 +43,7 @@ const Searchdata = ({ location, studyLevel, course, university }) => {
 
     return (
         <div className={`p-4 min-h-screen flex flex-col gap-3 ${DarkMode ? '' : 'bg-white text-black'}`}>
+            <VideoAd />
             <h1 className="text-xl font-bold mb-4">{filteredData.length} results for your criteria</h1>
             <div className="flex space-x-2">
                 {filters.location && (

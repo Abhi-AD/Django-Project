@@ -18,7 +18,7 @@ Card.propTypes = {
 };
 const HeroSection = () => {
      return (
-          <section className="relative flex flex-col items-center justify-center text-center text-white">
+          <section className="relative flex flex-col h-[77vh] items-center justify-center text-center text-white">
                <div className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
                     <Slider {...oneliderSettingsAuto}>
                          {carouselImages.map((image, index) => (
