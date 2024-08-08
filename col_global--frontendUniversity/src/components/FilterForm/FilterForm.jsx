@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { Slider } from '@mui/material';
+import PropTypes from 'prop-types';
 import useDarkMode from '../../hooks/useDarkMode';
 import {
      study,
@@ -8,58 +9,22 @@ import {
      intake,
      course,
      language,
-     location,
+     city,
      department
 } from './../../data/searchform';
 
-const FilterForm = () => {
+const FilterForm = ({ filter, handleFilterChange }) => {
      const { DarkMode } = useDarkMode();
      const [isOpen, setIsOpen] = useState(null);
 
-     const defaultValue = {
-          search: "",
-          course: "",
-          field: [],
-          language: [],
-          mode: "",
-          duration: 6,
-          fee: 120,
-          location: [],
-          department: [],
-          intake: "",
-     };
-
-     const [filter, setFilter] = useState(defaultValue);
      const [studySearchQuery, setStudySearchQuery] = useState('');
      const [languageSearchQuery, setLanguageSearchQuery] = useState('');
-     const [locationSearchQuery, setLocationSearchQuery] = useState('');
+     const [citySearchQuery, setcitySearchQuery] = useState('');
      const [departmentSearchQuery, setDepartmentSearchQuery] = useState('');
      const dropdownRefs = useRef([]);
 
      const toggleDropdown = (index) => {
           setIsOpen(prevIndex => prevIndex === index ? null : index);
-     };
-
-     const handleFilterChange = (option, value) => {
-          setFilter(prev => {
-               if (Array.isArray(prev[option])) {
-                    const newArray = prev[option].includes(value)
-                         ? prev[option].filter(item => item !== value)
-                         : [...prev[option], value];
-                    return {
-                         ...prev,
-                         [option]: newArray
-                    };
-               }
-               // Ensure duration and fee are numbers
-               if (option === "duration" || option === "fee") {
-                    value = Number(value);
-               }
-               return {
-                    ...prev,
-                    [option]: value
-               };
-          });
      };
 
      const handleDurationChange = (event, newValue) => {
@@ -88,8 +53,8 @@ const FilterForm = () => {
           option.toLowerCase().includes(languageSearchQuery.toLowerCase())
      );
 
-     const filteredLocation = location.filter(option =>
-          option.toLowerCase().includes(locationSearchQuery.toLowerCase())
+     const filteredcity = city.filter(option =>
+          option.toLowerCase().includes(citySearchQuery.toLowerCase())
      );
 
      const filteredDepartment = department.filter(option =>
@@ -111,10 +76,6 @@ const FilterForm = () => {
           return `${value} month${value === 1 ? '' : 's'} (${convertMonthsToSemesters(value)} semester${convertMonthsToSemesters(value) === 1 ? '' : 's'})`;
      };
 
-     useEffect(() => {
-          console.log(filter);
-     }, [filter]);
-
      return (
           <div className={`mx-auto ${DarkMode ? '' : 'bg-blue-50 text-black'} rounded-2xl p-4 flex flex-col gap-4 max-w-lg`}>
 
@@ -133,7 +94,7 @@ const FilterForm = () => {
                {/* Course type */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Course type</legend>
+                         <legend className="block mb-1 capitalize">Course type</legend>
                          {course.map(option => (
                               <div key={option}>
                                    <label className="flex items-center p-2 cursor-pointer">
@@ -154,7 +115,7 @@ const FilterForm = () => {
                {/* Field of Study */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Field of Study</legend>
+                         <legend className="block mb-1 capitalize">Field of Study</legend>
                          <button
                               type="button"
                               onClick={() => toggleDropdown(1)}
@@ -162,7 +123,11 @@ const FilterForm = () => {
                               aria-controls="dropdown-menu-1"
                               className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
-                              <span>Please select</span>
+                              <span>
+                                   {filter.field.length > 0
+                                        ? `${filter.field.length} ${filter.field.length === 1 ? '' : ''} selected`
+                                        : 'Please select'}
+                              </span>
                               <FaChevronDown className="w-3 h-3" />
                          </button>
                          {isOpen === 1 && (
@@ -204,7 +169,7 @@ const FilterForm = () => {
                {/* Language */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Language</legend>
+                         <legend className="block mb-1 capitalize">Language</legend>
                          <button
                               type="button"
                               onClick={() => toggleDropdown(2)}
@@ -212,7 +177,11 @@ const FilterForm = () => {
                               aria-controls="dropdown-menu-2"
                               className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
-                              <span>Please select</span>
+                              <span>
+                                   {filter.language.length > 0
+                                        ? `${filter.language.length} ${filter.language.length === 1 ? '' : ''} selected`
+                                        : 'Please select'}
+                              </span>
                               <FaChevronDown className="w-3 h-3" />
                          </button>
                          {isOpen === 2 && (
@@ -251,10 +220,10 @@ const FilterForm = () => {
                     </fieldset>
                </div>
 
-               {/* Location */}
+               {/* city */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Location</legend>
+                         <legend className="block mb-1 capitalize">city</legend>
                          <button
                               type="button"
                               onClick={() => toggleDropdown(3)}
@@ -262,7 +231,10 @@ const FilterForm = () => {
                               aria-controls="dropdown-menu-3"
                               className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
-                              <span>Please select</span>
+                              <span>
+                                   {filter.city.length > 0
+                                        ? `${filter.city.length} ${filter.city.length === 1 ? '' : ''} selected`
+                                        : 'Please select'}</span>
                               <FaChevronDown className="w-3 h-3" />
                          </button>
                          {isOpen === 3 && (
@@ -274,20 +246,20 @@ const FilterForm = () => {
                                    <input
                                         type="text"
                                         placeholder="Search..."
-                                        value={locationSearchQuery}
-                                        onChange={(e) => setLocationSearchQuery(e.target.value)}
+                                        value={citySearchQuery}
+                                        onChange={(e) => setcitySearchQuery(e.target.value)}
                                         className="w-full p-2 border-b border-gray-300"
                                    />
-                                   {filteredLocation.length > 0 ? (
-                                        filteredLocation.map(option => (
+                                   {filteredcity.length > 0 ? (
+                                        filteredcity.map(option => (
                                              <label
                                                   key={option}
                                                   className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
                                              >
                                                   <input
                                                        type="checkbox"
-                                                       checked={filter.location.includes(option)}
-                                                       onChange={() => handleFilterChange('location', option)}
+                                                       checked={filter.city.includes(option)}
+                                                       onChange={() => handleFilterChange('city', option)}
                                                        className="mr-2"
                                                   />
                                                   {option}
@@ -304,7 +276,7 @@ const FilterForm = () => {
                {/* Department */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Department</legend>
+                         <legend className="block mb-1 capitalize">Department</legend>
                          <button
                               type="button"
                               onClick={() => toggleDropdown(4)}
@@ -312,7 +284,9 @@ const FilterForm = () => {
                               aria-controls="dropdown-menu-4"
                               className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
                          >
-                              <span>Please select</span>
+                              <span>{filter.department.length > 0
+                                   ? `${filter.department.length} ${filter.department.length === 1 ? '' : ''} selected`
+                                   : 'Please select'}</span>
                               <FaChevronDown className="w-3 h-3" />
                          </button>
                          {isOpen === 4 && (
@@ -351,89 +325,101 @@ const FilterForm = () => {
                     </fieldset>
                </div>
 
+               {/* Intake */}
+               <div className="w-full">
+                    <fieldset className="relative w-full">
+                         <legend className="block mb-1 capitalize">Intake</legend>
+                         {intake.map(option => (
+                              <div key={option}>
+                                   <label className="flex items-center p-2 cursor-pointer">
+                                        <input
+                                             type="radio"
+                                             name="intake"
+                                             checked={filter.intake === option}
+                                             onChange={() => handleFilterChange("intake", option)}
+                                             className="mr-2"
+                                        />
+                                        {option}
+                                   </label>
+                              </div>
+                         ))}
+                    </fieldset>
+               </div>
+               {/* Study Mode */}
+               <div className="w-full">
+                    <fieldset className="relative w-full">
+                         <legend className="block mb-1 capitalize">Study Mode</legend>
+                         {study_mode.map(option => (
+                              <div key={option}>
+                                   <label className="flex items-center p-2 cursor-pointer">
+                                        <input
+                                             type="radio"
+                                             name="mode"
+                                             checked={filter.mode === option}
+                                             onChange={() => handleFilterChange("mode", option)}
+                                             className="mr-2"
+                                        />
+                                        {option}
+                                   </label>
+                              </div>
+                         ))}
+                    </fieldset>
+               </div>
+
                {/* Duration */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Duration</legend>
+                         <legend className="block mb-1 capitalize">Duration</legend>
                          <Slider
                               value={filter.duration}
-                              onChange={handleDurationChange}
-                              min={1}
+                              min={0}
                               max={24}
                               step={1}
-                              valueLabelDisplay="auto"
+                              onChange={handleDurationChange}
                               valueLabelFormat={valueduration}
-                              aria-labelledby="duration-slider"
                          />
                          <div className="flex justify-between text-xs mt-1">
                               <span>{valueduration(filter.duration)}</span>
                               <span>More than 4 years</span>
                          </div>
-
                     </fieldset>
                </div>
 
                {/* Fee */}
                <div className="w-full">
                     <fieldset className="relative w-full">
-                         <legend className="block mb-1">Fee</legend>
+                         <legend className="block mb-1 capitalize">Fee</legend>
                          <Slider
                               value={filter.fee}
-                              onChange={handleFeeChange}
                               min={0}
                               max={10000}
                               step={100}
-                              valueLabelDisplay="auto"
+                              onChange={handleFeeChange}
                               valueLabelFormat={valuefee}
-                              aria-labelledby="fee-slider"
                          />
                          <div className="flex justify-between text-xs mt-1">
-                              <span>{valueduration(filter.duration)}</span>
-                              <span>More than 4 years</span>
+                              <span>{valuefee(filter.fee)}</span>
+                              <span>$1000 more than</span>
                          </div>
-                    </fieldset>
-               </div>
-
-               {/* Intake */}
-               <div className="w-full">
-                    <fieldset className="relative w-full">
-                         <legend className="block mb-1">Intake</legend>
-                         <select
-                              value={filter.intake}
-                              onChange={(e) => handleFilterChange("intake", e.target.value)}
-                              className={`w-full p-2 border rounded-md ${DarkMode ? '' : 'bg-gray-200 text-black'}`}
-                         >
-                              <option value="">Select intake</option>
-                              {intake.map(option => (
-                                   <option key={option} value={option}>
-                                        {option}
-                                   </option>
-                              ))}
-                         </select>
-                    </fieldset>
-               </div>
-
-
-               {/* Mode */}
-               <div className="w-full">
-                    <fieldset className="relative w-full">
-                         <legend className="block mb-1">Mode</legend>
-                         <select
-                              value={filter.mode}
-                              onChange={(e) => handleFilterChange("mode", e.target.value)}
-                              className={`w-full p-2 border rounded-md ${DarkMode ? '' : 'bg-gray-200 text-black'}`}
-                         >
-                              <option value="">Select mode</option>
-                              {study_mode.map(option => (
-                                   <option key={option} value={option}>
-                                        {option}
-                                   </option>
-                              ))}
-                         </select>
                     </fieldset>
                </div>
           </div>
      );
+};
+FilterForm.propTypes = {
+     filter: PropTypes.shape({
+          search: PropTypes.string,
+          course: PropTypes.string,
+          field: PropTypes.arrayOf(PropTypes.string),
+          language: PropTypes.arrayOf(PropTypes.string),
+          city: PropTypes.arrayOf(PropTypes.string),
+          department: PropTypes.arrayOf(PropTypes.string),
+          intake: PropTypes.string,
+          mode: PropTypes.string,
+          duration: PropTypes.number,
+          fee: PropTypes.number,
+     }).isRequired,
+     handleFilterChange: PropTypes.func.isRequired,
 };
 
 export default FilterForm;
