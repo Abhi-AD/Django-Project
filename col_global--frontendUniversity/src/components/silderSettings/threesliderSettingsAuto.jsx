@@ -9,7 +9,7 @@ const threesliderSettingsAuto = {
     prevArrow: <LeftArrowHide />,
     speed: 500,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     responsive: [
         {

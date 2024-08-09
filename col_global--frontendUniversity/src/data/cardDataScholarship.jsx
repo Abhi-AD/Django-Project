@@ -11,10 +11,10 @@ const cardDataScholarship = [
                { label: 'postgraduate scholarships' },
                { label: 'undergraduate scholarships' },
           ],
-          author: 'Oladele Tomiwa',
+          collagename: 'Oladele Tomiwa',
           date: 'February 2, 2024',
           readTime: '3 Mins',
-          link: "#",
+          link: "/country/university/id/scholarships",
      },
      {
           imgSrc: "https://img.freepik.com/free-photo/hercules-hall-surrounded-by-greenery-sunlight-daytime-munich-germany_181624-17876.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized",
@@ -28,10 +28,10 @@ const cardDataScholarship = [
                { label: 'postgraduate scholarships' },
                { label: 'undergraduate scholarships' },
           ],
-          author: 'Oladele Tomiwa',
+          collagename: 'Oladele Tomiwa',
           date: 'February 2, 2024',
           readTime: '3 Mins',
-          link: "#",
+          link: "/country/university/id/scholarships",
      },
      {
           imgSrc: "https://img.freepik.com/free-photo/hercules-hall-surrounded-by-greenery-sunlight-daytime-munich-germany_181624-17876.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized",
@@ -45,10 +45,10 @@ const cardDataScholarship = [
                { label: 'postgraduate scholarships' },
                { label: 'undergraduate scholarships' },
           ],
-          author: 'Oladele Tomiwa',
+          collagename: 'Oladele Tomiwa',
           date: 'February 2, 2024',
           readTime: '3 Mins',
-          link: "#",
+          link: "/country/university/id/scholarships",
      },
      {
           imgSrc: "https://img.freepik.com/free-photo/hercules-hall-surrounded-by-greenery-sunlight-daytime-munich-germany_181624-17876.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_user-customized",
@@ -62,10 +62,10 @@ const cardDataScholarship = [
                { label: 'postgraduate scholarships' },
                { label: 'undergraduate scholarships' },
           ],
-          author: 'Oladele Tomiwa',
+          collagename: 'Oladele Tomiwa',
           date: 'February 2, 2024',
           readTime: '3 Mins',
-          link: "#",
+          link: "/country/university/id/scholarships",
      }
 ];
 

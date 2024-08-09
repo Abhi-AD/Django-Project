@@ -1,6 +1,6 @@
-import { FaAward, FaCheck } from 'react-icons/fa';
+import { FaAward, FaCheck, FaDollarSign } from 'react-icons/fa';
 import { CiLocationOn } from "react-icons/ci";
-import { BiSolidDollarCircle } from "react-icons/bi";
+import { MdOutlineCreditScore } from 'react-icons/md';
 const UniversityCourseHero = () => {
   return (
     <div className="flex flex-col gap-2">
@@ -13,27 +13,43 @@ const UniversityCourseHero = () => {
         <div className="flex items-left flex-col">
           <h2 className="text-2xl font-bold">MSc Financial Management</h2>
           <p className="text-gray-500">At UNIVERSITY OF BIRMINGHAM</p>
-          <div className="flex flex-wrap gap-2">
-            <div className="flex gap-1 items-center">
-              <CiLocationOn size={24} />
-              <span>United Kingdom</span>
-            </div>
-            <div className="flex gap-1 items-center">
-              <FaAward size={24} />
-              <span>Masters Degree (Taught)</span>
-            </div>
-            <div className="flex gap-1 items-center">
-              <BiSolidDollarCircle size={24} />
-              <span>$45K</span>
-            </div>
-            <div className="flex gap-1 items-center">
-              <FaAward size={24} />
-              <span>$45K</span>
-            </div>
-          </div>
         </div>
       </div>
 
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-bold">OverView</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="flex items-start  gap-2">
+            <CiLocationOn className="bg-blue-400 p-2 rounded-full text-white mr-2" size={30} />
+            <div className='flex flex-col gap-1'>
+              <div className="font-bold">Location</div>
+              <div>United Kingdom</div>
+            </div>
+          </div>
+          <div className="flex items-start  gap-2">
+            <FaAward className="bg-blue-400 p-2 rounded-full text-white mr-2" size={30} />
+            <div className='flex flex-col gap-1'>
+              <div className="font-bold">Qualification</div>
+              <div>Masters Degree (Taught)</div>
+            </div>
+          </div>
+          <div className="flex items-start  gap-2">
+            <FaDollarSign className="bg-blue-400 p-2 rounded-full text-white mr-2" size={30} />
+            <div className='flex flex-col gap-1'>
+              <div className="font-bold">Fees</div>
+              <div>$45K</div>
+            </div>
+          </div>
+          <div className="flex items-start  gap-2">
+            <MdOutlineCreditScore className="bg-blue-400 p-2 rounded-full text-white mr-2" size={30} />
+            <div className='flex flex-col gap-1'>
+              <div className="font-bold">Entry Score</div>
+              <div>6.5 IELTS</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
 
       <div className="flex flex-col gap-1">
@@ -43,14 +59,6 @@ const UniversityCourseHero = () => {
           <FaCheck className="bg-blue-500 p-1 rounded-full text-white text-lg" />Scholarships
         </span>
       </div>
-
-
-
-
-
-
-
-
     </div>
   );
 };

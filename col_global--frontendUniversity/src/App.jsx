@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Footer, Navbar, NotFound, SearchView } from './components/import';
-import { AllCountry, Contact, Home, IdCountry, UniversityCountryDetails } from './page/import';
+import { AllCountry, Contact, Home, IdCountry, ScholarshipsDetails, UniversityCountryDetails } from './page/import';
 import useDarkMode from './hooks/useDarkMode';
 import { EventsAll, OverAllTopUniversityAll } from './container/import';
 import CourseDetails from './page/UniversityCountry/Course/CourseDetails';
@@ -20,6 +20,7 @@ function App() {
           <Route path="/all-events" element={<EventsAll />} />
           <Route path="/country/course" element={<CourseDetails />} />
           <Route path="/country/university/id" element={<UniversityCountryDetails />} />
+          <Route path="/country/university/id/scholarships" element={<ScholarshipsDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/search-data" element={<SearchView />} />

@@ -4,7 +4,7 @@ const UniversityCountryDetailsHero = () => {
   const { DarkMode } = useDarkMode();
 
   return (
-    <div className="flex flex-col gap-3 paddingbuttom">
+    <div className="flex flex-col gap-3 ">
       <div
         className={`relative rounded-md ${DarkMode ? 'bg-gray-800' : 'bg-gray-50'} w-full h-72 overflow-hidden`}
       >
