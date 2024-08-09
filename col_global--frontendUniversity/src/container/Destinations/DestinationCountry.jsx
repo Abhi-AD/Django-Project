@@ -71,7 +71,7 @@ const DestinationCountryFilter = () => {
     };
 
     return (
-        <div className="md:flex flex-col md:flex-row justify-center px-2 mx-auto text-black">
+        <div className="md:flex flex-col md:flex-row justify-center  text-black">
             <div className={`md:border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-1 p-1 rounded-full justify-between items-center">
                     <div className="md:after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import cardCollageImage from '../../data/cardCollageImage';
+import cardCollageImage from '../../../data/cardCollageImage';
 
 const UniversityCountryDetailsGallery = () => {
      const [selectedImage, setSelectedImage] = useState(null);

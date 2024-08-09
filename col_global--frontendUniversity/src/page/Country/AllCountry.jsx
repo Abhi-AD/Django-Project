@@ -6,7 +6,7 @@ import cardDataCountry from "../../data/cardDataCountry";
 import DestinationCountry from "../../container/Destinations/DestinationCountry";
 
 const Card = ({ imgSrc, country, description, link }) => (
-     <Link to={link} className=" h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
+     <Link to={link} className=" h-full  flex flex-col">
           <div className="w-full h-96 relative overflow-hidden rounded-2xl">
                <img className="inset-0 w-full h-full object-cover" src={imgSrc} alt={country} />
                <div className="absolute bottom-0 w-full h-1/3 p-3 md:p-5  flex flex-col justify-center flex-grow bg-black bg-opacity-40 backdrop-blur-sm">
@@ -31,15 +31,14 @@ Card.propTypes = {
 };
 function AllCountry() {
      return (
-          <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4 p-1">
+          <div className="flex flex-col gap-4 paddingcontainer paddingbuttom">
                <DestinationCountry />
-               <h1 className="font-bold  text-lg md:text-2xl">Country List</h1>
-               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+               <h1 className="font-bold text-lg md:text-2xl">Country List</h1>
+               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
                     {cardDataCountry.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}
                </div>
-
           </div>
      );
 }

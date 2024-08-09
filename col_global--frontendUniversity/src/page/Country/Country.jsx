@@ -36,11 +36,11 @@ Card.propTypes = {
 function Country() {
      const { DarkMode } = useDarkMode();
      return (
-          <div className='md:max-w-screen-2xl mx-auto  w-full h-fit flex flex-col   gap-6'>
+          <div className='paddingcontainer w-full h-fit flex flex-col paddingbuttom  gap-6'>
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-3xl">Study Destinations</h1>
-                         <Link to={'/all-country'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
+                         <h1 className="font-bold mb-2 md:mb-5  text-lg md:text-3xl">Study Destinations</h1>
+                         <Link to={'/all-country'} className="inline-flex rounded items-center  text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <Slider {...foursliderSettingsreverse} className="w-full h-fit">
                          {cardDataCountry.map((item, index) => (

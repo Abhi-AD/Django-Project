@@ -81,7 +81,7 @@ const Contact = () => {
                               src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d3973.019247258769!2d85.31598053246842!3d27.72188686254738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!1d27.721342!2d85.3192503!4m3!3m2!1d27.7212933!2d85.31927979999999!5e0!3m2!1sen!2snp!4v1721987126791!5m2!1sen!2snp"
                               width="100%" height="600" className="border-0" allowFullScreen="" loading="lazy"></iframe>
                     </div>
-                    <div className="container px-6 mx-auto md:px-12">
+                    <div className="paddingcontainer paddingbuttom">
                          <div className="block rounded-lg bg-white bg-opacity-80 px-6 py-12 md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] border-gray-300">
                               <div className="flex flex-col gap-10">
                                    <p className="font-bold text-4xl">Contact Us</p>

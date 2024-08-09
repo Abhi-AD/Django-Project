@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
@@ -35,52 +34,24 @@ Card.propTypes = {
 
 function SilderSelectUniversity() {
      const { DarkMode } = useDarkMode();
-     const [showAll, setShowAll] = useState(false);
 
-     const toggleShowAll = () => {
-          setShowAll(!showAll);
-     };
+
 
      return (
-          <div className='md:max-w-screen-2xl mx-auto  w-full h-fit flex flex-col   gap-6'>
+          <div className='paddingcontainer  w-full h-fit flex flex-col   gap-6'>
 
                <div className="flex flex-col gap-3">
 
-                    <div className="flex items-center justify-between">
-                         {!showAll && (
-                              <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">USA University</h1>
-                         )}
-                         {showAll && (
-                              <h1 className="font-bold text-lg md:text-2xl">All USA University</h1>
-                         )}
-                         <button
-                              className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500"
-                              onClick={toggleShowAll}
-                         >
-                              {showAll ? 'Hide' : 'View All'}
-                         </button>
-                    </div>
-                    {!showAll && (
-                         <Slider {...foursliderSettingsreverse} className="">
-                              {cardDataTopUniversity.map((item, index) => (
-                                   <div key={index} className="">
-                                        <Card {...item} DarkMode={DarkMode} />
-                                   </div>
-                              ))}
-                         </Slider>
-                    )}
-
-                    {showAll && (
-                         <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 flex flex-col gap-4">
-                              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-                                   {cardDataTopUniversity.map((item, index) => (
-                                        <Card key={index} {...item} />
-                                   ))}
+                    <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">USA University</h1>
+                    <Slider {...foursliderSettingsreverse} className="">
+                         {cardDataTopUniversity.map((item, index) => (
+                              <div key={index} className="">
+                                   <Card {...item} DarkMode={DarkMode} />
                               </div>
-                         </div>
-                    )}
+                         ))}
+                    </Slider>
                </div>
-          </div>
+          </div >
      );
 }
 

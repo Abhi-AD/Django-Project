@@ -7,3 +7,11 @@
   background: #000;
   color: #fff;
 }
+
+.paddingcontainer {
+  @apply mx-auto px-8 max-w-screen-2xl;
+}
+
+.paddingbuttom {
+  @apply py-6;
+}

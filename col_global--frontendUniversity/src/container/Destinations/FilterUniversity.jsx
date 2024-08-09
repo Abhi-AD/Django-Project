@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaCaretDown } from 'react-icons/fa';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { continent, countries, university } from '../../data/filterdata/autocomplete';
+import { countries, university } from '../../data/filterdata/autocomplete';
 import useDarkMode from '../../hooks/useDarkMode';
 
 const Select = ({ label, options }) => (
@@ -34,12 +34,10 @@ Select.propTypes = {
 
 const FilterUniversity = () => {
     const { DarkMode } = useDarkMode();
-    const [selectedContinent, setSelectedContinent] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [selectedUniversity, setSelectedUniversity] = useState(null);
 
     const handleSearch = () => {
-        console.log("Selected Continent:", selectedContinent);
         console.log("Selected Country:", selectedCountry);
         console.log("Selected Country:", selectedUniversity);
     };
@@ -75,18 +73,7 @@ const FilterUniversity = () => {
     return (
         <div className="md:flex flex-col md:flex-row justify-center px-2 mx-auto text-black">
             <div className={`md:border rounded-full p-2 md:flex md:justify-between ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3  gap-1 p-1 rounded-full justify-between items-center">
-                    <div className="md:after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
-                        <Autocomplete
-                            disablePortal
-                            id="continent-autocomplete"
-                            options={continent}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedContinent(newValue)}
-                            renderInput={params => <TextField {...params} label="Continent" />}
-                        />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  gap-1 p-1 rounded-full justify-between items-center">
                     <div className=" after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                         <Autocomplete
                             disablePortal

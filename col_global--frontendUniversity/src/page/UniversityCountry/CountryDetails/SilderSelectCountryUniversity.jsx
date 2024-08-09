@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
 import useDarkMode from "../../../hooks/useDarkMode";
 import foursliderSettingsreverse from "../../../components/silderSettings/foursliderSettingsreverse";
+import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
 
 const Card = ({ imgSrc, title, description, link }) => (
      <Link to={link} className=" h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
@@ -30,19 +30,20 @@ Card.propTypes = {
      title: PropTypes.string.isRequired,
      description: PropTypes.string.isRequired,
      link: PropTypes.string.isRequired,
-     DarkMode: PropTypes.bool.isRequired,
 };
 
-function SilderAllUniversity() {
+function SilderSelectCountryUniversity() {
      const { DarkMode } = useDarkMode();
+
+
+
      return (
-          <div className='paddingcontainer paddingbuttom  w-full h-fit flex flex-col   gap-6'>
+          <div className='paddingcontainer  w-full h-fit flex flex-col   gap-6'>
+
                <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Top University</h1>
-                         <Link to={'/all-university'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
-                    </div>
-                    <Slider {...foursliderSettingsreverse} className="w-full h-fit">
+
+                    <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">USA University</h1>
+                    <Slider {...foursliderSettingsreverse} className="">
                          {cardDataTopUniversity.map((item, index) => (
                               <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />
@@ -50,8 +51,8 @@ function SilderAllUniversity() {
                          ))}
                     </Slider>
                </div>
-          </div>
+          </div >
      );
 }
 
-export default SilderAllUniversity;
+export default SilderSelectCountryUniversity;

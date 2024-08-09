@@ -80,7 +80,7 @@ const DestinationFilter = () => {
     };
 
     return (
-        <div className={`hidden md:flex flex-col md:flex-row justify-center px-2 mx-auto`}>
+        <div className={`hidden md:flex flex-col md:flex-row justify-center paddingcontainer paddingbuttom mx-auto`}>
             <div className={`border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
                     <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
@@ -91,7 +91,7 @@ const DestinationFilter = () => {
                             getOptionLabel={option => option.label}
                             sx={autocompleteStyles}
                             onChange={(event, newValue) => setSelectedLocation(newValue)}
-                            renderInput={params => <TextField {...params} label="Destination" />}
+                            renderInput={params => <TextField {...params} label="Country" />}
                         />
                     </div>
                     <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">

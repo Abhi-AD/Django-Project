@@ -6,9 +6,14 @@ import { Link } from 'react-router-dom';
 
 
 const Card = ({ imgSrc, index }) => (
-     <div className=" h-full w-full rounded-lg">
-          <img src={imgSrc} alt={`Slide ${index}`} className="w-full h-full object-cover rounded-lg " />
-     </div>
+     <div key={index}
+          className="h-screen w-screen flex items-center justify-center"
+          style={{
+               backgroundImage: `url(${imgSrc})`,
+               backgroundSize: 'cover',
+               backgroundPosition: 'center',
+          }}
+     />
 );
 
 

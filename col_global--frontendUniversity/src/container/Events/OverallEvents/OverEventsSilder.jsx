@@ -48,10 +48,11 @@ function EventsSilder() {
      };
 
      return (
-          <div className="max-w-screen-2xl mx-auto">
+          <div className="paddingcontainer  paddingbuttom
+">
                <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                         <h1 className="font-bold mb:2 md:mb-2 mx-2 text-lg md:text-2xl">Events</h1>
+                         <h1 className="font-bold mb:2 md:mb-2 mx-2 text-lg md:text-2xl">Events kj</h1>
                          <Link to={'/all-events'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-blue-500 border-blue-500">View All</Link>
                     </div>
                     <div className="relative">

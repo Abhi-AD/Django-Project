@@ -1,6 +1,6 @@
-import useDarkMode from "../../hooks/useDarkMode";
+import useDarkMode from "../../../hooks/useDarkMode";
 
-const UniversityCountryDetails = () => {
+const UniversityCourseDetails = () => {
   const { DarkMode } = useDarkMode();
   return (
     <div className="flex flex-col gap-3">
@@ -22,11 +22,11 @@ const UniversityCountryDetails = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-2xl font-bold">California State University: Dominguez Hills</p>
+        <p className="text-2xl font-bold">Short course . 14th Current Liteature Here&apos;s What Germany Reads</p>
         <p className="text-gray-600">USA</p>
       </div>
     </div>
   );
 };
 
-export default UniversityCountryDetails;
+export default UniversityCourseDetails;

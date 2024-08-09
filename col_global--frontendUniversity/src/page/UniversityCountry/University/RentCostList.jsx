@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-const CostsList = () => {
+const RentCostList = () => {
      const [visibleRows, setVisibleRows] = useState(3);
 
      const rows = [
-          { costs: "In-State Tuition", fee: "$2603 per year" },
-          { costs: "Out-of-State Tuition", fee: "$5000 per year" },
-          { costs: "Books and Supplies", fee: "$1200 per year" },
-          { costs: "Room and Board", fee: "$8000 per year" },
-          { costs: "Transportation", fee: "$1000 per year" },
-          { costs: "Personal Expenses", fee: "$2000 per year" },
-          { costs: "Health Insurance", fee: "$1500 per year" },
-          { costs: "Lab Fees", fee: "$500 per year" },
-          { costs: "Activity Fees", fee: "$300 per year" },
-          { costs: "Miscellaneous", fee: "$700 per year" }
+          { property: "1 Bedroom Apartment", rent: "$1,200 per month" },
+          { property: "2 Bedroom Apartment", rent: "$1,500 per month" },
+          { property: "Studio Apartment", rent: "$900 per month" },
+          { property: "3 Bedroom House", rent: "$2,500 per month" },
+          { property: "Townhouse", rent: "$2,000 per month" },
+          { property: "Shared Room", rent: "$500 per month" },
+          { property: "Luxury Condo", rent: "$3,500 per month" },
+          { property: "Loft", rent: "$2,800 per month" },
+          { property: "Bungalow", rent: "$1,800 per month" },
+          { property: "Penthouse Suite", rent: "$4,000 per month" }
      ];
 
      const handleSeeMoreClick = () => {
@@ -26,20 +26,20 @@ const CostsList = () => {
 
      return (
           <div className='flex flex-col gap-2'>
-               <p className='font-bold text-lg'>Average Net Price by Household Income</p>
+               <p className='font-bold text-lg'>Rental Costs</p>
                <div>
                     <table className="min-w-full text-left">
                          <thead>
                               <tr>
-                                   <th className="w-1/2">List</th>
-                                   <th className="w-1/2">Average Costs ($)</th>
+                                   <th className="w-1/2">Property Type</th>
+                                   <th className="w-1/2">Rent ($)</th>
                               </tr>
                          </thead>
                          <tbody>
                               {rows.slice(0, visibleRows).map((row, index) => (
                                    <tr key={index}>
-                                        <td className="font-bold">{row.costs}</td>
-                                        <td className="">{row.fee}</td>
+                                        <td className="font-bold">{row.property}</td>
+                                        <td className="">{row.rent}</td>
                                    </tr>
                               ))}
                          </tbody>
@@ -68,4 +68,4 @@ const CostsList = () => {
      );
 };
 
-export default CostsList;
+export default RentCostList;

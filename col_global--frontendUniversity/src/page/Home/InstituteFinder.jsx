@@ -31,7 +31,7 @@ const InstituteFinder = () => {
           return () => clearInterval(interval);
      }, [institutes.length]);
      return (
-          <div className='max-w-screen-2xl mx-auto p-4'>
+          <div className='paddingcontainer paddingbuttom'>
                {institutes.map((institute, index) => (
                     <div key={index} className={` duration-700 ease-in-out ${activeIndex === index ? 'block' : 'hidden'}`} data-carousel-item>
                          <div className="flex flex-col gap-3">
@@ -41,14 +41,14 @@ const InstituteFinder = () => {
                                              <h1 className='text-left text-2xl md:text-3xl font-bold'>{institute.title}</h1>
                                         </div>
                                         <div className='md:w-3/5'>
-                                             <p className='text-left text-xl md:text-2xl font-medium'>{institute.description}</p>
+                                             <p className='text-left text-xl md:text-2xl'>{institute.description}</p>
                                         </div>
                                    </div>
                               </div>
 
                               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full w-full rounded-lg">
                                    <div className="col-span-2 sm:col-span-1 md:col-span-2 rounded-lg flex flex-col">
-                                        <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 flex-grow">
+                                        <div className="group relative flex flex-col overflow-hidden rounded-lg  flex-grow">
                                              <img
                                                   src={institute.imgSrc1}
                                                   alt="Institute 1"
@@ -61,7 +61,7 @@ const InstituteFinder = () => {
                                         <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
                                              <img
                                                   src={institute.imgSrc2}
-                                                  alt="Institute 2"
+                                                  alt={institute.title}
                                                   className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
                                              />
                                         </div>

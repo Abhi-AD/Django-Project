@@ -1,34 +1,22 @@
 import { useState } from 'react';
 import PropTypes from "prop-types";
-import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import foursliderSettingsreverse from "../../../components/silderSettings/foursliderSettingsreverse";
 import { CiCalendarDate } from 'react-icons/ci';
 import { IoCalendarNumberOutline } from 'react-icons/io5';
 import cardDataEvents from '../../../data/cardDataEvents';
 const Card = ({ imgSrc, title, description, link, onClick, enddate, startdate }) => (
      <Link
           to={link}
-          className="relative overflow-hidden group"
+          className=""
           onClick={(e) => {
                e.preventDefault();
                onClick({ imgSrc, title, description, enddate, startdate });
           }}
      >
-          <div className="w-full h-80 sm:h-48 md:h-56 lg:h-64 xl:h-72 relative overflow-hidden rounded-lg">
-               <img
-                    className="absolute inset-0 w-full h-full object-cover"
-                    src={imgSrc}
-                    alt={title}
-               />
-               <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-2 left-2 right-2 p-3">
-                         <h3 className="text-2xl font-bold text-white">{title}</h3>
-                    </div>
-               </div>
-          </div>
+          <li>{title}</li>
+
      </Link>
 
 );
@@ -55,17 +43,15 @@ function SelectEventsSilder() {
      };
 
      return (
-          <div className='w-full h-fit flex flex-col gap-6'>
+          <div className='w-full h-fit flex flex-col gap-6 paddingbuttom bg-red-500'>
                <div className="flex flex-col gap-3">
-                    <h1 className="font-bold text-lg md:text-2xl">Events</h1>
+                    <h1 className="font-bold text-lg md:text-2xl">Special Academics Program</h1>
                     <div className="relative">
-                         <Slider {...foursliderSettingsreverse}>
-                              {cardDataEvents.map((item, index) => (
-                                   <div key={index} className="px-2">
-                                        <Card {...item} onClick={openModal} />
-                                   </div>
-                              ))}
-                         </Slider>
+                         {cardDataEvents.map((item, index) => (
+                              <div key={index} className="px-2">
+                                   <Card {...item} onClick={openModal} />
+                              </div>
+                         ))}
                     </div>
                </div>
 

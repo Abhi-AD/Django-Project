@@ -44,7 +44,7 @@ Card.propTypes = {
 
 function SelectEventsAll() {
      return (
-          <div className="max-w-screen-2xl mx-4 mb-2 md:mx-auto md:mb-5 md:mt-10">
+          <div className="paddingcontainer  paddingbuttom">
                <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Popular Events</h1>
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {cardDataEvents.map((item, index) => (

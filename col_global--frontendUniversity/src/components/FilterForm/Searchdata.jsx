@@ -48,9 +48,9 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
     return (
         <div className={`p-4 min-h-screen flex flex-col gap-3 ${DarkMode ? '' : 'bg-white text-black'}`}>
             <VideoAd />
-            <div className="flex items-center justify-between mb-6">
-                <h1 className="text-xl font-bold mb-4">{filteredData.length} results for your criteria</h1>
-                <div className="flex flex-col md:flex-row justify-end items-start md:items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
+            <div className="flex items-center justify-between">
+                <h1 className="text-xl font-bold">{filteredData.length} results for your criteria</h1>
+                <div className="flex flex-col md:flex-row justify-end items-start md:items-center  space-y-4 md:space-y-0 md:space-x-4">
                     <div className="flex gap-3">
                         <button
                             onClick={() => handleViewChange('grid')}
@@ -101,28 +101,7 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
                         </button>
                     </div>
                 )}
-                {filter.duration > 6 && (
-                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
-                        <span className="mr-2">{filter.duration}</span>
-                        <button
-                            onClick={() => handleFilterChange('duration', '')}
-                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
-                        >
-                            &times;
-                        </button>
-                    </div>
-                )}
-                {filter.fee > 1200 && (
-                    <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
-                        <span className="mr-2">{filter.fee}</span>
-                        <button
-                            onClick={() => handleFilterChange('fee', '')}
-                            className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
-                        >
-                            &times;
-                        </button>
-                    </div>
-                )}
+
                 {filter.intake && (
                     <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filter.intake}</span>

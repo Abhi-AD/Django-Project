@@ -1,14 +1,12 @@
-import { LifeStyle } from "../../../components/import";
-import { SelectEventsSilder, SilderSelectUniversity } from "../../../container/import"
 import CountryHero from "./CountryHero";
+import LifeStyle from "./LifeStyle";
+import SilderSelectCountryUniversity from "./SilderSelectCountryUniversity";
 
 const IdCountry = () => {
      return (
-          <div className="flex flex-col gap-10 mb-2">
+          <div className="flex flex-col gap-10">
                <CountryHero />
-               <SilderSelectUniversity />
-
-               <SelectEventsSilder />
+               <SilderSelectCountryUniversity />
                <LifeStyle />
           </div>
      )
