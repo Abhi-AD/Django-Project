@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FilterForm, Searchdata } from '../import';
-import { useState } from 'react';
+import { FiFilter, FiX } from 'react-icons/fi'; // Import icons from React Icons
 
 const SearchView = () => {
-
      const defaultValue = {
           search: "",
           course: "",
@@ -17,6 +17,7 @@ const SearchView = () => {
           intake: "",
      };
      const [filter, setFilter] = useState(defaultValue);
+     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
      const location = useLocation();
      const searchParams = new URLSearchParams(location.search);
@@ -46,10 +47,24 @@ const SearchView = () => {
           });
      };
 
+     const toggleSidebar = () => {
+          setSidebarOpen(prev => !prev);
+     };
 
      return (
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-20 paddingcontainer paddingbuttom">
-               <div className="w-full lg:w-1/4">
+          <div className="relative flex flex-col lg:flex-row gap-6 lg:gap-20 paddingcontainer paddingbuttom">
+               {/* Sidebar Button for Mobile */}
+               <button
+                    onClick={toggleSidebar}
+                    className="lg:hidden absolute top-4 left-4 z-10 bg-blue-600 text-white p-3 rounded-full shadow-lg"
+               >
+                    {isSidebarOpen ? <FiX size={24} /> : <FiFilter size={24} />}
+               </button>
+
+               {/* Sidebar */}
+               <div
+                    className={`fixed z-50  top-25 right-0 w-4/5 md:w-1/4 h-auto bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+               >
                     <FilterForm
                          filter={filter}
                          handleFilterChange={handleFilterChange}
@@ -59,7 +74,9 @@ const SearchView = () => {
                          university={universityParam}
                     />
                </div>
-               <div className="w-full lg:w-3/4">
+
+               {/* Main Content */}
+               <div className={`w-full lg:w-3/4 ${isSidebarOpen ? 'lg:ml-1/4' : ''}`}>
                     <Searchdata
                          filter={filter}
                          handleFilterChange={handleFilterChange}

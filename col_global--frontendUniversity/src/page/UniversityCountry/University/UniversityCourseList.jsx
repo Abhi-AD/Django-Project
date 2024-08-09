@@ -39,7 +39,7 @@ const UniversityCourseList = () => {
      };
 
      return (
-          <div className="paddingbuttom ">
+          <div className="paddingbuttom paddingcontainer ">
                <h1 className='font-bold md:text-2xl sm:text-xl text-lg mb-5'>Course</h1>
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {rows.slice(0, visibleRows).map((row, index) => (

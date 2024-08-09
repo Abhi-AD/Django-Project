@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaCaretDown } from 'react-icons/fa';
+import { FaCaretDown, FaTimes, FaFilter } from 'react-icons/fa';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +39,7 @@ const DestinationFilter = () => {
     const [selectedStudyLevel, setSelectedStudyLevel] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [selectedUniversity, setSelectedUniversity] = useState(null);
+    const [menuOpen, setMenuOpen] = useState(false); // State to manage side menu visibility
     const navigate = useNavigate();
 
     const handleSearch = () => {
@@ -80,10 +81,22 @@ const DestinationFilter = () => {
     };
 
     return (
-        <div className={`hidden md:flex flex-col md:flex-row justify-center paddingcontainer paddingbuttom mx-auto`}>
-            <div className={`border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
-                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
-                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+        <div>
+            {/* Toggle button for small screens */}
+            <button
+                className="md:hidden fixed top-15 right-4 z-50 bg-blue-500 text-white p-2 rounded-full"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                {menuOpen ? <FaTimes /> : <FaFilter />}
+            </button>
+
+            {/* Side menu for small screens */}
+            <div
+                className={`fixed top-15 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 z-40 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+                    } md:hidden ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}
+            >
+                <div className="p-4">
+                    <div className="flex flex-col gap-4">
                         <Autocomplete
                             disablePortal
                             id="locations-autocomplete"
@@ -93,8 +106,6 @@ const DestinationFilter = () => {
                             onChange={(event, newValue) => setSelectedLocation(newValue)}
                             renderInput={params => <TextField {...params} label="Country" />}
                         />
-                    </div>
-                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                         <Autocomplete
                             disablePortal
                             id="study-level-autocomplete"
@@ -104,8 +115,6 @@ const DestinationFilter = () => {
                             onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
                             renderInput={params => <TextField {...params} label="Study Level" />}
                         />
-                    </div>
-                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                         <Autocomplete
                             disablePortal
                             id="courses-autocomplete"
@@ -115,8 +124,6 @@ const DestinationFilter = () => {
                             onChange={(event, newValue) => setSelectedCourse(newValue)}
                             renderInput={params => <TextField {...params} label="Courses" />}
                         />
-                    </div>
-                    <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                         <Autocomplete
                             disablePortal
                             id="university-autocomplete"
@@ -126,14 +133,73 @@ const DestinationFilter = () => {
                             onChange={(event, newValue) => setSelectedUniversity(newValue)}
                             renderInput={params => <TextField {...params} label="University" />}
                         />
+                        <button
+                            onClick={handleSearch}
+                            type="submit"
+                            className={`w-full py-2 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}
+                        >
+                            Search
+                        </button>
                     </div>
                 </div>
-                <button
-                    onClick={handleSearch}
-                    type="submit"
-                    className={`px-8 py-5 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}>
-                    Search
-                </button>
+            </div>
+
+            {/* Main content for larger screens */}
+            <div className={`hidden md:flex flex-col md:flex-row justify-center paddingcontainer paddingbuttom mx-auto`}>
+                <div className={`border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
+                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="locations-autocomplete"
+                                options={locations}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedLocation(newValue)}
+                                renderInput={params => <TextField {...params} label="Country" />}
+                            />
+                        </div>
+                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="study-level-autocomplete"
+                                options={studyLevels}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
+                                renderInput={params => <TextField {...params} label="Study Level" />}
+                            />
+                        </div>
+                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="courses-autocomplete"
+                                options={courses}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedCourse(newValue)}
+                                renderInput={params => <TextField {...params} label="Courses" />}
+                            />
+                        </div>
+                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="university-autocomplete"
+                                options={university}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedUniversity(newValue)}
+                                renderInput={params => <TextField {...params} label="University" />}
+                            />
+                        </div>
+                    </div>
+                    <button
+                        onClick={handleSearch}
+                        type="submit"
+                        className={`px-8 py-5 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}>
+                        Search
+                    </button>
+                </div>
             </div>
         </div>
     );

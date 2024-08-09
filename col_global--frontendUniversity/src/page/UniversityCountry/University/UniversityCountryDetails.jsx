@@ -26,7 +26,7 @@ const UniversityCountryDetails = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-6  paddingbuttom">
+    <div className=" paddingcontainer flex flex-col gap-6  paddingbuttom">
       <div className="flex flex-col md:flex-row items-center">
         <div className="w-full md:w-2/3">
           <h2 className="text-2xl font-bold mb-4">OverView</h2>

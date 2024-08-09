@@ -6,7 +6,7 @@ import UniversityCountryDetails from "./UniversityCountryDetails"
 import UniversityCourseList from "./UniversityCourseList";
 const CountryUniversity = () => {
   return (
-    <div className=" paddingcontainer ">
+    <div className="  paddingbuttom">
       <UniversityCountryDetailsHero />
       <UniversityCountryDetails />
       <UniversityCountryDetailsGallery />

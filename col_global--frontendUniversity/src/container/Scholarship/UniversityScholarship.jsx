@@ -54,7 +54,7 @@ function UniversityScholarship() {
      const { DarkMode } = useDarkMode();
 
      return (
-          <div className="w-full h-fit flex flex-col gap-6 paddingbuttom">
+          <div className="paddingcontainer paddingbuttom w-full h-fit flex flex-col gap-6 ">
                <div className="flex flex-col gap-3">
                     <h1 className="font-bold text-lg md:text-2xl">Popular Scholarships</h1>
                     <Slider {...threesliderSettingsAuto} className="w-full h-fit">

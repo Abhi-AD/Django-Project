@@ -13,7 +13,7 @@ const UniversityCountryDetailsGallery = () => {
      };
 
      return (
-          <div className="flex flex-col gap-3 paddingbuttom">
+          <div className="flex flex-col gap-3 paddingcontainer paddingbuttom">
                <h1 className="text-3xl font-bold text-left">Gallery</h1>
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {cardCollageImage.map((image, index) => (

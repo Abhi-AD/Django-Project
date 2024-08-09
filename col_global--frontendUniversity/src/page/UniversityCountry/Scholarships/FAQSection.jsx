@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const FAQSection = () => {
   return (
-    <div className="paddingcontainer">
+    <div className="paddingcontainer paddingbuttom">
       <div className="flex flex-col divide-y  divide-black/50">
         <FAQItem
           question="Entry requirements"

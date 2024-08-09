@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaCaretDown } from 'react-icons/fa';
+import { FaCaretDown, FaFilter, FaTimes } from 'react-icons/fa';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { continent, countries } from '../../data/filterdata/autocomplete';
@@ -32,8 +32,9 @@ Select.propTypes = {
     ).isRequired,
 };
 
-const DestinationCountryFilter = () => {
+const FilterUniversity = () => {
     const { DarkMode } = useDarkMode();
+    const [menuOpen, setMenuOpen] = useState(false);
     const [selectedContinent, setSelectedContinent] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState(null);
 
@@ -71,21 +72,22 @@ const DestinationCountryFilter = () => {
     };
 
     return (
-        <div className="md:flex flex-col md:flex-row justify-center  text-black">
-            <div className={`md:border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-1 p-1 rounded-full justify-between items-center">
-                    <div className="md:after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
-                        <Autocomplete
-                            disablePortal
-                            id="continent-autocomplete"
-                            options={continent}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedContinent(newValue)}
-                            renderInput={params => <TextField {...params} label="Continent" />}
-                        />
-                    </div>
-                    <div className=" after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+        <div>
+            {/* Toggle button for small screens */}
+            <button
+                className="md:hidden fixed top-15 right-4 z-50 bg-blue-500 text-white p-2 rounded-full"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                {menuOpen ? <FaTimes /> : <FaFilter />}
+            </button>
+
+            {/* Side menu for small screens */}
+            <div
+                className={`fixed top-15 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 z-40 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+                    } md:hidden ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}
+            >
+                <div className="p-4">
+                    <div className="flex flex-col gap-4">
                         <Autocomplete
                             disablePortal
                             id="countries-autocomplete"
@@ -95,16 +97,63 @@ const DestinationCountryFilter = () => {
                             onChange={(event, newValue) => setSelectedCountry(newValue)}
                             renderInput={params => <TextField {...params} label="Countries" />}
                         />
+                        <Autocomplete
+                            disablePortal
+                            id="continent-autocomplete"
+                            options={continent}
+                            getOptionLabel={option => option.label}
+                            sx={autocompleteStyles}
+                            onChange={(event, newValue) => setSelectedContinent(newValue)}
+                            renderInput={params => <TextField {...params} label="Continent" />}
+                        />
+                        <button
+                            onClick={handleSearch}
+                            type="submit"
+                            className={`w-full py-2 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}
+                        >
+                            Search
+                        </button>
                     </div>
                 </div>
-                <button
-                    onClick={handleSearch}
-                    type="submit" className="px-8 py-5 bg-blue-400 rounded-full text-white">
-                    Search
-                </button>
+            </div>
+
+            {/* Main content for larger screens */}
+            <div className={`hidden md:flex flex-col md:flex-row justify-center paddingcontainer paddingbuttom mx-auto`}>
+                <div className={`border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
+                    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-1 p-1 rounded-full justify-between items-center">
+                        <div className="md:after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="continent-autocomplete"
+                                options={continent}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedContinent(newValue)}
+                                renderInput={params => <TextField {...params} label="Continent" />}
+                            />
+                        </div>
+                        <div className=" after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Autocomplete
+                                disablePortal
+                                id="countries-autocomplete"
+                                options={countries}
+                                getOptionLabel={option => option.label}
+                                sx={autocompleteStyles}
+                                onChange={(event, newValue) => setSelectedCountry(newValue)}
+                                renderInput={params => <TextField {...params} label="Countries" />}
+                            />
+                        </div>
+                    </div>
+                    <button
+                        onClick={handleSearch}
+                        type="submit" className="px-8 py-5 bg-blue-400 rounded-full text-white">
+                        Search
+                    </button>
+
+                </div>
             </div>
         </div>
     );
 };
 
-export default DestinationCountryFilter;
+export default FilterUniversity;
