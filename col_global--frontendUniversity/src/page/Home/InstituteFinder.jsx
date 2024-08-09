@@ -5,22 +5,22 @@ const InstituteFinder = () => {
 
      const institutes = [
           {
-               title: "Find Your Best Institute Based On Your Need",
-               description: "Curated result based on institute location, job search, available residence near institute, various activities, landmarks and more.",
+               title: " Unlock Your Potential",
+               description: "Unlock endless opportunities in the USA, where education, career, and adventure come together in a land of limitless potential.",
                imgSrc1: "https://img.freepik.com/free-photo/woman-sitting-wooden-table_23-2147816849.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc2: "https://img.freepik.com/free-photo/united-states-capitol-washington-dc_181624-52973.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc3: "https://img.freepik.com/free-photo/positive-woman-making-notes-outdoor-cafe_1262-19014.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc4: "https://img.freepik.com/free-photo/ethnic-woman-with-usa-flag_23-2148167082.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc5: "https://img.freepik.com/premium-photo/female-graduate-with-big-smile-large-blue-ribbon_978137-16123.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc2: "https://img.freepik.com/free-photo/beautiful-manhattan-bridge-new-york-usa_181624-48458.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc3: "https://img.freepik.com/free-photo/statue-liberty-with-cloudy-beautiful-sky_181624-1112.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc4: "https://img.freepik.com/free-photo/view-statue-liberty-new-york-city_23-2150860843.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc5: "https://img.freepik.com/free-photo/beautiful-view-empire-states-skyscrapers-new-york-city_181624-6295.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
           },
           {
-               title: "Find Your Best Institute Based On Your Need",
-               description: "Curated result based on institute location, job search, available residence near institute, various activities, landmarks and more.",
-               imgSrc1: "https://img.freepik.com/free-photo/manhattan-skyline_649448-1559.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=sph",
-               imgSrc2: "https://img.freepik.com/free-photo/united-states-capitol-washington-dc_181624-52973.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc3: "https://img.freepik.com/free-photo/positive-woman-making-notes-outdoor-cafe_1262-19014.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc4: "https://img.freepik.com/free-photo/ethnic-woman-with-usa-flag_23-2148167082.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
-               imgSrc5: "https://img.freepik.com/premium-photo/female-graduate-with-big-smile-large-blue-ribbon_978137-16123.jpg?uid=R86996227&ga=GA1.1.1316153257.1720414611&semt=ais_hybrid",
+               title: " The Land of Opportunity and Adventure",
+               description: "Experience Australia’s vibrant culture and world-class opportunities, where adventure and success go hand in hand.",
+               imgSrc1: "https://img.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_181624-16041.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc2: "https://img.freepik.com/premium-photo/downtown-sydney-skyline-australia-from-top-view-twilight_255553-249.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc3: "https://img.freepik.com/premium-photo/city-skyline-sydney-australia-circular-quay-opera-house-touristic-poin-generative-ai_874904-105298.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc4: "https://img.freepik.com/premium-photo/sydney-opera-house-is-lit-up-evening-sun_99096-14721.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
+               imgSrc5: "https://img.freepik.com/premium-photo/downtown-sydney-skyline-australia-twilight_943166-5235.jpg?ga=GA1.2.1316153257.1720414611&semt=ais_hybrid",
           },
      ];
      useEffect(() => {

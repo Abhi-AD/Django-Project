@@ -1,4 +1,3 @@
-import { CiShare2 } from "react-icons/ci";
 import TableWithSeeMoreCourse from "./TableWithSeeMoreCourse";
 
 const CountryHero = () => {
@@ -12,12 +11,7 @@ const CountryHero = () => {
           <div className="text-left text-white w-full paddingcontainer">
             <h1 className="text-lg md:text-xl lg:text-3xl font-bold mb-4">Study in USA from Nepal</h1>
             <p className="text-sm md:text-base lg:text-lg mb-6">Top Universities, Courses, Cost & Scholarships</p>
-            <div className="flex items-center gap-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 md:py-2.5 md:px-6 rounded">
-                Contact
-              </button>
-              <CiShare2 size={24} className="md:size-30" />
-            </div>
+
           </div>
         </div>
       </div>

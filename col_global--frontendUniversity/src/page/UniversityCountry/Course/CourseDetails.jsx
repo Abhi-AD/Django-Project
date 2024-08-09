@@ -1,11 +1,13 @@
-import UniversityCourseDetails from "./UniversityCourseDetails"
+import FAQSection from "./FAQSection"
+import UniversityCourseHero from "./UniversityCourseHero"
 
 
 
 const CourseDetails = () => {
   return (
-    <div className="container mx-auto py-6 px-4 flex  flex-col gap-3">
-      <UniversityCourseDetails />
+    <div className="paddingcontainer paddingbuttom flex  flex-col gap-3">
+      <UniversityCourseHero />
+      <FAQSection />
     </div>
   )
 }

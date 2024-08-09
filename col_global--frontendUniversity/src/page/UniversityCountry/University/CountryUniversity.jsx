@@ -9,7 +9,6 @@ const CountryUniversity = () => {
     <div className=" paddingcontainer ">
       <UniversityCountryDetailsHero />
       <UniversityCountryDetails />
-
       <UniversityCountryDetailsGallery />
       <UniversityCourseList />
       <UniversityScholarship />
