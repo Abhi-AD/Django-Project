@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
 import FilterUniversity from "../../Destinations/FilterUniversity";
+import { useState } from "react";
+import SearchBarUniversity from "./SearchBarUniversity";
+import useDarkMode from "../../../hooks/useDarkMode";
 
 const Card = ({ imgSrc, title, description, link }) => (
      <Link to={link} className=" h-full rounded-2xl flex flex-col">
@@ -31,12 +34,36 @@ Card.propTypes = {
 };
 
 function AllUniversity() {
+     const { DarkMode } = useDarkMode();
+     const [searchQuery, setSearchQuery] = useState('');
+
+     const handleSearchChange = (e) => {
+          setSearchQuery(e.target.value);
+     };
+
+     const handleClearSearch = () => {
+          setSearchQuery('');
+     };
+
+     const filteredUniversity = cardDataTopUniversity.filter(item =>
+          item.title.toLowerCase().includes(searchQuery.toLowerCase())
+     );
+
      return (
           <div className="flex flex-col gap-4 paddingcontainer paddingbuttom">
                <FilterUniversity />
-               <h1 className="font-bold text-lg md:text-2xl">All University</h1>
+               <div className="flex  justify-between">
+                    <h1 className="font-bold text-lg md:text-2xl">All University</h1>
+                    <SearchBarUniversity
+                         searchQuery={searchQuery}
+                         onSearchChange={handleSearchChange}
+                         onClear={handleClearSearch}
+                         DarkMode={DarkMode}
+
+                    />
+               </div>
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
-                    {cardDataTopUniversity.map((item, index) => (
+                    {filteredUniversity.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}
                </div>
