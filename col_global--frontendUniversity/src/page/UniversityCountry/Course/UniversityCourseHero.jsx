@@ -1,6 +1,7 @@
 import { FaAward, FaCheck, FaDollarSign } from 'react-icons/fa';
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineCreditScore } from 'react-icons/md';
+import { IoLanguage } from 'react-icons/io5';
 const UniversityCourseHero = () => {
   return (
     <div className="flex flex-col gap-2">
@@ -45,6 +46,13 @@ const UniversityCourseHero = () => {
             <div className='flex flex-col gap-1'>
               <div className="font-bold">Entry Score</div>
               <div>6.5 IELTS</div>
+            </div>
+          </div>
+          <div className="flex items-start  gap-2">
+            <IoLanguage className="bg-blue-400 p-2 rounded-full text-white mr-2" size={30} />
+            <div className='flex flex-col gap-1'>
+              <div className="font-bold">Language</div>
+              <div>Germany, English</div>
             </div>
           </div>
 

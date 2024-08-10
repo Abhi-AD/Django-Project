@@ -1,66 +1,58 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
+import filteringdata from '../../../data/filterdata/filteringdata';
 import { Link } from 'react-router-dom';
+import useDarkMode from '../../../hooks/useDarkMode';
+import Slider from 'react-slick';
+import threesliderSettingsAuto from '../../../components/silderSettings/threesliderSettings';
+
+const Card = ({ image, title, language, costs, duration, DarkMode }) => (
+     <Link
+          to={'/country/university/course/'}
+          className={`rounded-lg border p-3 mx-2 flex flex-col gap-4 ${DarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'}`}
+          style={{ height: '400px' }} // Fixed height for all cards
+     >
+          <div className="w-full h-60 relative overflow-hidden rounded-t-2xl">
+               <img className="absolute inset-0 w-full h-full object-cover" src={image} alt={title} />
+          </div>
+          <div className="p-1 flex-1 flex flex-col justify-between">
+               <h2 className={`text-lg sm:text-xl font-semibold mb-2 ${DarkMode ? 'text-white' : 'text-gray-900'}`}>{title}</h2>
+               <p className={`text-sm sm:text-base ${DarkMode ? 'text-gray-300' : 'text-gray-600'} mb-1`}>
+                    <strong>Language:</strong> {language}
+               </p>
+               <p className={`text-sm sm:text-base ${DarkMode ? 'text-gray-300' : 'text-gray-600'} mb-1`}>
+                    <strong>Costs:</strong> {costs}
+               </p>
+               <p className={`text-sm sm:text-base ${DarkMode ? 'text-gray-300' : 'text-gray-600'} mb-1`}>
+                    <strong>Duration:</strong> {duration}
+               </p>
+          </div>
+     </Link>
+);
+
+Card.propTypes = {
+     image: PropTypes.string.isRequired,
+     title: PropTypes.string.isRequired,
+     language: PropTypes.string.isRequired,
+     costs: PropTypes.string.isRequired,
+     duration: PropTypes.string.isRequired,
+     DarkMode: PropTypes.bool.isRequired,
+};
 
 const UniversityCourseList = () => {
-     const [visibleRows, setVisibleRows] = useState(4);
-     const [isExpanded, setIsExpanded] = useState(false);
-
-     const rows = [
-          { program: "Certificate in Data Science", fee: "1020", duration: "4 Years" },
-          { program: "Associate Degree in Computer Science", fee: "800", duration: "4 Years" },
-          { program: "Bachelor of Science in Mathematics", fee: "15000", duration: "4 Years" },
-          { program: "Master of Business Administration", fee: "2000", duration: "4 Years" },
-          { program: "Master of Science in Engineering", fee: "2500", duration: "4 Years" },
-          { program: "PhD in Physics", fee: "1000", duration: "4 Years" },
-          { program: "PhD in Economics", fee: "10200", duration: "4 Years" },
-          { program: "Doctorate in Psychology", fee: "10400", duration: "4 Years" },
-          { program: "Doctorate in Chemistry", fee: "10600", duration: "4 Years" },
-          { program: "Doctorate in Political Science", fee: "10800", duration: "4 Years" },
-          { program: "Postgraduate Diploma in Management", fee: "4000000", duration: "4 Years" },
-          { program: "Postgraduate Certificate in Education", fee: "4200200", duration: "4 Years" },
-          { program: "Executive MBA", fee: "1234", duration: "4 Years" },
-          { program: "Master of Fine Arts", fee: "47700", duration: "4 Years" },
-          { program: "Master of Public Health", fee: "4900", duration: "4 Years" },
-          { program: "Master of Architecture", fee: "5100100", duration: "4 Years" },
-          { program: "Master of International Relations", fee: "5300300", duration: "4 Years" },
-          { program: "Doctorate in Engineering", fee: "5500500", duration: "4 Years" },
-          { program: "Doctorate in History", fee: "5700700", duration: "4 Years" },
-          { program: "Doctorate in Sociology", fee: "5900900", duration: "4 Years" },
-     ];
-
-     const handleSeeMoreClick = () => {
-          if (isExpanded) {
-               setVisibleRows(4);
-               setIsExpanded(false);
-          } else {
-               setVisibleRows(rows.length);
-               setIsExpanded(true);
-          }
-     };
+     const { DarkMode } = useDarkMode();
 
      return (
-          <div className="paddingbuttom paddingcontainer ">
-               <h1 className='font-bold md:text-2xl sm:text-xl text-lg mb-5'>Course</h1>
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {rows.slice(0, visibleRows).map((row, index) => (
-                         <div key={index} className="rounded-lg border p-4 flex flex-col gap-4">
-                              <Link to={`/country/course`} className="block hover:underline text-lg font-medium text-blue-600">
-                                   {row.program}
-                              </Link>
-                              <div className='flex justify-between text-sm md:text-base'>
-                                   <p className="text-gray-500">Duration: {row.duration}</p>
-                                   <p className="text-gray-700">${row.fee}</p>
-                              </div>
+          <div className="paddingbuttom paddingcontainer">
+               <h1 className={`font-bold md:text-2xl sm:text-xl text-lg mb-5 ${DarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    UCI Course
+               </h1>
+               <Slider {...threesliderSettingsAuto} className="w-full h-fit">
+                    {filteringdata.map((item, index) => (
+                         <div key={index}>
+                              <Card {...item} DarkMode={DarkMode} />
                          </div>
                     ))}
-               </div>
-
-               <button
-                    onClick={handleSeeMoreClick}
-                    className=" px-4 py-2 text-blue-500  f rounded-lg hover:underline text-sm md:text-base"
-               >
-                    {isExpanded ? "See Less" : "See More"}
-               </button>
+               </Slider>
           </div>
      );
 };

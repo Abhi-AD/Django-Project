@@ -4,18 +4,20 @@ import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataScholarship from "../../data/cardDataScholarship";
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaMapMarkerAlt } from 'react-icons/fa';
 import useDarkMode from "../../hooks/useDarkMode";
 import threesliderSettingsAuto from "../../components/silderSettings/threesliderSettings";
+import { LiaUniversitySolid } from "react-icons/lia";
 
-const Card = ({ scholarship_name, tags, coursename, link, DarkMode }) => (
+const Card = ({ title, tags, collagename, link, DarkMode, location }) => (
      <Link to={link} className="h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
           <div className=" w-full h-60 flex flex-col md:flex-row border rounded-lg overflow-hidden">
                <div className="p-3 flex flex-col justify-between">
                     <div className="flex flex-col gap-4">
                          <div className="flex flex-col gap-1">
-                              <h2 className={`text-2xl font-bold line-clamp-2  ${DarkMode ? "" : "text-gray-800"}`}>{scholarship_name}</h2>
-                              <p className={` truncate ${DarkMode ? "" : "text-gray-800"} text-sm`}>{coursename}</p>
+                              <h2 className={`text-2xl font-bold line-clamp-2  ${DarkMode ? "" : "text-gray-800"}`}>{title}</h2>
+                              <div className={` truncate ${DarkMode ? "" : "text-gray-800"} text-2xl flex gap-1 items-center`}><LiaUniversitySolid /> <p className="text-sm">{collagename}</p></div>
+                              <div className={` truncate ${DarkMode ? "" : "text-gray-800"} text-[20px] flex gap-1 items-center`}><FaMapMarkerAlt /> <p className="text-sm">{location}</p></div>
                          </div>
 
                          <hr className="w-full border-t border-gray-300" />
@@ -38,7 +40,8 @@ const Card = ({ scholarship_name, tags, coursename, link, DarkMode }) => (
 );
 
 Card.propTypes = {
-     scholarship_name: PropTypes.string.isRequired,
+     title: PropTypes.string.isRequired,
+     location: PropTypes.string.isRequired,
      DarkMode: PropTypes.bool.isRequired,
      tags: PropTypes.arrayOf(
           PropTypes.shape({
@@ -46,20 +49,19 @@ Card.propTypes = {
                color: PropTypes.string.isRequired,
           })
      ),
-     coursename: PropTypes.string,
+     collagename: PropTypes.string,
      link: PropTypes.string.isRequired,
 };
-
-function UniversityScholarship() {
+function CountryScholarship() {
      const { DarkMode } = useDarkMode();
 
      return (
-          <div className="paddingcontainer paddingbuttom w-full h-fit flex flex-col gap-6 ">
+          <div className='paddingcontainer paddingbuttom  w-full h-fit flex flex-col   gap-6'>
                <div className="flex flex-col gap-3">
-                    <h1 className="font-bold text-lg md:text-2xl">UCl Scholarships</h1>
-                    <Slider {...threesliderSettingsAuto} className="w-full h-fit">
+                    <h1 className="font-bold text-lg md:text-2xl">Popular Scholarships</h1>
+                    <Slider {...threesliderSettingsAuto} className="w-full h-fit" >
                          {cardDataScholarship.map((item, index) => (
-                              <div key={index}>
+                              <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />
                               </div>
                          ))}
@@ -69,4 +71,4 @@ function UniversityScholarship() {
      );
 }
 
-export default UniversityScholarship;
+export default CountryScholarship;

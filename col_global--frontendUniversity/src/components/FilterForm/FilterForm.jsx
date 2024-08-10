@@ -10,7 +10,6 @@ import {
      course,
      language,
      city,
-     department
 } from './../../data/searchform';
 
 const FilterForm = ({ filter, handleFilterChange }) => {
@@ -20,7 +19,6 @@ const FilterForm = ({ filter, handleFilterChange }) => {
      const [studySearchQuery, setStudySearchQuery] = useState('');
      const [languageSearchQuery, setLanguageSearchQuery] = useState('');
      const [citySearchQuery, setcitySearchQuery] = useState('');
-     const [departmentSearchQuery, setDepartmentSearchQuery] = useState('');
      const dropdownRefs = useRef([]);
 
      const toggleDropdown = (index) => {
@@ -57,9 +55,7 @@ const FilterForm = ({ filter, handleFilterChange }) => {
           option.toLowerCase().includes(citySearchQuery.toLowerCase())
      );
 
-     const filteredDepartment = department.filter(option =>
-          option.toLowerCase().includes(departmentSearchQuery.toLowerCase())
-     );
+
 
      useEffect(() => {
           document.addEventListener('mousedown', handleClickOutside);
@@ -273,57 +269,7 @@ const FilterForm = ({ filter, handleFilterChange }) => {
                     </fieldset>
                </div>
 
-               {/* Department */}
-               <div className="w-full">
-                    <fieldset className="relative w-full">
-                         <legend className="block mb-1 capitalize">Department</legend>
-                         <button
-                              type="button"
-                              onClick={() => toggleDropdown(4)}
-                              aria-expanded={isOpen === 4}
-                              aria-controls="dropdown-menu-4"
-                              className={`w-full p-2 border rounded-md flex ${DarkMode ? "" : "bg-gray-200 text-black"} justify-between items-center`}
-                         >
-                              <span>{filter.department.length > 0
-                                   ? `${filter.department.length} ${filter.department.length === 1 ? '' : ''} selected`
-                                   : 'Please select'}</span>
-                              <FaChevronDown className="w-3 h-3" />
-                         </button>
-                         {isOpen === 4 && (
-                              <div
-                                   id="dropdown-menu-4"
-                                   ref={el => dropdownRefs.current[4] = el}
-                                   className="absolute w-full mt-1 bg-white border rounded-md shadow-lg z-10"
-                              >
-                                   <input
-                                        type="text"
-                                        placeholder="Search..."
-                                        value={departmentSearchQuery}
-                                        onChange={(e) => setDepartmentSearchQuery(e.target.value)}
-                                        className="w-full p-2 border-b border-gray-300"
-                                   />
-                                   {filteredDepartment.length > 0 ? (
-                                        filteredDepartment.map(option => (
-                                             <label
-                                                  key={option}
-                                                  className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
-                                             >
-                                                  <input
-                                                       type="checkbox"
-                                                       checked={filter.department.includes(option)}
-                                                       onChange={() => handleFilterChange('department', option)}
-                                                       className="mr-2"
-                                                  />
-                                                  {option}
-                                             </label>
-                                        ))
-                                   ) : (
-                                        <p className="p-2 text-gray-500">No options found</p>
-                                   )}
-                              </div>
-                         )}
-                    </fieldset>
-               </div>
+
 
                {/* Intake */}
                <div className="w-full">
@@ -413,7 +359,6 @@ FilterForm.propTypes = {
           field: PropTypes.arrayOf(PropTypes.string),
           language: PropTypes.arrayOf(PropTypes.string),
           city: PropTypes.arrayOf(PropTypes.string),
-          department: PropTypes.arrayOf(PropTypes.string),
           intake: PropTypes.string,
           mode: PropTypes.string,
           duration: PropTypes.number,

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
 import useDarkMode from "../../../hooks/useDarkMode";
-import foursliderSettingsreverse from "../../../components/silderSettings/foursliderSettingsreverse";
+import foursliderSettings7s from "../../../components/silderSettings/foursliderSettings7s";
 
 const Card = ({ imgSrc, title, description, link }) => (
      <Link to={link} className=" h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
@@ -42,7 +42,7 @@ function SilderAllUniversity() {
                          <h1 className="font-bold mb-2 md:mb-5 mx-2 text-lg md:text-2xl">Top University</h1>
                          <Link to={'/all-university'} className="inline-flex rounded items-center px-3 py-2 text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
-                    <Slider {...foursliderSettingsreverse} className="w-full h-fit">
+                    <Slider {...foursliderSettings7s} className="w-full h-fit">
                          {cardDataTopUniversity.map((item, index) => (
                               <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />

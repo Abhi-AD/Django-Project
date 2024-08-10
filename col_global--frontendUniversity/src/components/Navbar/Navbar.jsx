@@ -71,6 +71,9 @@ const Navbar = () => {
                               <Link to="/all-country" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Country
                               </Link>
+                              <Link to="/all-course" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
+                                   Course
+                              </Link>
                               <Link to="/contact" className="block md:text-xl font-medium md:inline-block hover:text-blue-500 px-5 py-5 md:border-none" onClick={closeMenu}>
                                    Contact Us
                               </Link>

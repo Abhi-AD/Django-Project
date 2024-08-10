@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useDarkMode from "../../hooks/useDarkMode";
-import foursliderSettingsreverse from "../../components/silderSettings/foursliderSettingsreverse";
+import foursliderSettingsreverse10 from "../../components/silderSettings/foursliderSettingsreverse10";
 import cardDataCountry from "../../data/cardDataCountry";
 
 const Card = ({ imgSrc, description, link, country }) => (
@@ -42,7 +42,7 @@ function Country() {
                          <h1 className="font-bold mb-2 md:mb-5  text-lg md:text-3xl">Study Destinations</h1>
                          <Link to={'/all-country'} className="inline-flex rounded items-center  text-sm md:text-xl font-medium text-center text-blue-500 border-blue-500">View All</Link>
                     </div>
-                    <Slider {...foursliderSettingsreverse} className="w-full h-fit">
+                    <Slider {...foursliderSettingsreverse10} className="w-full h-fit">
                          {cardDataCountry.map((item, index) => (
                               <div key={index} className="">
                                    <Card {...item} DarkMode={DarkMode} />

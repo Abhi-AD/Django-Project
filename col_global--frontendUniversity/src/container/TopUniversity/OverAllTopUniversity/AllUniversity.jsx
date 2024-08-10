@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cardDataTopUniversity from "../../../data/cardDataTopUniversity";
-import FilterUniversity from "../../Destinations/FilterUniversity";
 import { useState } from "react";
 import SearchBarUniversity from "./SearchBarUniversity";
 import useDarkMode from "../../../hooks/useDarkMode";
@@ -51,7 +50,6 @@ function AllUniversity() {
 
      return (
           <div className="flex flex-col gap-4 paddingcontainer paddingbuttom">
-               <FilterUniversity />
                <div className="flex  justify-between">
                     <h1 className="font-bold text-lg md:text-2xl">All University</h1>
                     <SearchBarUniversity
@@ -62,7 +60,7 @@ function AllUniversity() {
 
                     />
                </div>
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 md:gap-4 gap-3">
                     {filteredUniversity.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}

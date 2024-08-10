@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import oneliderSettingsAuto from '../../components/silderSettings/oneliderSettingsAuto';
 import carouselImages from '../../data/carouselImages';
 import { Link } from 'react-router-dom';
+import { DestinationFilter } from '../../container/import';
 
 
 const Card = ({ imgSrc, index }) => (
@@ -32,12 +33,15 @@ const HeroSection = () => {
                     </Slider>
                </div>
                <div className="video-content space-y-2 md:p-20 p-10 z-10 flex flex-col gap-10">
+                    <div className='absolute top-0 left-[20%]'>
+                         <DestinationFilter />
+                    </div>
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 gap-8">
                          <div className='flex flex-col gap-1'>
                               <h1 className="text-lg sm:text-2xl md:text-4xl font-bold">Your Global Education Hub</h1>
                               <p className="text-sm sm:text-lg md:text-2xl">Start Your Journey With Us</p>
                          </div>
-                         <Link to={`/search-data`}>
+                         <Link to={`all-country`}>
                               <button className="px-6 py-3 text-lg font-semibold text-white border rounded-md">
                                    Get Started
                               </button>

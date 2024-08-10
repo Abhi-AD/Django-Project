@@ -38,7 +38,7 @@ function SilderSelectCountryUniversity() {
 
 
      return (
-          <div className='paddingcontainer  w-full h-fit flex flex-col   gap-6'>
+          <div className='paddingcontainer paddingbuttom   w-full h-fit flex flex-col   gap-6'>
 
                <div className="flex flex-col gap-3">
 

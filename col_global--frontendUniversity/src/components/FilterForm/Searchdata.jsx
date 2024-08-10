@@ -50,7 +50,7 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
             <VideoAd />
             <div className="flex items-center justify-between">
                 <h1 className="text-xl font-bold">{filteredData.length} results for your criteria</h1>
-                <div className="flex flex-col md:flex-row justify-end items-start md:items-center  space-y-4 md:space-y-0 md:space-x-4">
+                <div className="  flex flex-col md:flex-row justify-end items-start md:items-center  space-y-4 md:space-y-0 md:space-x-4">
                     <div className="flex gap-3">
                         <button
                             onClick={() => handleViewChange('grid')}
@@ -161,22 +161,6 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
                         </div>
                     ))
                 )}
-                {filter.department && (
-                    filter.department.map((department, index) => (
-                        <div
-                            key={index}
-                            className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}
-                        >
-                            <span className="mr-2">{department}</span>
-                            <button
-                                onClick={() => handleFilterChange('department', department)}
-                                className={`text-gray-500 hover:text-gray-700 ${DarkMode ? 'text-gray-400 hover:text-gray-300' : ''}`}
-                            >
-                                &times;
-                            </button>
-                        </div>
-                    ))
-                )}
                 {filters.location && (
                     <div className={`flex items-center ${DarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'} px-3 py-1 rounded-full capitalize`}>
                         <span className="mr-2">{filters.location}</span>
@@ -229,7 +213,7 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
                 <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4 ${DarkMode ? '' : ''}`}>
                     {paginatedData.map((course, index) => (
                         <Link
-                            to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
+                            to={`/country/university/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
                             className={`flex flex-col  shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 ${DarkMode ? 'bg-gray-900' : ''}`}
                         >
@@ -249,10 +233,10 @@ const Searchdata = ({ filter, handleFilterChange, location, studyLevel, course, 
                     ))}
                 </div>
             ) : (
-                <div className={`space-y-4 ${DarkMode ? 'bg-gray-800' : ''}`}>
+                <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6  ${DarkMode ? '' : ''}`}>
                     {paginatedData.map((course, index) => (
                         <Link
-                            to={`/country/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
+                            to={`/country/university/course/?${course.id}?title=${course.title}&costs=${course.costs}&university=${course.university}`}
                             key={index}
                             className={`p-4 flex  border-b border-gray-300 ${DarkMode ? 'bg-gray-900 border-gray-700' : ''}`}
                         >
@@ -294,7 +278,6 @@ Searchdata.propTypes = {
         field: PropTypes.arrayOf(PropTypes.string),
         language: PropTypes.arrayOf(PropTypes.string),
         location: PropTypes.arrayOf(PropTypes.string),
-        department: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     handleFilterChange: PropTypes.func.isRequired,
 };

@@ -1,22 +1,25 @@
 import PropTypes from 'prop-types';
+import { MdClear } from 'react-icons/md';
 
 const SearchBarCountry = ({ searchQuery, onSearchChange, onClear, DarkMode }) => (
-
-     <div className="flex gap-4 mb-4">
-          <input
+     <div className={`flex gap-1 rounded-lg border  ${DarkMode ? 'bg-transparent' : 'border-black '}`}>
+          < input
                type="text"
                value={searchQuery}
                onChange={onSearchChange}
                placeholder="Search countries..."
-               className={`w-full p-2 border rounded-md ${DarkMode ? 'bg-transparent text-white placeholder:text-white' : 'bg-gray-200 text-black placeholder:text-black'} focus:outline-none`}
+               className={`w-full p-2 rounded-md ${DarkMode ? 'bg-transparent text-white placeholder:text-white' : 'bg-transparent text-black placeholder:text-black'} focus:outline-none border-none`}
           />
-          <button
-               onClick={onClear}
-               className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-          >
-               Clear
-          </button>
-     </div>
+          {
+               searchQuery && (
+                    <button
+                         onClick={onClear}
+                    >
+                         <MdClear size={24} />
+                    </button>
+               )
+          }
+     </div >
 );
 
 SearchBarCountry.propTypes = {

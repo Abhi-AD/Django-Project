@@ -5,10 +5,6 @@ const ScholarshipOverview = () => {
                <h1 className="text-2xl font-bold mb-4">About the scholarship</h1>
                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
                     <div className="flex flex-col gap-1">
-                         <p className="font-semibold">Awarding institution:</p>
-                         <p><a href="#" className="text-blue-500 hover:underline"> University College London</a></p>
-                    </div>
-                    <div className="flex flex-col gap-1">
                          <p className="font-semibold">Average applications per year:</p>
                          <p>Not specified</p>
                     </div>

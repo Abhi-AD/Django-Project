@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaCaretDown, FaTimes, FaFilter } from 'react-icons/fa';
+import { FaCaretDown } from 'react-icons/fa';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
-import { studyLevels, locations, courses, university } from '../../data/filterdata/autocomplete';
-import useDarkMode from '../../hooks/useDarkMode';
+import { studyLevels, locations } from '../../data/filterdata/autocomplete';
+import { CiSearch } from 'react-icons/ci';
+import { Input } from '@mui/material';
 
 const Select = ({ label, options }) => (
     <div className="relative flex-1 min-w-[50px]">
@@ -18,7 +19,7 @@ const Select = ({ label, options }) => (
             ))}
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-            <FaCaretDown className="text-lg text-black" />
+            <FaCaretDown className="text-lg text-white" />
         </div>
     </div>
 );
@@ -34,22 +35,20 @@ Select.propTypes = {
 };
 
 const DestinationFilter = () => {
-    const { DarkMode } = useDarkMode();
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [selectedStudyLevel, setSelectedStudyLevel] = useState(null);
-    const [selectedCourse, setSelectedCourse] = useState(null);
-    const [selectedUniversity, setSelectedUniversity] = useState(null);
-    const [menuOpen, setMenuOpen] = useState(false); // State to manage side menu visibility
+    const [selectedCourse, setSelectedCourse] = useState('');
+    const [selectedUniversity, setSelectedUniversity] = useState('');
     const navigate = useNavigate();
 
     const handleSearch = () => {
         const params = new URLSearchParams();
         if (selectedLocation) params.append('location', selectedLocation.label);
         if (selectedStudyLevel) params.append('studyLevel', selectedStudyLevel.label);
-        if (selectedCourse) params.append('course', selectedCourse.label);
-        if (selectedUniversity) params.append('university', selectedUniversity.label);
+        if (selectedCourse) params.append('course', selectedCourse);
+        if (selectedUniversity) params.append('university', selectedUniversity);
 
-        navigate(`/search-data?${params.toString()}`);
+        navigate(`/all-course?${params.toString()}`);
     };
 
     const autocompleteStyles = {
@@ -58,146 +57,121 @@ const DestinationFilter = () => {
             '& fieldset': {
                 border: 'none'
             },
-            '&:hover fieldset': {
-                borderColor: DarkMode ? 'white' : 'black',
-            },
             '&.Mui-focused fieldset': {
-                borderColor: DarkMode ? 'white' : 'black',
+                borderColor: "white",
             },
-            color: DarkMode ? 'white' : 'black',
+            color: "white",
         },
         '& .MuiInputLabel-root': {
-            color: DarkMode ? 'white' : 'black',
+            color: "white",
         },
         '& .MuiInputLabel-root.Mui-focused': {
-            color: DarkMode ? 'white' : 'black',
+            color: "white",
         },
         '& .MuiAutocomplete-popupIndicator': {
-            color: DarkMode ? 'white' : 'black',
+            color: "white",
+        },
+        '& .MuiOutlinedInput-notchedOutline': {
+            color: 'white',
         },
         '& .MuiAutocomplete-clearIndicator': {
-            color: DarkMode ? 'white' : 'black'
-        }
+            color: "white"
+        },
+        '& .MuiInputBase-input::placeholder': {
+            color: 'white',
+            opacity: 1,
+        },
     };
 
     return (
         <div>
-            {/* Toggle button for small screens */}
-            <button
-                className="md:hidden fixed top-15 right-4 z-50 bg-blue-500 text-white p-2 rounded-full"
-                onClick={() => setMenuOpen(!menuOpen)}
-            >
-                {menuOpen ? <FaTimes /> : <FaFilter />}
-            </button>
-
-            {/* Side menu for small screens */}
-            <div
-                className={`fixed top-15 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 z-40 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
-                    } md:hidden ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}
-            >
-                <div className="p-4">
-                    <div className="flex flex-col gap-4">
-                        <Autocomplete
-                            disablePortal
-                            id="locations-autocomplete"
-                            options={locations}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedLocation(newValue)}
-                            renderInput={params => <TextField {...params} label="Country" />}
-                        />
-                        <Autocomplete
-                            disablePortal
-                            id="study-level-autocomplete"
-                            options={studyLevels}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
-                            renderInput={params => <TextField {...params} label="Study Level" />}
-                        />
-                        <Autocomplete
-                            disablePortal
-                            id="courses-autocomplete"
-                            options={courses}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedCourse(newValue)}
-                            renderInput={params => <TextField {...params} label="Courses" />}
-                        />
-                        <Autocomplete
-                            disablePortal
-                            id="university-autocomplete"
-                            options={university}
-                            getOptionLabel={option => option.label}
-                            sx={autocompleteStyles}
-                            onChange={(event, newValue) => setSelectedUniversity(newValue)}
-                            renderInput={params => <TextField {...params} label="University" />}
-                        />
-                        <button
-                            onClick={handleSearch}
-                            type="submit"
-                            className={`w-full py-2 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}
-                        >
-                            Search
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main content for larger screens */}
-            <div className={`hidden md:flex flex-col md:flex-row justify-center paddingcontainer paddingbuttom mx-auto`}>
-                <div className={`border rounded-full p-2 md:flex ${DarkMode ? 'bg-gray-950' : 'bg-white'}`}>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 p-1 rounded-full justify-between items-center">
-                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+            <div className="flex justify-center paddingcontainer paddingbuttom mx-auto">
+                <div className="border rounded-full md:flex items-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-col-4 gap-1 rounded-full justify-between items-center">
+                        <div className="after:border after:border-slate-50/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                             <Autocomplete
                                 disablePortal
                                 id="locations-autocomplete"
                                 options={locations}
-                                getOptionLabel={option => option.label}
+                                popupIcon={null}
+                                getOptionLabel={(option) => option.label}
                                 sx={autocompleteStyles}
                                 onChange={(event, newValue) => setSelectedLocation(newValue)}
-                                renderInput={params => <TextField {...params} label="Country" />}
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Country" sx={{
+                                        '& .MuiInputBase-input': { color: 'white' },
+                                        '& .MuiInputBase-input::placeholder': { color: 'white' }
+                                    }} />
+                                )}
                             />
                         </div>
-                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                        <div className="after:border after:border-slate-50/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
                             <Autocomplete
                                 disablePortal
                                 id="study-level-autocomplete"
                                 options={studyLevels}
-                                getOptionLabel={option => option.label}
+                                popupIcon={null}
+                                getOptionLabel={(option) => option.label}
                                 sx={autocompleteStyles}
                                 onChange={(event, newValue) => setSelectedStudyLevel(newValue)}
-                                renderInput={params => <TextField {...params} label="Study Level" />}
+                                renderInput={(params) => (
+                                    <TextField {...params} placeholder="Study Level" sx={{
+                                        '& .MuiInputBase-input': { color: 'white' },
+                                        '& .MuiInputBase-input::placeholder': { color: 'white' }
+                                    }} />
+                                )}
                             />
                         </div>
-                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
-                            <Autocomplete
-                                disablePortal
-                                id="courses-autocomplete"
-                                options={courses}
-                                getOptionLabel={option => option.label}
-                                sx={autocompleteStyles}
-                                onChange={(event, newValue) => setSelectedCourse(newValue)}
-                                renderInput={params => <TextField {...params} label="Courses" />}
+                        <div className="after:border after:border-slate-50/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Input
+                                placeholder="Course"
+                                fullWidth
+                                value={selectedCourse}
+                                onChange={(e) => setSelectedCourse(e.target.value)}
+                                sx={{
+                                    padding: '20px',
+                                    color: '#ffffff', // Set text color here
+                                    '& .MuiInputBase-input::placeholder': {
+                                        color: '#ffffff', // Set placeholder color here
+                                        opacity: 1
+                                    },
+                                    '&:before, &:after': {
+                                        borderBottom: 'none',
+                                    },
+                                    '&:hover:not(.Mui-disabled):before': {
+                                        borderBottom: 'none',
+                                    },
+                                }}
                             />
                         </div>
-                        <div className="after:border after:border-slate-800/20 flex justify-center items-center after:h-6 cursor-pointer rounded-full">
-                            <Autocomplete
-                                disablePortal
-                                id="university-autocomplete"
-                                options={university}
-                                getOptionLabel={option => option.label}
-                                sx={autocompleteStyles}
-                                onChange={(event, newValue) => setSelectedUniversity(newValue)}
-                                renderInput={params => <TextField {...params} label="University" />}
+                        <div className="flex justify-center items-center after:h-6 cursor-pointer rounded-full">
+                            <Input
+                                placeholder="University"
+                                fullWidth
+                                value={selectedUniversity}
+                                onChange={(e) => setSelectedUniversity(e.target.value)}
+                                sx={{
+                                    padding: '20px',
+                                    color: 'white',
+                                    '& .MuiInputBase-input::placeholder': {
+                                        color: 'white',
+                                        opacity: 1
+                                    },
+                                    '&:before, &:after': {
+                                        borderBottom: 'none',
+                                    },
+                                    '&:hover:not(.Mui-disabled):before': {
+                                        borderBottom: 'none',
+                                    },
+                                }}
                             />
                         </div>
                     </div>
                     <button
                         onClick={handleSearch}
                         type="submit"
-                        className={`px-8 py-5 rounded-full text-white ${DarkMode ? 'bg-blue-600' : 'bg-blue-400'}`}>
-                        Search
+                        className="rounded-full p-4 items-center text-white">
+                        <CiSearch size={32} />
                     </button>
                 </div>
             </div>

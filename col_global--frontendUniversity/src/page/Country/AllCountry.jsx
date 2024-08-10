@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from 'react';
 import cardDataCountry from "../../data/cardDataCountry";
-import DestinationCountry from "../../container/Destinations/DestinationCountry";
 import SearchBarCountry from "./SearchBarCountry";
 import useDarkMode from "../../hooks/useDarkMode";
 
@@ -52,7 +51,7 @@ function AllCountry() {
 
      return (
           <div className="flex flex-col gap-4 paddingcontainer paddingbuttom">
-               <DestinationCountry />
+               {/* <DestinationCountry /> */}
                <div className="flex  justify-between">
                     <h1 className="font-bold text-lg md:text-2xl">Country List</h1>
                     <SearchBarCountry
@@ -62,7 +61,7 @@ function AllCountry() {
                          DarkMode={DarkMode}
                     />
                </div>
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6 md:gap-4 gap-3">
                     {filteredData.map((item, index) => (
                          <Card key={index} {...item} />
                     ))}

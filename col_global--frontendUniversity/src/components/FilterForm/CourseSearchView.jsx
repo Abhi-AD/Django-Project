@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { FilterForm, Searchdata } from '../import';
 import { FiFilter, FiX } from 'react-icons/fi'; // Import icons from React Icons
 
-const SearchView = () => {
+
+const CourseSearchView = () => {
      const defaultValue = {
           search: "",
           course: "",
@@ -13,7 +14,6 @@ const SearchView = () => {
           duration: 6,
           fee: 1200,
           city: [],
-          department: [],
           intake: "",
      };
      const [filter, setFilter] = useState(defaultValue);
@@ -53,17 +53,14 @@ const SearchView = () => {
 
      return (
           <div className="relative flex flex-col lg:flex-row gap-6 lg:gap-20 paddingcontainer paddingbuttom">
-               {/* Sidebar Button for Mobile */}
                <button
                     onClick={toggleSidebar}
                     className="lg:hidden absolute top-4 left-4 z-10 bg-blue-600 text-white p-3 rounded-full shadow-lg"
                >
                     {isSidebarOpen ? <FiX size={24} /> : <FiFilter size={24} />}
                </button>
-
-               {/* Sidebar */}
                <div
-                    className={`fixed z-50  top-25 right-0 w-4/5 md:w-1/4 h-auto bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                    className={`fixed z-50  top-25 right-0 w-4/5 md:w-1/4 h-auto bg-transparent transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
                >
                     <FilterForm
                          filter={filter}
@@ -75,7 +72,6 @@ const SearchView = () => {
                     />
                </div>
 
-               {/* Main Content */}
                <div className={`w-full lg:w-3/4 ${isSidebarOpen ? 'lg:ml-1/4' : ''}`}>
                     <Searchdata
                          filter={filter}
@@ -90,4 +86,4 @@ const SearchView = () => {
      );
 };
 
-export default SearchView;
+export default CourseSearchView;

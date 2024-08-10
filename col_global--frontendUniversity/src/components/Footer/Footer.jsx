@@ -1,4 +1,4 @@
-import { FaFacebookF, FaGithub, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaGithub, FaInstagram, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import { FaXTwitter } from "react-icons/fa6";
 import { H_Main_Logo_White } from '../../images';
@@ -10,7 +10,7 @@ const sections = [
                { text: 'Home', href: '/' },
                { text: 'University', href: '/all-university' },
                { text: 'Country', href: '/all-country' },
-               { text: 'Scholarships', href: '/scholarships' },
+               { text: 'Course', href: '/all-course' },
                { text: 'Contact Us', href: '/contact' },
           ]
      },
@@ -36,20 +36,43 @@ const Footer = () => {
      return (
           <footer className=" text-white bg-black/80 dark:bg-black/80">
                <div className="paddingcontainer w-full paddingbuttom">
-                    <div className="md:grid md:grid-cols-12 md:gap-12">
-                         <div className="col-span-12 md:col-span-4 mb-6 md:mb-0">
+                    <div className="md:grid md:grid-cols-12 md:gap-12 ">
+                         <div className="col-span-12 md:col-span-5 mb-6 md:mb-0">
                               <Link to="/" className="flex items-center mb-5">
                                    <img src={H_Main_Logo_White} className="h-20" alt="Logo" />
                               </Link>
+                              <div className='flex flex-col gap-2'>
+                                   <div className='flex flex-col gap-1'>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste minima, dignissimos perspiciatis modi quasi veniam laudantium deleniti, commodi animi tenetur atque tempora libero odio nobis. Voluptatem numquam ut unde a?</p>
+                                   </div>
+                                   <div className='flex flex-col gap-1'>
+                                        <div className='flex items-center gap-2'>
+                                             <FaMapMarkerAlt className="text-xl" />
+                                             <p>Lazimpat, Kathmandu</p>
+                                        </div>
+                                        <div className='flex items-center gap-2'>
+                                             <FaPhoneAlt className="text-xl" />
+                                             <p>+977 9851208005</p>
+                                        </div>
+
+                                   </div>
+                              </div>
                          </div>
-                         <div className="col-span-12 md:col-span-8 grid grid-cols-1 mx-2 gap-2 sm:gap-6 sm:grid-cols-3">
+                         <div className="col-span-12 md:col-span-1 mb-6 md:mb-0"></div>
+                         <div className="col-span-12 md:col-span-6 grid grid-cols-1 mx-2 gap-2 sm:gap-6 sm:grid-cols-3">
                               {sections.map((section, index) => (
                                    <div key={index}>
                                         <h3 className="mb-4 text-xl font-semibold uppercase">{section.title}</h3>
                                         <ul className="font-medium">
                                              {section.links.map((link, index) => (
                                                   <li key={index} className="mb-4 mx-5 md:mx-2">
-                                                       <Link to={link.href} className="hover:underline" aria-label={link.text}>{link.text}</Link>
+                                                       <Link
+                                                            to={link.href}
+                                                            className="underline-animation"
+                                                            aria-label={link.text}
+                                                       >
+                                                            {link.text}
+                                                       </Link>
                                                   </li>
                                              ))}
                                         </ul>
