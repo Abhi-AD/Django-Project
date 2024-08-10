@@ -23,7 +23,7 @@ const sections = [
           ]
      },
      {
-          title: 'Study Country',
+          title: 'Study In',
           links: [
                { text: 'Germany', href: '/' },
                { text: 'United Kingdom', href: '/' },

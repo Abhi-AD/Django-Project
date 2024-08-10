@@ -1,11 +1,19 @@
-const threesliderSettings = {
+import { LeftArrow, RightArrow } from "../import";
+
+const threesliderSettingsAuto = {
     dots: false,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
+    nextArrow: <RightArrow />,
+    prevArrow: <LeftArrow />,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 50000,
+    pauseOnHover: true,
     responsive: [
         {
-            breakpoint: 1920,
+            breakpoint: 1440,
             settings: {
                 slidesToShow: 3,
                 slidesToScroll: 1,
@@ -26,7 +34,6 @@ const threesliderSettings = {
             }
         }
     ]
-
 };
 
-export default threesliderSettings;
+export default threesliderSettingsAuto;

@@ -6,16 +6,16 @@ import "slick-carousel/slick/slick-theme.css";
 import cardDataScholarship from "../../data/cardDataScholarship";
 import { FaCheck } from 'react-icons/fa';
 import useDarkMode from "../../hooks/useDarkMode";
-import threesliderSettingsAuto from "../../components/silderSettings/threesliderSettingsAuto";
+import threesliderSettingsAuto from "../../components/silderSettings/threesliderSettings";
 
 const Card = ({ title, tags, collagename, link, DarkMode }) => (
      <Link to={link} className="h-full rounded-2xl mx-1 md:mx-2 flex flex-col">
-          <div className="flex flex-col md:flex-row border rounded-lg overflow-hidden">
+          <div className=" w-full h-60 flex flex-col md:flex-row border rounded-lg overflow-hidden">
                <div className="p-3 flex flex-col justify-between">
                     <div className="flex flex-col gap-4">
                          <div className="flex flex-col gap-1">
-                              <h2 className={`text-2xl font-bold ${DarkMode ? "" : "text-gray-800"}`}>{title}</h2>
-                              <p className={` ${DarkMode ? "" : "text-gray-800"} text-sm`}>{collagename}</p>
+                              <h2 className={`text-2xl font-bold line-clamp-2  ${DarkMode ? "" : "text-gray-800"}`}>{title}</h2>
+                              <p className={` truncate ${DarkMode ? "" : "text-gray-800"} text-sm`}>{collagename}</p>
                          </div>
 
                          <hr className="w-full border-t border-gray-300" />
