@@ -1,5 +1,4 @@
-# BASIC COMMANDS
-! [Project Logo](./src/assets/logo/white/col-horizontal-white-logo.png)
+
 
 ## Installation
 1. Clone the repository
@@ -14,6 +13,6 @@
 
 
 ## Features
-Responsive Design
-University Research
-Dark Mode
+- Responsive Design
+- University Research
+- Dark Mode
