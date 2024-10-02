@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+from apps.essence import views
+
+app_name = "essence"
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("essence/", views.index, name="index"),
 ]
