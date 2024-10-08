@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from apps.userauth.forms import UserRegisterForm
-from django.contrib.auth import login, authenticate,get_user_model
+from django.contrib.auth import login, authenticate,logout,get_user_model
 from django.contrib import messages
 from django.conf import settings
 
@@ -51,3 +51,8 @@ def login_view(request):
             return redirect("userauth:sign-in")  # Update to use 'sign-in'
 
     return render(request, 'userauth/login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.warning(request, 'You logged out.')
+    return redirect("userauth:sign-in") 
