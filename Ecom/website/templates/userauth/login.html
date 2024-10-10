@@ -1,91 +1,155 @@
 {% extends 'base.html' %} {% block title %} Welcome to Ecom {% endblock title %}
-{% load static %}
-{% block content %}
-{% include 'components/ui/header.html' %}
+{% load static %} {% block content %} {% include 'components/ui/header.html' %}
 {% include 'components/ui/sidebar.html' %}
 <!-- Breadcrumb start -->
 <div class="gi-breadcrumb mb-[40px]">
-    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
-        <div class="flex flex-wrap w-full">
-            <div class="w-full px-[12px]">
-                <div class="flex flex-wrap m-0 p-[15px] border-[1px] border-solid border-[#eee] rounded-b-[5px] border-t-[0] gi_breadcrumb_inner">
-                    <div class="min-[768px]:w-[50%] w-full px-[12px]">
-                        <h2 class="gi-breadcrumb-title text-[#4b5966] block text-[15px] font-Poppins leading-[22px] font-semibold my-[0] mx-auto capitalize max-[767px]:mb-[5px] max-[767px]:text-center">Login Page</h2>
-                    </div>
-                    <div class="min-[768px]:w-[50%] w-full px-[12px]">
-                        <!-- gi-breadcrumb-list start -->
-                        <ul class="gi-breadcrumb-list text-right max-[767px]:text-center">
-                            <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize"><a href="index.html" class="relative text-[#4b5966]">Home</a></li>
-                            <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize active">Login Page</li>
-                        </ul>
-                        <!-- gi-breadcrumb-list end -->
-                    </div>
-                </div>
-            </div>
+  <div
+    class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative"
+  >
+    <div class="flex flex-wrap w-full">
+      <div class="w-full px-[12px]">
+        <div
+          class="flex flex-wrap m-0 p-[15px] border-[1px] border-solid border-[#eee] rounded-b-[5px] border-t-[0] gi_breadcrumb_inner"
+        >
+          <div class="min-[768px]:w-[50%] w-full px-[12px]">
+            <h2
+              class="gi-breadcrumb-title text-[#4b5966] block text-[15px] font-Poppins leading-[22px] font-semibold my-[0] mx-auto capitalize max-[767px]:mb-[5px] max-[767px]:text-center"
+            >
+              Login Page
+            </h2>
+          </div>
+          <div class="min-[768px]:w-[50%] w-full px-[12px]">
+            <!-- gi-breadcrumb-list start -->
+            <ul class="gi-breadcrumb-list text-right max-[767px]:text-center">
+              <li
+                class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize"
+              >
+                <a href="index.html" class="relative text-[#4b5966]">Home</a>
+              </li>
+              <li
+                class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize active"
+              >
+                Login Page
+              </li>
+            </ul>
+            <!-- gi-breadcrumb-list end -->
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Breadcrumb end -->
 
 <!-- Login section -->
 <section class="gi-login py-[40px] max-[767px]:py-[30px]">
-    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
-        <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center">
-            <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">Login</h2>
-            <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Get access to your Orders, Wishlist and Recommendations.</p>
-        </div>
-        <div class="gi-login-content max-w-[1000px] m-auto flex flex-row max-[991px]:flex-col max-[1199px]:px-[12px] max-[991px]:w-full">
-            <div class="gi-login-box w-[50%] px-[15px] max-[991px]:w-full max-[991px]:p-[0]">
-                <div class="gi-login-wrapper max-w-[530px] my-[0] mx-auto">
-                    <div class="gi-login-container p-[30px] max-[575px]:p-[15px] border-[1px] border-solid border-[#eee] rounded-[5px] text-left bg-[#fff]">
-                        <div class="gi-login-form">
-                            <form action="{% url 'userauth:sign-in' %}" method="POST" class="flex flex-col">  <!-- Update to 'sign-in' -->
-                                {% csrf_token %}
-                                {% if messages %}
-                                <ul class="space-y-4">
-                                  {% for message in messages %}
-                                    <li class="p-4 rounded-lg text-white {% if message.tags == 'error' %} bg-red-500 {% elif message.tags == 'success' %} bg-green-500 {% else %} bg-gray-700 {% endif %}">
-                                      {{ message }}
-                                    </li>
-                                  {% endfor %}
-                                </ul>
-                              {% endif %}
-                                <span class="gi-login-wrap flex flex-col">
-                                    <label class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Email Address*</label>
-                                    <input type="email" name="email" placeholder="Enter your email address..." class="mb-[27px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
-                                </span>
-                                <span class="gi-login-wrap flex flex-col">
-                                    <label class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Password*</label>
-                                    <input type="password" name="password" placeholder="Enter your password" class="mb-[15px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]" required>
-                                </span>
-                                <span class="gi-login-wrap flex flex-col gi-login-fp">
-                                    <label class="mb-[0] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
-                                        <a href="" class="mt-[10px] text-[#777] text-[14px] font-normal tracking-[0] flex justify-end">Forgot Password?</a> 
-                                    </label>
-                                </span>
-                                <span class="gi-login-wrap gi-login-btn mt-[30px] flex flex-row justify-between items-center">
-                                    <span class="text-[#777] text-[14px]">
-                                        <a href="{% url 'userauth:sign-up' %}" class="text-[#4b5966] hover:text-[#5caf90]">Create Account?</a>
-                                    </span>
-                                    <button type="submit" class="gi-btn-1 btn py-[8px] px-[15px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center text-[14px] font-semibold relative rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]">Login</button>
-                                </span>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="gi-login-box w-[50%] px-[15px] max-[991px]:w-full max-[991px]:p-[0] max-[991px]:hidden">
-                <div class="gi-login-img">
-                    <img src="{% static "assets/img/common/login.png" %}" alt="login" class="w-full rounded-[5px]">
-                </div>
-            </div>
-        </div>
+  <div
+    class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]"
+  >
+    <div
+      class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center"
+    >
+      <h2
+        class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]"
+      >
+        Login
+      </h2>
+      <p
+        class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]"
+      >
+        Get access to your Orders, Wishlist and Recommendations.
+      </p>
     </div>
+    <div
+      class="gi-login-content max-w-[1000px] m-auto flex flex-row max-[991px]:flex-col max-[1199px]:px-[12px] max-[991px]:w-full"
+    >
+      <div
+        class="gi-login-box w-[50%] px-[15px] max-[991px]:w-full max-[991px]:p-[0]"
+      >
+        <div class="gi-login-wrapper max-w-[530px] my-[0] mx-auto">
+          <div
+            class="gi-login-container p-[30px] max-[575px]:p-[15px] border-[1px] border-solid border-[#eee] rounded-[5px] text-left bg-[#fff]"
+          >
+            <div class="gi-login-form">
+              <form
+                action="{% url 'userauth:sign-in' %}"
+                method="POST"
+                class="flex flex-col"
+              >
+                <!-- Update to 'sign-in' -->
+                {% csrf_token %}
+                <span class="gi-login-wrap flex flex-col">
+                  <label
+                    class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]"
+                    >Email Address*</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email address..."
+                    class="mb-[27px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]"
+                    required
+                  />
+                </span>
+                <span class="gi-login-wrap flex flex-col">
+                  <label
+                    class="mb-[10px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]"
+                    >Password*</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    class="mb-[15px] px-[15px] bg-transparent border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0] h-[50px]"
+                    required
+                  />
+                </span>
+                <span class="gi-login-wrap flex flex-col gi-login-fp">
+                  <label
+                    class="mb-[0] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]"
+                  >
+                    <a
+                      href=""
+                      class="mt-[10px] text-[#777] text-[14px] font-normal tracking-[0] flex justify-end"
+                      >Forgot Password?</a
+                    >
+                  </label>
+                </span>
+                <span
+                  class="gi-login-wrap gi-login-btn mt-[30px] flex flex-row justify-between items-center"
+                >
+                  <span class="text-[#777] text-[14px]">
+                    <a
+                      href="{% url 'userauth:sign-up' %}"
+                      class="text-[#4b5966] hover:text-[#5caf90]"
+                      >Create Account?</a
+                    >
+                  </span>
+                  <button
+                    type="submit"
+                    class="gi-btn-1 btn py-[8px] px-[15px] bg-[#4b5966] text-[#fff] border-[0] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center text-[14px] font-semibold relative rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]"
+                  >
+                    Login
+                  </button>
+                </span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="gi-login-box w-[50%] px-[15px] max-[991px]:w-full max-[991px]:p-[0] max-[991px]:hidden"
+      >
+        <div class="gi-login-img">
+          <img src="{% static "assets/img/common/login.png" %}" alt="login"
+          class="w-full rounded-[5px]">
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Login section End -->
 
-{% include 'components/ui/footer.html' %}
-{% include 'components/ui/quickmodel.html' %}
-{% include 'components/ui/feature.html' %}
-{% endblock content %}
+{% include 'components/ui/footer.html' %} {%
+include'components/ui/quickmodel.html' %} {% include
+'components/ui/feature.html' %} {% endblock content %}
