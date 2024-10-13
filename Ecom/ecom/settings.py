@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 # Application definition
 INSTALLED_APPS = [
-    # 'jazzmin',
+    # "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # Add your custom apps here
     "apps.essence",
     "apps.userauth",
-    #other lib
+    # other lib
 ]
 
 MIDDLEWARE = [
@@ -129,11 +129,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 JAZZMIN_SETTINGS = {
-    'site_header': 'Shop',
-    'site_brand': 'Ecom',
-    'site_logo': 'assets/img/favicon/favicon.png',
-    'copyright': 'ecom-shop.com',
-    'changeform_format': 'horizontal_tabs', 
+    "site_header": "Shop",
+    "site_brand": "Ecom",
+    "site_logo": "assets/img/favicon/favicon.png",
+    "copyright": "ecom-shop.com",
+    "changeform_format": "horizontal_tabs",
 }
 
-AUTH_USER_MODEL = 'userauth.User'
+AUTH_USER_MODEL = "userauth.User"
