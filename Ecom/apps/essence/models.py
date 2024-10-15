@@ -26,7 +26,9 @@ RATING_CHOICES = [
 
 
 def user_directory_path(instance, filename):
-    return f"user_{0}/{1}".format(instance.user.id, filename)
+    if hasattr(instance, "user") and instance.user:
+        return f"user_{instance.user.id}/{filename}"
+    return f"unknown_user/{filename}"
 
 
 # Create your models here.
