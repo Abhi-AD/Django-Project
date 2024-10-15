@@ -18,7 +18,7 @@ Welcome to the Django E-Commerce Project! This is a fully functional e-commerce 
 - Django REST Framework (for API)
 - PostgreSQL (or your choice of database)
 - HTML, CSS, JavaScript
-- Bootstrap (or any CSS framework)
+- Taieind css (or any CSS framework)
 - Git for version control
 
 ## Installation
@@ -31,3 +31,4 @@ Follow the steps below to set up the project locally.
 - pip
 - MySQL Server
 - MySQL client for Python (`mysqlclient`)
+'
