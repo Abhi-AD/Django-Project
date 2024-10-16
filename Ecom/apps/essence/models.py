@@ -89,12 +89,16 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100, default="Product")
     images = models.ImageField(upload_to=user_directory_path, default="product.jpg")
+    hover_images = models.ImageField(
+        upload_to=user_directory_path, default="hover_images.jpg"
+    )
     description = models.TextField(
         null=True, blank=True, default="This is a product description"
     )
     price = models.DecimalField(max_digits=10, decimal_places=2, default="1.99")
     old_price = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
     specifications = models.TextField(null=True, blank=True)
+    rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
     # tag = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
     product_status = models.CharField(
         choices=STATUS, max_length=10, default="in_review"
