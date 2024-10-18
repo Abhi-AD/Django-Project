@@ -15,7 +15,7 @@ from apps.essence.models import (
 
 # Create your views here.
 def index(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(product_status="published", featured=True)
     context = {
         "products": products,
     }
