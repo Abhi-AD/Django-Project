@@ -3,6 +3,13 @@ from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from apps.userauth.models import User
 
+
+STATUS_TYPES = (
+    ("sale", "Sale"),
+    ("new", "New"),
+    ("old", "Old"),
+)
+
 STATUS_CHOICE = (
     ("processing", "Processing"),
     ("shipped", "Shipped"),
@@ -87,7 +94,9 @@ class Product(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100, default="Product")
+    status_type = models.CharField(choices=STATUS_TYPES, max_length=10, default="new")
     images = models.ImageField(upload_to=user_directory_path, default="product.jpg")
     hover_images = models.ImageField(
         upload_to=user_directory_path, default="hover_images.jpg"
