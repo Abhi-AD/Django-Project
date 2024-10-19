@@ -135,6 +135,14 @@ class Product(models.Model):
         new_price = (self.price / self.old_price) * 100
         return new_price
 
+    def get_discount_percentage(self):
+        if self.old_price > 0:
+            discount = ((self.old_price - self.price) / self.old_price) * 100
+            if discount < 0:
+                return 0
+            return round(discount, 2)
+        return 0
+
 
 class ProductImages(models.Model):
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")

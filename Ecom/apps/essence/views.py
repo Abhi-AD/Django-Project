@@ -20,3 +20,11 @@ def index(request):
         "products": products,
     }
     return render(request, "essence/index.html", context)
+
+
+def product_list_view(request):
+    products = Product.objects.filter(product_status="published")
+    context = {
+        "products": products,
+    }
+    return render(request, "essence/product-list.html", context)
