@@ -13,10 +13,10 @@
             </div>
             <div id="dealend" class="dealend-timer max-[767px]:mt-[15px]"></div>
           </div>
-          <div class="gi-deal-block mx-[-12px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
-            <div class="deal-slick-carousel flex gi-product-slider overflow-x-auto max-w-full">
-              {% for product in products %}
-                <div class="gi-product-content h-full px-[12px] flex-shrink-0 w-1/4">
+          <div class="w-full flex flex-wrap">
+            {% for product in products %}
+              <div class="min-[1200px]:w-[20%] min-[768px]:w-[33.33%] min-[576px]:w-[50%] max-[575px]:w-[50%] max-[420px]:w-full px-[12px]">
+                <div class="gi-product-content h-full pb-[24px] flex">
                   <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
                     <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
                       <div class="gi-pro-image overflow-hidden">
@@ -41,29 +41,35 @@
                       <a href="shop-left-sidebar-col-3.html"><h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ product.category }}</h6></a>
                       <h5 class="gi-pro-title h-full mb-[10px] text-[16px]"><a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ product.title }}</a></h5>
                       <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
-                        <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
-                          {% for i in '12345'|make_list %}
-                            {% if forloop.counter <= product.rating %}
-                              <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
-                            {% else %}
-                              <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left"></i>
-                            {% endif %}
-                          {% endfor %}
+                        <div class="flex justify-between">
+                          <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                            {% for i in '12345'|make_list %}
+                              {% if forloop.counter <= product.rating %}
+                                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                              {% else %}
+                                <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left"></i>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                          {% if product.price < product.old_price %}
+                            <span class="text-xs font-bold text-red-500">{{ product.get_discount_percentage|floatformat:0 }}%</span>
+                          {% endif %}
                         </div>
 
                         <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">By {{ product.vendor }}</h6>
 
                         <span class="gi-price">
                           <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ product.price }}</span>
-                          <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
-                          <sup class="text-[0.8em]">{{ product.get_percentage|floatformat:0 }}%</sup>
+                          {% if product.price < product.old_price %}
+                            <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
+                          {% endif %}
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              {% endfor %}
-            </div>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
