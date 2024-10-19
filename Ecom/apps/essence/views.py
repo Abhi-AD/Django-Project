@@ -11,19 +11,31 @@ from apps.essence.models import (
     Wishlist,
     Address,
 )
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 def index(request):
-    products = Product.objects.filter(product_status="published", featured=True)
+    categories = Category.objects.all()
+    day_products = Product.objects.filter(
+        product_status="published", featured=True
+    ).order_by("?")[:5]
+    new_products = Product.objects.filter(
+        product_status="published", featured=True
+    ).order_by("?")[:10]
     context = {
-        "products": products,
+        "categories": categories,
+        "day_products": day_products,
+        "new_products": new_products,
     }
     return render(request, "essence/index.html", context)
 
 
 def product_list_view(request):
-    products = Product.objects.filter(product_status="published")
+    product = Product.objects.filter(product_status="published").order_by("?")
+    paginator = Paginator(product, 5)
+    page_number = request.GET.get("page", 1)
+    products = paginator.get_page(page_number)
     context = {
         "products": products,
     }

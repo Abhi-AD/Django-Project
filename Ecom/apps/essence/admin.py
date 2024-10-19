@@ -9,6 +9,7 @@ from apps.essence.models import (
     ProductReview,
     Wishlist,
     Address,
+    Tags,
 )
 
 # Register your models here.
@@ -76,3 +77,4 @@ admin.site.register(CartOrderItem, CartOrderItemAdmin)
 admin.site.register(ProductReview, ProductReviewAdmin)
 admin.site.register(Wishlist, WishlistAdmin)
 admin.site.register(Address, AddressAdmin)
+admin.site.register(Tags)

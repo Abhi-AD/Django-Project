@@ -57,13 +57,16 @@ class Category(models.Model):
 
 
 class Tags(models.Model):
-    pass
+    title = models.CharField(max_length=100, default="tag")
+
+    def __str__(self):
+        return self.title
 
 
 class Vendor(models.Model):
     vid = ShortUUIDField(
         unique=True, length=10, max_length=20, prefix="ven", alphabet="abc"
-    )
+    )   
     title = models.CharField(max_length=100, default="Vendor")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     description = models.TextField(
@@ -108,7 +111,7 @@ class Product(models.Model):
     old_price = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
     specifications = models.TextField(null=True, blank=True)
     rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
-    # tag = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    tags = models.ManyToManyField(Tags, related_name="products", blank=True)
     product_status = models.CharField(
         choices=STATUS, max_length=10, default="in_review"
     )
