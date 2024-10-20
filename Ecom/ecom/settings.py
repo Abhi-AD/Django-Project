@@ -70,7 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.essence.context_processors.categories_processor",
+                "apps.essence.context_processors.main_processor",
             ],
         },
     },

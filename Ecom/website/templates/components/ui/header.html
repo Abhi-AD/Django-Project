@@ -212,197 +212,29 @@
             <div class="gi-cat-block">
               <div class="gi-cat-tab flex">
                 <ul class="nav-tabs min-w-[230px] bg-[#f8f8fb] p-[15px] rounded-[5px] flex-col justify-center mr-[16px]" id="myTab">
-                  <li class="active transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
-                    <a href="#v-pills-home"><i class="fi-rr-cupcake transition-all duration-[0.3s] ease-in-out mr-[10px] text-[18px] leading-[0]"></i>Dairy & Bakery</a>
-                  </li>
-                  <li class="transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
-                    <a href="#v-pills-profile"><i class="fi fi-rs-apple-whole transition-all duration-[0.3s] ease-in-out mr-[10px] text-[18px] leading-[0]"></i>Fruits & Vegetable</a>
-                  </li>
-                  <li class="transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
-                    <a href="#v-pills-messages"><i class="fi fi-rr-popcorn transition-all duration-[0.3s] ease-in-out mr-[10px] text-[18px] leading-[0]"></i>Snack & Spice</a>
-                  </li>
-                  <li class="transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center">
-                    <a href="#v-pills-settings"><i class="fi fi-rr-popcorn transition-all duration-[0.3s] ease-in-out mr-[10px] text-[18px] leading-[0]"></i>Juice & Drinks</a>
-                  </li>
+                  {% for category in categories %}
+            <li class="{% if category.id == active_category_id %}active{% endif %} transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
+                <a href="#v-pills-home" class="flex items-center">
+                    <img src="{{ category.image.url }}" alt="{{ category.title }}" class="transition-all duration-[0.3s] ease-in-out mr-[10px] w-[18px] h-[18px]" />
+                    <span>{{ category.title }}</span>
+                </a>
+            </li>
+        {% endfor %}
                 </ul>
                 <div class="tab-content transition-all w-full" id="myTabContent">
                   <div class="tab-pane" id="v-pills-home">
-                    <div class="tab-list w-full flex flex-wrap">
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Dairy</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Milk</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Ice cream</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cheese</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Frozen custard</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Frozen yogurt</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Bakery</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cake and Pastry</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Rusk Toast</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Bread & Buns</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Chocolate Brownie</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cream Roll</a>
-                          </li>
-                        </ul>
-                      </div>
+                    <div class="grid grid-cols-2 gap-4 overflow-auto max-h-[400px]" id="product-grid">
+                        {% for products in productes %}
+                        <div class="border rounded-lg overflow-hidden shadow-md group relative">
+                            <img src="{{ products.images.url }}" alt="{{ products.title }}" class="w-full h-32 object-cover transition-all duration-300 group-hover:opacity-0" />
+                            <img src="{{ products.hover_images.url }}" alt="{{ products.title }}" class="absolute inset-0 w-full h-32 object-cover transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                            <h4 class="text-center text-[#5caf90] font-Poppins text-[15px] font-medium p-2">{{ products.title }}</h4>
+                        </div>
+                        {% endfor %}
                     </div>
-                  </div>
-                  <div class="tab-pane" id="v-pills-profile">
-                    <div class="tab-list w-full flex flex-wrap">
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Fruits</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cauliflower</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Bell Peppers</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Broccoli</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cabbage</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Tomato</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Vegetable</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cauliflower</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Bell Peppers</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Broccoli</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cabbage</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Tomato</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="v-pills-messages">
-                    <div class="tab-list w-full flex flex-wrap">
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Snacks</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">French fries</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">potato chips</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Biscuits & Cookies</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Popcorn</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Rice Cakes</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Spice</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cinnamon Powder</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Cumin Powder</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Fenugreek Powder</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Pepper Powder</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Long Pepper</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="v-pills-settings">
-                    <div class="tab-list w-full flex flex-wrap">
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Juice</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Mango Juice</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Coconut Water</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Tetra Pack</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Apple Juices</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Lychee Juice</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="px-[12px] grow-[1]">
-                        <h6 class="gi-col-title text-[#5caf90] font-Poppins text-[15px] font-medium leading-[30px] capitalize block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">soft drink</h6>
-                        <ul class="cat-list">
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Breizh Cola</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Green Cola</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Jolt Cola</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Mecca Cola</a>
-                          </li>
-                          <li>
-                            <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[28px] font-normal text-[13px] block py-[5px] border-[0] h-auto hover:text-[#5caf90]">Topsia Cola</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
+                
+                
               </div>
             </div>
           </div>
@@ -906,13 +738,14 @@
     {% for message in messages %}
       <div class="p-4 mb-4 text-sm rounded-lg alert {% if message.tags %}
           {% if 'success' in message.tags %}
-            
-            
-            
-            
-            
-            
              text-green-800 bg-green-50
+
+
+
+
+
+
+
 
 
 
@@ -926,7 +759,21 @@
             
             
             
+            
+            
+            
+            
+            
+            
+            
              text-black bg-yellow-50
+
+
+
+
+
+
+
 
 
 
@@ -941,12 +788,5 @@
     {% endfor %}
   {% endif %}
 
-  <script>
-    setTimeout(() => {
-      document.querySelectorAll('.alert').forEach((alert) => {
-        alert.classList.add('opacity-0', 'transition-opacity', 'duration-500')
-        setTimeout(() => alert.remove(), 100)
-      })
-    }, 3000)
-  </script>
 </header>
+
