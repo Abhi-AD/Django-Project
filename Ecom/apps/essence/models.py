@@ -52,6 +52,9 @@ class Category(models.Model):
     def category_images(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
+    def product_count(self):
+        return self.product_set.count()
+
     def __str__(self):
         return self.title
 
@@ -66,7 +69,7 @@ class Tags(models.Model):
 class Vendor(models.Model):
     vid = ShortUUIDField(
         unique=True, length=10, max_length=20, prefix="ven", alphabet="abc"
-    )   
+    )
     title = models.CharField(max_length=100, default="Vendor")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     description = models.TextField(
