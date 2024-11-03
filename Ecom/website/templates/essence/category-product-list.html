@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block title %}
+  Welcome to Ecom
+{% endblock %}
+{% load static %} {% block content %}
+  {% include 'components/ui/header.html' %}
+  {% include 'components/ui/sidebar.html' %}
+  <div class="mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+    <!-- Header Section -->
+    <div class="mx-auto p-6 bg-green-50 rounded-lg">
+      <h1 class="text-3xl font-semibold">Snack</h1>
+      <nav class="text-gray-500 text-sm mt-2">
+        <a href="{% url 'essence:index' %}" class="hover:underline">Home</a> /
+        <a href="#" class="hover:underline">{{ category.title }}</a> /
+      </nav>
+    </div>
+
+    <!-- Item Count and Sort Options -->
+    <div class="mx-auto mt-6 flex justify-between items-center text-gray-700">
+      <p>
+        We found <strong>{{ products.count }}</strong> item{{ products.count|pluralize }} for you!
+      </p>
+      <div class="flex gap-4">
+        <select class="p-2 border border-gray-300 rounded">
+          <option>Show: 50</option>
+          <option>Show: 20</option>
+          <option>Show: 10</option>
+        </select>
+        <select class="p-2 border border-gray-300 rounded">
+          <option>Sort by: Featured</option>
+          <option>Sort by: Price (Low to High)</option>
+          <option>Sort by: Price (High to Low)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Cards -->
+    <div class="mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {% for product in products %}
+        <div class="border border-gray-200 rounded-lg p-4 relative">
+          <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">Hot</span>
+          <!-- Move the title above the image -->
+          <a href="{% url 'essence:category-product-list' product.category.cid %}">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2 mt-4">{{ product.title }}</h3>
+            <img src="{{ product.images.url }}" alt="" class="w-full rounded" />
+            <p class="text-sm text-gray-500 mt-2">By {{ product.vendor }}</p>
+          </a>
+
+          <div class="flex items-center mt-2 text-yellow-500">
+            {% for i in '12345'|make_list %}
+              {% if forloop.counter <= product.rating %}
+                <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+              {% else %}
+                <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left"></i>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="flex items-center justify-between mt-4">
+            <div>
+              <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ product.price }}</span>
+              {% if product.price < product.old_price %}
+                <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
+              {% endif %}
+            </div>
+            <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Add</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% include 'components/ui/footer.html' %}
+  {% include 'components/ui/quickmodel.html' %}
+  {% include 'components/ui/feature.html' %}
+{% endblock %}
