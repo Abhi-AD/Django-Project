@@ -38,3 +38,16 @@ def product_list_view(request):
         "products": products,
     }
     return render(request, "essence/product-list.html", context)
+
+
+def product_list_view(request):
+    categories = Category.objects.all()
+    context = {"categories": categories}
+    return render(request, "essence/category-list.html", context)
+
+
+def category_product_list(request, cid):
+    category = Category.objects.get(cid=cid)
+    products = Product.objects.filter(category=category, product_status="published")
+    context = {"category": category, "products": products}
+    return render(request, "essence/category-product-list.html", context)
