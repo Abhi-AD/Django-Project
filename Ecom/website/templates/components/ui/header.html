@@ -202,39 +202,38 @@
         <!-- Category Toggle -->
         <div class="gi-category-icon-block py-[5px] static">
           <div class="gi-category-menu relative">
-            <div class="gi-category-toggle w-[200px] min-h-[50px] px-[15px] flex items-center bg-[#5caf90] rounded-[5px] cursor-pointer max-[1199px]:w-auto max-[991px]:border-[0]">
+            <div class="gi-category-toggle w-[200px] min-h-[50px] px-[15px] flex items-center bg-[#5caf90] rounded-[5px] cursor-pointer" id="categoryToggle">
               <i class="fi fi-rr-apps text-[18px] text-[#fff] leading-[0]"></i>
-              <span class="text ml-[10px] text-[15px] text-[#fff] font-medium max-[1199px]:hidden">All Categories</span>
-              <i class="fi-rr-angle-small-down text-[18px] uppercase text-[#fff] text-center absolute right-[15px] leading-[0] max-[1199px]:hidden" aria-hidden="true"></i>
+              <span class="text ml-[10px] text-[15px] text-[#fff] font-medium">All Categories</span>
+              <i class="fi-rr-angle-small-down text-[18px] uppercase text-[#fff] text-center absolute right-[15px] leading-[0]" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="gi-cat-dropdown transition-all duration-[0.3s] ease-in-out w-[600px] mt-[15px] p-[15px] absolute bg-[#fff] opacity-[0] invisible left-[0] z-[-15] rounded-[5px] border-[1px] border-solid border-[#eee]">
+          <div id="categoryDropdown" class="gi-cat-dropdown transition-all duration-[0.3s] ease-in-out w-[600px] mt-[15px] p-[15px] absolute bg-[#fff] opacity-0 invisible left-[0] z-[-15] rounded-[5px] border-[1px] border-solid border-[#eee]">
             <div class="gi-cat-block">
               <div class="gi-cat-tab flex">
                 <ul class="nav-tabs min-w-[230px] bg-[#f8f8fb] p-[15px] rounded-[5px] flex-col justify-center mr-[16px]" id="myTab">
                   {% for category in categories %}
-            <li class="{% if category.id == active_category_id %}active{% endif %} transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
-                <a href="#v-pills-home" class="flex items-center">
-                    <img src="{{ category.image.url }}" alt="{{ category.title }}" class="transition-all duration-[0.3s] ease-in-out mr-[10px] w-[18px] h-[18px]" />
-                    <span>{{ category.title }}</span>
-                </a>
-            </li>
-        {% endfor %}
+                    <li class="{% if category.id == active_category_id %}active{% endif %} transition-all duration-[0.3s] ease-in-out cursor-pointer px-[15px] py-[10px] bg-[#fff] text-[13px] text-[#4b5966] font-medium text-left capitalize border-[1px] border-solid border-[#eee] rounded-[5px] flex items-center mb-[10px]">
+                      <a href="#v-pills-home" class="flex items-center">
+                        <img src="{{ category.image.url }}" alt="{{ category.title }}" class="transition-all duration-[0.3s] ease-in-out mr-[10px] w-[18px] h-[18px]" />
+                        <span>{{ category.title }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
                 </ul>
                 <div class="tab-content transition-all w-full" id="myTabContent">
                   <div class="tab-pane" id="v-pills-home">
                     <div class="grid grid-cols-2 gap-4 overflow-auto max-h-[400px]" id="product-grid">
-                        {% for products in productes %}
+                      {% for products in productes %}
                         <div class="border rounded-lg overflow-hidden shadow-md group relative">
-                            <img src="{{ products.images.url }}" alt="{{ products.title }}" class="w-full h-32 object-cover transition-all duration-300 group-hover:opacity-0" />
-                            <img src="{{ products.hover_images.url }}" alt="{{ products.title }}" class="absolute inset-0 w-full h-32 object-cover transition-all duration-300 opacity-0 group-hover:opacity-100" />
-                            <h4 class="text-center text-[#5caf90] font-Poppins text-[15px] font-medium p-2">{{ products.title }}</h4>
+                          <img src="{{ products.images.url }}" alt="{{ products.title }}" class="w-full h-32 object-cover transition-all duration-300 group-hover:opacity-0" />
+                          <img src="{{ products.hover_images.url }}" alt="{{ products.title }}" class="absolute inset-0 w-full h-32 object-cover transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                          <h4 class="text-center text-[#5caf90] font-Poppins text-[15px] font-medium p-2">{{ products.title }}</h4>
                         </div>
-                        {% endfor %}
+                      {% endfor %}
                     </div>
+                  </div>
                 </div>
-                
-                
               </div>
             </div>
           </div>
@@ -261,92 +260,14 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="dropdown drop-list static ml-[20px] mr-[30px] transition-all duration-[0.3s] ease-in-out max-[1199px]:ml-[15px]">
+                    <li class="dropdown drop-list relative ml-[20px] mr-[30px] transition-all duration-[0.3s] ease-in-out max-[1199px]:ml-[15px]">
                       <a href="javascript:void(0)" class="dropdown-arrow relative transition-all duration-[0.3s] ease-in-out text-[15px] leading-[60px] capitalize text-[#4b5966] flex items-center font-medium">Categories<i class="fi-rr-angle-small-right transition-all duration-[0.3s] ease-in-out mr-[5px] text-[#4b5966] absolute right-[-27px] text-[18px] rotate-[90deg] flex"></i></a>
-                      <ul class="mega-menu block transition-all duration-[0.3s] ease-in-out w-full max-[1399px]:mx-[12px] max-[1399px]:w-[calc(100%-24px)] mt-[15px] absolute bg-[#fff] pl-[30px] opacity-0 invisible left-0 z-[15] rounded-[5px] border-[1px] border-solid border-[#eee] truncate">
-                        <li class="flex">
-                          <span class="bg"></span>
-                          <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
-                            <li class="menu_title">
-                              <a href="javascript:void(0)" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Classic</a>
-                            </li>
-                            <li>
-                              <a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Left sidebar 3 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-left-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Left sidebar 4 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-right-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Right sidebar 3 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-right-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Right sidebar 4 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-full-width.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Full width 4 column</a>
-                            </li>
-                          </ul>
-                          <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
-                            <li class="menu_title">
-                              <a href="javascript:void(0)" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Banner</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">left sidebar 3 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-left-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">left sidebar 4 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-right-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">right sidebar column</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-right-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">right sidebar 4 column</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-full-width.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Full width 4 column</a>
-                            </li>
-                          </ul>
-                          <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
-                            <li class="menu_title">
-                              <a href="javascript:void(0)" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Columns</a>
-                            </li>
-                            <li>
-                              <a href="shop-full-width-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">3 Columns full width</a>
-                            </li>
-                            <li>
-                              <a href="shop-full-width-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">4 Columns full width</a>
-                            </li>
-                            <li>
-                              <a href="shop-full-width-col-5.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">5 Columns full width</a>
-                            </li>
-                            <li>
-                              <a href="shop-full-width-col-6.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">6 Columns full width</a>
-                            </li>
-                            <li>
-                              <a href="shop-banner-full-width-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Banner 3 Columns</a>
-                            </li>
-                          </ul>
-                          <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
-                            <li class="menu_title">
-                              <a href="javascript:void(0)" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">List</a>
-                            </li>
-                            <li>
-                              <a href="shop-list-left-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Shop left sidebar</a>
-                            </li>
-                            <li>
-                              <a href="shop-list-right-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Shop right sidebar</a>
-                            </li>
-                            <li>
-                              <a href="shop-list-banner-left-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Banner left sidebar</a>
-                            </li>
-                            <li>
-                              <a href="shop-list-banner-right-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Banner right sidebar</a>
-                            </li>
-                            <li>
-                              <a href="shop-list-full-col-2.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Full width 2 columns</a>
-                            </li>
-                          </ul>
-                        </li>
+                      <ul class="sub-menu transition-all duration-[0.3s] ease-in-out mt-[15px] absolute z-[16] text-left opacity-0 invisible min-w-[205px] left-0 right-auto bg-[#fff] block rounded-[5px] border-[1px] border-solid border-[#eee] py-[5px]">
+                        {% for categorie in categories %}
+                          <li>
+                            <a href="{% url 'essence:category-product-list' categorie.cid %}" class="transition-all duration-[0.3s] ease-in-out leading-[20px] px-[20px] py-[10px] font-normal text-[13px] text-[#777] capitalize flex justify-between items-center hover:text-[#5caf90]">{{ categorie.title }}</a>
+                          </li>
+                        {% endfor %}
                       </ul>
                     </li>
                     <li class="dropdown drop-list relative ml-[20px] mr-[30px] transition-all duration-[0.3s] ease-in-out max-[1199px]:ml-[15px]">
@@ -738,7 +659,25 @@
     {% for message in messages %}
       <div class="p-4 mb-4 text-sm rounded-lg alert {% if message.tags %}
           {% if 'success' in message.tags %}
+            
+            
+            
+            
+            
+            
+            
+            
+            
              text-green-800 bg-green-50
+
+
+
+
+
+
+
+
+
 
 
 
@@ -766,7 +705,25 @@
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
              text-black bg-yellow-50
+
+
+
+
+
+
+
+
+
 
 
 
@@ -787,6 +744,26 @@
       </div>
     {% endfor %}
   {% endif %}
-
 </header>
 
+<script>
+  document.getElementById('categoryToggle').addEventListener('click', function () {
+    const dropdown = document.getElementById('categoryDropdown')
+    const isVisible = dropdown.classList.contains('opacity-100')
+  
+    // Toggle visibility
+    if (isVisible) {
+      dropdown.classList.remove('opacity-100', 'visible')
+      dropdown.classList.add('opacity-0', 'invisible', 'z-[-15]')
+    } else {
+      dropdown.classList.remove('opacity-0', 'invisible', 'z-[-15]')
+      dropdown.classList.add('opacity-100', 'visible', 'z-10')
+    }
+  })
+</script>
+
+<style>
+  .gi-cat-dropdown {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+</style>
