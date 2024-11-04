@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block title %}
+  Vendor List
+{% endblock %}
+{% load static %} {% block content %}
+  {% include 'components/ui/header.html' %}
+  {% include 'components/ui/sidebar.html' %}
+  <div class="mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+    <!-- Header Section -->
+    <!-- Search Bar and Vendor Count -->
+    <div class="mb-4 flex flex-col items-center">
+      <input type="text" placeholder="Search vendors (by name or ID)..." class="w-full max-w-lg p-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring focus:ring-indigo-100" />
+      <p class="mt-4 text-gray-600">
+        We have <span class="font-semibold text-indigo-600">{{ vendors.count }}</span> vendor{{ vendors.count|pluralize }} now
+      </p>
+    </div>
+
+    <!-- Filter and Sort Options -->
+    <div class="flex justify-center space-x-4 mb-8">
+      <button class="flex items-center px-4 py-2 bg-gray-100 rounded-md shadow-sm text-gray-700"><i class="material-icons mr-2">view_list</i> Show: 50</button>
+      <button class="flex items-center px-4 py-2 bg-gray-100 rounded-md shadow-sm text-gray-700"><i class="material-icons mr-2">sort</i> Sort by: Featured</button>
+    </div>
+
+    <!-- Vendor Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for vendor in vendors %}
+        <div class="max-w-md mx-auto bg-white rounded-lg border border-gray-200 shadow-md overflow-hidden">
+          <div class="flex items-start p-4">
+            <img src="{{ vendor.image.url }}" alt="Profile Image" class="w-24 h-24 rounded-full object-cover mr-4" />
+            <div class="flex-grow">
+              <p class="text-gray-500 text-xs">Since {{ vendor.date|date:'Y' }}</p>
+              <h2 class="text-xl font-bold text-gray-800">{{ vendor.title }}</h2>
+              <div class="flex items-center text-yellow-500 text-sm">
+                <span class="mr-1">★★★★☆</span>
+                <span class="text-gray-500">(40)</span>
+              </div>
+              <p class="text-gray-600 text-sm mt-1">Address:{{ vendor.address }}</p>
+              <p class="text-gray-600 text-sm mt-1">Call Us: {{ vendor.contact }}</p>
+            </div>
+
+            <!-- Button Section -->
+            <button class="bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Mail</button>
+          </div>
+
+          <!-- Query Section -->
+          <div class="px-4 py-2 bg-gray-50 border-t border-gray-200">
+            <p class="text-xs text-gray-700">
+              <span class="font-semibold">{{ vendor.product.all.count }} Products</span>
+            </p>
+          </div>
+
+          <!-- Visit Store Button -->
+          <div class="p-4 flex justify-end">
+            <button class="bg-green-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-green-600">Visit Store</button>
+          </div>
+        </div>
+      {% endfor %}
+      {% for vendor in vendors %}
+        <div class="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+          <img src="{{ vendor.image.url }}" alt="Store Image" class="w-full h-48 object-cover rounded-t-lg" />
+          <div class="p-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm bg-teal-200 text-teal-800 px-2 py-1 rounded-full">{{ vendor.product.all.count }}</span>
+              <span class="text-sm bg-red-200 text-red-800 px-2 py-1 rounded-full">Mall</span>
+            </div>
+
+            <h2 class="mt-4 text-xl font-semibold text-gray-800">Nature Food</h2>
+            <p class="text-sm text-gray-600">⭐️⭐️⭐️⭐️ (4.0)</p>
+            <p class="mt-2 text-gray-600 text-sm">Address: 5171 W Campbell Ave, Kent, Utah 53127, United States</p>
+            <p class="text-gray-600 text-sm">Call Us: (+91) - 540-025-124553</p>
+
+            <button class="mt-4 bg-teal-600 text-white px-4 py-2 rounded-md">Visit Store →</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% include 'components/ui/footer.html' %}
+  {% include 'components/ui/quickmodel.html' %}
+  {% include 'components/ui/feature.html' %}
+{% endblock %}
