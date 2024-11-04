@@ -83,6 +83,7 @@ class Vendor(models.Model):
     days_return = models.CharField(max_length=100, default="100")
     warranty_period = models.CharField(max_length=100, default="100")
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Vendors"
@@ -100,7 +101,9 @@ class Product(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
+    vendor = models.ForeignKey(
+        Vendor, on_delete=models.SET_NULL, null=True, related_name="product"
+    )
     title = models.CharField(max_length=100, default="Product")
     status_type = models.CharField(choices=STATUS_TYPES, max_length=10, default="new")
     images = models.ImageField(upload_to=user_directory_path, default="product.jpg")
