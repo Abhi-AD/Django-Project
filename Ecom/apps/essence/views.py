@@ -40,7 +40,15 @@ def product_list_view(request):
     return render(request, "essence/product-list.html", context)
 
 
-def product_list_view(request):
+def product_detail_view(request, pid):
+    product = Product.objects.get(pid=pid)
+    context = {
+        "product": product,
+    }
+    return render(request, "essence/product/product-detail.html", context)
+
+
+def category_list_view(request):
     categories = Category.objects.all()
     context = {"categories": categories}
     return render(request, "essence/category-list.html", context)
