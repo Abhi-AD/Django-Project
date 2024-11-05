@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% block title %}
+  Vendor List
+{% endblock %}
+{% load static %} {% block content %}
+  {% include 'components/ui/header.html' %}
+  {% include 'components/ui/sidebar.html' %}
+  <div class="mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+    <div class="bg-cover bg-center rounded-lg shadow-md p-6 text-white relative" style="background-image: url('/path/to/your/image.jpg');">
+      <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
+      <div class="relative z-10 flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <img src="{{ vendor.image.url }}" alt="Vendor Icon" class="w-16 h-16 bg-orange-500 rounded-full p-3" />
+        </div>
+        <div>
+          <p class="text-sm">Since {{ vendor.date|date:'Y' }}</p>
+          <h2 class="text-2xl font-semibold">{{ vendor.title }}</h2>
+          <div class="flex items-center mt-1">
+            <span class="text-yellow-400">★</span>
+            <p class="ml-1">(4.0)</p>
+          </div>
+          <p class="mt-1">{{ vendor.description }}</p>
+        </div>
+        <div class="relative z-10 mt-4 flex items-center space-x-8">
+          <div class="text-sm px-4 py-2">
+            <p>Address: {{ vendor.address }}</p>
+            <p>Call Us: {{ vendor.contact }}</p>
+          </div>
+          <div class="text-sm">
+            <p class="font-semibold">Follow Us</p>
+            <div class="flex space-x-2 mt-1">
+              <a href="#" aria-label="Twitter">
+                <svg class="w-6 h-6 text-white hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 4.557a9.91 9.91 0 01-2.828.775A4.933 4.933 0 0023.337 3.6a9.867 9.867 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482A13.95 13.95 0 011.64 3.161a4.919 4.919 0 001.523 6.573 4.903 4.903 0 01-2.229-.616v.061a4.925 4.925 0 003.946 4.829 4.933 4.933 0 01-2.224.084 4.922 4.922 0 004.6 3.417A9.876 9.876 0 010 19.54a13.924 13.924 0 007.548 2.212c9.058 0 14.01-7.504 14.01-14.009 0-.213-.005-.426-.015-.637A9.992 9.992 0 0024 4.557z" />
+                </svg>
+              </a>
+
+              <!-- Facebook Icon -->
+              <a href="#" aria-label="Facebook">
+                <svg class="w-6 h-6 text-white hover:text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692V11.09h3.128V8.445c0-3.1 1.893-4.79 4.658-4.79 1.325 0 2.463.099 2.794.144v3.24h-1.918c-1.504 0-1.794.715-1.794 1.762v2.31h3.587l-.467 3.615h-3.12V24h6.116c.731 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z" />
+                </svg>
+              </a>
+
+              <!-- Instagram Icon -->
+              <a href="#" aria-label="Instagram">
+                <svg class="w-6 h-6 text-white hover:text-pink-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.316 3.608 1.291.975.975 1.229 2.242 1.291 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.316 2.633-1.291 3.608-.975.975-2.242 1.229-3.608 1.291-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.316-3.608-1.291-.975-.975-1.229-2.242-1.291-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.316-2.633 1.291-3.608C5.517 2.479 6.784 2.225 8.15 2.163 9.416 2.105 9.796 2.093 12 2.093m0-2.163C8.736 0 8.332.012 7.052.07 5.678.133 4.603.48 3.757 1.325.482 4.601.135 5.677.07 7.051.012 8.331 0 8.735 0 12s.012 3.669.07 4.949c.065 1.374.412 2.45 1.257 3.296.846.846 1.922 1.193 3.296 1.257 1.28.058 1.684.07 4.949.07s3.669-.012 4.949-.07c1.374-.065 2.45-.412 3.296-1.257.846-.846 1.193-1.922 1.257-3.296.058-1.28.07-1.684.07-4.949s-.012-3.669-.07-4.949c-.065-1.374-.412-2.45-1.257-3.296-.846-.846-1.922-1.193-3.296-1.257C15.669.012 15.265 0 12 0z" />
+                  <circle cx="12" cy="12" r="3.563" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex p-8">
+      <aside class="w-1/4 mr-8">
+        <div class="bg-yellow-100 p-6 rounded-lg mb-8">
+          <img src="path-to-banner-image.jpg" alt="Fresh Vegetables" class="rounded-lg mb-4" />
+          <h2 class="text-xl font-semibold">Fresh Vegetable</h2>
+          <button class="bg-orange-500 text-white py-2 px-4 rounded-lg mt-4">Shop Now</button>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-lg font-semibold mb-4">Category</h3>
+          <ul>
+            {% for category in categories %}
+              <li class="flex items-center justify-between mb-3">
+                <span class="flex items-center">
+                  <img src="{{ category.image.url }}" class="w-5 h-5 mr-2" alt="Milk & Dairies" />
+                  {{ category.title }}
+                </span>
+                <span class="">{{ category.product_count }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+
+      <div class="w-3/4">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">We found 2 items for you!</h2>
+          <div class="flex space-x-4">
+            <select class="border border-gray-300 p-2 rounded">
+              <option>Show: 50</option>
+            </select>
+            <select class="border border-gray-300 p-2 rounded">
+              <option>Sort by: Featured</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          {% for product in products %}
+            <div class="flex p-6 bg-white rounded-lg shadow items-start">
+              <div class="relative w-1/4 group">
+                <img src="{{ product.images.url }}" alt="{{ product.title }}" class="w-full rounded-lg mb-4 transition-opacity duration-300 group-hover:opacity-0" />
+                <img src="{{ product.hover_images.url }}" alt="{{ product.title }}" class="absolute inset-0 w-full h-full rounded-lg mb-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-sm font-semibold px-2 py-1 rounded">
+                  {% if product.price < product.old_price %}
+                    {{ product.get_discount_percentage|floatformat:0 }}%
+                  {% endif %}
+                </span>
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                  <button class="bg-gray-200 p-2 rounded-full">❤️</button>
+                  <button class="bg-gray-200 p-2 rounded-full">🔍</button>
+                  <button class="bg-gray-200 p-2 rounded-full">🔄</button>
+                </div>
+              </div>
+              <div class="w-3/4 ml-6">
+                <h3 class="text-xl font-semibold">{{ product.category.title }}</h3>
+                <p class="text-gray-500 text-sm mb-2">{{ product.title|truncatechars:20 }}</p>
+                <p class="text-gray-500 text-sm mb-4">{{ product.description }}</p>
+                <div class="text-lg font-semibold text-green-500 mb-2">
+                  ${{ product.price }} <span class="line-through text-gray-400">${{ product.old_price }}</span>
+                </div>
+                <div class="flex space-x-4">
+                  <button class="bg-green-500 text-white py-2 px-4 rounded-lg">Add to Cart</button>
+                  <button class="text-green-500 flex items-center"><span class="mr-2">⇄</span>Add Compare</button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'components/ui/footer.html' %}
+  {% include 'components/ui/quickmodel.html' %}
+  {% include 'components/ui/feature.html' %}
+{% endblock %}
