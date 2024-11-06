@@ -21,15 +21,22 @@ class ProductImagesAdmin(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
+
     list_display = [
         "user",
         "title",
-        "product_images",
+        "display_product_images",  # Custom method to show images
         "price",
         "vendor",
         "featured",
         "product_status",
     ]
+
+    def display_product_images(self, obj):
+        # Using the correct related_name to access related images
+        return ", ".join([img.image.url for img in obj.product_images.all()[:3]])
+
+    display_product_images.short_description = "Product Images"  # Set column header
 
 
 class CategoryAdmin(admin.ModelAdmin):
