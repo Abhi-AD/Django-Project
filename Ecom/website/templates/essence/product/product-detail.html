@@ -62,48 +62,42 @@
                         </div>
                       </div>
                       <div class="gi-single-stoke flex flex-col">
-                        <span class="gi-single-sku mb-[15px] text-[18px] leading-[32px] text-[#4b5966] font-semibold tracking-[0.02rem]">SKU#: WH12</span>
-                        <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">IN STOCK</span>
+                        <span class="gi-single-sku mb-[15px] text-[18px] leading-[32px] text-[#4b5966] font-semibold tracking-[0.02rem]">SKU#: {{ product.sku }}</span>
+                        <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">IN STOCK{{ product.stock_count }}</span>
                       </div>
                     </div>
-                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description }}</div>
-                    {% comment %} <div class="gi-single-list">
+                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description |truncatechars:150 }}</div>
+                    <div class="gi-single-list">
                       <ul class="mb-[30px] pl-[18px]">
                         <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Closure :</strong> Hook & Loop
+                          <strong class="font-semibold">Type :</strong> {{ product.type }}
                         </li>
                         <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Sole :</strong> Polyvinyl Chloride
-                        </li>
-                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Width :</strong> Medium
-                        </li>
-                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Outer Material :</strong> A-Grade Standard Quality
+                          <strong class="font-semibold">MFG :</strong> {{ product.mfd|date:'d M,Y' }}
                         </li>
                       </ul>
                     </div>
-                    <div class="gi-pro-variation mb-[20px] pb-[5px]">
-                      <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
-                        <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Weight</span>
-                        <div class="gi-pro-variation-content">
-                          <ul>
-                            <li class="active h-[22px] font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span class="">250g</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>500g</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>1kg</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>2kg</span>
-                            </li>
-                          </ul>
+                      {% comment %} <div class="gi-pro-variation mb-[20px] pb-[5px]">
+                        <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
+                          <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Weight</span>
+                          <div class="gi-pro-variation-content">
+                            <ul>
+                              <li class="active h-[22px] font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                                <span class="">250g</span>
+                              </li>
+                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                                <span>500g</span>
+                              </li>
+                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                                <span>1kg</span>
+                              </li>
+                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                                <span>2kg</span>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                      </div>
-                    </div> {% endcomment %}
+                      </div> {% endcomment %}
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
                       <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
                         <input class="qty-input" type="text" name="ms_qtybtn" value="1" />
@@ -230,16 +224,10 @@
               </div>
               <div class="tab-content transition-all w-full overflow-hidden bg-[#fff] text-left p-[30px] border-[1px] border-solid border-[#eee] text-[#202020] text-[18px] tracking-[0] leading-[1.6] rounded-[5px]" id="singleTabContent">
                 <div id="gi-spt-nav-details" class="tab-single-pane">
-                  <div class="gi-single-pro-tab-desc">
-                    <p class="mb-[15px] text-[14px] tracking-[0] text-[#777] leading-[28px] font-normal font-Poppins">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                    <ul class="mb-[15px] pl-[24px]">
-                      <li class="list-disc text-[15px] mb-[4px] text-[#777]">Any Product types that You want - Simple, Configurable</li>
-                      <li class="list-disc text-[15px] mb-[4px] text-[#777]">Downloadable/Digital Products, Virtual Products</li>
-                      <li class="list-disc text-[15px] mb-[4px] text-[#777]">Inventory Management with Backordered items</li>
-                      <li class="list-disc text-[15px] mb-[4px] text-[#777]">Flatlock seams throughout.</li>
-                    </ul>
-                    <p class="font-Poppins mb-[15px] text-[14px] tracking-[0] text-[#777] leading-[28px] font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                    <p class="font-Poppins text-[14px] tracking-[0] text-[#777] leading-[28px] font-normal">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+                  <div>
+                    <p>
+                      {{product.description}}
+                    </p>
                   </div>
                 </div>
                 <div id="gi-spt-nav-info" class="tab-single-pane">
