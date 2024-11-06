@@ -116,7 +116,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default="1.99")
     old_price = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
     specifications = models.TextField(null=True, blank=True)
-    life = models.CharField(max_length=100, default="100 days", null=True, blank=True)
+    type = models.CharField(max_length=100, default="Oranic", null=True, blank=True)
     mfd = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
     tags = models.ManyToManyField(Tags, related_name="products", blank=True)
