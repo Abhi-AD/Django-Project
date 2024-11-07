@@ -30,6 +30,7 @@ class ProductAdmin(admin.ModelAdmin):
         "vendor",
         "featured",
         "product_status",
+        "pid",
     ]
 
     def display_product_images(self, obj):
