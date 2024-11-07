@@ -43,7 +43,8 @@ def product_list_view(request):
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     product_image = product.product_images.all()
-    context = {"product": product, "product_image": product_image}
+    products = Product.objects.filter(category=product.category).exclude(pid=pid)
+    context = {"product": product, "product_image": product_image, "products": products}
     return render(request, "essence/product/product-detail.html", context)
 
 
