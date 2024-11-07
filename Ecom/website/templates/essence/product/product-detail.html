@@ -16,19 +16,22 @@
                   <div class="single-product-scroll p-[15px] sticky top-[30px] rounded-[5px] border-[1px] border-solid border-[#eee]">
                     <div class="single-product-cover overflow-hidden cursor-zoom-in rounded-[5px]">
                       <div class="single-slide zoom-image-hover">
-                        <img class="img-responsive h-full w-full" src="{{ product.images.url }}" alt="" />
+                        <img class="img-responsive h-full w-full object-cover" src="{{ product.images.url }}" alt="" />
                       </div>
 
                       {% for product_image in product_image %}
                         <div class="single-slide zoom-image-hover">
-                          <img class="img-responsive h-full w-full" src="{{ product_image.images.url }}" alt="" />
+                          <img class="img-responsive h-full w-full object-cover" src="{{ product_image.image.url }}" alt="" />
                         </div>
                       {% endfor %}
                     </div>
                     <div class="single-nav-thumb w-full overflow-hidden">
+                      <div class="single-slide px-[11px] pt-[11px] h-20">
+                        <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product.images.url }}" alt="" />
+                      </div>
                       {% for product_image in product_image %}
-                        <div class="single-slide px-[11px] pt-[11px]">
-                          <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product_image.images.url }}" alt="" />
+                        <div class="single-slide px-[11px] pt-[11px] h-20">
+                          <img class="img-responsive h-full w-full border-[1px] border-solid border-transparent transition-all duration-[0.3s] ease delay-[0s] cursor-pointer rounded-[5px]" src="{{ product_image.image.url }}" alt="" />
                         </div>
                       {% endfor %}
                     </div>
@@ -63,10 +66,10 @@
                       </div>
                       <div class="gi-single-stoke flex flex-col">
                         <span class="gi-single-sku mb-[15px] text-[18px] leading-[32px] text-[#4b5966] font-semibold tracking-[0.02rem]">SKU#: {{ product.sku }}</span>
-                        <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">IN STOCK{{ product.stock_count }}</span>
+                        <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">IN STOCK {{ product.stock_count }}</span>
                       </div>
                     </div>
-                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description |truncatechars:150 }}</div>
+                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description|truncatechars:150 }}</div>
                     <div class="gi-single-list">
                       <ul class="mb-[30px] pl-[18px]">
                         <li class="my-[10px] text-[#777] text-[14px] list-circle">
@@ -77,27 +80,27 @@
                         </li>
                       </ul>
                     </div>
-                      {% comment %} <div class="gi-pro-variation mb-[20px] pb-[5px]">
-                        <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
-                          <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Weight</span>
-                          <div class="gi-pro-variation-content">
-                            <ul>
-                              <li class="active h-[22px] font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                                <span class="">250g</span>
-                              </li>
-                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                                <span>500g</span>
-                              </li>
-                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                                <span>1kg</span>
-                              </li>
-                              <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                                <span>2kg</span>
-                              </li>
-                            </ul>
-                          </div>
+                    {% comment %} <div class="gi-pro-variation mb-[20px] pb-[5px]">
+                      <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
+                        <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Weight</span>
+                        <div class="gi-pro-variation-content">
+                          <ul>
+                            <li class="active h-[22px] font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                              <span class="">250g</span>
+                            </li>
+                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                              <span>500g</span>
+                            </li>
+                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                              <span>1kg</span>
+                            </li>
+                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
+                              <span>2kg</span>
+                            </li>
+                          </ul>
                         </div>
-                      </div> {% endcomment %}
+                      </div>
+                    </div> {% endcomment %}
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
                       <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
                         <input class="qty-input" type="text" name="ms_qtybtn" value="1" />
@@ -225,9 +228,7 @@
               <div class="tab-content transition-all w-full overflow-hidden bg-[#fff] text-left p-[30px] border-[1px] border-solid border-[#eee] text-[#202020] text-[18px] tracking-[0] leading-[1.6] rounded-[5px]" id="singleTabContent">
                 <div id="gi-spt-nav-details" class="tab-single-pane">
                   <div>
-                    <p>
-                      {{product.description}}
-                    </p>
+                    <p>{{ product.description }}</p>
                   </div>
                 </div>
                 <div id="gi-spt-nav-info" class="tab-single-pane">
@@ -256,9 +257,9 @@
                   <div class="gi-single-pro-tab-moreinfo">
                     <div class="gi-product-vendor">
                       <div class="gi-vendor-info mb-[15px] flex flex-row">
-                        <span><img src="assets/img/vendor/3.jpg" alt="vendor" class="w-[80px] mr-[15px] border-[1px] border-solid border-[#eee]" /></span>
+                        <span><img src="{{ product.vendor.image.url }}" alt="{{ product.vendor.title }}" class="w-[80px] mr-[15px] border-[1px] border-solid border-[#eee]" /></span>
                         <div>
-                          <h5 class="text-[15px] font-semibold text-[#4b5966]">Ocean Crate</h5>
+                          <h5 class="text-[15px] font-semibold text-[#4b5966]">{{ product.vendor.title }}</h5>
                           <p class="text-[#777] font-Poppins text-[14px] font-normal leading-[28px]">Products : 358</p>
                           <p class="text-[#777] font-Poppins text-[14px] font-normal leading-[28px]">Sales : 5587</p>
                         </div>
@@ -266,16 +267,16 @@
                       <div class="gi-detail">
                         <ul class="mb-[15px] pl-[24px]">
                           <li class="mb-[4px] text-[15px] list-disc text-[#777] max-[575px]:mb-[10px]">
-                            <span class="mr-[25px] min-w-[150px] text-[15px] text-[#4b5966] inline-block font-medium tracking-[0.02rem] max-[575px]:w-full">Phone No. :</span> +00 987654321
+                            <span class="mr-[25px] min-w-[150px] text-[15px] text-[#4b5966] inline-block font-medium tracking-[0.02rem] max-[575px]:w-full">Phone No. :</span> {{ product.vendor.contact }}
                           </li>
                           <li class="mb-[4px] text-[15px] list-disc text-[#777] max-[575px]:mb-[10px]">
                             <span class="mr-[25px] min-w-[150px] text-[15px] text-[#4b5966] inline-block font-medium tracking-[0.02rem] max-[575px]:w-full">Email. :</span> Example@gmail.com
                           </li>
                           <li class="mb-[4px] text-[15px] list-disc text-[#777] max-[575px]:mb-[10px]">
-                            <span class="mr-[25px] min-w-[150px] text-[15px] text-[#4b5966] inline-block font-medium tracking-[0.02rem] max-[575px]:w-full">Address. :</span> 2548 Broaddus Maple Court, Madisonville KY 4783, USA.
+                            <span class="mr-[25px] min-w-[150px] text-[15px] text-[#4b5966] inline-block font-medium tracking-[0.02rem] max-[575px]:w-full">Address. :</span> {{ product.vendor.address }}
                           </li>
                         </ul>
-                        <p class="text-[#777] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.02rem]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="text-[#777] font-Poppins text-[14px] font-normal leading-[28px] tracking-[0.02rem]">{{ product.vendor.description }}</p>
                       </div>
                     </div>
                   </div>
