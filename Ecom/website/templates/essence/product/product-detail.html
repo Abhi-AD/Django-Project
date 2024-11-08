@@ -78,6 +78,12 @@
                         <li class="my-[10px] text-[#777] text-[14px] list-circle">
                           <strong class="font-semibold">MFG :</strong> {{ product.mfd|date:'d M,Y' }}
                         </li>
+                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
+                          <strong class="font-semibold">Tag :</strong>
+                          {% for tag in product.tag.all %}
+                            <a href="{% url 'essence:tag-list' tag.slug %}">#{{ tag.name }}</a>,
+                          {% endfor %}
+                        </li>
                       </ul>
                     </div>
                     {% comment %} <div class="gi-pro-variation mb-[20px] pb-[5px]">
