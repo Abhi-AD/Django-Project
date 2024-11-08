@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.essence",
     "apps.userauth",
     # other lib
+    "taggit",
 ]
 
 MIDDLEWARE = [

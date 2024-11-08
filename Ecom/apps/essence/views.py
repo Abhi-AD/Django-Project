@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from apps.essence.models import (
     Product,
@@ -12,6 +12,7 @@ from apps.essence.models import (
     Address,
 )
 from django.core.paginator import Paginator
+from taggit.models import Tag
 
 
 # Create your views here.
@@ -75,3 +76,19 @@ def vendor_details_view(request, vid):
     )
     context = {"vendor": vendor, "products": products}
     return render(request, "essence/vendor/vendor-detail.html", context)
+
+
+def tag_list(request, tag_slug=None):
+    products = Product.objects.filter(product_status="published").order_by("-id")
+    tag = None
+
+    # Filter by tag if provided
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        products = products.filter(tag__in=[tag])
+
+    context = {
+        "products": products,
+        "tag": tag,
+    }
+    return render(request, "essence/tag-list.html", context)
