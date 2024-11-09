@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.userauth",
     # other lib
     "taggit",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,14 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL = "userauth.User"
+
+CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "skin": "moono",
+        "codeSnippet_theme": "monokai",
+        "toolbar": "all",
+        "extraplugin": ",".join(["codesnippets", "widgets", "dialogs"]),
+    },
+}
