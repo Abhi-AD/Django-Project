@@ -148,6 +148,6 @@ CKEDITOR_CONFIGS = {
         "skin": "moono",
         "codeSnippet_theme": "monokai",
         "toolbar": "all",
-        "extraplugin": ",".join(["codesnippets", "widgets", "dialogs"]),
+        "extraPlugins": ",".join(["codesnippet", "widget", "dialog"]),
     },
 }
