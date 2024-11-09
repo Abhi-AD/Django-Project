@@ -69,7 +69,7 @@
                         <span class="gi-single-ps-title leading-[1] text-[16px] text-[#5caf90] tracking-[0]">IN STOCK {{ product.stock_count }}</span>
                       </div>
                     </div>
-                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description|truncatechars:150 }}</div>
+                    <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description|truncatechars:150|safe }}</div>
                     <div class="gi-single-list">
                       <ul class="mb-[30px] pl-[18px]">
                         <li class="my-[10px] text-[#777] text-[14px] list-circle">
