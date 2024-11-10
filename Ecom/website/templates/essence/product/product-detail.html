@@ -357,13 +357,9 @@
                             })
                           </script>
 
-                          <div class="gi-ratting-input mb-[10px]">
-                            <input name="your-name" placeholder="Name" type="text" class="text-[14px] rounded-[5px] w-full mb-[15px] py-[5px] px-[20px] outline-[0] border-[1px] border-solid border-[#eee] text-[#777] h-[50px]" />
-                          </div>
-                          <div class="gi-ratting-input mb-[10px]">
-                            <input name="your-email" placeholder="Email*" type="email" class="text-[14px] rounded-[5px] w-full mb-[15px] py-[5px] px-[20px] outline-[0] border-[1px] border-solid border-[#eee] text-[#777] h-[50px]" required />
-                          </div>
+                          <div class="gi-ratting-input mb-[10px]">{{ review_form }}</div>
                           <div class="gi-ratting-input form-submit">
+                            {{ review_form.review }}
                             <textarea name="your-commemt" placeholder="Enter Your Comment" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] h-[150px] p-[20px] mb-[15px] w-full outline-[0] text-[14px] rounded-[5px]"></textarea>
                             <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" value="Submit">Submit</button>
                           </div>
