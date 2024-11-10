@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Avg
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from apps.essence.models import (
     Product,
     Category,
@@ -14,6 +14,7 @@ from apps.essence.models import (
 )
 from django.core.paginator import Paginator
 from taggit.models import Tag
+from apps.essence.forms import ProductReviewForm
 
 
 # Create your views here.
@@ -50,12 +51,14 @@ def product_detail_view(request, pid):
     average_review = ProductReview.objects.filter(product=product).aggregate(
         rating=Avg("rating")
     )
+    review_form = ProductReviewForm()
     context = {
         "product": product,
         "product_image": product_image,
         "products": products,
         "product_review": product_review,
         "average_review": average_review,
+        "review_form": review_form,
     }
     return render(request, "essence/product/product-detail.html", context)
 
@@ -103,3 +106,24 @@ def tag_list(request, tag_slug=None):
         "tag": tag,
     }
     return render(request, "essence/tag-list.html", context)
+
+
+def ajax_add_review(request, pid):
+    product = Product.objects.get(pk=pid)
+    user = request.user
+
+    review = ProductReview.objects.create(
+        user=user, product=product, review=request["POST"], rating=request["POST"]
+    )
+    context = {
+        "user": user.username,
+        "review": request.POST["review"],
+        "rating": request.POST["rating"],
+    }
+    average_review = ProductReview.objects.filter(product=product).aggregate(
+        rating=Avg("rating")
+    )
+
+    return JsonResponse(
+        {"bool": True, "context": context, "average_review": average_review}
+    )
