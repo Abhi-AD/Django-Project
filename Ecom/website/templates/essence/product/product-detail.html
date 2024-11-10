@@ -173,7 +173,7 @@
                     <a href="#gi-spt-nav-vendor" class="capitalize leading-[24px] py-[8px] px-[28px] m-[0] text-[15px] font-medium relative transition-all duration-[300ms] linear inline-block cursor-pointer bg-[#fff] text-[#4b5966] border-[1px] border-solid border-[#eee] rounded-[5px] leading-[0] hover:bg-[#5caf90] hover:text-[#fff] hover:border-[#5caf90]">Vendor</a>
                   </li>
                   <li class="mr-[5px] ml-auto mb-[5px] inline-block float-left">
-                    <a href="#gi-spt-nav-review" class="capitalize leading-[24px] py-[8px] px-[28px] m-[0] text-[15px] font-medium relative transition-all duration-[300ms] linear inline-block cursor-pointer bg-[#fff] text-[#4b5966] border-[1px] border-solid border-[#eee] rounded-[5px] leading-[0] hover:bg-[#5caf90] hover:text-[#fff] hover:border-[#5caf90]">Reviews</a>
+                    <a href="#gi-spt-nav-review" class="capitalize leading-[24px] py-[8px] px-[28px] m-[0] text-[15px] font-medium relative transition-all duration-[300ms] linear inline-block cursor-pointer bg-[#fff] text-[#4b5966] border-[1px] border-solid border-[#eee] rounded-[5px] leading-[0] hover:bg-[#5caf90] hover:text-[#fff] hover:border-[#5caf90]">Reviews ({{ product_review.count }})</a>
                   </li>
                 </ul>
               </div>
@@ -235,62 +235,128 @@
                 </div>
                 <div id="gi-spt-nav-review" class="tab-single-pane">
                   <div class="flex flex-wrap w-full">
-                    <div class="gi-t-review-wrapper mt-[10px]">
-                      <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
-                        <div class="gi-t-review-avtar basis-[50px] grow-[0] shrink-[0] mr-[15px]">
-                          <img src="assets/img/user/1.jpg" alt="user" class="max-w-full rounded-[5px]" />
-                        </div>
-                        <div class="gi-t-review-content">
-                          <div class="gi-t-review-top flex flex-col mb-[10px]">
-                            <div class="gi-t-review-name text-[15px] m-[0] leading-[1.5] block text-[#4b5966]">Mariya Lykra</div>
-                            <div class="gi-t-review-rating mt-[5px]">
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
+                    <div class="flex flex-col lg:flex-row">
+                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[75%] w-full">
+                        {% for product_review in product_review %}
+                          <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
+                            <div class="gi-t-review-avtar basis-[50px] grow-0 shrink-0 mr-[15px]">
+                              <img src="{% static 'assets/img/user/default.jpg' %}" alt="{{ product_review.user.username }}" class="max-w-full rounded-full" />
+                            </div>
+                            <div class="gi-t-review-content">
+                              <div class="gi-t-review-top flex flex-col mb-[10px]">
+                                <div class="gi-t-review-name text-[15px] m-[0] leading-[1.5] block text-[#4b5966]">{{ product_review.user.username|title }}</div>
+                                <div class="gi-t-review-rating mt-[5px]">
+                                  {% for i in '12345'|make_list %}
+                                    {% if forloop.counter <= product_review.rating %}
+                                      <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                                    {% else %}
+                                      <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left"></i>
+                                    {% endif %}
+                                  {% endfor %}
+                                </div>
+                              </div>
+                              <span class="my-[10px] text-[#777] text-[14px] list-circle">{{ product_review.date|date:'d M,Y' }}</span>
+                              <div class="gi-t-review-bottom">
+                                <p class="w-full text-[14px] text-[#777] font-normal">
+                                  {{ product_review.review }} <a href="">Reply</a>
+                                </p>
+                              </div>
                             </div>
                           </div>
-                          <div class="gi-t-review-bottom">
-                            <p class="w-full text-[14px] text-[#777] font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
-                          </div>
-                        </div>
+                        {% endfor %}
                       </div>
-                      <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
-                        <div class="gi-t-review-avtar basis-[50px] grow-[0] shrink-[0] mr-[15px]">
-                          <img src="assets/img/user/2.jpg" alt="user" class="max-w-full rounded-[5px]" />
-                        </div>
-                        <div class="gi-t-review-content">
-                          <div class="gi-t-review-top flex flex-col mb-[10px]">
-                            <div class="gi-t-review-name text-[15px] m-[0] leading-[1.5] block text-[#4b5966]">Moris Willson</div>
-                            <div class="gi-t-review-rating mt-[5px]">
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[#b2b2b2] float-left text-[14px] mr-[3px]"></i>
-                            </div>
+                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[25%] w-full lg:pl-[20px] pl-0">
+                        <h2 class="text-xl font-semibold mb-4">Customer reviews</h2>
+                        <div class="flex items-center mb-4">
+                          <div class="text-yellow-500 flex">
+                            <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                            <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                            <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                            <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                            <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
                           </div>
-                          <div class="gi-t-review-bottom">
-                            <p class="w-full text-[14px] text-[#777] font-normal">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</p>
+                          <span class="ml-2 text-lg font-semibold">{{ average_review.rating|floatformat:1 }} out of 5</span>
+                        </div>
+
+                        <!-- Rating Bars -->
+                        <div class="space-y-2">
+                          <div class="flex items-center text-sm">
+                            <span class="w-1/5 text-gray-600">5 star</span>
+                            <div class="w-3/5 bg-gray-200 rounded-full overflow-hidden">
+                              <div class="bg-green-500 h-2" style="width: 30%;"></div>
+                            </div>
+                            <span class="w-1/5 text-gray-600 text-right">30%</span>
+                          </div>
+                          <div class="flex items-center text-sm">
+                            <span class="w-1/5 text-gray-600">4 star</span>
+                            <div class="w-3/5 bg-gray-200 rounded-full overflow-hidden">
+                              <div class="bg-green-500 h-2" style="width: 25%;"></div>
+                            </div>
+                            <span class="w-1/5 text-gray-600 text-right">25%</span>
+                          </div>
+                          <div class="flex items-center text-sm">
+                            <span class="w-1/5 text-gray-600">3 star</span>
+                            <div class="w-3/5 bg-gray-200 rounded-full overflow-hidden">
+                              <div class="bg-green-500 h-2" style="width: 45%;"></div>
+                            </div>
+                            <span class="w-1/5 text-gray-600 text-right">45%</span>
+                          </div>
+                          <div class="flex items-center text-sm">
+                            <span class="w-1/5 text-gray-600">2 star</span>
+                            <div class="w-3/5 bg-gray-200 rounded-full overflow-hidden">
+                              <div class="bg-green-500 h-2" style="width: 65%;"></div>
+                            </div>
+                            <span class="w-1/5 text-gray-600 text-right">65%</span>
+                          </div>
+                          <div class="flex items-center text-sm">
+                            <span class="w-1/5 text-gray-600">1 star</span>
+                            <div class="w-3/5 bg-gray-200 rounded-full overflow-hidden">
+                              <div class="bg-green-500 h-2" style="width: 83%;"></div>
+                            </div>
+                            <span class="w-1/5 text-gray-600 text-right">83%</span>
                           </div>
                         </div>
                       </div>
                     </div>
+
                     <div class="gi-ratting-content w-full">
                       <h3 class="mb-[10px] text-[20px] font-semibold leading-[1] font-Poppins text-[#4b5966] tracking-[0.01rem]">Add a Review</h3>
                       <div class="gi-ratting-form">
                         <form action="#">
-                          <div class="gi-ratting-star flex mt-[5px] mb-[25px] items-center">
+                          <div class="gi-rating-star flex mt-[5px] mb-[25px] items-center">
                             <span class="mr-[18px] text-[16px] text-[#777] tracking-[0.02rem]">Your rating:</span>
-                            <div class="gi-t-review-rating">
-                              <i class="gicon gi-star fill inline-block text-[18px] text-[#f27d0c] float-left mr-[3px]"></i>
-                              <i class="gicon gi-star fill inline-block text-[18px] text-[#f27d0c] float-left mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
-                              <i class="gicon gi-star-o inline-block text-[18px] text-[#b2b2b2] float-left mr-[3px]"></i>
+                            <div class="gi-t-review-rating flex">
+                              <!-- Rating inputs -->
+                              <input type="radio" id="star5" name="rating" value="5" class="hidden" />
+                              <label for="star5" class="gicon gi-star inline-block text-[18px] mr-[3px] cursor-pointer" style="color: #f27d0c;"></label>
+
+                              <input type="radio" id="star4" name="rating" value="4" class="hidden" />
+                              <label for="star4" class="gicon gi-star inline-block text-[18px] mr-[3px] cursor-pointer" style="color: #f27d0c;"></label>
+
+                              <input type="radio" id="star3" name="rating" value="3" class="hidden" />
+                              <label for="star3" class="gicon gi-star inline-block text-[18px] mr-[3px] cursor-pointer" style="color: #f27d0c;"></label>
+
+                              <input type="radio" id="star2" name="rating" value="2" class="hidden" />
+                              <label for="star2" class="gicon gi-star inline-block text-[18px] mr-[3px] cursor-pointer" style="color: #b2b2b2;"></label>
+
+                              <input type="radio" id="star1" name="rating" value="1" class="hidden" />
+                              <label for="star1" class="gicon gi-star inline-block text-[18px] mr-[3px] cursor-pointer" style="color: #b2b2b2;"></label>
                             </div>
                           </div>
+
+                          <script>
+                            // JavaScript to handle the click event and update the star colors
+                            const stars = document.querySelectorAll('.gi-t-review-rating input')
+                            stars.forEach((star, index) => {
+                              star.addEventListener('change', () => {
+                                stars.forEach((input, idx) => {
+                                  const label = input.nextElementSibling
+                                  label.style.color = idx <= index ? '#f27d0c' : '#b2b2b2'
+                                })
+                              })
+                            })
+                          </script>
+
                           <div class="gi-ratting-input mb-[10px]">
                             <input name="your-name" placeholder="Name" type="text" class="text-[14px] rounded-[5px] w-full mb-[15px] py-[5px] px-[20px] outline-[0] border-[1px] border-solid border-[#eee] text-[#777] h-[50px]" />
                           </div>

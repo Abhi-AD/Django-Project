@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Avg
 from django.http import HttpResponse
 from apps.essence.models import (
     Product,
@@ -45,7 +46,17 @@ def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     product_image = product.product_images.all()
     products = Product.objects.filter(category=product.category).exclude(pid=pid)
-    context = {"product": product, "product_image": product_image, "products": products}
+    product_review = ProductReview.objects.filter(product=product).order_by("-date")
+    average_review = ProductReview.objects.filter(product=product).aggregate(
+        rating=Avg("rating")
+    )
+    context = {
+        "product": product,
+        "product_image": product_image,
+        "products": products,
+        "product_review": product_review,
+        "average_review": average_review,
+    }
     return render(request, "essence/product/product-detail.html", context)
 
 
