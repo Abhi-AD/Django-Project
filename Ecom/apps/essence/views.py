@@ -109,21 +109,28 @@ def tag_list(request, tag_slug=None):
 
 
 def ajax_add_review(request, pid):
-    product = Product.objects.get(pk=pid)
-    user = request.user
+    if request.method == "POST":
+        product = Product.objects.get(pk=pid)
+        user = request.user
 
-    review = ProductReview.objects.create(
-        user=user, product=product, review=request["POST"], rating=request["POST"]
-    )
-    context = {
-        "user": user.username,
-        "review": request.POST["review"],
-        "rating": request.POST["rating"],
-    }
-    average_review = ProductReview.objects.filter(product=product).aggregate(
-        rating=Avg("rating")
-    )
+        review_text = request.POST.get("review")
+        rating_value = request.POST.get("rating")
 
-    return JsonResponse(
-        {"bool": True, "context": context, "average_review": average_review}
-    )
+        review = ProductReview.objects.create(
+            user=user, product=product, review=review_text, rating=rating_value
+        )
+
+        average_review = ProductReview.objects.filter(product=product).aggregate(
+            rating=Avg("rating")
+        )
+
+        context = {
+            "user": user.username,
+            "review": review_text,
+            "rating": rating_value,
+        }
+
+        return JsonResponse(
+            {"bool": True, "context": context, "average_review": average_review}
+        )
+    return JsonResponse({"bool": False, "error": "Invalid request method"})
