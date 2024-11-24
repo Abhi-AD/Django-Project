@@ -1,5 +1,3 @@
-console.log("dfj");
-
 $("#commentForm").submit(function (e) {
   e.preventDefault();
   $.ajax({
@@ -8,8 +6,13 @@ $("#commentForm").submit(function (e) {
     url: $(this).attr("action"),
     dataType: "json",
     success: function (response) {
-      console.log("save");
-      if(res.bool)
+      console.log("Comment accepted");
+      if (response.bool == true) {
+        $("#reviews-res").removeClass("hidden").addClass("block");
+        setTimeout(function () {
+          $("#reviews-res").removeClass("block").addClass("hidden");
+        }, 3000);
+      }
     },
   });
 });
