@@ -86,27 +86,6 @@
                         </li>
                       </ul>
                     </div>
-                    {% comment %} <div class="gi-pro-variation mb-[20px] pb-[5px]">
-                      <div class="gi-pro-variation-inner gi-pro-variation-size text-[16px] font-semibold text-[#4b5966] flex-col mb-[15px] flex">
-                        <span class="mb-[10px] text-[#202020] font-medium text-[15px] leading-[1.1] tracking-[0.04rem] uppercase font-Poppins block">Weight</span>
-                        <div class="gi-pro-variation-content">
-                          <ul>
-                            <li class="active h-[22px] font-normal transition-all duration-[0.3s] ease-in-out py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span class="">250g</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>500g</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>1kg</span>
-                            </li>
-                            <li class="h-[22px] font-normal transition-all duration-[0.3s] ease-in-out ml-[10px] py-[5px] px-[10px] cursor-pointer flex items-center justify-center text-[12px] leading-[22px] border-[1px] border-solid border-[#eee] float-left rounded-[5px]">
-                              <span>2kg</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div> {% endcomment %}
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
                       <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
                         <input class="qty-input" type="text" name="ms_qtybtn" value="1" />
@@ -123,7 +102,7 @@
                     </div>
                   </div>
                 </div>
-              </div>w
+              </div>
             </div>
           </div>
           <!-- Single product content End -->
@@ -235,8 +214,9 @@
                 </div>
                 <div id="gi-spt-nav-review" class="tab-single-pane">
                   <div class="flex flex-wrap w-full">
-                    <div class="flex flex-col lg:flex-row justify-between">
-                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[75%] w-full">
+                    <div class="flex flex-col lg:flex-row justify-between w-full">
+                      <!-- Left Side (Scrollable) -->
+                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[75%] w-full overflow-y-auto max-h-screen">
                         {% for product_review in product_review %}
                           <div class="gi-t-review-item flex mb-[25px] pb-[25px] border-b-[1px] border-solid border-[#eee]">
                             <div class="gi-t-review-avtar basis-[50px] grow-0 shrink-0 mr-[15px]">
@@ -264,8 +244,29 @@
                             </div>
                           </div>
                         {% endfor %}
+                        {% if request.user.is_authenticated %}
+                          {% if make_review %}
+                            <div class="gi-ratting-content">
+                              <h3 class="add-review mb-[10px] text-[20px] font-semibold leading-[1] font-Poppins text-[#4b5966] tracking-[0.01rem]">Add a Review</h3>
+                              <div class="gi-ratting-form">
+                                <form class="hide-comment-form" action="{% url 'essence:ajax_add_review' product.id %}" id="commentForm" method="POST">
+                                  {% csrf_token %}
+                                  <div class="gi-ratting-input mb-[10px]">{{ review_form.rating }}</div>
+                                  <textarea name="review" placeholder="Write your review here..." class="p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5caf90] text-sm placeholder-gray-500"></textarea>
+                                  <div class="form-submit">
+                                    <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" value="Submit">Submit</button>
+                                  </div>
+                                </form>
+                                <div id="reviews-res" class="hidden">
+                                  <p id="reviews-msg" class="flex items-center justify-center p-4 bg-green-500 text-white rounded-md shadow-md max-w-xs mx-auto mt-4">Review added successfully</p>
+                                </div>
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endif %}
                       </div>
-                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[25%] w-full lg:pl-[20px] pl-0">
+
+                      <div class="gi-t-review-wrapper mt-[10px] lg:w-[25%] w-full lg:pl-[20px] pl-0 sticky top-0 max-h-screen overflow-y-auto">
                         <h2 class="text-xl font-semibold mb-4">Customer reviews</h2>
                         <div class="flex items-center mb-4">
                           <div class="text-yellow-500 flex">
@@ -315,23 +316,6 @@
                             </div>
                             <span class="w-1/5 text-gray-600 text-right">83%</span>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="gi-ratting-content w-full">
-                      <h3 class="mb-[10px] text-[20px] font-semibold leading-[1] font-Poppins text-[#4b5966] tracking-[0.01rem]">Add a Review</h3>
-                      <div class="gi-ratting-form">
-                        <form action="{% url 'essence:ajax_add_review' product.id %}" id="commentForm" method="POST">
-                          {% csrf_token %}
-                          <div class="gi-ratting-input mb-[10px]">{{ review_form.rating }}</div>
-                          <textarea name="review" placeholder="Write your review here..." class="p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#5caf90] text-sm placeholder-gray-500"></textarea>
-                          <div class="form-submit">
-                            <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" value="Submit">Submit</button>
-                          </div>
-                        </form>
-                        <div id="reviews-res" class="hidden flex items-center justify-center p-4 bg-green-500 text-white rounded-md shadow-md max-w-xs mx-auto mt-4">
-                          <p>Review added successfully</p>
                         </div>
                       </div>
                     </div>
