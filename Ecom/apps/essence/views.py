@@ -15,6 +15,7 @@ from apps.essence.models import (
 from django.core.paginator import Paginator
 from taggit.models import Tag
 from apps.essence.forms import ProductReviewForm
+from django.template.loader import render_to_string
 
 
 # Create your views here.
@@ -151,3 +152,20 @@ def search_products_view(request):
     products = Product.objects.filter(title__icontains=query).order_by("-date")
     context = {"products": products, "query": query}
     return render(request, "essence/search-results.html", context)
+
+
+def filter_products_view(request):
+    categories = request.GET.getlist("category[]")
+    vendors = request.GET.getlist("vendor[]")
+    products = (
+        Product.objects.filter(product_status="published").order_by("-id").distinct()
+    )
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct()
+    if len(vendors) > 0:
+        products = products.filter(vendor__id__in=vendors).distinct()
+    context = {
+        "products": products,
+    }
+    data = render_to_string("essence/async/product-list.html", context)
+    return JsonResponse({"data": data})

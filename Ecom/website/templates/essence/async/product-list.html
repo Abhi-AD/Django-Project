@@ -1,0 +1,56 @@
+{% for product in products %}
+  <div class="min-[1200px]:w-[25%] min-[768px]:w-[33.33%] min-[576px]:w-[50%] max-[575px]:w-[50%] max-[420px]:w-full px-[12px]">
+    <div class="gi-product-content h-full pb-[24px] flex">
+      <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
+        <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
+          <div class="gi-pro-image overflow-hidden">
+            <a href="{% url 'essence:product-detail' product.pid %}" class="image relative block overflow-hidden pointer-events-none">
+              <img class="main-image max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ product.images.url }}" alt="{{ product.title }}" />
+              <img class="hover-image absolute z-[1] top-[0] left-[0] opacity-[0] transition-all duration-[0.3s] ease delay-[0s]" src="{{ product.hover_images.url }}" alt="{{ product.title }}" />
+            </a>
+            {% if product.status_type == 'new' %}
+              <span class="flags flex flex-col p-[0] uppercase absolute top-[10px] right-[10px] z-[2]"><span class="new sale px-[10px] py-[5px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#5caf90] text-[#fff] tracking-[0.5px] relative rounded-[5px]">New</span></span>
+            {% elif product.status_type == 'sale' %}
+              <span class="flags flex flex-col p-[0] uppercase absolute top-[10px] right-[10px] z-[2]"><span class="sale px-[10px] py-[5px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span></span>
+            {% endif %}
+            <div class="gi-pro-actions transition-all duration-[0.3s] ease-in-out absolute z-[9] left-[0] right-[0] bottom-[-10px] max-[991px]:opacity-[1] max-[991px]:bottom-[10px] flex flex-row items-center justify-center my-[0] mx-auto opacity-0">
+              <a class="gi-btn-group wishlist transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Wishlist"><i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i></a>
+              <a href="{% url 'essence:product-detail' product.pid %}" class="gi-btn-group quickview transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] modal-toggle"><i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i></a>
+              <a href="{% url 'essence:product-detail' product.pid %}" class="gi-btn-group compare transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]" title="Compare"><i class="fi fi-rr-arrows-repeat transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i></a>
+              <a href="{% url 'essence:product-detail' product.pid %}" title="Add To Cart" class="gi-btn-group add-to-cart transition-all duration-[0.3s] ease-in-out h-[30px] w-[30px] mx-[2px] flex items-center justify-center text-[#fff] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px]"><i class="fi-rr-shopping-basket transition-all duration-[0.3s] ease-in-out text-[#777] leading-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+          <a href="shop-left-sidebar-col-3.html"><h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ product.category }}</h6></a>
+          <h5 class="gi-pro-title h-full mb-[10px] text-[16px]"><a href="{% url 'essence:product-detail' product.pid %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ product.title }}</a></h5>
+          <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
+            <div class="flex justify-between">
+              <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
+                {% for i in '12345'|make_list %}
+                  {% if forloop.counter <= product.rating %}
+                    <i class="gicon gi-star fill text-[14px] text-[#f27d0c] mr-[3px] float-left"></i>
+                  {% else %}
+                    <i class="gicon gi-star text-[14px] text-[#777] mr-[3px] float-left"></i>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% if product.price < product.old_price %}
+                <span class="text-xs font-bold text-red-500">{{ product.get_discount_percentage|floatformat:0 }}%</span>
+              {% endif %}
+            </div>
+
+            <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">By {{ product.vendor }}</h6>
+
+            <span class="gi-price">
+              <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ product.price }}</span>
+              {% if product.price < product.old_price %}
+                <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
