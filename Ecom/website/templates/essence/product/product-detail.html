@@ -72,18 +72,27 @@
                     <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.description|truncatechars:150|safe }}</div>
                     <div class="gi-single-list">
                       <ul class="mb-[30px] pl-[18px]">
-                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Type :</strong> {{ product.type }}
-                        </li>
-                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">MFG :</strong> {{ product.mfd|date:'d M,Y' }}
-                        </li>
-                        <li class="my-[10px] text-[#777] text-[14px] list-circle">
-                          <strong class="font-semibold">Tag :</strong>
-                          {% for tag in product.tag.all %}
-                            <a href="{% url 'essence:tag-list' tag.slug %}">#{{ tag.name }}</a>,
-                          {% endfor %}
-                        </li>
+                        {% if product.type %}
+                          <li class="my-[10px] text-[#777] text-[14px] list-circle">
+                            <strong class="font-semibold">Type :</strong> {{ product.type }}
+                          </li>
+                        {% endif %}
+                        {% if product.mfd %}
+                          <li class="my-[10px] text-[#777] text-[14px] list-circle">
+                            <strong class="font-semibold">MFG :</strong> {{ product.mfd|date:'d M,Y' }}
+                          </li>
+                        {% endif %}
+
+                        {% if product.tag.all %}
+                          <li class="my-[10px] text-[#777] text-[14px] list-circle">
+                            <strong class="font-semibold">Tag :</strong>
+                            {% for tag in product.tag.all %}
+                              {% if tag.name %}
+                                <a href="{% url 'essence:tag-list' tag.slug %}">#{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                          </li>
+                        {% endif %}
                       </ul>
                     </div>
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
