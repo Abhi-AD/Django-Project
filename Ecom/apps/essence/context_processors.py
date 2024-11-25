@@ -7,12 +7,15 @@ def main_processor(request):
     vendors = Vendor.objects.all()
     active_category_id = categories.first().id if categories.exists() else None
     productes = Product.objects.all()
-    # address = Address.objects.get(user=request.user)
+    try:
+        address = Address.objects.get(user=request.user)
+    except:
+        address = None
     context = {
         "categories": categories,
         "active_category_id": active_category_id,
         "productes": productes,
         "vendors": vendors,
-        # "address": address,
+        "address": address,
     }
     return context

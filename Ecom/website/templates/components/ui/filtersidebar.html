@@ -1,45 +1,29 @@
 {% load static %}
 <div class="gi-shop-sidebar min-[992px]:order-[-1] min-[768px]:order-[6] min-[992px]:w-[25%] w-full px-[12px] max-[991px]:mt-[30px]">
   <div id="shop_sidebar">
-    <div class="gi-sidebar-wrap p-[15px] rounded-[5px] border-[1px] border-solid border-[#eee]">
+    <div class="gi-sidebar-wrap p-[15px] rounded-[5px] border-[1px] border-solid border-[#eee] flex flex-col gap-8">
       <!-- Sidebar Category Block -->
-      <div class="gi-sidebar-block mb-[15px]">
+      <div class="gi-sidebar-block flex flex-col gap-8">
         <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
           <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Category</h3>
         </div>
-        <div class="gi-sb-block-content mt-[15px]">
+        <div class="gi-sb-block-content">
           <ul>
-          {% for category in categories %}
-               <li>
-               <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-               <input
-                    type="checkbox"
-                    class="category-checkbox w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]"
-                    id="category-{{ forloop.index }}"
-                    {% if forloop.first %}checked{% endif %}
-               />
-               <a
-                    href="javascript:void(0)"
-                    class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]"
-                    onclick="toggleCheckbox(event, 'category-{{ forloop.index }}')"
-               >
+            {% for category in categories %}
+              <li>
+                <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
+                  <input type="checkbox" data-filter="category" value="{{ category.id }}" class="category-checkbox filter-checkbox w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]" id="category-{{ forloop.index }}" />
+                  <a href="javascript:void(0)" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]" onclick="toggleCheckbox(event, 'category-{{ forloop.index }}')">
                     <span class="flex">
-                         <img 
-                         src={{category.image.url}} 
-                         alt="{{ category.title }}" 
-                         class="w-[20px] h-[20px] mr-[7px]" 
-                    />
-                    {{ category.title }}
+                      <img src="{{ category.image.url }}" alt="{{ category.title }}" class="w-[20px] h-[20px] mr-[7px]" />
+                      {{ category.title }}
                     </span>
-               </a>
-               <span
-                    class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"
-               ></span>
-               <span class="text-[12px]">{{category.product_count}}</span>
-               </div>
-               </li>
-          {% endfor %}
-
+                  </a>
+                  <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                  <span class="text-[12px]">{{ category.product_count }}</span>
+                </div>
+              </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -52,7 +36,7 @@
           <ul>
             <li>
               <div class="gi-sidebar-block-item py-[15px] relative flex flex-row">
-                <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]" checked />
+                <input type="checkbox" value="" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]" />
                 <a href="#" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">500gm Pack</a>
                 <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
               </div>
@@ -89,7 +73,7 @@
         </div>
       </div>
       <!-- Sidebar Color item -->
-      <div class="gi-sidebar-block mb-[15px] color-block gi-sidebar-block-clr">
+      <div class="gi-sidebar-block color-block gi-sidebar-block-clr">
         <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
           <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Color</h3>
         </div>
@@ -190,7 +174,7 @@
         </div>
       </div>
       <!-- Sidebar Price Block -->
-      <div class="gi-sidebar-block mb-[15px]">
+      <div class="gi-sidebar-block">
         <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
           <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Price</h3>
         </div>
@@ -211,16 +195,27 @@
           <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Tags</h3>
         </div>
         <div class="gi-tag-block gi-sb-block-content mt-[15px]">
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Clothes</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Fruits</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Snacks</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Dairy</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Seafood</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Fastfood</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Toys</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">perfume</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">jewelry</a>
-          <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out my-[2px] py-[3px] px-[8px] inline-flex flex-row flex-wrap capitalize font-light text-[13px] tracking-[0.02rem] bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Bags</a>
+          <label class="gi-btn-2 transition-all duration-300 ease-in-out my-2 py-2 px-4 inline-flex flex-row items-center justify-center capitalize font-medium text-sm tracking-wide bg-[#5caf90] text-white rounded-lg cursor-pointer peer-checked:bg-red-500 shadow-md hover:bg-[#4e9f7c]">
+            <input type="checkbox" class="hidden peer" />
+            <span class="flex items-center">Clothes</span>
+            <i class="gicon gi-check w-5 h-5 text-white hidden peer-checked:inline flex items-center ml-2"></i>
+          </label>
+        </div>
+      </div>
+      <!-- Sidebar vendor -->
+      <div class="gi-sidebar-block">
+        <div class="gi-sb-title border-b-[1px] border-solid border-[#eee] pb-[15px]">
+          <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Vendor</h3>
+        </div>
+        <div class="gi-tag-block mt-[15px] gi-sb-block-content grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2">
+          {% for vendor in vendors %}
+            <label class="gi-btn-2 transition-all duration-300 ease-in-out my-2 py-2 px-4 inline-flex flex-row items-center justify-center capitalize font-medium text-sm tracking-wide bg-[#5caf90] text-white rounded-lg cursor-pointer peer-checked:bg-red-500 shadow-md hover:bg-[#4e9f7c]">
+              <input type="checkbox" class="hidden peer filter-checkbox" data-filter="vendor" value="{{ vendor.id }}" />
+
+              <span class="flex items-center text-sm peer-checked:text-[calc(1rem-2px)]">{{ vendor.title }}</span>
+              <i class="gicon gi-check w-5 h-5 text-white hidden peer-checked:inline flex items-center ml-2"></i>
+            </label>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -229,16 +224,17 @@
 
 <script>
   function toggleCheckbox(event, checkboxId) {
-    // Uncheck all checkboxes
-    const checkboxes = document.querySelectorAll('.category-checkbox')
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.id !== checkboxId) {
-        checkbox.checked = false
-      }
-    })
+    const checkbox = document.getElementById(checkboxId)
+    const checkedIcon = event.target.closest('.gi-sidebar-block-item').querySelector('.checked')
   
-    // Check the clicked checkbox
-    const clickedCheckbox = document.getElementById(checkboxId)
-    clickedCheckbox.checked = true
+    if (checkbox.checked) {
+      checkbox.checked = false
+      checkedIcon.style.backgroundColor = '#fff'
+    } else {
+      checkbox.checked = true
+      checkedIcon.style.backgroundColor = '#4CAF50'
+    }
+  
+    checkbox.dispatchEvent(new Event('change'))
   }
 </script>
