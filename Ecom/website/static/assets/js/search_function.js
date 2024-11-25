@@ -1,21 +1,27 @@
-$(document).ready(function () {
-  $(".filter-checkbox").on("click", function () {
-    console.log("Checked:");
-    let filter_objects = {};
+$(".filter-checkbox").on("click", function () {
+  let filter_objects = {};
 
-    $(".filter-checkbox").each(function () {
-      let filter_value = $(this).val();
-      let filter_key = $(this).data("filter"); // vendor, category
-      //  console.log("Filter value:", filter_value);
-      //  console.log("Filter key:", filter_key);
-      filter_objects[filter_key] = Array.from(
-        document.querySelectorAll(
-          "input[data-filter=" + filter_key + "]:checked"
-        )
-      ).map(function (element) {
-        return element.value; // vendor, category
-      });
-    });
-    console.log("Filter objects:", filter_objects);
+  // Collect checked filter values for both categories and vendors
+  $(".filter-checkbox:checked").each(function () {
+    let filter_value = $(this).val();
+    let filter_key = $(this).data("filter");
+
+    // If filter_key does not exist in filter_objects, initialize as an array
+    if (!filter_objects[filter_key]) {
+      filter_objects[filter_key] = [];
+    }
+    filter_objects[filter_key].push(filter_value);
+  });
+
+  console.log("Sending filter data:", filter_objects);
+
+  $.ajax({
+    url: "/essence/filter-products",
+    data: filter_objects, // Send the selected filter data
+    dataType: "json",
+    success: function (response) {
+      console.log("Filtered data received:", response);
+      $("#filtered-product").html(response.data); // Update the filtered product list
+    },
   });
 });
