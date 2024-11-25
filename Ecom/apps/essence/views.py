@@ -144,3 +144,10 @@ def ajax_add_review(request, pid):
             {"bool": True, "context": context, "average_review": average_review}
         )
     return JsonResponse({"bool": False, "error": "Invalid request method"})
+
+
+def search_products_view(request):
+    query = request.GET.get("q")
+    products = Product.objects.filter(title__icontains=query).order_by("-date")
+    context = {"products": products, "query": query}
+    return render(request, "essence/search-results.html", context)
