@@ -1,5 +1,5 @@
 from apps.essence.models import Category, Product, Vendor, Address
-from django.db.models import Count
+from django.db.models import Count, Min, Max, Avg
 
 
 def main_processor(request):
@@ -7,6 +7,7 @@ def main_processor(request):
     vendors = Vendor.objects.all()
     active_category_id = categories.first().id if categories.exists() else None
     productes = Product.objects.all()
+    min_max_price = Product.objects.aggregate(Min("price"), Max("price"), Avg("price"))
     try:
         address = Address.objects.get(user=request.user)
     except:
@@ -17,5 +18,6 @@ def main_processor(request):
         "productes": productes,
         "vendors": vendors,
         "address": address,
+        "min_max_price": min_max_price,
     }
     return context
