@@ -182,11 +182,11 @@
           <div class="gi-price-filter flex justify-between flex-col">
             <div class="gi-price-input mb-[15px] p-[10px] flex justify-between items-center rounded-[5px] bg-[#f8f8fb]">
               <!-- From Label -->
-              <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">From<input type="number" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]" value="" id="range" /></label>
+              <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">From<input id="min-price" type="number" class="filter__input rounded-[5px] h-[30px] border-[0] p-[0] max-w-[48px] leading-[30px] bg-[#fff] text-center text-[14px] text-[#777] outline-[0]" /></label>
               <!-- Divider -->
               <span class="gi-price-divider relative border-b-[1px] border-solid border-[#777] w-[10px] h-[1px] mx-[10px]"></span>
               <!-- To Label -->
-              <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">To<input type="text" class="filter__input h-[30px] text-center text-[14px] text-[#777] outline-[0]" disabled /></label>
+              <label class="filter__label text-[14px] text-[#777] flex flex-col justify-center items-center">To<input id="max-price" type="text" class="filter__input h-[30px] text-center text-[14px] text-[#777] outline-[0]" disabled /></label>
             </div>
 
             <div id="gi-sliderPrice" class="filter__slider-price" data-min="{{ min_max_price.price__min }}" data-max="{{ min_max_price.price__max }}" data-step="1"></div>
