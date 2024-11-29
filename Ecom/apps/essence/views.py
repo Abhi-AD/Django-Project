@@ -177,3 +177,39 @@ def filter_products_view(request):
     }
     data = render_to_string("essence/async/product-list.html", context)
     return JsonResponse({"data": data, "product_count": product_count})
+
+
+def add_to_cart(request):
+    card_product = {}
+    card_product[str(request.GET["id"])] = {
+        "qty": request.GET["qty"],
+        "title": request.GET["title"],
+        "price": request.GET["price"],
+    }
+
+    # Ensure session data exists and is initialized if not
+    if "card_data_obj" not in request.session:
+        request.session["card_data_obj"] = {}
+
+    if str(request.GET["id"]) in request.session["card_data_obj"]:
+        # Update existing product in cart
+        card_data = request.session["card_data_obj"]
+        card_data[str(request.GET["id"])]["qty"] = int(
+            card_product[str(request.GET["id"])]["qty"]
+        )
+        request.session["card_data_obj"] = card_data
+    else:
+        # Add new product to cart
+        card_data = request.session["card_data_obj"]
+        card_data.update(card_product)
+        request.session["card_data_obj"] = card_data
+
+    # Explicitly mark the session as modified to ensure it is saved
+    request.session.modified = True
+
+    return JsonResponse(
+        {
+            "data": request.session["card_data_obj"],
+            "totalcarditems": len(request.session["card_data_obj"]),
+        }
+    )

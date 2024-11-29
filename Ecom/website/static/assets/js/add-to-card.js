@@ -26,6 +26,7 @@ $(document).ready(function () {
       success: function (response) {
         this_val.html("Itmes add to card");
         console.log("Add to card......");
+        $(".card-item-count").text(response.totalcarditems);
       },
     });
   });
