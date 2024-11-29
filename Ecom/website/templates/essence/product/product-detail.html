@@ -53,7 +53,7 @@
                     <div class="gi-single-price-stoke mb-[15px] pt-[15px] pb-[15px] flex justify-between">
                       <div class="gi-single-price flex flex-col">
                         <div class="final-price mb-[15px] text-[#4b5966] font-semibold text-[22px] leading-[32px] font-Poppins tracking-[0] max-[1199px]:text-[20px]">
-                          ${{ product.price }}
+                          $<span class="current-product-price">{{ product.price }}</span>
                           <span class="price-des ml-[15px] text-[#5caf90] font-medium text-[18px] tracking-[0.02rem]">
                             {% if product.price < product.old_price %}
                               {{ product.get_discount_percentage|floatformat:0 }}%
@@ -97,10 +97,12 @@
                     </div>
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
                       <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
-                        <input class="qty-input" type="text" name="ms_qtybtn" value="1" />
+                        <input id="product-quantity" class="qty-input" type="text" name="ms_qtybtn" value="1" />
                       </div>
                       <div class="gi-single-cart">
-                        <button type="button" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
+                        <input type="hidden" class="product-id" name="" value="{{ product.id }}" />
+                        <input type="hidden" class="product-title" name="" value="{{ product.title }}" />
+                        <button id="add-to-cart-btn" type="button" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
                       </div>
                       <div class="gi-single-wishlist m-[5px]">
                         <a class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist"><i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i></a>
@@ -138,7 +140,7 @@
                     </span>
 
                     <span class="gi-price">
-                      <span class="new-price text-[15px]">${{ product.price }}</span>
+                      $<span class="new-price text-[15px]">{{ product.price }}</span>
                       <span class="old-price ml-[5px] text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
                     </span>
                   </div>
