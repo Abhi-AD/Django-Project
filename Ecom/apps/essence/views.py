@@ -180,36 +180,25 @@ def filter_products_view(request):
 
 
 def add_to_cart(request):
-    card_product = {}
-    card_product[str(request.GET["id"])] = {
-        "qty": request.GET["qty"],
-        "title": request.GET["title"],
-        "price": request.GET["price"],
-    }
-
-    # Ensure session data exists and is initialized if not
-    if "card_data_obj" not in request.session:
-        request.session["card_data_obj"] = {}
-
-    if str(request.GET["id"]) in request.session["card_data_obj"]:
-        # Update existing product in cart
-        card_data = request.session["card_data_obj"]
-        card_data[str(request.GET["id"])]["qty"] = int(
-            card_product[str(request.GET["id"])]["qty"]
-        )
-        request.session["card_data_obj"] = card_data
+    product_id = str(request.GET["id"])
+    qty = int(request.GET["qty"])
+    title = request.GET["title"]
+    price = float(request.GET["price"])
+    images = request.GET["images"]
+    pid = request.GET["pid"]
+    if "cart_data_obj" not in request.session:
+        request.session["cart_data_obj"] = {}
+    cart_data = request.session["cart_data_obj"]
+    if product_id in cart_data:
+        cart_data[product_id]["qty"] += qty
     else:
-        # Add new product to cart
-        card_data = request.session["card_data_obj"]
-        card_data.update(card_product)
-        request.session["card_data_obj"] = card_data
-
-    # Explicitly mark the session as modified to ensure it is saved
+        cart_data[product_id] = {"qty": qty, "title": title, "price": price}
+    request.session["cart_data_obj"] = cart_data
     request.session.modified = True
 
     return JsonResponse(
         {
-            "data": request.session["card_data_obj"],
-            "totalcarditems": len(request.session["card_data_obj"]),
+            "data": cart_data,
+            "totalcarditems": len(cart_data),
         }
     )
