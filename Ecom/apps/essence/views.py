@@ -184,6 +184,8 @@ def add_to_cart(request):
     qty = int(request.GET["qty"])
     title = request.GET["title"]
     price = float(request.GET["price"])
+    images = request.GET["images"]
+    pid = request.GET["pid"]
     if "cart_data_obj" not in request.session:
         request.session["cart_data_obj"] = {}
     cart_data = request.session["cart_data_obj"]
