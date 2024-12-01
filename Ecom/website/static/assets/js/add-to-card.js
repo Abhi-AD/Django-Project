@@ -11,16 +11,6 @@ $(document).ready(function () {
     let product_pid = $(".product-pid-" + index).val();
     let product_images = $(".product-image-" + index).val();
 
-    // Log data to the console
-    console.log({
-      id: product_id,
-      pid: product_pid,
-      images: product_images,
-      qty: quantity,
-      title: product_title,
-      price: product_price,
-    });
-
     $.ajax({
       url: "/essence/add-to-cart",
       data: {

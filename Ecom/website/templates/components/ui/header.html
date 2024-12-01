@@ -622,60 +622,27 @@
       </div>
     </div>
   </div>
-  {% if messages %}
-    {% for message in messages %}
-      <div class="p-4 mb-4 text-sm rounded-lg alert {% if message.tags %}
-          {% if 'success' in message.tags %}
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+  <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="p-4 mb-4 text-sm rounded-lg alert {% if message.tags %}
+            {% if 'success' in message.tags %}
+              
              text-green-800 bg-green-50
 
-
-
-
-
-
-
-
-
-
-          {% elif 'warning' in message.tags %}
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            {% elif 'warning' in message.tags %}
+              
             text-black bg-yellow-50
 
-
-
-
-
-
-
-
-
-
-          {% endif %}
-        {% endif %}"
-        role="alert">
-        <span class="font-medium">{{ message }}</span>
-      </div>
-    {% endfor %}
-  {% endif %}
+            {% endif %}
+          {% endif %}"
+          role="alert">
+          <span class="font-medium">{{ message }}</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
 </header>
 
 <script>
