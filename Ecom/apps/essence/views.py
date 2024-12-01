@@ -212,3 +212,24 @@ def add_to_cart(request):
             "totalcarditems": len(cart_data),
         }
     )
+
+
+def remove_from_cart(request):
+    try:
+        product_id = str(request.GET["id"])
+    except KeyError as e:
+        return JsonResponse({"error": f"Missing parameter: {str(e)}"}, status=400)
+
+    cart_data = request.session.get("cart_data_obj", {})
+    if product_id in cart_data:
+        del cart_data[product_id]
+        request.session["cart_data_obj"] = cart_data
+        request.session.modified = True
+        return JsonResponse(
+            {
+                "data": cart_data,
+                "totalcarditems": len(cart_data),
+            }
+        )
+    else:
+        return JsonResponse({"error": "Product not found in cart"}, status=404)

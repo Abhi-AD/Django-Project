@@ -10,21 +10,22 @@
       {% if cart_data.product_details %}
         <ul class="gi-cart-pro-items">
           <ul>
-            {% for item in cart_data.product_details %}
-              <li class="mb-[15px] p-[15px] flex overflow-hidden border border-solid border-[#eee] rounded-[5px]">
-                <a href="{% url 'essence:product-detail' item.pid %}" class="gi-pro-img flex grow-[1] basis-[20%] items-center"><img src="{{ item.images }}" class="w-full' %}" alt="product" /></a>
-                <div class="gi-pro-content relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
-                  <a href="{% url 'essence:product-detail' item.pid %}" class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-[15px] leading-[18px] font-normal">{{ item.title }}</a>
-                  <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]">${{ item.price }}</span></span>
-
-                  <div class="qty-plus-minus border border-solid border-[#eee] h-[35px] overflow-hidden relative w-[85px] flex items-center justify-between py-[7px] mt-[7px]">
-                    <input class="qty-input" type="number" name="gi-qtybtn" value="{{ item.qty }}" />
+            <div class="cart-items-list">
+              {% for item in cart_data.product_details %}
+                <li class="mb-[15px] p-[15px] flex overflow-hidden border border-solid border-[#eee] rounded-[5px]">
+                  <a href="{% url 'essence:product-detail' item.pid %}" class="gi-pro-img flex grow-[1] basis-[20%] items-center"><img src="{{ item.images }}" class="w-full" alt="product" /></a>
+                  <div class="gi-pro-content relative grow-[1] basis-[70%] pl-[15px] overflow-hidden">
+                    <a href="{% url 'essence:product-detail' item.pid %}" class="cart-pro-title w-full pr-[30px] text-[#777] whitespace-normal overflow-hidden text-ellipsis block text-[15px] leading-[18px] font-normal">{{ item.title }}</a>
+                    <span class="cart-price text-[14px] block mt-[5px]"><span class="text-[#777] font-semibold text-[16px]">${{ item.price }}</span></span>
+                    <div class="qty-plus-minus border border-solid border-[#eee] h-[35px] overflow-hidden relative w-[85px] flex items-center justify-between py-[7px] mt-[7px]">
+                      <input class="qty-input" type="number" name="gi-qtybtn" value="{{ item.qty }}" />
+                    </div>
+                    <button class="remove delete-item leading-[15px] absolute top-0 right-0 pl-[10px] text-[#ff0000] text-[22px]" data-product="{{ item.product_id }}">×</button>
+                    <p class="text-[14px] font-medium text-gray-700 mt-2">Total: {{ item.product_by_amount }}</p>
                   </div>
-                  <a href="javascript:void(0)" class="remove leading-[15px] absolute top-0 right-0 pl-[10px] text-[#ff0000] text-[22px]">×</a>
-                  <p class="text-[14px] font-medium text-gray-700 mt-2">Total: {{ item.product_by_amount }}</p>
-                </div>
-              </li>
-            {% endfor %}
+                </li>
+              {% endfor %}
+            </div>
           </ul>
         </ul>
       {% else %}

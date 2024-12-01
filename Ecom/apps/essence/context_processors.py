@@ -62,7 +62,6 @@ def cart_context(request):
                     }
                 }
 
-        print(f"All total amount: {all_total_amount}")
         return {
             "cart_data": {
                 "cart_data_obj": cart_data_obj,
