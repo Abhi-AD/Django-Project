@@ -1,5 +1,6 @@
 from apps.essence.models import Category, Product, Vendor, Address
 from django.db.models import Count, Min, Max, Avg
+from django.contrib import messages
 
 
 def main_processor(request):
@@ -21,3 +22,55 @@ def main_processor(request):
         "min_max_price": min_max_price,
     }
     return context
+
+
+import re
+
+
+def cart_context(request):
+    cart_data_obj = request.session.get("cart_data_obj", {})
+
+    if cart_data_obj:
+        all_total_amount = 0
+        product_details = []
+        for product_id, item in cart_data_obj.items():
+            try:
+                price_str = item["price"].replace(",", "")
+                price_str = re.sub(r"(\.\d*)\.", r"\1", price_str)
+                price = float(price_str)
+                qty = int(item["qty"])
+                product_by_amount = price * qty
+                all_total_amount += product_by_amount
+                product_details.append(
+                    {
+                        "product_id": product_id,
+                        "title": item["title"],
+                        "price": item["price"],
+                        "qty": qty,
+                        "product_by_amount": product_by_amount,
+                        "images": item["images"],
+                        "pid": item["pid"],
+                    }
+                )
+
+            except ValueError as e:
+                print(f"Error processing product {item['title']}: {e}")
+                return {
+                    "cart_data": {
+                        "error": f"Invalid price or quantity format for product {item['title']}.",
+                        "status": 400,
+                    }
+                }
+
+        print(f"All total amount: {all_total_amount}")
+        return {
+            "cart_data": {
+                "cart_data_obj": cart_data_obj,
+                "product_details": product_details,
+                "all_total_amount": all_total_amount,
+                "total_items": len(cart_data_obj),
+                "status": 200,
+            }
+        }
+    else:
+        return {"cart_data": {"message": "Your cart is empty.", "status": 404}}

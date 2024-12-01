@@ -5,7 +5,8 @@
       <!-- Banner -->
       <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] gi-all-product-content wow fadeInUp">
         <div class="gi-banner-inner h-full p-[0] flex flex-row items-center justify-between rounded-[5px] overflow-hidden">
-          <div class="gi-banner-block w-full h-full bg-[url('assets/img/banner/4.jpg')] bg-center bg-cover bg-no-repeat max-[767px]:h-[450px] max-[767px]:bg-bottom max-[480px]:h-[400px] max-[420px]:h-[350px]">
+          <div class="gi-banner-block w-full h-full relative max-[767px]:h-[450px] max-[767px]:bg-bottom max-[480px]:h-[400px] max-[420px]:h-[350px]">
+            <img src="{% static 'assets/img/banner/4.jpg' %}" alt="Banner Image" class="w-full h-full object-cover object-center absolute inset-0" />
             <div class="banner-block relative flex overflow-hidden justify-center items-center">
               <div class="banner-content w-full h-full flex flex-col items-start justify-center p-[30px] cursor-pointer rounded-[30px]">
                 <div class="banner-text mb-[15px] flex flex-col">
