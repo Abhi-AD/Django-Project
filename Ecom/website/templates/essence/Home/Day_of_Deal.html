@@ -46,8 +46,8 @@
                     </div>
 
                     <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
-                      <a href="shop-left-sidebar-col-3.html"><h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ product.category }}</h6></a>
-                      <h5 class="gi-pro-title h-full mb-[10px] text-[16px]"><a href="product-left-sidebar.html" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ product.title }}</a></h5>
+                      <a href="#"><h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">{{ product.category }}</h6></a>
+                      <h5 class="gi-pro-title h-full mb-[10px] text-[16px]"><a href="{% url 'essence:product-detail' product.pid %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ product.title }}</a></h5>
                       <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
                         <div class="flex justify-between">
                           <div class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
@@ -65,9 +65,9 @@
                         </div>
 
                         <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">By {{ product.vendor }}</h6>
-
+                        $<span class="">{{ product.price }}</span>
                         <span class="gi-price">
-                          <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$ <span class="current-product-price-{{ product.id }}">{{ product.price }}</span></span>
+                          {% comment %} <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$<span class="current-product-price current-product-price-{{ product.id }}">{{ product.price }}</span></span> {% endcomment %}
                           {% if product.price < product.old_price %}
                             <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
                           {% endif %}

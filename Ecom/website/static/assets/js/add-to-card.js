@@ -4,6 +4,7 @@ $(document).ready(function () {
     let index = this_val.attr("data-index");
 
     let quantity = $("#product-quantity-" + index).val();
+    quantity = parseInt(quantity, 10) || 1;
     let product_title = $(".product-title-" + index).val();
     let product_id = $(".product-id-" + index).val();
     let product_price = $(".current-product-price-" + index).text();
@@ -11,14 +12,14 @@ $(document).ready(function () {
     let product_images = $(".product-image-" + index).val();
 
     // Log data to the console
-    console.log("Quantity:", quantity);
-    console.log("Product Title:", product_title);
-    console.log("Product Price:", product_price);
-    console.log("Product ID:", product_id);
-    console.log("Product PID:", product_pid);
-    console.log("Product Images URL:", product_images);
-    console.log("This Button Element:", this_val);
-    console.log("Index:", index);
+    console.log({
+      id: product_id,
+      pid: product_pid,
+      images: product_images,
+      qty: quantity,
+      title: product_title,
+      price: product_price,
+    });
 
     $.ajax({
       url: "/essence/add-to-cart",

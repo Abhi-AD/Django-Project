@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
 from apps.essence.models import (
@@ -16,6 +16,7 @@ from django.core.paginator import Paginator
 from taggit.models import Tag
 from apps.essence.forms import ProductReviewForm
 from django.template.loader import render_to_string
+from django.contrib import messages
 
 
 # Create your views here.
@@ -180,22 +181,31 @@ def filter_products_view(request):
 
 
 def add_to_cart(request):
-    product_id = str(request.GET["id"])
-    qty = int(request.GET["qty"])
-    title = request.GET["title"]
-    price = float(request.GET["price"])
-    images = request.GET["images"]
-    pid = request.GET["pid"]
-    if "cart_data_obj" not in request.session:
-        request.session["cart_data_obj"] = {}
-    cart_data = request.session["cart_data_obj"]
+    try:
+        product_id = str(request.GET["id"])
+        qty = int(request.GET["qty"])
+        title = request.GET["title"]
+        price = request.GET["price"]
+        images = request.GET["images"]
+        pid = request.GET["pid"]
+    except KeyError as e:
+        return JsonResponse({"error": f"Missing parameter: {str(e)}"}, status=400)
+
+    cart_data = request.session.get("cart_data_obj", {})
     if product_id in cart_data:
         cart_data[product_id]["qty"] += qty
     else:
-        cart_data[product_id] = {"qty": qty, "title": title, "price": price}
+        cart_data[product_id] = {
+            "qty": qty,
+            "title": title,
+            "price": price,
+            "images": images,
+            "pid": pid,
+        }
+
     request.session["cart_data_obj"] = cart_data
     request.session.modified = True
-
+    print(f"Cart Data: {cart_data}")
     return JsonResponse(
         {
             "data": cart_data,

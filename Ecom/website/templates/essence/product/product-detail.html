@@ -97,8 +97,9 @@
                     </div>
                     <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
                       <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
-                        <input id="product-quantity" class="qty-input" type="text" name="ms_qtybtn" value="1" />
+                        <input id="product-quantity-{{ product.id }}" class="qty-input" type="number" name="ms_qtybtn" value="1" min="1" />
                       </div>
+
                       <div class="gi-single-cart">
                         <input type="hidden" id="product-quantity-{{ product.id }}" class="qty-input" name="ms_qtybtn" value="1" />
                         <input type="hidden" class="product-pid-{{ product.id }}" name="" value="{{ product.pid }}" />
