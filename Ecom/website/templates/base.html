@@ -42,6 +42,7 @@
     {% block content %}
 
     {% endblock %}
+
     <!-- Plugins JS -->
     <!-- Back to top -->
     <a class="gi-back-to-top inline-block bg-[#4b5966] w-[40px] h-[40px] text-center rounded-[4px] fixed bottom-[30px] right-[30px] opacity-[0] invisible z-[16] hover:cursor-pointer hover:bg-[#000] hover:opacity-[1] max-[767px]:bottom-[15px] max-[767px]:right-[15px]">
@@ -49,6 +50,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
       </svg>
     </a>
+    {% include 'components/ui/feature.html' %}
 
     <script src="{% static 'assets/js/plugins/tailwindcss3.4.1' %}"></script>
     <script src="{% static 'assets/js/plugins/jquery-3.7.1.min.js' %}"></script>
