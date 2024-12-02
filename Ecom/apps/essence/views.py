@@ -245,7 +245,7 @@ def update_cart_quantity(request):
     cart_data = request.session.get("cart_data_obj", {})
     if product_id in cart_data:
         if qty <= 0:
-            del cart_data[product_id] 
+            del cart_data[product_id]
         else:
             cart_data[product_id]["qty"] = qty
 
@@ -260,3 +260,7 @@ def update_cart_quantity(request):
         )
     else:
         return JsonResponse({"error": "Product not found in cart"}, status=404)
+
+
+def checkout_view(request):
+    return render(request, "essence/checkout.html")

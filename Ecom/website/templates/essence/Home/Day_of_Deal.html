@@ -65,9 +65,8 @@
                         </div>
 
                         <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize">By {{ product.vendor }}</h6>
-                        $<span class="">{{ product.price }}</span>
                         <span class="gi-price">
-                          {% comment %} <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$<span class="current-product-price current-product-price-{{ product.id }}">{{ product.price }}</span></span> {% endcomment %}
+                          <span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">$<span class="">{{ product.price }}</span></span>
                           {% if product.price < product.old_price %}
                             <span class="old-price text-[14px] text-[#777] line-through">${{ product.old_price }}</span>
                           {% endif %}
