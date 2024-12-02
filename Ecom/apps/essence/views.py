@@ -264,3 +264,7 @@ def update_cart_quantity(request):
 
 def checkout_view(request):
     return render(request, "essence/checkout.html")
+
+
+def cart_view(request):
+    return render(request, "essence/cart.html")
