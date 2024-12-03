@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     # other lib
     "taggit",
     "ckeditor",
+    # payment intergration
+    "paypal.standard.ipn",
 ]
 
 MIDDLEWARE = [
@@ -139,7 +141,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "ecom-shop.com",
     "changeform_format": "horizontal_tabs",
 }
-
+LOGIN_URL = "userauth:sign-in"
 AUTH_USER_MODEL = "userauth.User"
 
 CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
@@ -152,3 +154,8 @@ CKEDITOR_CONFIGS = {
         "extraPlugins": ",".join(["codesnippet", "widget", "dialog"]),
     },
 }
+
+
+# Paypal setup
+PAYPAL_RECEIVER_EMAIL = os.getenv("PAYPAL_RECEIVER_EMAIL")
+PAYPAL_TEST = True

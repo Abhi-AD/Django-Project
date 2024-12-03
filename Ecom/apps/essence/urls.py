@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from apps.essence import views
 
 app_name = "essence"
@@ -21,4 +21,9 @@ urlpatterns = [
     ),
     path("checkout/", views.checkout_view, name="checkout_view"),
     path("cart/", views.cart_view, name="cart"),
+    # paypal url
+    path("paypal/", include("paypal.standard.ipn.urls")),
+    # payment status
+    path("payment_complete/", views.payment_complete_view, name="payment_complete"),
+    path("payment_failed/", views.payment_failed_view, name="payment_failed"),
 ]

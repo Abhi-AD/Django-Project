@@ -17,6 +17,11 @@ from taggit.models import Tag
 from apps.essence.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.urls import reverse
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from paypal.standard.forms import PayPalPaymentsForm
 
 
 # Create your views here.
@@ -262,9 +267,31 @@ def update_cart_quantity(request):
         return JsonResponse({"error": "Product not found in cart"}, status=404)
 
 
+@login_required
 def checkout_view(request):
-    return render(request, "essence/checkout.html")
+    host = request.get_host()
+    paypal_dictionary = {
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
+        "amount": "0.01",
+        "item_name": "Order_Item-No-3",
+        "invoice": "InVoice_NO-4",
+        "currency": "USD",
+        "notify_url": "https://{}{}".format(host, reverse("essence:paypal-ipn")),
+        "return_url": "https://{}{}".format(host, reverse("essence:payment_complete")),
+        "cancel_url": "https://{}{}".format(host, reverse("essence:payment_failed")),
+    }
+    paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
+    context = {"paypal_payment_button": paypal_payment_button}
+    return render(request, "essence/checkout.html", context)
 
 
 def cart_view(request):
     return render(request, "essence/cart.html")
+
+
+def payment_complete_view(request):
+    return render(request, "essence/payment-complete.html")
+
+
+def payment_failed_view(request):
+    return render(request, "essence/payment-failed.html")
