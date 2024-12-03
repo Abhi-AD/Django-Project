@@ -1,125 +1,107 @@
-{% extends 'base.html' %} {% block title %}
+{% extends 'base.html' %}
+{% block title %}
   Payment Completed
 {% endblock %}
-{% load static %} {% block content %}
+{% load static %}
+{% block content %}
   {% include 'components/ui/header.html' %}
   {% include 'components/ui/sidebar.html' %}
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="flex items-center justify-center p-4">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#5caf90]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3m12 10H9m0 0v8" />
-      </svg>
-      <!-- Text -->
-      <span class="ml-2 text-lg font-semibold text-[#5caf90]">Dashboard</span>
-    </div>
 
-    <div class="p-6 border rounded">
-      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-        <div class="gi-header-logo mb-6 md:mb-0">
-          <div class="header-logo text-center md:text-left">
-            <img src="{% static 'assets/img/logo/logo.png' %}" alt="Site Logo" class="w-[100px] md:w-[120px] lg:w-[144px]" />
+  <div class="max-w-4xl mx-auto px-4">
+    <!-- Invoice Content -->
+    <div id="invoice-content" data-username="{{ request.user|title }}">
+      <div class="flex items-center justify-center p-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#5caf90]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3m12 10H9m0 0v8" />
+        </svg>
+        <span class="ml-2 text-lg font-semibold text-[#5caf90]">Dashboard</span>
+      </div>
+
+      <div class="p-6 border rounded">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+          <div class="gi-header-logo mb-6 md:mb-0">
+            <div class="header-logo text-center md:text-left">
+              <img src="{% static 'assets/img/logo/logo.png' %}" alt="Site Logo" class="w-[100px] md:w-[120px] lg:w-[144px]" />
+            </div>
+          </div>
+          <div class="text-center md:text-right">
+            <h1 class="text-2xl font-bold">INVOICE</h1>
+            <p class="text-gray-600">
+              ID Number: <span class="font-medium text-[#5caf90]">986857</span>
+            </p>
           </div>
         </div>
-        <div class="text-center md:text-right">
-          <h1 class="text-2xl font-bold">INVOICE</h1>
-          <p class="text-gray-600">
-            ID Number: <span class="font-medium text-[#5caf90]">986857</span>
-          </p>
-        </div>
-      </div>
 
-      <div class="overflow-x-auto">
-        <table class="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="border border-gray-300 px-4 py-2 text-left font-bold">Title</th>
-              <th class="border border-gray-300 px-4 py-2 text-left font-bold">Price</th>
-              <th class="border border-gray-300 px-4 py-2 text-left font-bold">Quantity</th>
-              <th class="border border-gray-300 px-4 py-2 text-left font-bold">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">
-                Field Roast Chao Cheese Creamy Original<br />
-                <span class="text-sm text-gray-500">SKU: FVM15VKT</span>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">$10.99</td>
-              <td class="border border-gray-300 px-4 py-2">1</td>
-              <td class="border border-gray-300 px-4 py-2">$10.99</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-300 px-4 py-2">
-                Blue Diamond Almonds Lightly Salted<br />
-                <span class="text-sm text-gray-500">SKU: FVM15VKT</span>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">$20.00</td>
-              <td class="border border-gray-300 px-4 py-2">3</td>
-              <td class="border border-gray-300 px-4 py-2">$60.00</td>
-            </tr>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2">
-                Fresh Organic Mustard Leaves Bell Pepper<br />
-                <span class="text-sm text-gray-500">SKU: KVMI5VK</span>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">$640.00</td>
-              <td class="border border-gray-300 px-4 py-2">1</td>
-              <td class="border border-gray-300 px-4 py-2">$640.00</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="border border-gray-300 px-4 py-2">
-                All Natural Italian-Style Chicken Meatballs<br />
-                <span class="text-sm text-gray-500">SKU: 98HFJG</span>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">$240.00</td>
-              <td class="border border-gray-300 px-4 py-2">1</td>
-              <td class="border border-gray-300 px-4 py-2">$240.00</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">SubTotal</td>
-              <td class="border border-gray-300 px-4 py-2">$1710.99</td>
-            </tr>
-            <tr>
-              <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">Tax</td>
-              <td class="border border-gray-300 px-4 py-2">$85.99</td>
-            </tr>
-            <tr>
-              <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">Grand Total</td>
-              <td class="border border-gray-300 px-4 py-2">$1795.99</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="border border-gray-300 px-4 py-2 text-left font-bold">Title</th>
+                <th class="border border-gray-300 px-4 py-2 text-left font-bold">Price</th>
+                <th class="border border-gray-300 px-4 py-2 text-left font-bold">Quantity</th>
+                <th class="border border-gray-300 px-4 py-2 text-left font-bold">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_data.product_details %}
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2">
+                    {{ item.title }}<br />
+                    <span class="text-sm text-gray-500">SKU: FVM15VKT</span>
+                  </td>
+                  <td class="border border-gray-300 px-4 py-2">${{ item.price }}</td>
+                  <td class="border border-gray-300 px-4 py-2">{{ item.qty }}</td>
+                  <td class="border border-gray-300 px-4 py-2">${{ item.product_by_amount }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">SubTotal</td>
+                <td class="subtotal border border-gray-300 px-4 py-2" id="subtotal" data-value="{{ cart_data.all_total_amount }}">${{ cart_data.all_total_amount }}</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">Tax</td>
+                <td id="tax-charge" class="border border-gray-300 px-4 py-2"></td>
+              </tr>
+              <tr>
+                <td colspan="3" class="border border-gray-300 px-4 py-2 text-right font-bold">Grand Total</td>
+                <td id="total-amount" class="border border-gray-300 px-4 py-2"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
 
-      <div class="flex flex-col md:flex-row justify-between items-center border-t pt-4 mt-6">
-        <div class="mb-6 md:mb-0">
-          <h2 class="text-gray-700 text-lg font-semibold mb-2">Invoice Info</h2>
-          <p class="text-gray-600">
-            <span class="font-medium">Issue date:</span> 20 March, 2022
-          </p>
-          <p class="text-gray-600">
-            <span class="font-medium">Invoice To:</span> NestMart Inc
-          </p>
-          <p class="text-gray-600">
-            <span class="font-medium">Swift Code:</span> BFYV VNVXS
-          </p>
+        <div class="flex flex-col md:flex-row justify-between items-center border-t pt-4 mt-6">
+          <div class="mb-6 md:mb-0">
+            <h2 class="text-gray-700 text-lg font-semibold mb-2">Invoice Info</h2>
+            <p class="text-gray-600">
+              <span class="font-medium">Issue date:</span> 20 March, 2022
+            </p>
+            <p class="text-gray-600">
+              <span class="font-medium">Invoice To:</span> {{ request.user|title }}
+            </p>
+            <p class="text-gray-600">
+              <span class="font-medium">Swift Code:</span> BFYV VNVXS
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">Total Amount</p>
+            <p id="display-total-amount" class="text-[#5caf90] text-3xl font-bold">${{ cart_data.all_total_amount }}</p>
+            <p class="text-gray-500 text-sm">Taxes Included</p>
+          </div>
         </div>
-        <div>
-          <p class="text-gray-500 text-sm">Total Amount</p>
-          <p class="text-[#5caf90] text-3xl font-bold">$1795.99</p>
-          <p class="text-gray-500 text-sm">Taxes Included</p>
-        </div>
+        <p class="text-center text-gray-400 text-xs mt-4 border-t pt-2">
+          Hey <strong class="cursor-pointer hover:underline">{{ request.user|title }}</strong>, Thanks for shopping at <span class="hover:underline text-[#5caf90] cursor-pointer">Grabit</span>
+        </p>
       </div>
-      <p class="text-center text-gray-400 text-xs mt-4 border-t pt-2">Note: This is a computer-generated receipt and does not require a physical signature.</p>
     </div>
+
     <div class="mt-6 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-end">
       <button class="bg-gray-800 text-white px-4 py-2 rounded">Print</button>
-      <button class="bg-[#5caf90] text-white px-4 py-2 rounded">Download</button>
+      <button class="bg-[#5caf90] text-white px-4 py-2 rounded" id="download-button">Download PDF</button>
     </div>
   </div>
-
   {% include 'components/ui/footer.html' %}
   {% include 'components/ui/quickmodel.html' %}
 {% endblock %}
