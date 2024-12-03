@@ -21,26 +21,17 @@
                 <div class="gi-checkout-summary">
                   <div class="flex justify-between items-center mb-[10px]">
                     <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
-                    <span id="subtotal" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
+                    <span id="subtotal" data-value="{{ cart_data.all_total_amount }}" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
                   </div>
                   <div class="flex justify-between items-center mb-[10px]">
-                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Delivery Charges</span>
-                    <span id="delivery-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
+                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Tax</span>
+                    <span id="tax-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
                   </div>
                   <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
                     <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
                     <span id="total-amount" class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope"></span>
                   </div>
                 </div>
-
-                <script>
-                  const subtotal = parseFloat('{{ cart_data.all_total_amount }}')
-                  const deliveryCharge = (subtotal * 0.05).toFixed(2)
-                  const totalAmount = (subtotal + parseFloat(deliveryCharge)).toFixed(2)
-                  
-                  document.getElementById('delivery-charge').textContent = `$${deliveryCharge}`
-                  document.getElementById('total-amount').textContent = `$${totalAmount}`
-                </script>
 
                 <div class="gi-checkout-pro">
                   {% for item in cart_data.product_details %}

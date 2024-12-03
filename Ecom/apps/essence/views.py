@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
+from apps.essence.context_processors import cart_context
+
 from apps.essence.models import (
     Product,
     Category,
@@ -289,9 +291,20 @@ def cart_view(request):
     return render(request, "essence/cart.html")
 
 
+@login_required
 def payment_complete_view(request):
-    return render(request, "essence/payment-complete.html")
+    cart_data = cart_context(request)
+    all_total_amount = cart_data.get("cart_data", {}).get("all_total_amount", 0)
+    return render(
+        request,
+        "essence/payment-complete.html",
+        {
+            "all_total_amount": all_total_amount,
+            "cart_data": cart_data.get("cart_data", {}),
+        },
+    )
 
 
+@login_required
 def payment_failed_view(request):
     return render(request, "essence/payment-failed.html")
