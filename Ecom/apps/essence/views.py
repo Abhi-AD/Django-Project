@@ -324,7 +324,21 @@ def checkout_view(request):
             "cancel_url": f"http://{host}{reverse('essence:payment_failed')}",
         }
         paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
-        context = {"paypal_payment_button": paypal_payment_button}
+
+        try:
+            active_address = Address.objects.get(user=request.user, status=True)
+        except:
+            messages.warning(
+                request,
+                "There are multiple active address, only one should be ACTIVATED.",
+            )
+            active_address = None
+        print(active_address)
+
+        context = {
+            "paypal_payment_button": paypal_payment_button,
+            "active_address": active_address,
+        }
         return render(request, "essence/checkout.html", context)
 
     # If no cart data exists
@@ -397,3 +411,10 @@ def order_detail(request, id):
         return render(
             request, "essence/customer/order-deatil.html", {"error": "Order not found."}
         )
+
+
+def make_address_default(request):
+    id = request.GET["id"]
+    Address.objects.update(status=False)
+    Address.objects.filter(id=id).update(status=True)
+    return JsonResponse({"bolean": True})

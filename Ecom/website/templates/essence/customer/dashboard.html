@@ -124,31 +124,39 @@
                   </div>
                 </form>
                 <div class="w-full border-t border-gray-300 my-6"></div>
-                <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-4">
+
+                <div class="grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 gap-4">
                   {% for address in address %}
                     <div>
                       <h2 class="text-xl font-semibold text-gray-800 mb-4">Address {{ forloop.counter }}</h2>
-                      <div class="border rounded border-1 border-gray-300 p-4">
+                      <div class="border rounded border-1 border-gray-300 p-1 h-[100px]">
                         <p class="text-gray-600">{{ address.address }}</p>
-                        <button class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px]">Make Default</button>
-                        <i class="gicon gi-check fill text-[24px] text-[#5caf90]"></i>
+                        <div class="flex items-center gap-4 mt-4">
+                          {% if address.status %}
+                            <i data-address-id="{{ address.id }}" class="check check{{ address.id }} gicon gi-check fill text-[24px] text-[#5caf90]"></i>
+                            <button data-address-id="{{ address.id }}" class="hidden make-default-address button{{ address.id }} action_btn gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px]">Make Default</button>
+                          {% else %}
+                            <i data-address-id="{{ address.id }}" class="check check{{ address.id }} gicon gi-check fill text-[24px] text-[#5caf90]"></i>
+                            <button data-address-id="{{ address.id }}" class="make-default-address button{{ address.id }} action_btn gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px]">Make Default</button>
+                          {% endif %}
+                        </div>
                       </div>
                     </div>
                   {% endfor %}
                 </div>
               </div>
+            </div>
 
-              <!-- Account Tab -->
-              <div id="account" class="tab-content hidden">
-                <h2 class="text-xl font-bold mb-4">Account Details</h2>
-                <p>Update your account details and password here.</p>
-              </div>
+            <!-- Account Tab -->
+            <div id="account" class="tab-content hidden">
+              <h2 class="text-xl font-bold mb-4">Account Details</h2>
+              <p>Update your account details and password here.</p>
+            </div>
 
-              <!-- Logout Tab -->
-              <div id="logout" class="tab-content hidden">
-                <h2 class="text-xl font-bold mb-4">Logout</h2>
-                <p>You have successfully logged out.</p>
-              </div>
+            <!-- Logout Tab -->
+            <div id="logout" class="tab-content hidden">
+              <h2 class="text-xl font-bold mb-4">Logout</h2>
+              <p>You have successfully logged out.</p>
             </div>
           </div>
         </div>

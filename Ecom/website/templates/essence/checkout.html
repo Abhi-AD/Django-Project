@@ -202,61 +202,18 @@
                       </span>
                     </span>
                     <div class="gi-check-bill-form mb-[2px]">
-                      <form action="#" method="post" class="flex flex-row flex-wrap mx-[-15px]">
+                      <form method="post" class="flex flex-row flex-wrap mx-[-15px]">
                         <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
                           <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">First Name*</label>
-                          <input type="text" name="firstname" placeholder="Enter your first name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required />
+                          <input type="text" name="firstname" value="{{ request.user.username|title }}" placeholder="Enter your first name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required />
                         </span>
                         <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
-                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Last Name*</label>
-                          <input type="text" name="lastname" placeholder="Enter your last name" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required />
+                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Contact*</label>
+                          <input type="text" name="lastname" value="{{ active_address.mobile }}" placeholder="Enter your Contact" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" required />
                         </span>
-                        <span class="gi-bill-wrap w-full px-[15px]">
+                        <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
                           <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Address</label>
-                          <input type="text" name="address" placeholder="Address Line 1" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" />
-                        </span>
-                        <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
-                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">City *</label>
-                          <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
-                            <select name="gi_select_city" id="gi-select-city" class="gi-bill-select">
-                              <option selected disabled>City</option>
-                              <option value="1">City 1</option>
-                              <option value="2">City 2</option>
-                              <option value="3">City 3</option>
-                              <option value="4">City 4</option>
-                              <option value="5">City 5</option>
-                            </select>
-                          </span>
-                        </span>
-                        <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
-                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Post Code</label>
-                          <input type="text" name="postalcode" placeholder="Post Code" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" />
-                        </span>
-                        <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
-                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Country *</label>
-                          <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
-                            <select name="gi_select_country" id="gi-select-country" class="gi-bill-select">
-                              <option selected disabled>Country</option>
-                              <option value="1">Country 1</option>
-                              <option value="2">Country 2</option>
-                              <option value="3">Country 3</option>
-                              <option value="4">Country 4</option>
-                              <option value="5">Country 5</option>
-                            </select>
-                          </span>
-                        </span>
-                        <span class="gi-bill-wrap gi-bill-half w-[50%] px-[15px]">
-                          <label class="mb-[7px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1] inline-block">Region State</label>
-                          <span class="gi-bl-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[27px] rounded-[5px]">
-                            <select name="gi_select_state" id="gi-select-state" class="gi-bill-select">
-                              <option selected disabled>Region/State</option>
-                              <option value="1">Region/State 1</option>
-                              <option value="2">Region/State 2</option>
-                              <option value="3">Region/State 3</option>
-                              <option value="4">Region/State 4</option>
-                              <option value="5">Region/State 5</option>
-                            </select>
-                          </span>
+                          <input type="text" name="address" value="{{ active_address.address }}" placeholder="Enter Your Address" class="bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px] h-[50px]" />
                         </span>
                       </form>
                     </div>
@@ -264,6 +221,7 @@
                 </div>
               </div>
               <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">{{ paypal_payment_button.render }}</a></span>
+
               {% comment %} <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Place Order</a></span> {% endcomment %}
             </div>
           </div>
