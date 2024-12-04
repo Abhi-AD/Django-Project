@@ -172,6 +172,9 @@
                 <ul class="gi-dropdown-menu min-w-[150px] py-[5px] transition-all duration-[0.3s] ease-in-out mt-[25px] absolute z-[16] text-left bg-[#fff] block opacity-0 invisible left-[0] right-[auto] border-[1px] border-solid border-[#eee] rounded-[5px]">
                   {% if request.user.is_authenticated %}
                     <li>
+                      <a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'essence:customer_dashboard' %}">My Profile</a>
+                    </li>
+                    <li>
                       <a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'userauth:sign-out' %}">LogOut</a>
                     </li>
                     <li>
@@ -631,7 +634,15 @@
               
               
               
+              
+              
+              
+              
              text-green-800 bg-green-50
+
+
+
+
 
 
 
@@ -639,7 +650,15 @@
               
               
               
+              
+              
+              
+              
             text-black bg-yellow-50
+
+
+
+
 
 
 
