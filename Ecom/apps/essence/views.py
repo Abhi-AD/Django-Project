@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
-from apps.essence.context_processors import cart_context
+from apps.essence.context_processors import cart_context, main_processor
 
 from apps.essence.models import (
     Product,
@@ -16,6 +16,7 @@ from apps.essence.models import (
 )
 from django.core.paginator import Paginator
 from taggit.models import Tag
+from django.core.exceptions import FieldDoesNotExist
 from apps.essence.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
@@ -353,13 +354,26 @@ def payment_failed_view(request):
     return render(request, "essence/payment-failed.html")
 
 
+@login_required
 def customer_dashboard(request):
+    # Fetch the user's orders and address
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
-    context = {"orders": orders}
+    address = Address.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        address_value = request.POST.get("address")
+        mobile_value = request.POST.get("mobile")
+        if address_value and mobile_value:
+            new_address = Address.objects.create(
+                user=request.user, address=address_value, mobile=mobile_value
+            )
+            messages.success(request, "Address added successfully")
+        else:
+            messages.error(request, "Please provide both address and mobile.")
+
+        return redirect("essence:customer_dashboard")
+    context = {"orders": orders, "address": address}
     return render(request, "essence/customer/dashboard.html", context)
-
-
-from django.core.exceptions import FieldDoesNotExist
 
 
 def order_detail(request, id):
