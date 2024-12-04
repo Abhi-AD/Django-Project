@@ -37,8 +37,6 @@
                   {% for item in cart_data.product_details %}
                     <div class="w-full mb-[15px] relative">
                       <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
-                        <div class="absolute top-[-10px] right-[-10px] bg-[#5caf90] text-white text-[12px] font-bold px-[8px] py-[2px] rounded-full z-[20] shadow-md">{{ item.qty }}</div>
-                        <button class="absolute top-[80%] right-[10px] transform -translate-y-[50%] text-[#5caf90] text-sm md:text-base font-bold py-1 md:py-2 px-3 md:px-4 focus:outline-none z-20">$ {{ item.product_by_amount }}</button>
                         <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
                           <div class="gi-pro-image overflow-hidden">
                             <a href="{% url 'essence:product-detail' item.pid %}" class="image relative block overflow-hidden pointer-events-none">
@@ -48,6 +46,8 @@
                           </div>
                         </div>
                         <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
+                          <div class="absolute top-[-28px] right-[1px] bg-[#5caf90] text-white text-[12px] font-bold px-[8px] py-[2px] rounded-full z-[50] shadow-md">{{ item.qty }}</div>
+                          <button class="absolute top-[80%] right-[10px] transform -translate-y-[50%] text-[#5caf90] text-sm md:text-base font-bold py-1 md:py-2 px-3 md:px-4 focus:outline-none z-20">$ {{ item.product_by_amount }}</button>
                           <h5 class="gi-pro-title h-full mb-[10px] text-[16px]"><a href="{% url 'essence:product-detail' item.pid %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ item.title }}</a></h5>
                           <span class="gi-price"><span class="new-price text-[#4b5966] font-bold text-[14px] mr-[7px]">${{ item.price }}</span></span>
                         </div>
@@ -263,7 +263,7 @@
                   </div>
                 </div>
               </div>
-              <div>{{ paypal_payment_button.render }}</div>
+              <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">{{ paypal_payment_button.render }}</a></span>
               {% comment %} <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Place Order</a></span> {% endcomment %}
             </div>
           </div>

@@ -56,8 +56,8 @@ class CartOrderItemAdmin(admin.ModelAdmin):
     list_display = [
         "order_user",
         "invoice_no",
-        "product_status",
         "item",
+        "image",
         "qty",
         "price",
         "total",
