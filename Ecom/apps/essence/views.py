@@ -269,6 +269,9 @@ def update_cart_quantity(request):
         return JsonResponse({"error": "Product not found in cart"}, status=404)
 
 
+from django.core.exceptions import FieldDoesNotExist
+
+
 @login_required
 def checkout_view(request):
     cart_data = cart_context(request)
@@ -276,19 +279,38 @@ def checkout_view(request):
     all_total_amount = cart_data_details.get("all_total_amount", 0)
 
     if "cart_data_obj" in request.session:
+        # Create the order
         order = CartOrder.objects.create(
             user=request.user,
             price=all_total_amount,
         )
+
+        # Dynamically detect the ForeignKey field in CartOrderItem
+        cart_order_fk_name = None
+        for field in CartOrderItem._meta.fields:
+            if hasattr(field, "related_model") and field.related_model == CartOrder:
+                cart_order_fk_name = field.name
+                break
+
+        if not cart_order_fk_name:
+            raise FieldDoesNotExist(
+                "CartOrderItem does not have a ForeignKey to CartOrder."
+            )
+
+        # Add items to the order
         for product_id, item in request.session["cart_data_obj"].items():
             CartOrderItem.objects.create(
-                order=order,
-                invoice_no="INVOICE_NO" + str(product_id),
-                item=item.get("title", "Unknown"),
-                image=item.get("images", ""),
-                qty=item.get("qty", 0),
-                price=item.get("price", "0.00"),
+                **{
+                    cart_order_fk_name: order,  # Use the dynamically detected FK
+                    "invoice_no": f"INVOICE_NO{product_id}",
+                    "item": item.get("title", "Unknown"),
+                    "image": item.get("images", ""),
+                    "qty": item.get("qty", 0),
+                    "price": item.get("price", "0.00"),
+                }
             )
+
+        # Prepare PayPal data
         host = request.get_host()
         paypal_dictionary = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
@@ -296,14 +318,15 @@ def checkout_view(request):
             "item_name": f"Order_Item-No-{order.id}",
             "invoice": f"InVoice_NO-{order.id}",
             "currency": "USD",
-            "notify_url": f"https://{host}{reverse('essence:paypal-ipn')}",
-            "return_url": f"https://{host}{reverse('essence:payment_complete')}",
-            "cancel_url": f"https://{host}{reverse('essence:payment_failed')}",
+            "notify_url": f"http://{host}{reverse('essence:paypal-ipn')}",
+            "return_url": f"http://{host}{reverse('essence:payment_complete')}",
+            "cancel_url": f"http://{host}{reverse('essence:payment_failed')}",
         }
         paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
         context = {"paypal_payment_button": paypal_payment_button}
         return render(request, "essence/checkout.html", context)
 
+    # If no cart data exists
     return render(request, "essence/checkout.html", {"error": "No items in the cart."})
 
 
@@ -328,3 +351,35 @@ def payment_complete_view(request):
 @login_required
 def payment_failed_view(request):
     return render(request, "essence/payment-failed.html")
+
+
+def customer_dashboard(request):
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    context = {"orders": orders}
+    return render(request, "essence/customer/dashboard.html", context)
+
+
+from django.core.exceptions import FieldDoesNotExist
+
+
+def order_detail(request, id):
+    try:
+        order = CartOrder.objects.get(user=request.user, id=id)
+        cart_order_fk_name = None
+        for field in CartOrderItem._meta.fields:
+            if hasattr(field, "related_model") and field.related_model == CartOrder:
+                cart_order_fk_name = field.name
+                break
+
+        if not cart_order_fk_name:
+            raise FieldDoesNotExist(
+                "CartOrderItem model does not have a ForeignKey to CartOrder."
+            )
+
+        order_items = CartOrderItem.objects.filter(**{cart_order_fk_name: order})
+        context = {"order_items": order_items}
+        return render(request, "essence/customer/order-deatil.html", context)
+    except CartOrder.DoesNotExist:
+        return render(
+            request, "essence/customer/order-deatil.html", {"error": "Order not found."}
+        )

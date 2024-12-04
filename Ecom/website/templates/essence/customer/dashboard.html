@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ request.user|title }} Dashboard
+{% endblock %}
+{% load static %}
+{% block content %}
+  {% include 'components/ui/header.html' %}
+  {% include 'components/ui/sidebar.html' %}
+  {% include 'components/ui/Breadcrumb.html' with title='Dashboard' active='Dashboard' %}
+
+  <section class="section gi-hero h-full w-full my-[40px] max-[575px]:my-[30px] max-[1199px]:relative">
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+      <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 w-full h-full">
+        <!-- Sidebar -->
+        <div class="col-span-1 md:col-span-2 lg:col-span-2">
+          <nav>
+            <ul class="space-y-6">
+              <li>
+                <button onclick="showTab(this, 'dashboard')" class="tab-btn w-full text-left px-4 py-2 rounded-md flex items-center bg-[#5caf90] text-white border-b-4 border-[#5caf90]" id="default-active">
+                  <i class="gicon gi-home text-[24px] mr-2"></i>
+                  <span>Dashboard</span>
+                </button>
+              </li>
+              <li>
+                <button onclick="showTab(this, 'orders')" class="tab-btn w-full text-left px-4 py-2 rounded-md bg-white text-black border border-[#5caf90]">
+                  <i class="fi-rr-shopping-bag text-[24px] mr-2 text-black"></i>
+                  <span>Orders</span>
+                </button>
+              </li>
+              <li>
+                <button onclick="showTab(this, 'track')" class="tab-btn w-full text-left px-4 py-2 rounded-md bg-white text-black border border-[#5caf90]">
+                  <i class="fi-rr-truck-side text-[24px] mr-2 text-black"></i>
+                  <span>Track Your Order</span>
+                </button>
+              </li>
+              <li>
+                <button onclick="showTab(this, 'address')" class="tab-btn w-full text-left px-4 py-2 rounded-md bg-white text-black border border-[#5caf90]">
+                  <i class="fi fi-rr-marker text-[24px] mr-2 text-black"></i>
+                  <span>My Address</span>
+                </button>
+              </li>
+              <li>
+                <button onclick="showTab(this, 'account')" class="tab-btn w-full text-left px-4 py-2 rounded-md bg-white text-black border border-[#5caf90]">
+                  <i class="gicon gi-user text-[24px] mr-2 text-black"></i>
+                  <span>Account Details</span>
+                </button>
+              </li>
+              <li>
+                <a href="{% url 'userauth:sign-out' %}">
+                  <button class="tab-btn w-full text-left px-4 py-2 rounded-md bg-white text-black border border-[#5caf90]">
+                    <i class="gicon gi-sign-out text-[24px] mr-2 text-black"></i>
+                    <span>Logout</span>
+                  </button>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Content -->
+        <div class="col-span-1 md:col-span-4 lg:col-span-10">
+          <!-- Dashboard Tab -->
+          <div id="dashboard" class="tab-content">
+            <h2 class="text-xl font-bold mb-4">Welcome to <span class="text-[#5caf90]">{{ request.user|title }}</span> ! Dashboard</h2>
+            <p>From here, you can view and manage your orders, account details, and more.</p>
+          </div>
+
+          <!-- Orders Tab -->
+          <div id="orders" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4">Your Orders</h2>
+            <table class="w-full h-full text-left border-collapse border border-gray-300">
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="border border-gray-300 px-4 py-2">Order ID</th>
+                  <th class="border border-gray-300 px-4 py-2">Date</th>
+                  <th class="border border-gray-300 px-4 py-2">Status</th>
+                  <th class="border border-gray-300 px-4 py-2">Paid Status</th>
+                  <th class="border border-gray-300 px-4 py-2">Amount</th>
+                  <th class="border border-gray-300 px-4 py-2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                  <tr>
+                    <td class="border border-gray-300 px-4 py-2">INVOICE_NO-{{ order.id }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ order.order_date }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ order.product_status|title }}</td>
+                    <td class="border border-gray-300 px-4 py-2">
+                      {% if order.paid_status == True %}
+                        <i class="gicon gi-check fill text-[24px] text-[#5caf90]"></i>
+                      {% else %}
+                        <div class="text-red-500 text-3xl mb-4">✖</div>
+                      {% endif %}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">${{ order.price }}</td>
+                    <td class="border border-gray-300 px-4 py-2">
+                      <a href="{% url 'essence:order_detail' order.id %}">View</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Track Tab -->
+          <div id="track" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4">Track Your Order</h2>
+            <p>Enter your order ID to track its status.</p>
+          </div>
+
+          <!-- Address Tab -->
+          <div id="address" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4">My Address</h2>
+            <p>Manage your shipping and billing addresses here.</p>
+          </div>
+
+          <!-- Account Tab -->
+          <div id="account" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4">Account Details</h2>
+            <p>Update your account details and password here.</p>
+          </div>
+
+          <!-- Logout Tab -->
+          <div id="logout" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-4">Logout</h2>
+            <p>You have successfully logged out.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'components/ui/footer.html' %}
+  {% include 'components/ui/quickmodel.html' %}
+{% endblock %}
