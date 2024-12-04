@@ -28,4 +28,7 @@ urlpatterns = [
     path("payment_failed/", views.payment_failed_view, name="payment_failed"),
     path("customer_dashboard/", views.customer_dashboard, name="customer_dashboard"),
     path("customer_dashboard/<int:id>/", views.order_detail, name="order_detail"),
+    path(
+        "make_address_default/", views.make_address_default, name="make_address_default"
+    ),
 ]
