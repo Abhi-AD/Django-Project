@@ -271,20 +271,40 @@ def update_cart_quantity(request):
 
 @login_required
 def checkout_view(request):
-    host = request.get_host()
-    paypal_dictionary = {
-        "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": "0.01",
-        "item_name": "Order_Item-No-3",
-        "invoice": "InVoice_NO-4",
-        "currency": "USD",
-        "notify_url": "https://{}{}".format(host, reverse("essence:paypal-ipn")),
-        "return_url": "https://{}{}".format(host, reverse("essence:payment_complete")),
-        "cancel_url": "https://{}{}".format(host, reverse("essence:payment_failed")),
-    }
-    paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
-    context = {"paypal_payment_button": paypal_payment_button}
-    return render(request, "essence/checkout.html", context)
+    cart_data = cart_context(request)
+    cart_data_details = cart_data.get("cart_data", {})
+    all_total_amount = cart_data_details.get("all_total_amount", 0)
+
+    if "cart_data_obj" in request.session:
+        order = CartOrder.objects.create(
+            user=request.user,
+            price=all_total_amount,
+        )
+        for product_id, item in request.session["cart_data_obj"].items():
+            CartOrderItem.objects.create(
+                order=order,
+                invoice_no="INVOICE_NO" + str(product_id),
+                item=item.get("title", "Unknown"),
+                image=item.get("images", ""),
+                qty=item.get("qty", 0),
+                price=item.get("price", "0.00"),
+            )
+        host = request.get_host()
+        paypal_dictionary = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": all_total_amount,
+            "item_name": f"Order_Item-No-{order.id}",
+            "invoice": f"InVoice_NO-{order.id}",
+            "currency": "USD",
+            "notify_url": f"https://{host}{reverse('essence:paypal-ipn')}",
+            "return_url": f"https://{host}{reverse('essence:payment_complete')}",
+            "cancel_url": f"https://{host}{reverse('essence:payment_failed')}",
+        }
+        paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
+        context = {"paypal_payment_button": paypal_payment_button}
+        return render(request, "essence/checkout.html", context)
+
+    return render(request, "essence/checkout.html", {"error": "No items in the cart."})
 
 
 def cart_view(request):
