@@ -16,7 +16,7 @@ def main_processor(request):
             request,
             "You have not added any items to your cart. Please add some items to proceed.",
         )
-        wishlist_count = None
+        wishlist_count = 0
 
     try:
         address = Address.objects.get(user=request.user)
