@@ -14,6 +14,7 @@ from apps.essence.models import (
     Wishlist,
     Address,
 )
+from apps.userauth.models import Profile
 from django.core.paginator import Paginator
 from taggit.models import Tag
 from django.core.exceptions import FieldDoesNotExist
@@ -370,9 +371,9 @@ def payment_failed_view(request):
 
 @login_required
 def customer_dashboard(request):
-    # Fetch the user's orders and address
     orders = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
+    user_profile = Profile.objects.get(user=request.user)
 
     if request.method == "POST":
         address_value = request.POST.get("address")
@@ -386,7 +387,7 @@ def customer_dashboard(request):
             messages.error(request, "Please provide both address and mobile.")
 
         return redirect("essence:customer_dashboard")
-    context = {"orders": orders, "address": address}
+    context = {"orders": orders, "address": address, "user_profile": user_profile}
     return render(request, "essence/customer/dashboard.html", context)
 
 
