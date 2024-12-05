@@ -427,6 +427,7 @@ def wishlist_view(request):
     return render(request, "essence/customer/wishlist.html", context)
 
 
+@login_required
 def add_wishlist_view(request):
     product_id = request.GET.get("id")
     product = Product.objects.get(id=product_id)
@@ -434,6 +435,6 @@ def add_wishlist_view(request):
     if wishlist_count > 0:
         context = {"boolean": True}
     else:
-        Wishlist.objects.create(product=product, user=request.user)
-    context = {"boolean": False}
+        Wishlist.objects.create(user=request.user, product=product)
+        context = {"boolean": True}
     return JsonResponse(context)
