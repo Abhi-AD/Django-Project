@@ -81,11 +81,11 @@
               </a>
               <!-- Header User End -->
               <!-- Header Wishlist Start -->
-              <a href="wishlist.html" class="gi-header-btn gi-wish-toggle mr-[30px] relative transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center">
+              <a href="{% url 'essence:wishlist_view' %}" class="gi-header-btn gi-wish-toggle mr-[30px] relative transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center">
                 <div class="header-icon relative flex">
                   <i class="fi-rr-heart text-[24px] leading-[17px]"></i>
                 </div>
-                <span class="gi-header-count gi-wishlist-count w-[15px] h-[15px] text-[#fff] flex items-center justify-center rounded-[50%] text-[11px] absolute top-[-2px] right-[-6px] opacity-[0.8]">3</span>
+                <span class="gi-header-count gi-wishlist-count w-[15px] h-[15px] text-[#fff] flex items-center justify-center rounded-[50%] text-[11px] absolute top-[-2px] right-[-6px] opacity-[0.8]">{{ wishlist_count }}</span>
               </a>
               <!-- Header Wishlist End -->
               <!-- Header Cart Start -->
@@ -134,13 +134,13 @@
           <!-- Header Button Start -->
           <div class="gi-header-action self-center max-[991px]:hidden">
             <div class="gi-header-bottons flex justify-end">
-              <a href="wishlist.html" class="gi-header-btn gi-wish-toggle mr-[30px] transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center whitespace-nowrap" title="Wishlist">
+              <a href="{% url 'essence:wishlist_view' %}" class="gi-header-btn gi-wish-toggle mr-[30px] transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center whitespace-nowrap" title="Wishlist">
                 <div class="header-icon relative flex">
                   <i class="fi-rr-heart text-[24px] leading-[17px]"></i>
                 </div>
                 <div class="gi-btn-desc flex flex-col uppercase ml-[10px]">
                   <span class="gi-btn-title transition-all duration-[0.3s] ease-in-out text-[12px] leading-[1] text-[#777] mb-[6px] tracking-[0.6px] capitalize font-medium">Wishlist</span>
-                  <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]"><b class="gi-wishlist-count">3</b>-items</span>
+                  <span class="gi-btn-stitle transition-all duration-[0.3s] ease-in-out text-[13px] font-medium text-[#4b5966] leading-[14px] max-[1199px]:text-[11px] max-[1199px]:min-w-[48px]"><b class="gi-wishlist-count">{{ wishlist_count }}</b>-items</span>
                 </div>
               </a>
               <a href="javascript:void(0)" class="gi-header-btn gi-cart-toggle mr-[30px] transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center whitespace-nowrap" title="Cart">
@@ -631,11 +631,35 @@
       {% for message in messages %}
         <div class="p-4 mb-4 text-sm rounded-lg alert {% if 'success' in message.tags %}
             
+            
+            
+            
+            
+            
+            
             text-green-800 bg-green-50 success-message
+
+
+
+
+
+
 
           {% elif 'warning' in message.tags %}
             
+            
+            
+            
+            
+            
+            
             text-black bg-yellow-50 warning-message
+
+
+
+
+
+
 
           {% endif %}"
           role="alert">

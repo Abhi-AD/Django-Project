@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ request.user|title }} Dashboard
+{% endblock %}
+{% load static %}
+{% block content %}
+  {% include 'components/ui/header.html' %}
+  {% include 'components/ui/sidebar.html' %}
+  {% include 'components/ui/Breadcrumb.html' with title='Wishlist' active='Wishlist' %}
+  <section class="gi-faq py-[40px] max-[767px]:py-[30px] gi-wishlist">
+    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+      <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center">
+        <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">Product <span class="text-[#5caf90]">Wishlist</span></h2>
+        <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Your product wish is our first priority.</p>
+      </div>
+      <div class="flex flex-wrap w-full">
+        <div class="w-full px-[12px]">
+          <div class="gi-vendor-dashboard-card border-[1px] border-solid border-[#eee] rounded-[5px] overflow-y-auto">
+            <div class="gi-vendor-card-header min-w-[700px] p-[30px] border-b-[1px] border-solid border-[#eee] flex justify-between items-center">
+              <h5 class="m-[0] text-[18px] uppercase font-bold text-[#777] tracking-[0.01rem] leading-[1.2]">Wishlist</h5>
+              <div class="gi-header-btn">
+                <a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Shop Now</a>
+              </div>
+            </div>
+            <div class="gi-vendor-card-body min-w-[700px] p-[30px]">
+              <div class="gi-vendor-card-table">
+                <table class="table gi-table w-full mb-[1rem]">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">ID</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Image</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Name</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Date</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Price</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Status</th>
+                      <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">225</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/1_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Californian Almonds Value 250g + 50g Pack</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">16 Jul 2021</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$65</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">548</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/10_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Healthy Nutmix, 200g Pack</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">13 Aug 2016</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$68</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">684</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/15_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Capsicum - Red</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">20 Jul 2015</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$360</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">987</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/17_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Ginger - Organic</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">05 Feb 2014</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$584</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">225</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/18_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Lemon - Seedless</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">23 Jul 2013</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$65</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">548</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/20_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Organic fresh Broccoli</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">28 Mar 2011</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$68</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#999] tracking-[0.02rem]">Disabled</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish btn mx-[3px] text-[20px] font-normal w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">684</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="assets/img/product-images/25_1.jpg" alt="product image" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Fresh Lichi</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">16 Apr 2010</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$360</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart"><i class="fi-rr-shopping-basket leading-[10px]"></i></a>
+                          <a class="gi-btn-1 gi-remove-wish btn mx-[3px] text-[20px] font-normal w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="javascript:void(0)" title="Remove From List">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include 'components/ui/footer.html' %}
+  {% include 'components/ui/quickmodel.html' %}
+{% endblock %}

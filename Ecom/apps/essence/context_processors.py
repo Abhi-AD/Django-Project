@@ -1,4 +1,4 @@
-from apps.essence.models import Category, Product, Vendor, Address
+from apps.essence.models import Category, Product, Vendor, Address, Wishlist
 from django.db.models import Count, Min, Max, Avg
 from django.contrib import messages
 
@@ -10,6 +10,15 @@ def main_processor(request):
     productes = Product.objects.all()
     min_max_price = Product.objects.aggregate(Min("price"), Max("price"), Avg("price"))
     try:
+        wishlist_count = Wishlist.objects.filter(user=request.user).count()
+    except:
+        messages.warning(
+            request,
+            "You have not added any items to your cart. Please add some items to proceed.",
+        )
+        wishlist_count = None
+
+    try:
         address = Address.objects.get(user=request.user)
     except:
         address = None
@@ -18,6 +27,7 @@ def main_processor(request):
         "active_category_id": active_category_id,
         "productes": productes,
         "vendors": vendors,
+        "wishlist_count": wishlist_count,
         "address": address,
         "min_max_price": min_max_price,
     }
