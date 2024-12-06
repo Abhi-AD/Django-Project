@@ -7,7 +7,7 @@
   {% include 'components/ui/header.html' %}
   {% include 'components/ui/sidebar.html' %}
   {% include 'components/ui/Breadcrumb.html' with title='Wishlist' active='Wishlist' %}
-  <section class="gi-faq py-[40px] max-[767px]:py-[30px] gi-wishlist">
+  <section class="gi-faq py-[40px] max-[767px]:py-[30px] gi-wishlist" id="wishlist-list">
     <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
       <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center">
         <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">Product <span class="text-[#5caf90]">Wishlist</span></h2>
@@ -71,7 +71,7 @@
                               <input type="hidden" class="product-id-{{ wishlist.product.id }}" value="{{ wishlist.product.id }}" />
                               <input type="hidden" class="product-title-{{ wishlist.product.id }}" value="{{ wishlist.product.title }}" />
                               <button data-index="{{ wishlist.product.id }}" title="Add To Cart" class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]"><i class="fi-rr-shopping-basket leading-[10px]"></i></button>
-                              <button class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" data-product-id="{{ wishlist.product.id }}" title="Remove From List">×</button>
+                              <button data-wishlist-product="{{ wishlist.id }}" class="delete-wishlist-product gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" data-product-id="{{ wishlist.product.id }}" title="Remove From List">×</button>
                             </div>
                           </span>
                         </td>
