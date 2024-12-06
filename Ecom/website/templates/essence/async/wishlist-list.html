@@ -1,0 +1,85 @@
+<section class="gi-faq py-[40px] max-[767px]:py-[30px] gi-wishlist" id="wishlist-list">
+  <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
+    <div class="section-title-2 w-full mb-[20px] pb-[20px] flex flex-col justify-center items-center">
+      <h2 class="gi-title mb-[0] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">Product <span class="text-[#5caf90]">Wishlist</span></h2>
+      <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Your product wish is our first priority.</p>
+    </div>
+    <div class="flex flex-wrap w-full">
+      <div class="w-full px-[12px]">
+        <div class="gi-vendor-dashboard-card border-[1px] border-solid border-[#eee] rounded-[5px] overflow-y-auto">
+          <div class="gi-vendor-card-header min-w-[700px] p-[30px] border-b-[1px] border-solid border-[#eee] flex justify-between items-center">
+            <h5 class="m-[0] text-[18px] uppercase font-bold text-[#777] tracking-[0.01rem] leading-[1.2]">Wishlist</h5>
+            <div class="gi-header-btn">
+              <a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Shop Now</a>
+            </div>
+          </div>
+          <div class="gi-vendor-card-body min-w-[700px] p-[30px]">
+            <div class="gi-vendor-card-table">
+              <table class="table gi-table w-full mb-[1rem]">
+                <thead>
+                  <tr>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">ID</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Image</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Name</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Date</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Price</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Status</th>
+                    <th scope="col" class="p-[0.5rem] text-left text-[#4b5966]">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
+                  {% for wishlist in wishlist %}
+                    <tr class="pro-gl-content">
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">{{ forloop.counter }}</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <img class="prod-img h-[58px] w-[58px]" src="{{ wishlist.product.images.url }}" alt="{{ wishlist.product.title }}" />
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <a href="{% url 'essence:product-detail' wishlist.product.pid %}"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">{{ wishlist.product.title|truncatechars:30 }}</span></a>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">{{ wishlist.product.date }}</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">${{ wishlist.product.price }}</span>
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        {% if wishlist.product.in_stock %}
+                          <span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span>
+                        {% else %}
+                          <span class="max-[767px]:text-[14px] py-[14px] flex text-[#e9abab] tracking-[0.02rem]">Out Of Stock</span>
+                        {% endif %}
+                      </td>
+                      <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
+                        <span class="tbl-btn py-[14px] flex text-[#777]">
+                          <div>
+                            <input type="hidden" id="product-quantity-{{ wishlist.product.id }}" class="qty-input" value="1" />
+                            <input type="hidden" class="product-pid-{{ wishlist.product.id }}" value="{{ wishlist.product.pid }}" />
+                            <input type="hidden" class="product-image-{{ wishlist.product.id }}" value="{{ wishlist.product.images.url }}" />
+                            <input type="hidden" class="product-id-{{ wishlist.product.id }}" value="{{ wishlist.product.id }}" />
+                            <input type="hidden" class="product-title-{{ wishlist.product.id }}" value="{{ wishlist.product.title }}" />
+                            <button data-index="{{ wishlist.product.id }}" title="Add To Cart" class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]"><i class="fi-rr-shopping-basket leading-[10px]"></i></button>
+                            <button data-wishlist-product="{{ wishlist.id }}" class="delete-wishlist-product gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" data-product-id="{{ wishlist.product.id }}" title="Remove From List">×</button>
+                          </div>
+                        </span>
+                      </td>
+                    </tr>
+                  {% empty %}
+                    <tr>
+                      <td colspan="7" class="text-center">
+                        <p>Nothing in wishlist yet.....</p>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

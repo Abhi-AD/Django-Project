@@ -439,3 +439,21 @@ def add_wishlist_view(request):
         Wishlist.objects.create(user=request.user, product=product)
         context = {"boolean": True}
     return JsonResponse(context)
+
+
+from django.core import serializers
+
+
+@login_required
+def remove_from_wishlist_view(request):
+    product_id = request.GET.get("id")
+    wishlist_item = Wishlist.objects.get(id=product_id, user=request.user)
+    wishlist_item.delete()
+    wishlist = Wishlist.objects.filter(user=request.user)
+    context = {"bool": True, "wishlist": wishlist}
+    data = render_to_string(
+        "essence/async/wishlist-list.html", context, request=request
+    )
+    return JsonResponse(
+        {"data": data, "wishlist": serializers.serialize("json", wishlist)}
+    )

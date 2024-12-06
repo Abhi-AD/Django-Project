@@ -33,4 +33,9 @@ urlpatterns = [
     ),
     path("wishlist/", views.wishlist_view, name="wishlist_view"),
     path("add_wishlist_view/", views.add_wishlist_view, name="add_wishlist_view"),
+    path(
+        "remove_from_wishlist_view/",
+        views.remove_from_wishlist_view,
+        name="remove_from_wishlist_view",
+    ),
 ]
