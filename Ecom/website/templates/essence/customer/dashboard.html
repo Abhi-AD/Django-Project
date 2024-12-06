@@ -72,6 +72,34 @@
               <div id="dashboard" class="tab-content">
                 <h2 class="text-xl font-bold mb-4">Welcome to <span class="text-[#5caf90]">{{ request.user|title }}</span> ! Dashboard</h2>
                 <p>From here, you can view and manage your orders, account details, and more.</p>
+                <p>{{ month }}</p>
+                {{ total_orders }}
+                <div>
+                  <canvas id="myChart"></canvas>
+                </div>
+                <script>
+                  const ctx = document.getElementById('myChart')
+                  
+                  new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                      labels: {{month|safe}},
+                      datasets: [
+                        {
+                          label: 'Order',
+                          data: {{total_orders|safe}},
+                        }
+                      ]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  })
+                </script>
               </div>
 
               <!-- Profile Tab -->
@@ -112,7 +140,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for order in orders %}
+                    {% for order in orders_list %}
                       <tr>
                         <td class="border border-gray-300 px-4 py-2">INVOICE_NO-{{ order.id }}</td>
                         <td class="border border-gray-300 px-4 py-2">{{ order.order_date }}</td>

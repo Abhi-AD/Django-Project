@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.http import HttpResponse, JsonResponse
 from apps.essence.context_processors import cart_context, main_processor
 
@@ -26,6 +26,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
+import calendar
+from django.db.models.functions import ExtractMonth
 
 
 # Create your views here.
@@ -370,24 +372,47 @@ def payment_failed_view(request):
 
 
 @login_required
+@login_required
 def customer_dashboard(request):
-    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    orders_list = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
     user_profile = Profile.objects.get(user=request.user)
+
+    orders = (
+        CartOrder.objects.annotate(month=ExtractMonth("order_date"))
+        .values("month")
+        .annotate(count=Count("id"))
+        .values("month", "count")
+    )
+    month = []
+    total_orders = []
+
+    for order in orders:
+        month.append(calendar.month_name[order["count"]])
+        total_orders.append(order["count"])
 
     if request.method == "POST":
         address_value = request.POST.get("address")
         mobile_value = request.POST.get("mobile")
         if address_value and mobile_value:
             new_address = Address.objects.create(
-                user=request.user, address=address_value, mobile=mobile_value
+                user=request.user,
+                address=address_value,
+                mobile=mobile_value,
             )
             messages.success(request, "Address added successfully")
         else:
             messages.error(request, "Please provide both address and mobile.")
 
         return redirect("essence:customer_dashboard")
-    context = {"orders": orders, "address": address, "user_profile": user_profile}
+    context = {
+        "orders": orders,
+        "month": month,
+        "total_orders": total_orders,
+        "orders_list": orders_list,
+        "address": address,
+        "user_profile": user_profile,
+    }
     return render(request, "essence/customer/dashboard.html", context)
 
 
