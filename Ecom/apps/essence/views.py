@@ -499,3 +499,7 @@ def ajax_contact(request):
     )
     context = {"boolean": True, "message": "Message Sent Successfully"}
     return JsonResponse(context)
+
+
+def profile_update(request):
+    return render(request, "essence/customer/profile-update.html.")
