@@ -12,7 +12,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ["full_name", "bio", "phone"]
+    list_display = ["user", "full_name", "bio", "phone"]
 
 
 admin.site.register(User, UserAdmin)

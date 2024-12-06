@@ -106,7 +106,11 @@
                   <h2 class="text-xl font-bold mb-4">My Profile</h2>
                 </div>
                 <div class="flex flex-row items-center gap-10">
-                  <img src="{{ user_profile.image.url }}" alt="{{ user_profile.full_name }}" class="w-[150px] h-[150px] rounded-full object-cover" />
+                  {% if user_profile.image %}
+                    <img src="{{ user_profile.image.url }}" alt="{{ user_profile.full_name }}" class="w-[150px] h-[150px] rounded-full object-cover" />
+                  {% else %}
+                    <img src="{% static 'assets/img/user/default.jpg' %}" alt="" class="w-[150px] h-[150px] rounded-full object-cover" />
+                  {% endif %}
                   <div class="card-body flex flex-col gap-2">
                     <span><input type="text" id="name" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Name - {{ user_profile.full_name }}" /></span>
                     <span><input type="text" id="bio" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Bio - {{ user_profile.bio }}" /></span>
