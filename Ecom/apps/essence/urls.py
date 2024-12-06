@@ -38,4 +38,6 @@ urlpatterns = [
         views.remove_from_wishlist_view,
         name="remove_from_wishlist_view",
     ),
+    path("contact/", views.contact, name="contact"),
+    path("ajax_contact/", views.ajax_contact, name="ajax_contact"),
 ]

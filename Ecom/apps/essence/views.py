@@ -14,7 +14,7 @@ from apps.essence.models import (
     Wishlist,
     Address,
 )
-from apps.userauth.models import Profile
+from apps.userauth.models import Profile, ContactUser
 from django.core.paginator import Paginator
 from taggit.models import Tag
 from django.core.exceptions import FieldDoesNotExist
@@ -28,6 +28,8 @@ from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 import calendar
 from django.db.models.functions import ExtractMonth
+from django.core.exceptions import FieldDoesNotExist
+from django.core import serializers
 
 
 # Create your views here.
@@ -273,9 +275,6 @@ def update_cart_quantity(request):
         return JsonResponse({"error": "Product not found in cart"}, status=404)
 
 
-from django.core.exceptions import FieldDoesNotExist
-
-
 @login_required
 def checkout_view(request):
     cart_data = cart_context(request)
@@ -372,7 +371,6 @@ def payment_failed_view(request):
 
 
 @login_required
-@login_required
 def customer_dashboard(request):
     orders_list = CartOrder.objects.filter(user=request.user).order_by("-id")
     address = Address.objects.filter(user=request.user)
@@ -466,9 +464,6 @@ def add_wishlist_view(request):
     return JsonResponse(context)
 
 
-from django.core import serializers
-
-
 @login_required
 def remove_from_wishlist_view(request):
     product_id = request.GET.get("id")
@@ -482,3 +477,25 @@ def remove_from_wishlist_view(request):
     return JsonResponse(
         {"data": data, "wishlist": serializers.serialize("json", wishlist)}
     )
+
+
+def contact(request):
+    return render(request, "essence/contact-us.html")
+
+
+def ajax_contact(request):
+    full_name = request.GET["full_name"]
+    email = request.GET["email"]
+    phone = request.GET["phone"]
+    subject = request.GET["subject"]
+    message = request.GET["message"]
+
+    contact = ContactUser.objects.create(
+        full_name=full_name,
+        email=email,
+        phone=phone,
+        subject=subject,
+        message=message,
+    )
+    context = {"boolean": True, "message": "Message Sent Successfully"}
+    return JsonResponse(context)
