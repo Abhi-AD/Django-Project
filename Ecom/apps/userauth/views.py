@@ -13,22 +13,46 @@ def register_view(request):
         form = UserRegisterForm(request.POST or None)
         if form.is_valid():
             new_user = form.save()
-            username = form.cleaned_data.get("username")
-            messages.success(
-                request, f"Hey {username}, your account was created successfully."
-            )
-            # Authenticate the user
-            new_user = authenticate(
-                username=form.cleaned_data.get("email"),
-                password=form.cleaned_data["password1"],
-            )
-            login(request, new_user)
-            return redirect("essence:index")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data["password1"]
+            new_user = authenticate(request, email=email, password=password)
+            if new_user is not None:
+                login(request, new_user)
+                messages.success(
+                    request,
+                    f"Hey {new_user.username}, your account was created successfully.",
+                )
+                return redirect("essence:index")
+            else:
+                messages.error(request, "Authentication failed. Please log in.")
     else:
         form = UserRegisterForm()
 
     context = {"form": form}
     return render(request, "userauth/sign-up.html", context)
+
+
+# def register_view(request):
+#     if request.method == "POST":
+#         form = UserRegisterForm(request.POST or None)
+#         if form.is_valid():
+#             new_user = form.save()
+#             username = form.cleaned_data.get("username")
+#             messages.success(
+#                 request, f"Hey {username}, your account was created successfully."
+#             )
+#             # Authenticate the user
+#             new_user = authenticate(
+#                 username=form.cleaned_data.get("username"),
+#                 password=form.cleaned_data["password1"],
+#             )
+#             login(request, new_user)
+#             return redirect("essence:index")
+#     else:
+#         form = UserRegisterForm()
+
+#     context = {"form": form}
+#     return render(request, "userauth/sign-up.html", context)
 
 
 def login_view(request):
