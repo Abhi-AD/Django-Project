@@ -501,3 +501,9 @@ def ajax_contact(request):
     return JsonResponse(context)
 
 
+def privacy_policy(request):
+    return render(request, "otherpage/privacy-policy.html")
+
+
+def about_us(request):
+    return render(request, "otherpage/about-us.html")

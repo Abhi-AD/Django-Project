@@ -18,20 +18,24 @@
                 <h3 class="gi-sidebar-title text-[20px] max-[1199px]:text-[18px] font-semibold tracking-[0] mb-[0] relative text-[#4b5966] leading-[1.2]">Summary</h3>
               </div>
               <div class="gi-sb-block-content mt-[15px]">
-                <div class="gi-checkout-summary">
-                  <div class="flex justify-between items-center mb-[10px]">
-                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
-                    <span id="subtotal" data-value="{{ cart_data.all_total_amount }}" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
+                {% if cart_data.all_total_amount %}
+                  <div class="gi-checkout-summary">
+                    <div class="flex justify-between items-center mb-[10px]">
+                      <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
+                      <span id="subtotal" data-value="{{ cart_data.all_total_amount }}" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-[10px]">
+                      <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Tax</span>
+                      <span id="tax-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
+                    </div>
+                    <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
+                      <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
+                      <span id="total-amount" class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope"></span>
+                    </div>
                   </div>
-                  <div class="flex justify-between items-center mb-[10px]">
-                    <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Tax</span>
-                    <span id="tax-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
-                  </div>
-                  <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
-                    <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
-                    <span id="total-amount" class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope"></span>
-                  </div>
-                </div>
+                {% else %}
+                  <span class="text-yellow-500">Please add the product is cart</span>
+                {% endif %}
 
                 <div class="gi-checkout-pro">
                   {% for item in cart_data.product_details %}
@@ -220,8 +224,9 @@
                   </div>
                 </div>
               </div>
-              <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">{{ paypal_payment_button.render }}</a></span>
-
+              {% if cart_data.all_total_amount %}
+                <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">{{ paypal_payment_button.render }}</a></span>
+              {% endif %}
               {% comment %} <span class="gi-check-order-btn flex flex-end p-[0]"><a class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="#">Place Order</a></span> {% endcomment %}
             </div>
           </div>
