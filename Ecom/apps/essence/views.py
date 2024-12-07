@@ -501,5 +501,3 @@ def ajax_contact(request):
     return JsonResponse(context)
 
 
-def profile_update(request):
-    return render(request, "essence/customer/profile-update.html.")

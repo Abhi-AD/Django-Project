@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from apps.userauth.forms import UserRegisterForm
+from apps.userauth.forms import UserRegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib import messages
 from django.conf import settings
+from apps.userauth.models import Profile
 
 User = get_user_model()
 
@@ -30,29 +31,6 @@ def register_view(request):
 
     context = {"form": form}
     return render(request, "userauth/sign-up.html", context)
-
-
-# def register_view(request):
-#     if request.method == "POST":
-#         form = UserRegisterForm(request.POST or None)
-#         if form.is_valid():
-#             new_user = form.save()
-#             username = form.cleaned_data.get("username")
-#             messages.success(
-#                 request, f"Hey {username}, your account was created successfully."
-#             )
-#             # Authenticate the user
-#             new_user = authenticate(
-#                 username=form.cleaned_data.get("username"),
-#                 password=form.cleaned_data["password1"],
-#             )
-#             login(request, new_user)
-#             return redirect("essence:index")
-#     else:
-#         form = UserRegisterForm()
-
-#     context = {"form": form}
-#     return render(request, "userauth/sign-up.html", context)
 
 
 def login_view(request):
@@ -83,3 +61,17 @@ def logout_view(request):
     logout(request)
     messages.warning(request, "You logged out.")
     return redirect("userauth:sign-in")
+
+
+def profile_update(request):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect("essence:customer_dashboard")
+    else:
+        form = ProfileForm(instance=profile)
+    context = {"form": form, "profile": profile}
+    return render(request, "userauth/profile-update.html", context)

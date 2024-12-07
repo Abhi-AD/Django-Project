@@ -112,9 +112,9 @@
                     <img src="{% static 'assets/img/user/default.jpg' %}" alt="" class="w-[150px] h-[150px] rounded-full object-cover" />
                   {% endif %}
                   <div class="card-body flex flex-col gap-2">
-                    <span><input type="text" id="name" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Name - {{ user_profile.full_name }}" /></span>
-                    <span><input type="text" id="bio" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Bio - {{ user_profile.bio }}" /></span>
-                    <span><input type="text" id="phone" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Phone - {{ user_profile.phone }}" /></span>
+                    <span><input type="text" disabled id="name" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Name - {{ user_profile.full_name }}" /></span>
+                    <span><input type="text" disabled id="bio" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Bio - {{ user_profile.bio }}" /></span>
+                    <span><input type="text" disabled id="phone" class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" value="Phone - {{ user_profile.phone }}" /></span>
                     <span class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
                       {% if user_profile.verified == True %}
                         <span class="flex items-center gap-2">Verified<i class="gicon gi-check fill text-[24px] text-[#5caf90]"></i></span>
@@ -122,7 +122,7 @@
                         <span class="flex items-center gap-2">Not verified<div class="text-red-500 text-3xl">✖</div></span>
                       {% endif %}
                     </span>
-                    <span class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"><button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Edit Profile</button></span>
+                    <span class="px-3 py-4 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"><a href="{% url 'userauth:profile-update' %}" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Edit Profile</a></span>
                   </div>
                 </div>
               </div>
