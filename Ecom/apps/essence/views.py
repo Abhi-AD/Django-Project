@@ -39,7 +39,7 @@ def index(request):
     ).order_by("?")[:5]
     new_products = Product.objects.filter(
         product_status="published", featured=True
-    ).order_by("?")[:10]
+    ).order_by("?")[:5]
     context = {
         "day_products": day_products,
         "new_products": new_products,
