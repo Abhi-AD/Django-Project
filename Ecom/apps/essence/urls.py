@@ -40,4 +40,6 @@ urlpatterns = [
     ),
     path("contact/", views.contact, name="contact"),
     path("ajax_contact/", views.ajax_contact, name="ajax_contact"),
+    path("privacy-policy/", views.privacy_policy, name="privacy-policy"),
+    path("about-us/", views.about_us, name="about-us"),
 ]

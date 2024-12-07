@@ -79,20 +79,22 @@
               </div>
               <div class="gi-sb-block-content mb-[0] border-b-[0] mt-[15px]">
                 <div class="gi-cart-summary-bottom">
-                  <div class="gi-checkout-summary">
-                    <div class="flex justify-between items-center mb-[10px]">
-                      <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
-                      <span id="subtotal" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
+                  {% if cart_data.all_total_amount %}
+                    <div class="gi-checkout-summary">
+                      <div class="flex justify-between items-center mb-[10px]">
+                        <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
+                        <span id="subtotal" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium">${{ cart_data.all_total_amount }}</span>
+                      </div>
+                      <div class="flex justify-between items-center mb-[10px]">
+                        <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Delivery Charges</span>
+                        <span id="delivery-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
+                      </div>
+                      <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
+                        <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
+                        <span id="total-amount" class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope"></span>
+                      </div>
                     </div>
-                    <div class="flex justify-between items-center mb-[10px]">
-                      <span class="text-left text-[#777] text-[14px] leading-[24px] tracking-[0]">Delivery Charges</span>
-                      <span id="delivery-charge" class="text-right text-[#4b5966] text-[15px] leading-[24px] font-medium"></span>
-                    </div>
-                    <div class="gi-checkout-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
-                      <span class="text-left text-[16px] font-semibold text-[#4b5966] tracking-[0] font-manrope">Total Amount</span>
-                      <span id="total-amount" class="text-right text-[16px] font-semibold text-[#4b5966] font-manrope"></span>
-                    </div>
-                  </div>
+                  {% endif %}
 
                   <script>
                     const subtotal = parseFloat('{{ cart_data.all_total_amount }}')
@@ -113,45 +115,49 @@
             <div class="gi-cart-inner">
               <div class="flex flex-wrap w-full">
                 <form action="#" class="w-full">
-                  <div class="table-content cart-table-content">
-                    <table class="w-full bg-[#fff]">
-                      <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">
-                        <tr class="bg-[#fff] border-b-[2px] border-solid border-[#eee]">
-                          <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Product</th>
-                          <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Price</th>
-                          <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-center capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Quantity</th>
-                          <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Total</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for item in cart_data.product_details %}
-                          <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
-                            <td data-label="{{ item.title }}" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                              <a href="{% url 'essence:product-detail' item.pid %}" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center"><img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{{ item.images }}" alt="" />{{ item.title }}</a>
-                            </td>
-                            <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                              <span class="amount tracking-[0.02rem]">${{ item.price }}</span>
-                            </td>
-                            <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-center max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                              <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
-                                <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="number" name="" value="{{ item.qty }}" />
-                              </div>
-                            </td>
-                            <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">${{ item.product_by_amount }}</td>
-                            <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                              <button class="remove text-[22px] my-[0] mx-auto" data-product="{{ item.product_id }}"><i class="gicon gi-trash-o"></i></button>
-                            </td>
+                  {% if cart_data.all_total_amount %}
+                    <div class="table-content cart-table-content">
+                      <table class="w-full bg-[#fff]">
+                        <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">
+                          <tr class="bg-[#fff] border-b-[2px] border-solid border-[#eee]">
+                            <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Product</th>
+                            <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Price</th>
+                            <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-center capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Quantity</th>
+                            <th class="text-[#4b5966] text-[15px] font-medium pt-[15px] pb-[12px] px-[14px] text-left capitalize align-middle whitespace-nowrap leading-[1] tracking-[0]">Total</th>
+                            <th></th>
                           </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {% for item in cart_data.product_details %}
+                            <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
+                              <td data-label="{{ item.title }}" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                                <a href="{% url 'essence:product-detail' item.pid %}" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center"><img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{{ item.images }}" alt="" />{{ item.title }}</a>
+                              </td>
+                              <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                                <span class="amount tracking-[0.02rem]">${{ item.price }}</span>
+                              </td>
+                              <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-center max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                                <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
+                                  <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="number" name="" value="{{ item.qty }}" />
+                                </div>
+                              </td>
+                              <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">${{ item.product_by_amount }}</td>
+                              <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
+                                <button class="remove text-[22px] my-[0] mx-auto" data-product="{{ item.product_id }}"><i class="gicon gi-trash-o"></i></button>
+                              </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  {% endif %}
                   <div class="flex flex-wrap">
                     <div class="w-full">
                       <div class="gi-cart-update-bottom pt-[30px] flex justify-between">
                         <a href="{% url 'essence:cart' %}" class="text-[#4b5966] inline-block underline text-[15px] leading-[20px] font-medium tracking-[0.8px]">Continue Shopping</a>
-                        <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]"><a href="{% url 'essence:checkout_view' %}">Check Out</a></button>
+                        {% if cart_data.all_total_amount %}
+                          <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]"><a href="{% url 'essence:checkout_view' %}">Check Out</a></button>
+                        {% endif %}
                       </div>
                     </div>
                   </div>
