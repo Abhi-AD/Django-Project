@@ -13,6 +13,7 @@ from apps.essence.models import (
     ProductReview,
     Wishlist,
     Address,
+    Coupon
 )
 from apps.userauth.models import Profile, ContactUser
 from django.core.paginator import Paginator
@@ -352,6 +353,26 @@ def checkout_view(request, oid):
 
     try:
         order = CartOrder.objects.get(oid=oid)
+        if request.method == "POST":
+            code = request.POST.get('code')
+            coupon = Coupon.objects.filter(code=code,active=True).first()
+            if coupon:
+                if coupon in order.coupons.all():
+                    messages.warning(request, "Coupon already Activated.")
+                    return redirect("essence:checkout_view", order.oid)
+                else:
+                    discount = order.price*coupon.discount/100
+                    order.coupons.add(coupon)
+                    order.price -= discount
+                    order.saved += discount
+                    order.save()
+                    
+                    messages.success(request, "Coupon Activated Successfully.")
+                    return redirect("essence:checkout_view", order.oid)
+            else:
+                    messages.error(request, "Coupon Does Not Exist.")
+                    return redirect("essence:checkout_view", order.oid)
+                    
     except CartOrder.DoesNotExist:
         return redirect("essence:cart")
     order_items = CartOrderItem.objects.filter(order_user=order)
