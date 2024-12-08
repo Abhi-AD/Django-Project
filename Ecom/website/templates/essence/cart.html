@@ -3,34 +3,15 @@
 {% endblock %}
 {% load static %} {% block content %}
   {% include 'components/ui/header.html' %}
-  <div class="gi-breadcrumb mb-[40px]">
-    <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
-      <div class="flex flex-wrap w-full">
-        <div class="w-full px-[12px]">
-          <div class="flex flex-wrap m-0 p-[15px] border-[1px] border-solid border-[#eee] rounded-b-[5px] border-t-[0] gi_breadcrumb_inner">
-            <div class="min-[768px]:w-[50%] w-full px-[12px]">
-              <h2 class="gi-breadcrumb-title text-[#4b5966] block text-[15px] font-Poppins leading-[22px] font-semibold my-[0] mx-auto capitalize max-[767px]:mb-[5px] max-[767px]:text-center">Cart</h2>
-            </div>
-            <div class="min-[768px]:w-[50%] w-full px-[12px]">
-              <ul class="gi-breadcrumb-list text-right max-[767px]:text-center">
-                <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize">
-                  <a href="{% url 'essence:index' %}" class="relative text-[#4b5966]">Home</a>
-                </li>
-                <li class="gi-breadcrumb-item inline-block text-[14px] font-normal tracking-[0.02rem] leading-[1.2] capitalize active">Cart</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include 'components/ui/Breadcrumb.html' with title='Cart' active='Cart' %}
   {% include 'components/ui/sidebar.html' %}
 
   <!-- Cart section -->
   <section class="gi-cart-section py-[40px] max-[767px]:py-[30px]">
     <h2 class="hidden">Cart Page</h2>
     <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
-      <div class="flex flex-wrap w-full">
+      <form action="{% url 'essence:save_checkout_info' %}" method="POST" class="flex flex-wrap w-full">
+        {% csrf_token %}
         <!-- Sidebar Area Start -->
         <div class="gi-cart-rightside min-[992px]:w-[33.33%] w-full px-[12px]">
           <div class="gi-sidebar-wrap p-[15px] rounded-[5px] border-[1px] border-solid border-[#eee] mb-[0]">
@@ -43,38 +24,47 @@
                 <h4 class="gi-ship-title mb-[0] text-[17px] font-bold tracking-[0] leading-[1.2] border-b-[1px] border-solid border-[#eee] text-[#777] pb-[15px] relative flex items-center justify-between">Estimate Shipping</h4>
                 <div class="gi-cart-form pt-[19px]">
                   <p class="text-[#777] text-[14px] mb-[10px] tracking-[0] leading-[28px] font-light">Enter your destination to get a shipping estimate</p>
-                  <form action="#" method="post">
-                    <span class="gi-cart-wrap">
-                      <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Country *</label>
-                      <span class="gi-cart-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[28px] rounded-[5px]">
-                        <select name="gi_cart_country" id="gi-cart-select-country" class="gi-cart-select">
-                          <option selected="" disabled="">United States</option>
-                          <option value="1">Country 1</option>
-                          <option value="2">Country 2</option>
-                          <option value="3">Country 3</option>
-                          <option value="4">Country 4</option>
-                          <option value="5">Country 5</option>
-                        </select>
-                      </span>
-                    </span>
-                    <span class="gi-cart-wrap">
-                      <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">State/Province</label>
-                      <span class="gi-cart-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[28px] rounded-[5px]">
-                        <select name="gi_cart_state" id="gi-cart-select-state" class="gi-cart-select">
-                          <option selected="" disabled="">Please Select a region, state</option>
-                          <option value="1">Region/State 1</option>
-                          <option value="2">Region/State 2</option>
-                          <option value="3">Region/State 3</option>
-                          <option value="4">Region/State 4</option>
-                          <option value="5">Region/State 5</option>
-                        </select>
-                      </span>
-                    </span>
-                    <span class="gi-cart-wrap">
-                      <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Zip/Postal Code</label>
-                      <input type="text" name="postalcode" placeholder="Zip/Postal Code" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px]" />
-                    </span>
-                  </form>
+                  <div class="mb-[28px]">
+                    <label for="full_name" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Full Name *</label>
+                    <input type="text" name="full_name" placeholder="Full Name" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                    <!-- Email -->
+                    <div class="mb-[28px]">
+                      <label for="email" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Email *</label>
+                      <input type="email" name="email" id="email" placeholder="Email" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="mb-[28px]">
+                      <label for="mobile" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Mobile *</label>
+                      <input type="tel" name="mobile" id="mobile" placeholder="Mobile" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mb-[28px]">
+                      <label for="address" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Address *</label>
+                      <input type="text" name="address" id="address" placeholder="Address" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+
+                    <!-- City -->
+                    <div class="mb-[28px]">
+                      <label for="city" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">City *</label>
+                      <input type="text" name="city" id="city" placeholder="City" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+
+                    <!-- State -->
+                    <div class="mb-[28px]">
+                      <label for="state" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">State *</label>
+                      <input type="text" name="state" id="state" placeholder="State" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+
+                    <!-- Country -->
+                    <div class="mb-[28px]">
+                      <label for="country" class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Country *</label>
+                      <input type="text" name="country" id="country" placeholder="Country" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] px-[15px] w-full outline-[0] rounded-[5px]" required />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="gi-sb-block-content mb-[0] border-b-[0] mt-[15px]">
@@ -114,7 +104,7 @@
           <div class="gi-cart-content">
             <div class="gi-cart-inner">
               <div class="flex flex-wrap w-full">
-                <form action="#" class="w-full">
+                <div class="w-full">
                   {% if cart_data.all_total_amount %}
                     <div class="table-content cart-table-content">
                       <table class="w-full bg-[#fff]">
@@ -154,20 +144,18 @@
                   <div class="flex flex-wrap">
                     <div class="w-full">
                       <div class="gi-cart-update-bottom pt-[30px] flex justify-between">
-                        <a href="{% url 'essence:cart' %}" class="text-[#4b5966] inline-block underline text-[15px] leading-[20px] font-medium tracking-[0.8px]">Continue Shopping</a>
-                        {% if cart_data.all_total_amount %}
-                          <button type="button" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]"><a href="{% url 'essence:checkout_view' %}">Check Out</a></button>
-                        {% endif %}
+                        <a href="{% url 'essence:product-list' %}" class="text-[#4b5966] inline-block underline text-[15px] leading-[20px] font-medium tracking-[0.8px]">Continue Shopping</a>
+                        <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] max-[767px]:py-[6px] px-[15px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Check Out</button>
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
           <!-- cart content End -->
         </div>
-      </div>
+      </form>
     </div>
   </section>
   <!-- Cart section End -->

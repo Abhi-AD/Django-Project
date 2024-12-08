@@ -275,76 +275,95 @@ def update_cart_quantity(request):
         return JsonResponse({"error": "Product not found in cart"}, status=404)
 
 
-@login_required
-def checkout_view(request):
+def save_checkout_info(request):
     cart_data = cart_context(request)
     cart_data_details = cart_data.get("cart_data", {})
     all_total_amount = cart_data_details.get("all_total_amount", 0)
 
-    if "cart_data_obj" in request.session:
-        # Create the order
-        order = CartOrder.objects.create(
-            user=request.user,
-            price=all_total_amount,
-        )
+    if request.method == "POST":
+        full_name = request.POST.get("full_name")
+        email = request.POST.get("email")
+        mobile = request.POST.get("mobile")
+        address = request.POST.get("address")
+        city = request.POST.get("city")
+        state = request.POST.get("state")
+        country = request.POST.get("country")
 
-        # Dynamically detect the ForeignKey field in CartOrderItem
-        cart_order_fk_name = None
-        for field in CartOrderItem._meta.fields:
-            if hasattr(field, "related_model") and field.related_model == CartOrder:
-                cart_order_fk_name = field.name
-                break
+        request.session["full_name"] = full_name
+        request.session["email"] = email
+        request.session["mobile"] = mobile
+        request.session["address"] = address
+        request.session["city"] = city
+        request.session["state"] = state
+        request.session["country"] = country
 
-        if not cart_order_fk_name:
-            raise FieldDoesNotExist(
-                "CartOrderItem does not have a ForeignKey to CartOrder."
+        if "cart_data_obj" in request.session:
+            order = CartOrder.objects.create(
+                user=request.user,
+                price=all_total_amount,
+                full_name=full_name,
+                email=email,
+                phone=mobile,
+                address=address,
+                city=city,
+                state=state,
+                country=country,
             )
+            del request.session["full_name"]
+            del request.session["email"]
+            del request.session["mobile"]
+            del request.session["address"]
+            del request.session["city"]
+            del request.session["state"]
+            del request.session["country"]
 
-        # Add items to the order
-        for product_id, item in request.session["cart_data_obj"].items():
-            CartOrderItem.objects.create(
-                **{
-                    cart_order_fk_name: order,  # Use the dynamically detected FK
-                    "invoice_no": f"INVOICE_NO{product_id}",
-                    "item": item.get("title", "Unknown"),
-                    "image": item.get("images", ""),
-                    "qty": item.get("qty", 0),
-                    "price": item.get("price", "0.00"),
-                }
-            )
+            cart_order_fk_name = None
+            for field in CartOrderItem._meta.fields:
+                if hasattr(field, "related_model") and field.related_model == CartOrder:
+                    cart_order_fk_name = field.name
+                    break
 
-        # Prepare PayPal data
-        host = request.get_host()
-        paypal_dictionary = {
-            "business": settings.PAYPAL_RECEIVER_EMAIL,
-            "amount": all_total_amount,
-            "item_name": f"Order_Item-No-{order.id}",
-            "invoice": f"InVoice_NO-{order.id}",
-            "currency": "USD",
-            "notify_url": f"http://{host}{reverse('essence:paypal-ipn')}",
-            "return_url": f"http://{host}{reverse('essence:payment_complete')}",
-            "cancel_url": f"http://{host}{reverse('essence:payment_failed')}",
-        }
-        paypal_payment_button = PayPalPaymentsForm(initial=paypal_dictionary)
+            if not cart_order_fk_name:
+                raise FieldDoesNotExist(
+                    "CartOrderItem does not have a ForeignKey to CartOrder."
+                )
 
-        try:
-            active_address = Address.objects.get(user=request.user, status=True)
-        except:
-            messages.warning(
-                request,
-                "There are multiple active address, only one should be ACTIVATED.",
-            )
-            active_address = None
-        print(active_address)
+            for product_id, item in request.session["cart_data_obj"].items():
+                CartOrderItem.objects.create(
+                    **{
+                        cart_order_fk_name: order,
+                        "invoice_no": f"INVOICE_NO{product_id}",
+                        "item": item.get("title", "Unknown"),
+                        "image": item.get("images", ""),
+                        "qty": item.get("qty", 0),
+                        "price": item.get("price", "0.00"),
+                    }
+                )
 
-        context = {
-            "paypal_payment_button": paypal_payment_button,
-            "active_address": active_address,
-        }
-        return render(request, "essence/checkout.html", context)
+        return redirect("essence:checkout_view", order.oid)
+    return redirect("essence:checkout_view", order.oid)
 
-    # If no cart data exists
-    return render(request, "essence/checkout.html", {"error": "No items in the cart."})
+
+@login_required
+def checkout_view(request, oid):
+    cart_data = cart_context(request)
+    cart_data_details = cart_data.get("cart_data", {})
+    all_total_amount = cart_data_details.get("all_total_amount", 0)
+
+    try:
+        order = CartOrder.objects.get(oid=oid)
+    except CartOrder.DoesNotExist:
+        return redirect("essence:cart")
+    order_items = CartOrderItem.objects.filter(order_user=order)
+
+    context = {
+        "order": order,
+        "order_item": order_items,
+        "cart_data_details": cart_data_details,
+        "all_total_amount": all_total_amount,
+    }
+
+    return render(request, "essence/checkout.html", context)
 
 
 def cart_view(request):
