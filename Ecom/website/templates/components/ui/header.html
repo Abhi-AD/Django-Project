@@ -489,147 +489,15 @@
       {% for message in messages %}
         <div class="p-4 mb-4 text-sm rounded-lg alert {% if 'success' in message.tags %}
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            text-green-800 bg-green-50 success-message
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        text-green-800 bg-green-50 success-message
 
           {% elif 'warning' in message.tags %}
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             text-black bg-yellow-50 warning-message
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          {% elif 'error' in message.tags %}
+            
+            text-white bg-red-400 warning-message
 
           {% endif %}"
           role="alert">
@@ -655,6 +523,9 @@
       setTimeout(() => hideMessage(message), 3000)
     })
     warningMessages.forEach((message) => {
+      setTimeout(() => hideMessage(message), 1000)
+    })
+    errorMessages.forEach((message) => {
       setTimeout(() => hideMessage(message), 1000)
     })
   })
