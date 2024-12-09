@@ -13,7 +13,7 @@ from apps.essence.models import (
     ProductReview,
     Wishlist,
     Address,
-    Coupon
+    Coupon,
 )
 from apps.userauth.models import Profile, ContactUser
 from django.core.paginator import Paginator
@@ -354,25 +354,25 @@ def checkout_view(request, oid):
     try:
         order = CartOrder.objects.get(oid=oid)
         if request.method == "POST":
-            code = request.POST.get('code')
-            coupon = Coupon.objects.filter(code=code,active=True).first()
+            code = request.POST.get("code")
+            coupon = Coupon.objects.filter(code=code, active=True).first()
             if coupon:
                 if coupon in order.coupons.all():
                     messages.warning(request, "Coupon already Activated.")
                     return redirect("essence:checkout_view", order.oid)
                 else:
-                    discount = order.price*coupon.discount/100
+                    discount = order.price * coupon.discount / 100
                     order.coupons.add(coupon)
                     order.price -= discount
                     order.saved += discount
                     order.save()
-                    
+
                     messages.success(request, "Coupon Activated Successfully.")
                     return redirect("essence:checkout_view", order.oid)
             else:
-                    messages.error(request, "Coupon Does Not Exist.")
-                    return redirect("essence:checkout_view", order.oid)
-                    
+                messages.error(request, "Coupon Does Not Exist.")
+                return redirect("essence:checkout_view", order.oid)
+
     except CartOrder.DoesNotExist:
         return redirect("essence:cart")
     order_items = CartOrderItem.objects.filter(order_user=order)
@@ -392,17 +392,13 @@ def cart_view(request):
 
 
 @login_required
-def payment_complete_view(request):
-    cart_data = cart_context(request)
-    all_total_amount = cart_data.get("cart_data", {}).get("all_total_amount", 0)
-    return render(
-        request,
-        "essence/payment-complete.html",
-        {
-            "all_total_amount": all_total_amount,
-            "cart_data": cart_data.get("cart_data", {}),
-        },
-    )
+def payment_complete_view(request, oid):
+    order = CartOrder.objects.get(oid=oid)
+    if order.paid_status == False:
+        order.paid_status = True
+        order.save()
+    context = {"order": order}
+    return render(request, "essence/payment-complete.html", context)
 
 
 @login_required

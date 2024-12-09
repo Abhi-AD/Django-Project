@@ -59,7 +59,8 @@
                   </form>
                   <!-- Payment Buttons -->
                   <button class="w-full bg-purple-600 text-white py-2 rounded mb-2 hover:bg-purple-700">Pay With Stripe (Credit or Debit Card)</button>
-                  <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Pay With PayPal</button>
+                  {% comment %} <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Pay With PayPal</button> {% endcomment %}
+                  <div id="paypal-button-container"></div>
                 </div>
               </div>
             </div>
@@ -68,6 +69,34 @@
       </div>
     </div>
   </section>
+  <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    paypal
+      .Buttons({
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: '{{order.price}}'
+                }
+              }
+            ]
+          })
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (Details) {
+            alert(Details)
+            if (Details.status == 'COMPLETED') {
+              window.location.href = `/payment_complete/{{order.oid}}/?status=${Details.status}`
+            }
+          })
+        }
+      })
+      .render('#paypal-button-container')
+  </script>
   {% include 'components/ui/footer.html' %}
   {% include 'components/ui/quickmodel.html' %}
 {% endblock %}
