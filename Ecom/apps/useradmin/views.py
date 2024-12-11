@@ -58,3 +58,28 @@ def add_product(request):
 
     context = {"form": form}
     return render(request, "useradmin/add_product.html", context)
+
+
+def update_product(request, pid):
+    product = Product.objects.get(pid=pid)
+    if request.method == "POST":
+        form = AddProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+            form.save_m2m()
+            return redirect("useradmin:product")
+        else:
+            print(form.errors)
+    else:
+        form = AddProductForm(instance=product)
+
+    context = {"form": form, "product": product}
+    return render(request, "useradmin/edit_product.html", context)
+
+
+def delete_product(request, pid):
+    product = Product.objects.get(pid=pid)
+    product.delete()
+    return redirect("useradmin:product")
