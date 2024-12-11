@@ -235,7 +235,6 @@ class CartOrderItem(models.Model):
     image = models.CharField(max_length=200)
     qty = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
-    total = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
 
     class Meta:
         verbose_name_plural = "Cart Order Items"
@@ -245,6 +244,10 @@ class CartOrderItem(models.Model):
 
     def order_img(self):
         return mark_safe('<img src="/media/%s" width="50" />' % (self.image.url))
+
+    @property
+    def total(self):
+        return self.price * self.qty
 
 
 # ######### product revew, wishlists, address

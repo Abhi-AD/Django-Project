@@ -46,7 +46,7 @@
           <i class="fas fa-box mr-2"></i>
           Products
         </a>
-        <a href="#" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/orders/' %}active-nav-link{% endif %}">
+        <a href="{% url 'useradmin:orders' %}" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/orders/' %}active-nav-link{% endif %}">
           <i class="fas fa-shopping-cart mr-2"></i>
           Orders
         </a>
@@ -104,7 +104,7 @@
         <nav id="mobileNav" class="hidden flex flex-col pt-4">
           <a href="{% url 'useradmin:dashboard' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/dashboard/' %}active-nav-link{% endif %}"><i class="fas fa-tachometer-alt mr-3"></i> Dashboard</a>
           <a href="{% url 'useradmin:product' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/product/' %}active-nav-link{% endif %}"><i class="fas fa-box mr-3"></i> Products</a>
-          <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/orders/' %}active-nav-link{% endif %}"><i class="fas fa-shopping-cart mr-3"></i> Orders</a>
+          <a href="{% url 'useradmin:orders' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/orders/' %}active-nav-link{% endif %}"><i class="fas fa-shopping-cart mr-3"></i> Orders</a>
           <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/shop-page/' %}active-nav-link{% endif %}"><i class="fas fa-store mr-3"></i> Shop Page</a>
           <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/add-product/' %}active-nav-link{% endif %}"><i class="fas fa-plus-circle mr-3"></i> Add Product</a>
           <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/reviews/' %}active-nav-link{% endif %}"><i class="fas fa-star mr-3"></i> Reviews</a>
