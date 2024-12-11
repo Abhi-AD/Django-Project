@@ -27,7 +27,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
-import calendar
+import calendar, stripe
 from django.db.models.functions import ExtractMonth
 from django.core.exceptions import FieldDoesNotExist
 from django.core import serializers
@@ -379,6 +379,7 @@ def checkout_view(request, oid):
 
     context = {
         "order": order,
+        "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
         "order_item": order_items,
         "cart_data_details": cart_data_details,
         "all_total_amount": all_total_amount,
@@ -389,6 +390,52 @@ def checkout_view(request, oid):
 
 def cart_view(request):
     return render(request, "essence/cart.html")
+
+
+@csrf_exempt
+def create_checkout_sessions(request, oid):
+    if request.method == "POST":
+        try:
+            order = CartOrder.objects.get(oid=oid)
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=["card"],
+                line_items=[
+                    {
+                        "price_data": {
+                            "currency": "usd",
+                            "product_data": {
+                                "name": f"Order by {order.full_name}",
+                            },
+                            "unit_amount": int(order.price * 1000),
+                        },
+                        "quantity": 1,
+                    }
+                ],
+                mode="payment",
+                success_url=request.build_absolute_uri(
+                    reverse("essence:payment_complete", args=[order.oid])
+                )
+                + "?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url=request.build_absolute_uri(
+                    reverse("essence:payment_failed")
+                ),
+            )
+
+            # Save session details
+            order.paid_status = False
+            order.stripe_payment_intent = checkout_session["id"]
+            order.save()
+
+            # Return JSON response
+            return JsonResponse({"sessionId": checkout_session.id})
+        except CartOrder.DoesNotExist:
+            return JsonResponse({"error": "Order not found"}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=400)
 
 
 @login_required
