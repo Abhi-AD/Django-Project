@@ -80,48 +80,50 @@
         </div>
       </div>
 
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b">
-            <th class="p-4">
-              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
-            </th>
-            <th class="p-4 text-gray-600 font-medium">Order ID</th>
-            <th class="p-4 text-gray-600 font-medium">Billing Name</th>
-            <th class="p-4 text-gray-600 font-medium">Email</th>
-            <th class="p-4 text-gray-600 font-medium">Phone</th>
-            <th class="p-4 text-gray-600 font-medium">Date</th>
-            <th class="p-4 text-gray-600 font-medium">Total</th>
-            <th class="p-4 text-gray-600 font-medium">Payment Status</th>
-            <th class="p-4 text-gray-600 font-medium">View Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for order in latest_order %}
-            <tr class="border-b hover:bg-gray-50">
-              <td class="p-4">
+      <div class="relative overflow-x-auto">
+        <table class="min-w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b">
+              <th class="p-4">
                 <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
-              </td>
-              <td class="p-4 text-blue-500 font-medium">#{{ order.sku }}</td>
-              <td class="p-4 text-gray-800">{{ order.full_name }}</td>
-              <td class="p-4 text-gray-800">{{ order.email }}</td>
-              <td class="p-4 text-gray-800">{{ order.phone }}</td>
-              <td class="p-4 text-gray-800">{{ order.order_date }}</td>
-              <td class="p-4 text-gray-800">${{ order.price }}</td>
-              <td class="p-4">
-                {% if order.paid_status == True %}
-                  <span class="px-2 py-1 text-sm text-green-600 bg-green-100 rounded-full">Paid</span>
-                {% else %}
-                  <span class="px-2 py-1 text-sm text-red-600 bg-red-100 rounded-full">Not Paid</span>
-                {% endif %}
-              </td>
-              <td class="p-4">
-                <button class="px-4 py-2 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600"><i class="fas fa-eye mr-2"></i>View Details</button>
-              </td>
+              </th>
+              <th class="p-4 text-gray-600 font-medium">Order ID</th>
+              <th class="p-4 text-gray-600 font-medium">Billing Name</th>
+              <th class="p-4 text-gray-600 font-medium">Email</th>
+              <th class="p-4 text-gray-600 font-medium">Phone</th>
+              <th class="p-4 text-gray-600 font-medium">Date</th>
+              <th class="p-4 text-gray-600 font-medium">Total</th>
+              <th class="p-4 text-gray-600 font-medium">Payment Status</th>
+              <th class="p-4 text-gray-600 font-medium">View Details</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for order in latest_order %}
+              <tr class="border-b hover:bg-gray-50">
+                <td class="p-4">
+                  <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+                </td>
+                <td class="p-4 text-blue-500 font-medium">#{{ order.sku }}</td>
+                <td class="p-4 text-gray-800">{{ order.full_name }}</td>
+                <td class="p-4 text-gray-800">{{ order.email }}</td>
+                <td class="p-4 text-gray-800">{{ order.phone }}</td>
+                <td class="p-4 text-gray-800">{{ order.order_date }}</td>
+                <td class="p-4 text-gray-800">${{ order.price }}</td>
+                <td class="p-4">
+                  {% if order.paid_status == True %}
+                    <span class="px-2 py-1 text-sm text-green-600 bg-green-100 rounded-full">Paid</span>
+                  {% else %}
+                    <span class="px-2 py-1 text-sm text-red-600 bg-red-100 rounded-full">Not Paid</span>
+                  {% endif %}
+                </td>
+                <td class="p-4">
+                  <a href="{% url 'useradmin:order_detail' order.id %}" class="px-4 py-2 text-sm text-white bg-green-500 rounded-lg hover:bg-green-600 flex"><i class="fas fa-eye mr-2"></i><span class="hidden md:block">View Details</span></a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
 {% endblock %}

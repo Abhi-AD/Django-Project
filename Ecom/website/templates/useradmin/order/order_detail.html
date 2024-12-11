@@ -1,0 +1,123 @@
+{% extends 'useradmin/useradmin.base.html' %} {% block title %}
+  Order Details
+{% endblock %}
+{% load static %} {% block dashboard %}
+  <main class="w-full flex-grow p-6">
+    <header class="flex md:flex-row flex-col justify-between md:items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Order Details</h1>
+        <p class="text-sm">Details for Order ID: {{ order }}</p>
+      </div>
+    </header>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="bg-white shadow rounded-lg p-4 mb-6">
+        <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center">
+          <div>
+            <p class="text-sm text-gray-500">
+              <i class="fas fa-calendar-alt mr-2"></i>
+              {{ order.order_date }}
+            </p>
+            <p class="font-medium text-gray-700">Order ID: {{ order.oid }}</p>
+          </div>
+          <div class="mt-4 md:mt-0">
+            <select class="border rounded-md text-sm p-2" defaultValue="Processing">
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <button class="ml-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="flex items-start space-x-4 p-4">
+            <div class="bg-green-100 text-green-500 p-2 w-10 h-10 flex items-center justify-center rounded-full">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-700">Customer</h3>
+              <p class="text-sm text-gray-600">{{ order.full_name }}</p>
+              <p class="text-sm text-gray-600">{{ order.email }}</p>
+              <p class="text-sm text-gray-600">{{ order.phone }}</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4 p-4">
+            <div class="bg-green-100 text-green-500 p-2 w-10 h-10 flex items-center justify-center rounded-full">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-700">Order Info</h3>
+              <p class="text-sm text-gray-600">Shipping Method: {{ order.shopping_method }}</p>
+              <p class="text-sm text-gray-600">Order ID: {{ order.oid }}</p>
+              <p class="text-sm text-gray-600">Order Status: {{ order.product_status|title }}</p>
+              <p class="text-sm text-gray-600">
+                Payment Status:{% if order.paid_status %}
+                  Paid
+                {% else %}
+                  Not Paid
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4 p-4">
+            <div class="bg-green-100 text-green-500 p-2 w-10 h-10 flex items-center justify-center rounded-full">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-700">Deliver to</h3>
+              <p class="text-sm text-gray-600">Address: {{ order.address }}</p>
+              <p class="text-sm text-gray-600">City: {{ order.city }}</p>
+              <p class="text-sm text-gray-600">State: {{ order.state }}</p>
+              <p class="text-sm text-gray-600">Country: {{ order.country }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative overflow-x-auto">
+          <table class="w-full border-collapse border">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="border text-left p-2">Product</th>
+                <th class="border text-left p-2">Unit Price</th>
+                <th class="border text-left p-2">Quantity</th>
+                <th class="border text-left p-2">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in order_items %}
+                <tr>
+                  <td class="border p-2">
+                    <div class="px-4 py-2">
+                      <img src="{{ order.image }}" alt="{{ product.title }}" class="w-20 h-20 rounded object-cover" />
+                    </div>
+                    <span>{{ order.title }}</span>
+                  </td>
+                  <td class="border p-2">${{ order.price }}</td>
+                  <td class="border p-2">{{ order.qty }}</td>
+                  <td class="border p-2">${{ order.total }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-6 flex flex-col items-end">
+          <div class="text-sm text-gray-600 space-y-1">
+            <p>Tax: $0.00</p>
+            <p>Shipping: $0.00</p>
+            <p>Discount: ${{ order.saved }}</p>
+          </div>
+          <div class="text-lg font-semibold text-gray-700 mt-2">
+            Grand Total: <span class="text-green-600">${{ order.price }}</span>
+          </div>
+          {% if order.paid_status %}
+            <p class="text-sm text-green-600 bg-green-300 p-2 rounded-md mt-1">Paid</p>
+          {% else %}
+            <p class="text-sm text-red-600 bg-red-300 p-2 rounded-md mt-1">Not Paid</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
