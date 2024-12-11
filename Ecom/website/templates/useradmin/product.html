@@ -1,0 +1,52 @@
+{% extends 'useradmin/useradmin.base.html' %} {% block title %}
+  Product
+{% endblock %}
+{% load static %} {% block dashboard %}
+  <main class="w-full flex-grow p-6">
+    <header class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Product List</h1>
+        <p class="text-sm">Manage all your products from here</p>
+      </div>
+      <div class="bg-green-500 p-2 cursor-pointer rounded-lg text-md text-white">Create Product</div>
+    </header>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex justify-between items-center mb-4 space-x-4">
+        <!-- Price Sorting -->
+        <div class="w-1/6">
+          <select id="price" class="w-full border border-gray-300 rounded-lg p-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option>Status</option>
+            <option>Live</option>
+            <option>Draft</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="min-w-full text-left border-collapse">
+        <tbody>
+          {% for product in all_products %}
+            <tr class="hover:bg-gray-50 border-b border-t">
+              <td class="px-4 py-2">
+                <input type="checkbox" class="w-4 h-4 rounded border-gray-300" />
+              </td>
+              <td class="px-4 py-2">
+                <img src="{{ product.images.url }}" alt="{{ product.title }}" class="w-20 h-20 rounded object-cover" />
+              </td>
+              <td class="px-4 py-2">{{ products.title }}</td>
+              <td class="px-4 py-2">${{ product.price }}</td>
+              <td class="px-4 py-2">
+                <span class="px-2 py-1 text-sm text-white bg-gray-400 rounded">{{ product.status }}</span>
+              </td>
+              <td class="px-4 py-2">{{ product.date|date:'d M, Y' }}</td>
+              <td class="px-4 py-2">
+                <button class="px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600"><i class="fas fa-edit mr-1"></i> Edit</button>
+                <button class="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600 ml-2"><i class="fas fa-trash mr-1"></i> Delete</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+{% endblock %}
