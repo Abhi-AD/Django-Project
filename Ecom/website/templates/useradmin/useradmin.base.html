@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        Dashboard
+      {% endblock %}
+    </title>
+    <meta name="author" content="David Grzyb" />
+    <meta name="description" content="" />
+
+    <!-- Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <style>
+      .active-nav-link {
+        background: #0d895b;
+        color: #fff;
+        border-radius: 4px;
+      }
+      .nav-item:hover {
+        background: #0d895b;
+        color: #fff;
+        border-radius: 4px;
+      }
+      .account-link:hover {
+        background: #5caf90;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-family-karla flex">
+    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+      <div class="p-4 text-lg font-bold text-[#5caf90]">
+        <img class="" src="{% static 'assets/img/logo/logo.png' %}" alt="Logo" />
+      </div>
+      <div class="w-full border-t border-gray-300 my-6"></div>
+
+      <nav class="text-black flex flex-col gap-2 text-base font-semibold pt-3 p-4">
+        <a href="#" class="flex items-center active-nav-link text-black py-4 pl-6 nav-item">
+          <i class="fas fa-tachometer-alt mr-2"></i>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-box mr-2"></i>
+          Products
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-shopping-cart mr-2"></i>
+          Orders
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-store mr-2"></i>
+          Shop Page
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-plus-circle mr-2"></i>
+          Add Product
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-star mr-2"></i>
+          Reviews
+        </a>
+        <div class="w-full border-t border-gray-300 my-6"></div>
+
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-cog mr-2"></i>
+          Settings
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-key mr-2"></i>
+          Change Password
+        </a>
+        <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+          <i class="fas fa-sign-out-alt mr-2"></i>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <div class="w-full flex flex-col h-screen overflow-y-hidden">
+      <!-- Desktop Header -->
+      <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+        <div class="w-1/2"></div>
+        <div class="relative w-1/2 flex justify-end">
+          <button id="profileButton" class="relative z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"><img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" /></button>
+          <div id="profileMenu" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16 hidden">
+            <a href="#" class="block px-4 py-2 account-link hover:text-black">Account</a>
+            <a href="#" class="block px-4 py-2 account-link hover:text-black">Support</a>
+            <a href="#" class="block px-4 py-2 account-link hover:text-black">Sign Out</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Mobile Header & Nav -->
+      <header class="w-full bg-sidebar py-5 px-6 sm:hidden">
+        <div class="flex items-center justify-between">
+          <img class="" src="{% static 'assets/img/logo/logo.png' %}" alt="Logo" />
+          <button id="menuButton" class="text-black text-3xl focus:outline-none"><i id="menuIcon" class="fas fa-bars"></i></button>
+        </div>
+
+        <!-- Dropdown Nav -->
+        <nav id="mobileNav" class="hidden flex flex-col pt-4">
+          <a href="#" class="flex items-center active-nav-link text-black py-2 pl-4 nav-item"><i class="fas fa-tachometer-alt mr-3"></i> Dashboard</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-box mr-3"></i> Products</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-shopping-cart mr-3"></i> Orders</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-store mr-3"></i> Shop Page</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-plus-circle mr-3"></i> Add Product</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-star mr-3"></i> Reviews</a>
+          <div class="w-full border-t border-gray-300 my-6"></div>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-cog mr-3"></i> Settings</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-key mr-3"></i> Change Password</a>
+          <a href="#" class="flex items-center text-black opacity-75 hover:opacity-100 py-2 pl-4 nav-item"><i class="fas fa-sign-out-alt mr-3"></i> Logout</a>
+        </nav>
+      </header>
+
+      <div class="w-full overflow-x-hidden border-t flex flex-col">
+        {% block dashboard %}
+
+        {% endblock %}
+
+        <footer class="w-full bg-white text-right p-4">
+          Built by
+          <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
+        </footer>
+      </div>
+    </div>
+
+    <!-- External JS -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Profile menu toggle
+        const profileButton = document.getElementById('profileButton')
+        const profileMenu = document.getElementById('profileMenu')
+      
+        profileButton.addEventListener('click', function () {
+          profileMenu.classList.toggle('hidden')
+        })
+      
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menuButton')
+        const mobileNav = document.getElementById('mobileNav')
+        const menuIcon = document.getElementById('menuIcon')
+      
+        menuButton.addEventListener('click', function () {
+          mobileNav.classList.toggle('hidden')
+          if (menuIcon.classList.contains('fa-bars')) {
+            menuIcon.classList.remove('fa-bars')
+            menuIcon.classList.add('fa-times')
+          } else {
+            menuIcon.classList.remove('fa-times')
+            menuIcon.classList.add('fa-bars')
+          }
+        })
+      })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+  </body>
+</html>
