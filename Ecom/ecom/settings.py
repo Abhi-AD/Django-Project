@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Add your custom apps here
     "apps.essence",
     "apps.userauth",
+    "apps.useradmin",
     # other lib
     "taggit",
     "ckeditor",
