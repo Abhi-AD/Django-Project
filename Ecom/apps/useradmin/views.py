@@ -3,6 +3,7 @@ from apps.essence.models import CartOrder, Product, Category
 from django.db.models import Sum
 from apps.userauth.models import User
 import datetime
+from apps.useradmin.forms import AddProductForm
 
 
 def dashboard(request):
@@ -35,7 +36,25 @@ def dashboard(request):
 
 
 def product(request):
-    all_products = Product.objects.all()
+    all_products = Product.objects.all().order_by("-id")
     all_categories = Category.objects.all()
     context = {"all_products": all_products, "all_categories": all_categories}
     return render(request, "useradmin/product.html", context)
+
+
+def add_product(request):
+    if request.method == "POST":
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+            form.save_m2m()
+            return redirect("useradmin:product")
+        else:
+            print(form.errors)
+    else:
+        form = AddProductForm()
+
+    context = {"form": form}
+    return render(request, "useradmin/add_product.html", context)
