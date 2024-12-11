@@ -1,0 +1,109 @@
+{% extends 'useradmin/useradmin.base.html' %}
+{% block title %}
+  Product
+{% endblock %}
+{% load static %}
+{% block dashboard %}
+  <form action="" method="post" enctype="multipart/form-data" class="w-full flex-grow p-6 max-w-screen-xl">
+    {% csrf_token %}
+
+    <header class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Add New Product</h1>
+      <button type="submit" class="bg-green-500 p-2 cursor-pointer rounded-lg text-md text-white flex items-center space-x-2">
+        <span>Public</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </header>
+
+    <div class="flex gap-6">
+      <div class="bg-white w-3/5 rounded-lg shadow-md p-6 flex flex-col gap-2">
+        <div class="flex flex-col gap-1">
+          <label for="title" class="block text-sm font-medium text-gray-700">Title*</label>
+          {{ form.title }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="description" class="block text-sm font-medium text-gray-700">Description*</label>
+          {{ form.description }}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="price" class="block text-sm font-medium text-gray-700">Price*</label>
+            {{ form.price }}
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="old_price" class="block text-sm font-medium text-gray-700">Old Price($)</label>
+            {{ form.old_price }}
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="currency" class="block text-sm font-medium text-gray-700">Currency</label>
+            <input type="text" disabled value="USD" class="w-full bg-none placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2" />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="specifications" class="block text-sm font-medium text-gray-700">Specifications</label>
+          {{ form.specifications }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+          {{ form.type }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="stock_count" class="block text-sm font-medium text-gray-700">Stock Count</label>
+          {{ form.stock_count }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="mfd" class="block text-sm font-medium text-gray-700">Manufacturing Date</label>
+          {{ form.mfd }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="tag" class="block text-sm font-medium text-gray-700">Tag</label>
+          {{ form.tag }}
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="digital" class="block text-sm font-medium text-gray-700">Digital</label>
+          <div class="flex gap-2">
+            {{ form.digital }}
+            <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Check if only this a digital product</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-2/5 flex flex-col gap-4">
+        <div class="bg-white rounded-lg shadow-md">
+          <label for="upload_cover" class="cursor-pointer">
+            <h1 class="font-bold text-xl p-4">Media</h1>
+            <div class="w-full border-t border-gray-300 my-6"></div>
+            <div class="flex justify-center">
+              <div class="relative w-[50px] h-[50px]">
+                <div class="w-full h-full rounded-full overflow-hidden">
+                  <img src="{% static 'assets/img/default_image.png' %}" alt="Default Image" class="w-28 h-28 object-cover rounded-full" />
+                </div>
+                <div class="flex items-center gap-2 text-[#5caf90] absolute bottom-0 right-0 mb-2 mr-2">
+                  <i class="gicon gi-camera"></i>
+                  <input type="file" id="upload_cover" name="images" hidden accept="image/*" />
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md">
+          <h1 class="font-bold text-xl p-4">Category</h1>
+          <div class="w-full border-t border-gray-300 my-6"></div>
+          <div class="flex flex-col gap-2 p-4">
+            <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+            {{ form.category }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

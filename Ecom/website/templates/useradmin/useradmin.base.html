@@ -54,7 +54,7 @@
           <i class="fas fa-store mr-2"></i>
           Shop Page
         </a>
-        <a href="#" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/add-product/' %}active-nav-link{% endif %}">
+        <a href="{% url 'useradmin:add_product' %}" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/add-product/' %}active-nav-link{% endif %}">
           <i class="fas fa-plus-circle mr-2"></i>
           Add Product
         </a>

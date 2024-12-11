@@ -40,12 +40,11 @@ def user_directory_path(instance, filename):
     return f"unknown_user/{filename}"
 
 
-
 class Coupon(models.Model):
     code = models.CharField(max_length=50)
     discount = models.IntegerField(default=1)
     active = models.BooleanField(default=True)
-    
+
     def __str__(self):
         return self.code
 
