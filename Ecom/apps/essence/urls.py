@@ -24,6 +24,12 @@ urlpatterns = [
     path("cart/", views.cart_view, name="cart"),
     # paypal url
     path("paypal/", include("paypal.standard.ipn.urls")),
+    # stripe url
+    path(
+        "api/create_checkout_sessions/<oid>/",
+        views.create_checkout_sessions,
+        name="create_checkout_sessions",
+    ),
     # payment status
     path(
         "payment_complete/<oid>/", views.payment_complete_view, name="payment_complete"

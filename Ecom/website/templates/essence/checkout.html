@@ -58,7 +58,8 @@
                     <button class="mt-2 w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700" type="submit" name="login">Apply</button>
                   </form>
                   <!-- Payment Buttons -->
-                  <button class="w-full bg-purple-600 text-white py-2 rounded mb-2 hover:bg-purple-700">Pay With Stripe (Credit or Debit Card)</button>
+                  <button type="button" id="checkout-button" class="w-full bg-purple-600 text-white py-2 rounded mb-2 hover:bg-purple-700">Pay With Stripe (Credit or Debit Card)</button>
+
                   {% comment %} <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Pay With PayPal</button> {% endcomment %}
                   <div id="paypal-button-container"></div>
                 </div>
@@ -97,6 +98,47 @@
       })
       .render('#paypal-button-container')
   </script>
+
+  <script>
+    var stripe = Stripe('{{stripe_publishable_key}}')
+    var checkoutButton = document.getElementById('checkout-button')
+    
+    if (checkoutButton) {
+      checkoutButton.addEventListener('click', function () {
+        checkoutButton.innerHTML = 'Processing...'
+        fetch('/essence/api/create_checkout_sessions/{{order.oid}}/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error('Network response was not ok')
+            }
+            return response.json()
+          })
+          .then(function (data) {
+            if (data.sessionId) {
+              return stripe.redirectToCheckout({ sessionId: data.sessionId })
+            } else {
+              throw new Error('Session ID not returned')
+            }
+          })
+          .then(function (result) {
+            if (result.error) {
+              alert(result.error.message)
+            }
+          })
+          .catch(function (error) {
+            console.error('Error:', error)
+            alert('An error occurred. Please try again.')
+            checkoutButton.innerHTML = 'Pay With Stripe (Credit or Debit Card)'
+          })
+      })
+    }
+  </script>
+
   {% include 'components/ui/footer.html' %}
   {% include 'components/ui/quickmodel.html' %}
 {% endblock %}
