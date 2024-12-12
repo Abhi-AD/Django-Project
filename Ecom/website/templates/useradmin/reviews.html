@@ -1,0 +1,45 @@
+{% extends 'useradmin/useradmin.base.html' %} {% block title %}
+  Review
+{% endblock %}
+{% load static %} {% block dashboard %}
+  <main class="w-full flex-grow p-6">
+    <header class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Review</h1>
+        <p>Manage all product reviews</p>
+      </div>
+    </header>
+    <div class="relative overflow-x-auto">
+      <table class="min-w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b">
+            <th class="p-4">
+              <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+            </th>
+            <th class="p-4 text-gray-600 font-medium">S/N</th>
+            <th class="p-4 text-gray-600 font-medium">Product</th>
+            <th class="p-4 text-gray-600 font-medium">Name</th>
+            <th class="p-4 text-gray-600 font-medium">Review</th>
+            <th class="p-4 text-gray-600 font-medium">Rating</th>
+            <th class="p-4 text-gray-600 font-medium">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for review in reviews %}
+            <tr class="border-b hover:bg-gray-50">
+              <td class="p-4">
+                <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded" />
+              </td>
+              <td class="p-4 text-blue-500 font-medium">{{ forloop.counter }}</td>
+              <td class="p-4 text-gray-800">{{ review.product.title }}</td>
+              <td class="p-4 text-gray-800">{{ review.user.username|title }}</td>
+              <td class="p-4 text-gray-800">{{ review.review }}</td>
+              <td class="p-4 text-gray-800">{{ review.rating }} Stars</td>
+              <td class="p-4 text-gray-800">{{ review.date|date:'d M, Y' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+{% endblock %}

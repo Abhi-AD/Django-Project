@@ -1,0 +1,72 @@
+{% extends 'useradmin/useradmin.base.html' %} {% block title %}
+  Shop Page
+{% endblock %}
+{% load static %} {% block dashboard %}
+  <main class="w-full flex-grow p-6">
+    <header class="flex justify-between items-center mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Shop page</h1>
+      </div>
+    </header>
+
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <!-- Header -->
+      <div class="bg-green-400 h-32"></div>
+      <div class="relative -mt-16 flex items-end px-6 py-4">
+        <img class="w-32 h-32 border-2 border-white shadow-md" src="{{ request.user.profile.image.url }}" alt="Profile" />
+        <div class="ml-6">
+          <h2 class="text-xl font-semibold text-gray-800">{{ request.user.profile.full_name }}</h2>
+          <p class="text-gray-600">{{ request.user.email }}</p>
+          <p class="text-gray-500 text-sm">{{ request.user.profile.bio }}</p>
+        </div>
+      </div>
+      <div class="px-6 py-4">
+        <div class="grid grid-cols-1 sm:grid-cols-6 gap-4">
+          <div class="rounded-lg flex flex-col gap-2 border p-4">
+            <div class="flex flex-col gap-1">
+              <h3 class="text-sm text-gray-500">Total Sales</h3>
+              <p class="text-lg font-bold text-green-600">{{ total_sales.qty|default:'No sales yet' }}</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <h3 class="text-sm text-gray-500">Revenue</h3>
+              <p class="text-lg font-bold text-green-600">${{ revenue.price|floatformat:2 }}</p>
+            </div>
+          </div>
+          <div class="rounded-lg flex flex-col gap-2 hidden">
+            <h3 class="text-sm text-gray-500">Contacts</h3>
+            <div class="flex flex-col">
+              <p class="text-sm text-gray-800 capitalize">{{ request.user }}</p>
+              <p class="text-sm text-gray-800">{{ request.email }}</p>
+              <p class="text-sm text-gray-800">(123) 456-7890, (987) 654-3210</p>
+            </div>
+          </div>
+          <div class="rounded-lg flex flex-col gap-2 hidden">
+            <h3 class="text-sm text-gray-500">Address</h3>
+            <div class="flex flex-col">
+              <p class="text-sm text-gray-800">Country: California</p>
+              <p class="text-sm text-gray-800">Address: Ranchview Dr. Richardson</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Section -->
+    <div class="mt-8 bg-white shadow-lg rounded-lg overflow-hidden">
+      <h3 class="px-6 py-4 text-lg font-semibold text-gray-800">Products by Seller</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 px-6 py-4">
+        <!-- Product Card -->
+
+        {% for product in products %}
+          <div class="flex items-center space-x-4 border p-4 rounded-lg">
+            <img class="w-24 h-24 rounded-md object-cover border" src="{{ product.images.url }}" alt="{{ product.title }}" />
+            <div>
+              <p class="text-gray-800 font-medium">{{ product.title }}</p>
+              <p class="text-gray-600">${{ product.price }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+{% endblock %}

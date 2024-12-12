@@ -50,7 +50,7 @@
           <i class="fas fa-shopping-cart mr-2"></i>
           Orders
         </a>
-        <a href="#" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/shop-page/' %}active-nav-link{% endif %}">
+        <a href="{% url 'useradmin:shop_page' %}" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/shop-page/' %}active-nav-link{% endif %}">
           <i class="fas fa-store mr-2"></i>
           Shop Page
         </a>
@@ -58,7 +58,7 @@
           <i class="fas fa-plus-circle mr-2"></i>
           Add Product
         </a>
-        <a href="#" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/review/' %}active-nav-link{% endif %}">
+        <a href="{% url 'useradmin:reviews' %}" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/reviews/' %}active-nav-link{% endif %}">
           <i class="fas fa-star mr-2"></i>
           Reviews
         </a>
@@ -105,9 +105,9 @@
           <a href="{% url 'useradmin:dashboard' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/dashboard/' %}active-nav-link{% endif %}"><i class="fas fa-tachometer-alt mr-3"></i> Dashboard</a>
           <a href="{% url 'useradmin:product' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/product/' %}active-nav-link{% endif %}"><i class="fas fa-box mr-3"></i> Products</a>
           <a href="{% url 'useradmin:orders' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/orders/' %}active-nav-link{% endif %}"><i class="fas fa-shopping-cart mr-3"></i> Orders</a>
-          <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/shop-page/' %}active-nav-link{% endif %}"><i class="fas fa-store mr-3"></i> Shop Page</a>
+          <a href="{% url 'useradmin:shop_page' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/shop-page/' %}active-nav-link{% endif %}"><i class="fas fa-store mr-3"></i> Shop Page</a>
           <a href="{% url 'useradmin:add_product' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/add-product/' %}active-nav-link{% endif %}"><i class="fas fa-plus-circle mr-3"></i> Add Product</a>
-          <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/reviews/' %}active-nav-link{% endif %}"><i class="fas fa-star mr-3"></i> Reviews</a>
+          <a href="{% url 'useradmin:reviews' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/reviews/' %}active-nav-link{% endif %}"><i class="fas fa-star mr-3"></i> Reviews</a>
           <div class="w-full border-t border-gray-300 my-6"></div>
           <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/settings/' %}active-nav-link{% endif %}"><i class="fas fa-cog mr-3"></i> Settings</a>
           <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/change-password/' %}active-nav-link{% endif %}"><i class="fas fa-key mr-3"></i> Change Password</a>
