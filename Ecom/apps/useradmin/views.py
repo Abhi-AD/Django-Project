@@ -1,5 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from apps.essence.models import CartOrder, Product, Category, CartOrderItem
+from apps.essence.models import (
+    CartOrder,
+    Product,
+    Category,
+    CartOrderItem,
+    ProductReview,
+)
 from django.db.models import Sum
 from apps.userauth.models import User
 import datetime
@@ -110,3 +116,21 @@ def change_order_status(request, oid):
         order.save()
         messages.success(request, f"Order status Change  to {status}")
     return redirect("useradmin:order_detail", order.id)
+
+
+def shop_page(request):
+    products = Product.objects.all()
+    revenue = CartOrder.objects.aggregate(price=Sum("price"))
+    total_sales = CartOrderItem.objects.filter(order_user__paid_status=True).aggregate(
+        qty=Sum("qty")
+    )
+    context = {"products": products, "revenue": revenue, "total_sales": total_sales}
+    return render(request, "useradmin/shop_page.html", context)
+
+
+def reviews(request):
+    reviews = ProductReview.objects.all()
+    context = {
+        "reviews": reviews,
+    }
+    return render(request, "useradmin/reviews.html", context)
