@@ -20,15 +20,15 @@
             </p>
             <p class="font-medium text-gray-700">Order ID: {{ order.oid }}</p>
           </div>
-          <div class="mt-4 md:mt-0">
-            <select class="border rounded-md text-sm p-2" defaultValue="Processing">
-              <option value="Processing">Processing</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Cancelled">Cancelled</option>
+          <form method="post" action="{% url 'useradmin:change_order_status' order.oid %}" class="mt-4 md:mt-0">
+            <select name="status" class="border rounded-md text-sm p-2">
+              <option value="processing">Chnage order Status</option>
+              <option value="processing">Processing</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
             </select>
-            <button class="ml-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Save</button>
-          </div>
+            <button type="submit" class="ml-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Save</button>
+          </form>
         </div>
       </div>
       <div class="bg-white shadow rounded-lg p-4">

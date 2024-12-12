@@ -4,6 +4,8 @@ from django.db.models import Sum
 from apps.userauth.models import User
 import datetime
 from apps.useradmin.forms import AddProductForm
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 
 def dashboard(request):
@@ -96,3 +98,15 @@ def order_detail(request, id):
     order_items = CartOrderItem.objects.filter(order_user=order)
     context = {"order": order, "order_items": order_items}
     return render(request, "useradmin/order/order_detail.html", context)
+
+
+@csrf_exempt
+def change_order_status(request, oid):
+    order = get_object_or_404(CartOrder, oid=oid)
+    if request.method == "POST":
+        status = request.POST.get("status")
+        print(status)
+        order.product_status = status
+        order.save()
+        messages.success(request, f"Order status Change  to {status}")
+    return redirect("useradmin:order_detail", order.id)

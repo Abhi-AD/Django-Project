@@ -11,4 +11,9 @@ urlpatterns = [
     path("delete-product/<pid>/", views.delete_product, name="delete_product"),
     path("orders/", views.orders, name="orders"),
     path("order-detail/<id>/", views.order_detail, name="order_detail"),
+    path(
+        "change-order-status/<oid>/",
+        views.change_order_status,
+        name="change_order_status",
+    ),
 ]

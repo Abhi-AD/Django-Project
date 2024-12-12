@@ -203,7 +203,11 @@ class CartOrder(models.Model):
     paid_status = models.BooleanField(default=False)
     order_date = models.DateTimeField(auto_now_add=True)
     product_status = models.CharField(
-        choices=STATUS_CHOICE, max_length=10, default="processing"
+        choices=STATUS_CHOICE,
+        max_length=10,
+        default="processing",
+        null=True,
+        blank=True,
     )
     sku = ShortUUIDField(
         null=True,
