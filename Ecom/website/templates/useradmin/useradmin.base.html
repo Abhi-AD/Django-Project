@@ -71,7 +71,7 @@
           <i class="fas fa-cog mr-2"></i>
           Settings
         </a>
-        <a href="#" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/change-passsword/' %}active-nav-link{% endif %}">
+        <a href="{% url 'useradmin:change_password' %}" class="flex items-center text-black py-4 pl-6 nav-item {% if request.path == '/useradmin/change-password/' %}active-nav-link{% endif %}">
           <i class="fas fa-key mr-2"></i>
           Change Password
         </a>
@@ -113,7 +113,7 @@
           <a href="{% url 'useradmin:reviews' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/reviews/' %}active-nav-link{% endif %}"><i class="fas fa-star mr-3"></i> Reviews</a>
           <div class="w-full border-t border-gray-300 my-6"></div>
           <a href="{% url 'useradmin:settings' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/settings/' %}active-nav-link{% endif %}"><i class="fas fa-cog mr-3"></i> Settings</a>
-          <a href="#" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/change-password/' %}active-nav-link{% endif %}"><i class="fas fa-key mr-3"></i> Change Password</a>
+          <a href="{% url 'useradmin:change_password' %}" class="flex items-center text-black py-2 pl-4 nav-item {% if request.path == '/useradmin/change-password/' %}active-nav-link{% endif %}"><i class="fas fa-key mr-3"></i> Change Password</a>
           <a href="#" class="flex items-center text-black py-2 pl-4"><i class="fas fa-sign-out-alt mr-3"></i> Logout</a>
         </nav>
       </header>

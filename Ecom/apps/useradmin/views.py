@@ -12,6 +12,7 @@ import datetime
 from apps.useradmin.forms import AddProductForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.hashers import check_password
 
 
 def dashboard(request):
@@ -157,3 +158,25 @@ def settings(request):
         return redirect("useradmin:settings")
     context = {"profile": profile}
     return render(request, "useradmin/settings.html", context)
+
+
+def change_password(request):
+    user = request.user
+    if request.method == "POST":
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        confirm_new_password = request.POST.get("confirm_new_password")
+
+        if confirm_new_password != new_password:
+            messages.error(request, "Password does not match")
+            return redirect("useradmin:change_password")
+
+        if check_password(old_password, user.password):
+            user.set_password(new_password)
+            user.save()
+            messages.success(request, "Password updated successfully")
+            return redirect("useradmin:change_password")
+        else:
+            messages.error(request, "Old password does not match")
+            return redirect("useradmin:change_password")
+    return render(request, "useradmin/change_password.html")
