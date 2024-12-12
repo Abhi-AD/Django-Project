@@ -19,4 +19,5 @@ urlpatterns = [
     path("shop-page/", views.shop_page, name="shop_page"),
     path("reviews/", views.reviews, name="reviews"),
     path("settings/", views.settings, name="settings"),
+    path("change-password/", views.change_password, name="change_password"),
 ]
