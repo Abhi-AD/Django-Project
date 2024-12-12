@@ -13,8 +13,10 @@ from apps.useradmin.forms import AddProductForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.hashers import check_password
+from apps.useradmin.decorators import admin_required
 
 
+@admin_required
 def dashboard(request):
     revenue = CartOrder.objects.aggregate(price=Sum("price"))
     total_order_count = CartOrder.objects.all()
@@ -44,6 +46,7 @@ def dashboard(request):
     return render(request, "useradmin/dashboard.html", context)
 
 
+@admin_required
 def product(request):
     all_products = Product.objects.all().order_by("-id")
     all_categories = Category.objects.all()
@@ -51,6 +54,7 @@ def product(request):
     return render(request, "useradmin/product/product.html", context)
 
 
+@admin_required
 def add_product(request):
     if request.method == "POST":
         form = AddProductForm(request.POST, request.FILES)
@@ -69,6 +73,7 @@ def add_product(request):
     return render(request, "useradmin/product/add_product.html", context)
 
 
+@admin_required
 def update_product(request, pid):
     product = Product.objects.get(pid=pid)
     if request.method == "POST":
@@ -88,18 +93,21 @@ def update_product(request, pid):
     return render(request, "useradmin/product/edit_product.html", context)
 
 
+@admin_required
 def delete_product(request, pid):
     product = Product.objects.get(pid=pid)
     product.delete()
     return redirect("useradmin:product")
 
 
+@admin_required
 def orders(request):
     orders = CartOrder.objects.all()
     context = {"orders": orders}
     return render(request, "useradmin/order/orders.html", context)
 
 
+@admin_required
 def order_detail(request, id):
     order = get_object_or_404(CartOrder, id=id)
     order_items = CartOrderItem.objects.filter(order_user=order)
@@ -107,6 +115,7 @@ def order_detail(request, id):
     return render(request, "useradmin/order/order_detail.html", context)
 
 
+@admin_required
 @csrf_exempt
 def change_order_status(request, oid):
     order = get_object_or_404(CartOrder, oid=oid)
@@ -119,6 +128,7 @@ def change_order_status(request, oid):
     return redirect("useradmin:order_detail", order.id)
 
 
+@admin_required
 def shop_page(request):
     products = Product.objects.all()
     revenue = CartOrder.objects.aggregate(price=Sum("price"))
@@ -129,6 +139,7 @@ def shop_page(request):
     return render(request, "useradmin/shop_page.html", context)
 
 
+@admin_required
 def reviews(request):
     reviews = ProductReview.objects.all()
     context = {
@@ -137,6 +148,7 @@ def reviews(request):
     return render(request, "useradmin/reviews.html", context)
 
 
+@admin_required
 def settings(request):
     profile = Profile.objects.get(user=request.user)
     if request.method == "POST":
@@ -160,6 +172,7 @@ def settings(request):
     return render(request, "useradmin/settings.html", context)
 
 
+@admin_required
 def change_password(request):
     user = request.user
     if request.method == "POST":
