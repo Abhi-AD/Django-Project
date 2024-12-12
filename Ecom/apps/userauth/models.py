@@ -18,10 +18,12 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    image = models.ImageField(upload_to="profile")
+    image = models.ImageField(upload_to="profile", null=True, blank=True)
     full_name = models.CharField(max_length=200, null=True, blank=True)
     bio = models.CharField(max_length=200, null=True, blank=True)
     phone = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
     verified = models.BooleanField(default=False)
 
     def __str__(self):
