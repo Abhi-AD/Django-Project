@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title %}
-  Cart
+  Checkout
 {% endblock %}
 {% load static %} {% block content %}
   {% include 'components/ui/header.html' %}
@@ -58,9 +58,7 @@
                     <button class="mt-2 w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700" type="submit" name="login">Apply</button>
                   </form>
                   <!-- Payment Buttons -->
-                  <button type="button" id="checkout-button" class="w-full bg-purple-600 text-white py-2 rounded mb-2 hover:bg-purple-700">Pay With Stripe (Credit or Debit Card)</button>
-
-                  {% comment %} <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Pay With PayPal</button> {% endcomment %}
+                  <button type="button" id="checkout-button" class="w-full bg-[#9333ea] text-white py-2 rounded mb-2 hover:bg-[#650bb6]">Pay With Stripe (Credit or Debit Card)</button>
                   <div id="paypal-button-container"></div>
                 </div>
               </div>
