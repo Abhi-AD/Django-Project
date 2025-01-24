@@ -1,4 +1,4 @@
-# Django E-Commerce Project
+# Django E-Commerce Project 
 
 Welcome to the Django E-Commerce Project! This is a fully functional e-commerce application built with Django, designed to showcase products, manage user accounts, and facilitate online transactions.
 
